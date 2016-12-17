@@ -9,7 +9,6 @@ fi
 # Enable colors
 export CLICOLOR=1
 
-export HOMEBREW_GITHUB_API_TOKEN=9d7ac6318815eb95282b083e64dcd8d70a383fbc
 export HOMEBREW_NO_ANALYTICS=1
 
 export EDITOR=vim
