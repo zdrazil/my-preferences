@@ -1,0 +1,11 @@
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# enhanced options
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set skip-completed-text on
+set completion-prefix-display-length 2
+
+set visible-stats on

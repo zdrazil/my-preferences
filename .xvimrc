@@ -1,0 +1,97 @@
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" ================ General Config ====================
+
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set history=1000                "Store lots of :cmdline history
+set autoread                    "Reload files changed outside vim
+set encoding=utf-8
+
+"turn on syntax highlighting
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
+set background=dark
+colorscheme monokai
+let macvim_skip_colorscheme=1
+
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+
+"Spaces & Tabs
+set tabstop=4 " number of visual spaces per TAB
+set shiftwidth=4
+set softtabstop=4 " number of spaces in tab when editing
+set expandtab     " tabs are spaces
+
+filetype on
+filetype plugin on
+filetype indent on
+
+"Wrapping
+set wrap 
+set linebreak  " don't split words in the middle
+set nolist     " list disables linebreak
+set textwidth=0
+set wrapmargin=0
+set formatoptions-=t
+set colorcolumn=80
+
+" Clipboard
+set clipboard=unnamed,unnamedplus
+
+" Mouse
+set mouse=a
+
+" Undo
+set undodir=~/.vim/undodir/
+set undofile
+
+" ================ Completion =======================
+
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
+" ================ Scrolling ========================
+
+set scrolloff=3         "Start scrolling when we're 3 lines away from 
+set sidescrolloff=15
+set sidescroll=1
+
+" ================ Search ===========================
+
+set incsearch       " search as characters are entered
+set hlsearch        " Highlight searches by default
+set ignorecase      " Ignore case when searching...
+set smartcase       " If there are uppercase letters, become case-sensitive.
+set showmatch       " highlight matching [{()}]
+
+" ================ UI Config =========================
+set number              " show line numbers
+set showcmd             " show command in bottom bar
+set showmode            " show current mode down the bottom
+set lazyredraw          " redraw only when we need to.
+set title               " e.g. | page.html (~) - VIM | as a windows title
+set ruler               " Enable limited line numbering
+set visualbell          "Instead of hearing beep, show a brief window flash.
+
+" ================ Backups ===========================
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp

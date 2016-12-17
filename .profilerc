@@ -1,0 +1,90 @@
+export PATH="/opt/local/bin:/opt/local/sbin:$HOME/bin:$PATH"
+
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+    . /opt/local/etc/profile.d/autojump.sh
+fi
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Enable colors
+export CLICOLOR=1
+
+export HOMEBREW_GITHUB_API_TOKEN=9d7ac6318815eb95282b083e64dcd8d70a383fbc
+export HOMEBREW_NO_ANALYTICS=1
+
+export EDITOR=vim
+
+#-------------------- ALIASES ------------------------
+
+# Shortcuts for ls.
+alias lsl='ls -l'
+alias lsa='ls -a'
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+
+alias yt-music-download='youtube-dl -x --audio-format m4a --embed-thumbnail --add-metadata'
+
+function yt-music-search() {
+    mpv --no-video --ytdl-format=bestaudio --term-playing-msg='Title: ${media-title}'  ytdl://ytsearch10:"$@"
+}
+
+function yt-music-stream() {
+    mpv --no-video --term-playing-msg='Title: ${media-title}' "$@"
+}
+
+alias subliminal-download='subliminal download -l cs -f -s -v'
+alias iflicks="open -a 'iFlicks 2'"
+
+# Mac Specific Aliases
+if [[ $OSTYPE == darwin* ]]; then
+    alias suz='su -l zdraz'
+    alias mac-lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+    alias mac-restart="osascript -e 'tell app "loginwindow" to «event aevtrrst»'"
+    alias mac-sleep='pmset sleepnow'
+    alias mac-shutdown="osascript -e 'tell app "loginwindow" to «event aevtrsdn»'"
+    alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
+    alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
+    alias mac-screensaver='open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app'
+    alias mac-eject-all="osascript -e 'tell application "Finder" to eject (every disk whose executable is true)'"
+    alias mac-battery='pmset -g batt'
+    alias mac-preventing-sleep='pmset -g assertions'
+    alias mac-mouse-acceleration-disable='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
+    alias mac-mouse-acceleration-enable='defaults write .GlobalPreferences com.apple.mouse.scaling 0.875'
+
+    alias vncwindows='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://windows-pc.local:36154'
+    alias vncmacmini='open vnc://Mac-mini.local'
+    alias vncmacbookpro='open vnc://macbook-pro.local'
+    alias vncimac='open vnc://imac.local'
+    alias vnclocal='open vnc://localhost:5901'
+    alias firefox-cmd='nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin
+    -profile CommandLine --no-remote >/dev/null &'
+
+    alias brewgrade='brew update; and brew upgrade'
+
+    alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
+
+#    alias subl='open -a "Sublime Text"'
+    alias vcode='open -a "Visual Studio Code"'
+
+    function wolfram() {
+        open 'https://www.wolframalpha.com/input/?i='"$@"
+    }
+
+    # invert colors
+    alias mac-invert-colors='osascript -e "tell application \"System Events\"" -e "key code 28 using {control down, option down, command down}" -e "end tell"'
+
+    # open man-page(s) in its own window. Use: "manx" instead of "man" (OS X)
+    function manx() { local i; for i; do open x-man-page://$i; done; }
+    
+    # Change directory to the current Finder directory
+    mac-finder() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
+}
+fi
