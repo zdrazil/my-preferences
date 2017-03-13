@@ -1,10 +1,8 @@
-export PATH="/opt/local/bin:/opt/local/sbin:$HOME/bin:$PATH"
+export PATH="/opt/local/bin:/opt/local/sbin:$HOME/bin:~/.local/bin:$PATH"
 
 if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
     . /opt/local/etc/profile.d/autojump.sh
 fi
-
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Enable colors
 export CLICOLOR=1
