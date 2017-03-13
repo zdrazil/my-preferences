@@ -138,6 +138,8 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
+" install with PATH=/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/bin:$PATH
+" ./install.py --clang-completer --tern-completer 
 " A code-completion engine for Vim
 Plug 'https://github.com/Valloric/YouCompleteMe'
 " Plug 'https://github.com/ajh17/VimCompletesMe'
