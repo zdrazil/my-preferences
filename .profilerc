@@ -11,6 +11,12 @@ export CLICOLOR=1
 
 export HOMEBREW_NO_ANALYTICS=1
 
+# Source config files that are not to be public (API tokens etc.) 
+if [ -r ~/.not-public ]
+then
+    source ~/.not-public
+fi
+
 export EDITOR=vim
 
 #-------------------- ALIASES ------------------------
@@ -76,7 +82,9 @@ if [[ $OSTYPE == darwin* ]]; then
 
     # open man-page(s) in its own window. Use: "manx" instead of "man" (OS X)
     function manx() { local i; for i; do open x-man-page://$i; done; }
-    
+
+    alias zeal='~/Applications/Zeal.app/Contents/MacOS/Zeal'
+
     # Change directory to the current Finder directory
     mac-finder() {
     target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
@@ -85,5 +93,5 @@ if [[ $OSTYPE == darwin* ]]; then
     else
         echo 'No Finder window found' >&2
     fi
-}
+    }
 fi
