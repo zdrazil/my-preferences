@@ -139,8 +139,8 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
-" Plug 'https://github.com/Valloric/YouCompleteMe'
-Plug 'https://github.com/ajh17/VimCompletesMe'
+Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'https://github.com/ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 Plug 'https://github.com/vim-syntastic/syntastic'
@@ -153,8 +153,6 @@ Plug 'https://github.com/tpope/vim-surround'
 
 " Better Python indentation 
 Plug 'https://github.com/vim-scripts/indentpython.vim'
-
-" Plug 'https://github.com/airblade/vim-gitgutter'
 
 " Visualize undo-tree
 " Plug 'https://github.com/mbbill/undotree'
@@ -169,7 +167,7 @@ Plug 'https://github.com/jiangmiao/auto-pairs'
 
 " Send text from vim to another window
 " REPL integration (scheme, ipython etc.)
-Plug 'https://github.com/jpalardy/vim-slime'
+" Plug 'https://github.com/jpalardy/vim-slime'
 
 " A collection of language packs for Vim.
 Plug 'https://github.com/sheerun/vim-polyglot'
@@ -182,18 +180,22 @@ Plug 'https://github.com/unblevable/quick-scope'
 
 " makes scrolling nice and smooth
 Plug 'yonchu/accelerated-smooth-scroll'
+
+" Search for terms using the Dash.app
+Plug 'rizzatti/dash.vim'
+
 call plug#end()
 
 " Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " tmux
 let g:slime_target = "tmux"
@@ -202,21 +204,27 @@ let g:slime_python_ipython = 1
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+:nmap <silent> <leader>d <Plug>DashSearch
+
 " ================ File Formats =====================
 
 "python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
 
 " ================ Sources ===========================
 
 " ================ Keybindings =======================
+
+"Dash Plugin mapping
+:nmap <silent> <leader>d <Plug>DashSearch
+
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
