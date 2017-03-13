@@ -64,7 +64,7 @@ if [[ $OSTYPE == darwin* ]]; then
 
     alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
 
-#    alias subl='open -a "Sublime Text"'
+    alias subl='open -a "Sublime Text"'
     alias vcode='open -a "Visual Studio Code"'
 
     function wolfram() {
