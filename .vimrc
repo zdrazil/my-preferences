@@ -184,7 +184,17 @@ Plug 'yonchu/accelerated-smooth-scroll'
 " Search for terms using the Dash.app
 Plug 'rizzatti/dash.vim'
 
+" Status/tabline for vim
+Plug 'itchyny/lightline.vim'
+
 call plug#end()
+
+" Lightline
+set laststatus=2
+
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
 
 " Syntastic
 set statusline+=%#warningmsg#
