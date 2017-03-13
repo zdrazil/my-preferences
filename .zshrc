@@ -96,5 +96,26 @@ fi
 # ------------------ PLUGINS ----------------------
 
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Must be last
 source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+
+# Substring keybindings
+if [[ -n "$key_info" ]]; then
+  # Emacs
+  bindkey -M emacs "$key_info[Control]P" history-substring-search-up
+  bindkey -M emacs "$key_info[Control]N" history-substring-search-down
+
+  # Vi
+  bindkey -M vicmd "k" history-substring-search-up
+  bindkey -M vicmd "j" history-substring-search-down
+
+  # Emacs and Vi
+  for keymap in 'emacs' 'viins'; do
+    bindkey -M "$keymap" "$key_info[Up]" history-substring-search-up
+    bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
+  done
+fi
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
