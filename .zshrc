@@ -9,9 +9,9 @@ SAVEHIST=10000
 
 # Completion system; prompt
 zstyle :compinstall filename '/Users/zdrazil/.zshrc'
-
+fpath=(/Users/zdrazil/.zsh/packages/zsh-completions $fpath)
 autoload -Uz compinit promptinit
-compinit
+compinit -u
 promptinit
 
 autoload -Uz colors && colors
@@ -96,4 +96,5 @@ fi
 # ------------------ PLUGINS ----------------------
 
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Must be last
+source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
