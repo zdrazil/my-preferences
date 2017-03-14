@@ -43,7 +43,6 @@ endif
 
 syntax enable
 set background=dark
-colorscheme solarized
 " colorscheme monokai
 let macvim_skip_colorscheme=1
 
@@ -192,8 +191,12 @@ Plug 'rizzatti/dash.vim'
 Plug 'itchyny/lightline.vim'
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
+
+colorscheme base16-solarized-dark
+
 
 " Lightline
 set laststatus=2
