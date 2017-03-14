@@ -41,8 +41,10 @@ if has('path_extra')
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
+syntax enable
 set background=dark
-colorscheme monokai
+colorscheme solarized
+" colorscheme monokai
 let macvim_skip_colorscheme=1
 
 " ================ Indentation ======================
@@ -189,13 +191,15 @@ Plug 'rizzatti/dash.vim'
 " Status/tabline for vim
 Plug 'itchyny/lightline.vim'
 
+Plug 'altercation/vim-colors-solarized'
+
 call plug#end()
 
 " Lightline
 set laststatus=2
 
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'solarized',
       \ }
 
 " Syntastic
