@@ -117,5 +117,7 @@ if [[ -n "$key_info" ]]; then
   done
 fi
 
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
