@@ -42,7 +42,6 @@ if has('path_extra')
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 
-syntax enable
 set background=dark
 " colorscheme monokai
 let macvim_skip_colorscheme=1
@@ -61,7 +60,8 @@ set expandtab     " tabs are spaces
 
 filetype on
 if has ('autocmd')
-  filetype plugin indent on
+  filetype plugin on
+  filetype indent on
 endif
 
 "Wrapping
@@ -143,8 +143,8 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " install with PATH=/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/bin:$PATH
 " ./install.py --clang-completer --tern-completer 
 " A code-completion engine for Vim
-Plug 'https://github.com/Valloric/YouCompleteMe'
-" Plug 'https://github.com/ajh17/VimCompletesMe'
+" Plug 'https://github.com/Valloric/YouCompleteMe'
+Plug 'https://github.com/ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 Plug 'https://github.com/vim-syntastic/syntastic'
@@ -158,20 +158,10 @@ Plug 'https://github.com/tpope/vim-surround'
 " Better Python indentation 
 Plug 'https://github.com/vim-scripts/indentpython.vim'
 
-" Visualize undo-tree
-" Plug 'https://github.com/mbbill/undotree'
-
 " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on
 " the current file
 " better than DetectIndent (fully automatic)
 Plug 'https://github.com/tpope/vim-sleuth'
-
-" Insert or delete brackets, parens, quotes in pair.
-Plug 'https://github.com/jiangmiao/auto-pairs'
-
-" Send text from vim to another window
-" REPL integration (scheme, ipython etc.)
-" Plug 'https://github.com/jpalardy/vim-slime'
 
 " A collection of language packs for Vim.
 Plug 'https://github.com/sheerun/vim-polyglot'
@@ -191,6 +181,10 @@ Plug 'rizzatti/dash.vim'
 " Status/tabline for vim
 Plug 'itchyny/lightline.vim'
 
+" Use ack instead of grep
+Plug 'mileszs/ack.vim'
+
+" Vim python compiler
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
@@ -198,6 +192,10 @@ call plug#end()
 
 colorscheme monokai
 
+" Ack.vim
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
 
 " Lightline
 set laststatus=2
