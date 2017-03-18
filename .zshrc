@@ -29,9 +29,8 @@ setopt COMPLETE_ALIASES
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.setopt EXTENDED_HISTORY
 
-setopt SHARE_HISTORY             # Share history between all sessions.
+# setopt SHARE_HISTORY             # Share history between all sessions.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
 setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
