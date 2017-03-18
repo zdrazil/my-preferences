@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>swift-initializeFetchedResultsController</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func initializeFetchedResultsController() {
+    let request = NSFetchRequest(entityName: &lt;#entityName#&gt;)
+    
+    let moc = dataController.managedObjectContext
+    fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+    fetchedResultsController.delegate = self
+    
+    do {
+        try fetchedResultsController.performFetch()
+    } catch {
+        fatalError("Failed to initialize FetchedResultsController: \(error)")
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B583F1B0-F0E8-44CD-B840-0FBC13B86DDC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Integrates Fetched Results Controller with Table View Data Source</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift initializeFetchedResultsController</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>swift-coredataconcurrency</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>    let jsonArray = &lt;#jsonData#&gt; //JSON data to be imported into Core Data
+    let moc = &lt;#managedObjectContext#&gt; //Primary context on the main queue
+    
+    let privateMOC = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    privateMOC.parentContext = moc
+    
+privateMOC.performBlock {
+    for jsonObject in jsonArray {
+        let mo = &lt;#managedObject#&gt; //Managed object that matches the incoming JSON structure
+        //update MO with data from the dictionary
+    }
+    do {
+        try privateMOC.save()
+        moc.performBlockAndWait {
+            do {
+                try moc.save()
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
+        }
+    } catch {
+        fatalError("Failure to save context: \(error)")
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>BFDFC462-3FF6-4778-BD8B-D6C55C6C1ED1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Using a Private Queue to Support Concurrency
+
+Using a Private Queue to Support Concurrency
+
+Using a Private Queue to Support Concurrency
+
+Use Private Queue to Support Concurrency</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Swift Core Data Private Queue Concurrency</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
