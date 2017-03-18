@@ -18,6 +18,7 @@ set autoread                    "Reload files changed outside vim
 if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
 endif
+set encoding=utf-8
 set complete-=i
 set hidden
 set nrformats-=octal            "What base vim considers for increment
@@ -195,7 +196,7 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
-colorscheme base16-solarized-dark
+colorscheme monokai
 
 
 " Lightline
