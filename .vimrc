@@ -49,7 +49,6 @@ set showmatch       " highlight matching [{()}]
 " ================ UI Config =========================
 set showcmd
 set showmode
-set lazyredraw          " redraw only when we need to.
 set title               " e.g. | page.html (~) - VIM | as a windows title
 set ruler               " Enable limited line numbering
 
