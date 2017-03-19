@@ -129,8 +129,6 @@ let g:lightline = {
       \ }
 
 runtime plugin/sensible.vim
-set noshowmode
-
 
 " Ack.vim
 if executable('ag')
