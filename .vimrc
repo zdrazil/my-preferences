@@ -184,7 +184,9 @@ Plug 'itchyny/lightline.vim'
 " Use ack instead of grep
 Plug 'mileszs/ack.vim'
 
-" Vim python compiler
+" Auto generate ctags
+Plug 'ludovicchabant/vim-gutentags'
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
