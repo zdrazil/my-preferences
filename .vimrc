@@ -61,7 +61,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 call plug#begin('~/.vim/plugged')
 
 " Vim sensible - sane vim defaults
-Plug 'tpope/vim-sensible.git'
+Plug 'tpope/vim-sensible'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
