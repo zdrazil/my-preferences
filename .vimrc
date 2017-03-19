@@ -3,6 +3,7 @@ set nocompatible
 
 " ================ General Config ====================
 set hidden
+set encoding=utf-8
 
 set background=dark
 let macvim_skip_colorscheme=1
@@ -28,6 +29,7 @@ set undodir=~/.vim/undodir/
 set undofile
 
 " ================ Completion =======================
+set wildmode=longest:full,full
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -44,9 +46,7 @@ set ignorecase      " Ignore case when searching...
 set showmatch       " highlight matching [{()}]
 
 " ================ UI Config =========================
-set number              " show line numbers
-set showcmd             " show command in bottom bar
-set showmode            " show current mode down the bottom
+set showcmd
 set lazyredraw          " redraw only when we need to.
 set title               " e.g. | page.html (~) - VIM | as a windows title
 set ruler               " Enable limited line numbering
@@ -88,7 +88,7 @@ Plug 'https://github.com/vim-scripts/indentpython.vim'
 " the current file
 " better than DetectIndent (fully automatic)
 Plug 'https://github.com/tpope/vim-sleuth'
-
+    
 " A collection of language packs for Vim.
 Plug 'https://github.com/sheerun/vim-polyglot'
 
@@ -122,6 +122,14 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 
 colorscheme monokai
+
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
+
+runtime plugin/sensible.vim
+set noshowmode
+
 
 " Ack.vim
 if executable('ag')
