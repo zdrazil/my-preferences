@@ -29,7 +29,8 @@ set undodir=~/.vim/undodir/
 set undofile
 
 " ================ Completion =======================
-set wildmode=longest:full,full
+set wildignorecase
+set wildmode=list:longest,full
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
