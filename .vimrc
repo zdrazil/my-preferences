@@ -19,7 +19,7 @@ if &encoding ==# 'latin1' && has('gui_running')
   set encoding=utf-8
 endif
 set encoding=utf-8
-set complete-=i
+set complete-=i "https://github.com/tpope/vim-sensible/issues/51"
 set hidden
 set nrformats-=octal            "What base vim considers for increment
 
