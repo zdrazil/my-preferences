@@ -1,4 +1,8 @@
-export PATH="/opt/local/bin:/opt/local/sbin:$HOME/bin:~/.local/bin:$HOME/Library/Python/3.6/bin:$PATH"
+PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/Library/Python/3.6/bin:
+PATH=/opt/local/bin:/opt/local/sbin:$PATH
+PATH=$PATH:$HOME/bin
+export PATH
 
 if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
     . /opt/local/etc/profile.d/autojump.sh
