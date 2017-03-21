@@ -49,6 +49,7 @@ set showmatch       " highlight matching [{()}]
 " ================ UI Config =========================
 set showcmd
 set showmode
+set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 set ruler               " Enable limited line numbering
 
