@@ -75,7 +75,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/Valloric/YouCompleteMe'
 
 " Syntax checking plugin
-Plug 'https://github.com/vim-syntastic/syntastic'
+" Plug 'https://github.com/vim-syntastic/syntastic'
 
 " Comment stuff out with gcc
 Plug 'https://github.com/tpope/vim-commentary'
@@ -137,8 +137,8 @@ if executable('ag')
 endif
 
 " Syntastic
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_wq = 0
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
