@@ -72,7 +72,8 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
-Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'https://github.com/Valloric/YouCompleteMe'
+Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 " Plug 'https://github.com/vim-syntastic/syntastic'
