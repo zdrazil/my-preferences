@@ -24,6 +24,8 @@ set colorcolumn=80
 " Mouse
 set mouse=a
 
+set clipboard=unnamed
+
 " Undo
 set undodir=~/.vim/undodir/
 set undofile
