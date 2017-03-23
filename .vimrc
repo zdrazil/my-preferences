@@ -123,6 +123,10 @@ Plug 'ludovicchabant/vim-gutentags'
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 
+" Python plugins
+Plug 'heavenshell/vim-pydocstring'
+
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
