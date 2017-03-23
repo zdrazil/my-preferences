@@ -9,6 +9,8 @@ set background=dark
 let macvim_skip_colorscheme=1
 
 " ================ Indentation ======================
+set cursorline
+
 "Spaces & Tabs
 set shiftwidth=4
 set softtabstop=4 " number of spaces in tab when editing
