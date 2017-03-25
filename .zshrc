@@ -19,7 +19,8 @@ autoload -Uz colors && colors
 
 # used %{...%} to prevent jumping text when writing
 # export PROMPT="%n@%m %{$fg[green]%}%1~%{$reset_color%}> "
-export PROMPT="%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
+# export PROMPT="%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
+export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 
 setopt AUTO_MENU           # Show completion menu on a successive tab press.
 setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
