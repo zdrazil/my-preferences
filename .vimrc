@@ -132,7 +132,6 @@ Plug 'heavenshell/vim-pydocstring'
 
 call plug#end()
 
-colorscheme monokai
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',
