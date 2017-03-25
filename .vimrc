@@ -129,6 +129,7 @@ Plug 'heavenshell/vim-pydocstring'
 
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
+" Plug 'vim-scripts/CycleColor'
 
 call plug#end()
 
