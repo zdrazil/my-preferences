@@ -90,7 +90,7 @@ Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/tpope/vim-surround'
 
 " Better Python indentation 
-Plug 'https://github.com/vim-scripts/indentpython.vim'
+" Plug 'https://github.com/vim-scripts/indentpython.vim'
 
 " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on
 " the current file
@@ -104,7 +104,7 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 Plug 'https://github.com/airblade/vim-gitgutter'
 
 " highlights which characters to target for f, F and family
-Plug 'https://github.com/unblevable/quick-scope'
+" Plug 'https://github.com/unblevable/quick-scope'
 
 " makes scrolling nice and smooth
 Plug 'yonchu/accelerated-smooth-scroll'
@@ -127,9 +127,8 @@ Plug 'tpope/vim-unimpaired'
 " Python plugins
 Plug 'heavenshell/vim-pydocstring'
 
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
