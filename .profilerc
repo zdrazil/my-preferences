@@ -27,6 +27,8 @@ export EDITOR=vim
 # Shortcuts for ls.
 alias lsl='ls -l'
 alias lsa='ls -a'
+# Compatibility with other Unix systems
+ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
 
 # Push and pop directories on directory stack
 alias pu='pushd'
