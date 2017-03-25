@@ -136,7 +136,7 @@ call plug#end()
 colorscheme monokai
 
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'solarized',
       \ }
 
 runtime plugin/sensible.vim
