@@ -5,8 +5,9 @@ set nocompatible
 set hidden
 set encoding=utf-8
 
-set background=dark
 let macvim_skip_colorscheme=1
+colorscheme default
+" set background=light
 
 " ================ Indentation ======================
 set cursorline
