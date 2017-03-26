@@ -109,8 +109,10 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 " makes scrolling nice and smooth
 Plug 'yonchu/accelerated-smooth-scroll'
 
-" Search for terms using the Dash.app
+" Look Up Documentation 
 Plug 'rizzatti/dash.vim'
+Plug 'rhysd/devdocs.vim'
+Plug 'keith/investigate.vim'
 
 " Status/tabline for vim
 Plug 'itchyny/lightline.vim'
@@ -159,7 +161,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " ================ Keybindings =======================
 
 "Dash Plugin mapping
-:nmap <silent> <leader>d <Plug>DashSearch
+:nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
 
 " http://dougblack.io/words/a-good-vimrc.html
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
