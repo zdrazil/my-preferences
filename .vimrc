@@ -100,6 +100,9 @@ Plug 'https://github.com/tpope/vim-sleuth'
 " A collection of language packs for Vim.
 Plug 'https://github.com/sheerun/vim-polyglot'
 
+" Integration with git
+Plug 'tpope/vim-fugitive'
+
 " shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'https://github.com/airblade/vim-gitgutter'
 
