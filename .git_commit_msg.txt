@@ -1,0 +1,30 @@
+# If applied, this commit will...
+# |<----  Maximum of 50 characters  ---->|
+
+
+# Explain why this change is being made:
+# |<----  Try to limit each line to a maximum of 72 characters  ---->|
+
+# Provide links to any relevant tickets, articles or other resources:
+
+# Remember to:
+#     Separate subject from body with a blank line
+#     Limit subject line to 50 characters
+#     Capitalize subject line
+#     Do not end subject line with a period
+#     Use imperative mood in subject line
+#     Wrap body at 72 characters
+#     Use body to explain what and why vs. how
+# -----------
+# Verbs to use in the subject line:
+#     Add = Create a capability e.g. feature, test, dependency
+#     Cut = Remove a capability e.g. feature, test, dependency
+#     Fix = Fix an issue e.g. bug, typo, accident, misstatement
+#     Bump = Increase the version of something e.g. dependency
+#     Make = Change the build process, or tooling, or infra
+#     Start = Begin doing something; e.g. create a feature flag
+#     Stop = End doing something; e.g. remove a feature flag
+#     Refactor = A code change that MUST be just a refactoring
+#     Reformat = Refactor of formatting, e.g. omit whitespace
+#     Optimize = Refactor of performance, e.g. speed up code
+#     Document = Refactor of documentation, e.g. help files
