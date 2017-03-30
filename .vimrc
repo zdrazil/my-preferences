@@ -135,6 +135,9 @@ Plug 'godlygeek/tabular'
 " Python plugins
 Plug 'heavenshell/vim-pydocstring'
 
+" Quick way to create lists in Vim 
+Plug 'KabbAmine/lazyList.vim'
+
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
