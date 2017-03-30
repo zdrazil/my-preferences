@@ -126,6 +126,9 @@ Plug 'ludovicchabant/vim-gutentags'
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 
+" Text filtering and alignment
+Plug 'godlygeek/tabular'
+
 " Python plugins
 Plug 'heavenshell/vim-pydocstring'
 
