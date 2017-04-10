@@ -71,17 +71,18 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 " Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
-" Plug 'https://github.com/Valloric/YouCompleteMe'
-Plug 'ajh17/VimCompletesMe'
+Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
-" Plug 'https://github.com/vim-syntastic/syntastic'
+Plug 'https://github.com/vim-syntastic/syntastic'
+" Plug 'https://github.com/w0rp/ale'
 
 " Comment stuff out with gcc
 Plug 'https://github.com/tpope/vim-commentary'
@@ -101,7 +102,7 @@ Plug 'https://github.com/tpope/vim-sleuth'
 Plug 'https://github.com/sheerun/vim-polyglot'
 
 " Integration with git
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'https://github.com/airblade/vim-gitgutter'
@@ -118,7 +119,9 @@ Plug 'rhysd/devdocs.vim'
 Plug 'keith/investigate.vim'
 
 " Status/tabline for vim
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Use ack instead of grep
 Plug 'mileszs/ack.vim'
@@ -138,6 +141,18 @@ Plug 'heavenshell/vim-pydocstring'
 " Quick way to create lists in Vim 
 Plug 'KabbAmine/lazyList.vim'
 
+Plug 'ap/vim-buftabline'
+" Plug 'metakirby5/codi.vim'
+
+Plug 'kballard/vim-swift'
+Plug 'epeli/slimux'
+Plug 'kovisoft/slimv'
+
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'cfdrake/ultisnips-swift'
+" Plug 'chrisbra/csv.vim'
+
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
@@ -148,6 +163,8 @@ call plug#end()
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ }
+" let g:airline_theme='sol'
+" let g:airline#extensions#tabline#enabled = 1
 
 runtime plugin/sensible.vim
 
@@ -159,6 +176,11 @@ endif
 " Syntastic
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_wq = 0
+
+" UltiSnips
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
