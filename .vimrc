@@ -145,6 +145,7 @@ Plug 'ap/vim-buftabline'
 " Plug 'metakirby5/codi.vim'
 
 Plug 'kballard/vim-swift'
+Plug 'tokorom/syntastic-swiftlint.vim'
 Plug 'epeli/slimux'
 Plug 'kovisoft/slimv'
 
@@ -176,6 +177,7 @@ endif
 " Syntastic
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_wq = 0
+let g:syntastic_swift_checkers = ['swiftlint']
 
 " UltiSnips
 " let g:UltiSnipsExpandTrigger="<c-j>"
