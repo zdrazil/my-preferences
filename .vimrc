@@ -6,7 +6,6 @@ set hidden
 set encoding=utf-8
 
 let macvim_skip_colorscheme=1
-colorscheme default
 " set background=light
 
 " ================ Indentation ======================
@@ -148,6 +147,7 @@ Plug 'kballard/vim-swift'
 Plug 'tokorom/syntastic-swiftlint.vim'
 Plug 'epeli/slimux'
 Plug 'kovisoft/slimv'
+Plug 'robertmeta/nofrils'
 
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
@@ -160,6 +160,8 @@ Plug 'kovisoft/slimv'
 
 call plug#end()
 
+colorscheme nofrils-acme
+hi Normal ctermfg=black ctermbg=230 cterm=NONE guifg=#000000 guibg=#fdf6e3 gui=NONE
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',
