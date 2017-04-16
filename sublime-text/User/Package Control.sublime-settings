@@ -1,0 +1,29 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"All Autocomplete",
+		"Anaconda",
+		"AutoFileName",
+		"Color Highlighter",
+		"Colorsublime",
+		"DevDocs",
+		"Emmet",
+		"Package Control",
+		"Pretty JSON",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-contrib-swiftlint",
+		"SublimeLinter-jshint",
+		"SublimeREPL",
+		"Swift",
+		"Terminal",
+		"View In Browser",
+		"Vintageous"
+	]
+}
