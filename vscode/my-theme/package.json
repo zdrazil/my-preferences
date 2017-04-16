@@ -1,0 +1,26 @@
+{
+	"name": "my-theme",
+	"displayName": "My Theme",
+	"description": "The default custom light and dark themes (Plus and Visual Studio)",
+	"categories": [ "Themes" ],
+	"version": "0.1.10",
+	"publisher": "me",
+	"engines": { "vscode": "*" },
+	"contributes": {
+		"themes": [
+			{
+				"id": "Default Light+ Custom",
+				"label": "Light+ (default light) Custom",
+				"uiTheme": "vs",
+				"path": "./themes/light_plus.json"
+			}
+		],
+		"iconThemes": [
+			{
+				"id": "vs-minimal",
+				"label": "Minimal (Visual Studio Code)",
+				"path": "./fileicons/vs_minimal_icons.json"
+			}
+		]
+	}
+}
