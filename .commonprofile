@@ -1,0 +1,16 @@
+PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/Library/Python/3.6/bin:
+PATH=$PATH:$HOME/.npm-packages/bin
+PATH=$PATH:/Applications/Racket\ v6.8/bin
+PATH=/opt/local/bin:/opt/local/sbin:$PATH
+PATH=$PATH:$HOME/bin
+export PATH
+
+# Enable colors
+export CLICOLOR=1
+
+export HOMEBREW_NO_ANALYTICS=1
+
+export EDITOR=vim
+
+

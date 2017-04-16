@@ -1,6 +1,6 @@
 # Source config files that are the same for zsh and bash
-if [ -f $HOME/.profilerc ]; then
-    . $HOME/.profilerc
+if [ -f $HOME/.commonrc ]; then
+    . $HOME/.commonrc
 fi
 
 # use bash completion

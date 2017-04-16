@@ -1,7 +1,6 @@
-if [ -f $HOME/.profilerc ]; then
-    . $HOME/.profilerc
+if [ -f $HOME/.commonrc ]; then
+    . $HOME/.commonrc
 fi
-
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -15,11 +14,8 @@ compinit -u
 promptinit
 
 autoload -Uz colors && colors
-# export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # used %{...%} to prevent jumping text when writing
-# export PROMPT="%n@%m %{$fg[green]%}%1~%{$reset_color%}> "
-# export PROMPT="%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 
 # Git in prompt
