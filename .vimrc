@@ -76,7 +76,7 @@ Plug 'tpope/vim-sensible'
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
-Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'https://github.com/Valloric/YouCompleteMe'
 " Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
@@ -110,12 +110,12 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'https://github.com/unblevable/quick-scope'
 
 " makes scrolling nice and smooth
-Plug 'yonchu/accelerated-smooth-scroll'
+" Plug 'yonchu/accelerated-smooth-scroll'
 
 " Look Up Documentation 
-Plug 'rizzatti/dash.vim'
-Plug 'rhysd/devdocs.vim'
-Plug 'keith/investigate.vim'
+" Plug 'rizzatti/dash.vim'
+" Plug 'rhysd/devdocs.vim'
+" Plug 'keith/investigate.vim'
 
 " Status/tabline for vim
 " Plug 'itchyny/lightline.vim'
@@ -126,7 +126,7 @@ Plug 'keith/investigate.vim'
 Plug 'mileszs/ack.vim'
 
 " Auto generate ctags
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -135,18 +135,18 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 
 " Python plugins
-Plug 'heavenshell/vim-pydocstring'
+" Plug 'heavenshell/vim-pydocstring'
 
 " Quick way to create lists in Vim 
-Plug 'KabbAmine/lazyList.vim'
+" Plug 'KabbAmine/lazyList.vim'
 
 Plug 'ap/vim-buftabline'
 " Plug 'metakirby5/codi.vim'
 
 Plug 'kballard/vim-swift'
-Plug 'tokorom/syntastic-swiftlint.vim'
-Plug 'epeli/slimux'
-Plug 'kovisoft/slimv'
+" Plug 'tokorom/syntastic-swiftlint.vim'
+" Plug 'epeli/slimux'
+" Plug 'kovisoft/slimv'
 Plug 'robertmeta/nofrils'
 
 " Plug 'SirVer/ultisnips'
