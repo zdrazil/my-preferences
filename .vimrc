@@ -77,7 +77,7 @@ Plug 'tpope/vim-sensible'
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
 " Plug 'https://github.com/Valloric/YouCompleteMe'
-" Plug 'ajh17/VimCompletesMe'
+ Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 Plug 'https://github.com/vim-syntastic/syntastic'
