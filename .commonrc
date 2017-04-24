@@ -60,8 +60,6 @@ if [[ $OSTYPE == darwin* ]]; then
     alias firefox-cmd='nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin
     -profile CommandLine --no-remote >/dev/null &'
 
-    alias brewgrade='brew update; and brew upgrade'
-
     alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
 
     alias subl='open -a "Sublime Text"'
