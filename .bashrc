@@ -8,6 +8,11 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
+fi
+
+
 export PS1="\u@\h \W> \[$(tput sgr0)\]"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
