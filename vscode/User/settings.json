@@ -1,0 +1,20 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontSize": 13,
+
+    "editor.wordWrap": "on",
+    "editor.rulers": [
+        80
+    ],
+
+    "editor.renderIndentGuides": true,
+
+    "rest-client.enableTelemetry": false,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    
+    "workbench.colorTheme": "No Frills Theme",
+    "swiftlint.enable": true,
+    "editor.fontFamily": "SF Mono, Source Code Pro, Consolas, Menlo, Monaco, 'Courier New', monospace",
+    "workbench.iconTheme": "vs-minimal"
+}
