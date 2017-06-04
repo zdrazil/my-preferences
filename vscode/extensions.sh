@@ -5,6 +5,7 @@ EXTENSIONS=(
   "alefragnani.bookmarks" \
   "alefragnani.project-manager" \
   "alexdima.copy-relative-path" \
+  "auiworks.amvim" \
   "christian-kohler.npm-intellisense" \
   "christian-kohler.path-intellisense" \
   "codezombiech.gitignore" \
