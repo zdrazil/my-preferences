@@ -12,7 +12,14 @@ if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
 
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+# function tab_title {
+  # echo -ne "\033]0;$(basename ${PWD})\007"
+# }
+
+# export PROMPT_COMMAND="tab_title; $PROMPT_COMMAND"
 export PS1="\u@\h \W> \[$(tput sgr0)\]"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
@@ -32,9 +39,6 @@ HISTCONTROL="erasedups:ignoreboth"
 
 # Don't record some commands
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
-
-# Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a"
 
 # Update window size after every command
 shopt -s checkwinsize
