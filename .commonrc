@@ -56,10 +56,10 @@ if [[ $OSTYPE == darwin* ]]; then
     alias mac-mouse-acceleration-disable='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
     alias mac-mouse-acceleration-enable='defaults write .GlobalPreferences com.apple.mouse.scaling 0.875'
 
-    alias vncwindows='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://windows-pc.local:36154'
+    alias vnchorus='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://horus-desktop.local:36154'
     alias vncmacmini='open vnc://Mac-mini.local'
-    alias vncmacbookpro='open vnc://macbook-pro.local'
-    alias vncimac='open vnc://imac.local'
+    alias vncamun='open vnc://amun-laptop.local'
+    alias vncra='open vnc://ra-desktop.local'
     alias vnclocal='open vnc://localhost:5901'
     alias firefox-cmd='nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin
     -profile CommandLine --no-remote >/dev/null &'
