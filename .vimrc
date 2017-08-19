@@ -70,14 +70,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 " Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
 " Plug 'https://github.com/Valloric/YouCompleteMe'
- Plug 'ajh17/VimCompletesMe'
+Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 Plug 'https://github.com/vim-syntastic/syntastic'
@@ -113,7 +113,7 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'yonchu/accelerated-smooth-scroll'
 
 " Look Up Documentation 
-" Plug 'rizzatti/dash.vim'
+Plug 'rizzatti/dash.vim'
 " Plug 'rhysd/devdocs.vim'
 " Plug 'keith/investigate.vim'
 
@@ -126,7 +126,7 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
 
 " Auto generate ctags
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -157,6 +157,8 @@ Plug 'robertmeta/nofrils'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
+
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
