@@ -70,10 +70,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+ 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :FZF<cr>
 
 " Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
 " vimcompletesme (lightweight, needs tags)
