@@ -71,13 +71,18 @@ Plug 'tpope/vim-sensible'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+ 
+" Command-line fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :FZF<cr>
 
 " Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
 " vimcompletesme (lightweight, needs tags)
 " YCM - MUST COMPILE
 " A code-completion engine for Vim
 " Plug 'https://github.com/Valloric/YouCompleteMe'
- Plug 'ajh17/VimCompletesMe'
+Plug 'ajh17/VimCompletesMe'
 
 " Syntax checking plugin
 Plug 'https://github.com/vim-syntastic/syntastic'
@@ -113,7 +118,7 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'yonchu/accelerated-smooth-scroll'
 
 " Look Up Documentation 
-" Plug 'rizzatti/dash.vim'
+Plug 'rizzatti/dash.vim'
 " Plug 'rhysd/devdocs.vim'
 " Plug 'keith/investigate.vim'
 
@@ -126,7 +131,7 @@ Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
 
 " Auto generate ctags
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -136,6 +141,12 @@ Plug 'godlygeek/tabular'
 
 " Python plugins
 " Plug 'heavenshell/vim-pydocstring'
+
+" JavaScript
+Plug 'ternjs/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
 
 " Quick way to create lists in Vim 
 " Plug 'KabbAmine/lazyList.vim'
@@ -157,6 +168,8 @@ Plug 'robertmeta/nofrils'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
+
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 

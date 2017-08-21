@@ -17,6 +17,7 @@
 		"Emmet",
 		"Package Control",
 		"Pretty JSON",
+		"requirementstxt",
 		"SideBarEnhancements",
 		"SortBy",
 		"SublimeCodeIntel",
@@ -26,7 +27,6 @@
 		"SublimeREPL",
 		"Swift",
 		"Terminal",
-		"View In Browser",
-		"Vintageous"
+		"View In Browser"
 	]
 }
