@@ -33,7 +33,6 @@ shopt -s lithist
 # Put history command onto command line without executing it
 shopt -s histverify
 
-
 # Avoid duplicate entries
 HISTCONTROL="erasedups:ignoreboth"
 
@@ -49,3 +48,5 @@ PROMPT_DIRTRIM=2
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
