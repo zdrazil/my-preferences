@@ -137,6 +137,12 @@ Plug 'godlygeek/tabular'
 " Python plugins
 " Plug 'heavenshell/vim-pydocstring'
 
+" JavaScript
+Plug 'ternjs/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+
 " Quick way to create lists in Vim 
 " Plug 'KabbAmine/lazyList.vim'
 
