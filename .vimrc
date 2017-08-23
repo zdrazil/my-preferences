@@ -69,107 +69,92 @@ call plug#begin('~/.vim/plugged')
 " Vim sensible - sane vim defaults
 Plug 'tpope/vim-sensible'
 
-" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
- 
-" Command-line fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-nnoremap <c-p> :FZF<cr>
-
-" Youcomplemete is better than Neocomplete (everything built in), deoplete (only for neovim)
-" vimcompletesme (lightweight, needs tags)
-" YCM - MUST COMPILE
-" A code-completion engine for Vim
-" Plug 'https://github.com/Valloric/YouCompleteMe'
-Plug 'ajh17/VimCompletesMe'
-
-" Syntax checking plugin
-Plug 'https://github.com/vim-syntastic/syntastic'
-" Plug 'https://github.com/w0rp/ale'
-
-" Comment stuff out with gcc
-Plug 'https://github.com/tpope/vim-commentary'
-
-" Surround text in parenthesis etc.
-Plug 'https://github.com/tpope/vim-surround'
-
-" Better Python indentation 
-" Plug 'https://github.com/vim-scripts/indentpython.vim'
-
-" automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on
-" the current file
-" better than DetectIndent (fully automatic)
-Plug 'https://github.com/tpope/vim-sleuth'
-    
-" A collection of language packs for Vim.
-Plug 'https://github.com/sheerun/vim-polyglot'
-
-" Integration with git
-" Plug 'tpope/vim-fugitive'
-
-" shows a git diff in the gutter (sign column) and stages/undoes hunks.
-Plug 'https://github.com/airblade/vim-gitgutter'
-
-" highlights which characters to target for f, F and family
-" Plug 'https://github.com/unblevable/quick-scope'
-
-" makes scrolling nice and smooth
-" Plug 'yonchu/accelerated-smooth-scroll'
-
-" Look Up Documentation 
-Plug 'rizzatti/dash.vim'
-" Plug 'rhysd/devdocs.vim'
-" Plug 'keith/investigate.vim'
-
-" Status/tabline for vim
-" Plug 'itchyny/lightline.vim'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
-" Use ack instead of grep
-Plug 'mileszs/ack.vim'
-
-" Auto generate ctags
-Plug 'ludovicchabant/vim-gutentags'
-
-" Pairs of handy bracket mappings
-Plug 'tpope/vim-unimpaired'
-
-" Text filtering and alignment
-Plug 'godlygeek/tabular'
-
-" Python plugins
-" Plug 'heavenshell/vim-pydocstring'
-
-" JavaScript
-Plug 'ternjs/tern_for_vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'othree/javascript-libraries-syntax.vim'
-
-" Quick way to create lists in Vim 
-" Plug 'KabbAmine/lazyList.vim'
-
+" === UI ===
+" = Windows, buffer, tab management =
+" Takes over the tabline and renders the buffer list in it instead of a tab list
 Plug 'ap/vim-buftabline'
-" Plug 'metakirby5/codi.vim'
 
-Plug 'kballard/vim-swift'
-" Plug 'tokorom/syntastic-swiftlint.vim'
-" Plug 'epeli/slimux'
-" Plug 'kovisoft/slimv'
+" = Color schemes =
 Plug 'robertmeta/nofrils'
-
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" Plug 'cfdrake/ultisnips-swift'
-" Plug 'chrisbra/csv.vim'
-
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
 
+" === File and project management ===
+" == Searching ==
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :FZF<cr>
+
+" Use ack instead of grep
+Plug 'mileszs/ack.vim'
+
+" === Documentation ===
+" Auto generate ctags
+Plug 'ludovicchabant/vim-gutentags'
+
+" Look Up Documentation 
+Plug 'rizzatti/dash.vim'
+:nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
+" Plug 'rhysd/devdocs.vim'
+" Plug 'keith/investigate.vim'
+
+" === Editing ===
+" Syntax checking plugin
+Plug 'https://github.com/vim-syntastic/syntastic'
+
+" A code-completion engine for Vim
+" Plug 'https://github.com/Valloric/YouCompleteMe'
+Plug 'ajh17/VimCompletesMe'
+
+" Automatically adjusts 'shiftwidth' and 'expandtab' heuristically based
+" on the current file
+" better than DetectIndent (fully automatic)
+Plug 'https://github.com/tpope/vim-sleuth'
+" Comment stuff out with gcc
+Plug 'https://github.com/tpope/vim-commentary'
+" Surround text in parenthesis etc.
+Plug 'https://github.com/tpope/vim-surround'
+" Text filtering and alignment
+Plug 'godlygeek/tabular'
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+
+" Shows a git diff in the gutter (sign column) and stages/undoes hunks.
+Plug 'https://github.com/airblade/vim-gitgutter'
+" Quick way to create lists in Vim 
+" Plug 'KabbAmine/lazyList.vim'
+
+" === Languages ====
+" A collection of language packs for Vim.
+Plug 'https://github.com/sheerun/vim-polyglot'
+
+" = HTML =
+" Provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim'
+
+" = Markdown =
+" Vim plugin for automated bullet lists.
+Plug 'dkarter/bullets.vim'
+
+" = JavaScript =
+" Tern-based JavaScript editing support
+Plug 'ternjs/tern_for_vim'
+" Improved Javascript indentation and syntax support in Vim
+Plug 'pangloss/vim-javascript'
+" React JSX syntax highlighting and indenting for vim.
+Plug 'mxw/vim-jsx'
+" Syntax for JavaScript libraries 
+Plug 'othree/javascript-libraries-syntax.vim'
+
+" = Python =
+" Plug 'heavenshell/vim-pydocstring'
+
+" = Swift =
+" File type plugin for the Swift programming language
+Plug 'kballard/vim-swift'
 
 call plug#end()
 
@@ -194,11 +179,6 @@ endif
 " let g:syntastic_check_on_wq = 0
 let g:syntastic_swift_checkers = ['swiftlint']
 
-" UltiSnips
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -208,8 +188,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " ================ Keybindings =======================
 
-"Dash Plugin mapping
-:nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
 
 " http://dougblack.io/words/a-good-vimrc.html
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
