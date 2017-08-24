@@ -97,7 +97,7 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " Look Up Documentation 
 Plug 'rizzatti/dash.vim'
-:nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
+nmap <silent> <leader>d <Plug>DashSearch
 " Plug 'rhysd/devdocs.vim'
 " Plug 'keith/investigate.vim'
 
