@@ -106,8 +106,8 @@ nmap <silent> <leader>d <Plug>DashSearch
 Plug 'https://github.com/vim-syntastic/syntastic'
 
 " A code-completion engine for Vim
-" Plug 'https://github.com/Valloric/YouCompleteMe'
-Plug 'ajh17/VimCompletesMe'
+Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'ajh17/VimCompletesMe'
 
 " Automatically adjusts 'shiftwidth' and 'expandtab' heuristically based
 " on the current file
@@ -141,7 +141,7 @@ Plug 'dkarter/bullets.vim'
 
 " = JavaScript =
 " Tern-based JavaScript editing support
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 " Improved Javascript indentation and syntax support in Vim
 Plug 'pangloss/vim-javascript'
 " React JSX syntax highlighting and indenting for vim.
