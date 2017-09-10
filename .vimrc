@@ -122,6 +122,9 @@ Plug 'godlygeek/tabular'
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 
+" EditorConfig plugin
+Plug 'editorconfig/editorconfig-vim'
+
 " Shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'https://github.com/airblade/vim-gitgutter'
 " Quick way to create lists in Vim 
