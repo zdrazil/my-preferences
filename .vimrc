@@ -75,7 +75,7 @@ Plug 'tpope/vim-sensible'
 Plug 'ap/vim-buftabline'
 
 " = Color schemes =
-Plug 'robertmeta/nofrils'
+" Plug 'robertmeta/nofrils'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
@@ -161,8 +161,8 @@ Plug 'kballard/vim-swift'
 
 call plug#end()
 
-colorscheme nofrils-acme
-hi Normal ctermfg=black ctermbg=230 cterm=NONE guifg=#000000 guibg=#fdf6e3 gui=NONE
+" colorscheme nofrils-acme
+" hi Normal ctermfg=black ctermbg=230 cterm=NONE guifg=#000000 guibg=#fdf6e3 gui=NONE
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',

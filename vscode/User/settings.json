@@ -11,15 +11,11 @@
 
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    
-    "workbench.colorTheme": "Default Light+",
     "swiftlint.enable": true,
     "editor.fontFamily": "SF Mono, Source Code Pro, Consolas, Menlo, Monaco, 'Courier New', monospace",
     "workbench.iconTheme": "vs-minimal",
 
     "editor.snippetSuggestions": "top",
     "vim.disableAnnoyingNeovimMessage": true,
-    "vim.useSystemClipboard": true;
-    
-
+    "vim.useSystemClipboard": true
 }
