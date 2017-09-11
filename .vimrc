@@ -5,11 +5,11 @@ set nocompatible
 set hidden
 set encoding=utf-8
 
-let macvim_skip_colorscheme=1
+" let macvim_skip_colorscheme=1
 " set background=light
 
 " ================ Indentation ======================
-set cursorline
+" set cursorline
 
 "Spaces & Tabs
 set shiftwidth=4
@@ -76,7 +76,7 @@ Plug 'ap/vim-buftabline'
 
 " = Color schemes =
 " Plug 'robertmeta/nofrils'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Plug 'chriskempson/base16-vim'
 " Plug 'vim-scripts/CycleColor'
 
