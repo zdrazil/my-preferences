@@ -9,7 +9,6 @@
 
     "editor.renderIndentGuides": true,
 
-    "rest-client.enableTelemetry": false,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     
@@ -18,5 +17,9 @@
     "editor.fontFamily": "SF Mono, Source Code Pro, Consolas, Menlo, Monaco, 'Courier New', monospace",
     "workbench.iconTheme": "vs-minimal",
 
-     "editor.snippetSuggestions": "top"
+    "editor.snippetSuggestions": "top",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.useSystemClipboard": true;
+    
+
 }
