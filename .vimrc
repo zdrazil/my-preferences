@@ -209,7 +209,8 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " ================ Keybindings =======================
 
 "Dash Plugin mapping
-:nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
+nmap <silent> <leader>d <Plug>DashSearch
+" nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
 
 " http://dougblack.io/words/a-good-vimrc.html
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
