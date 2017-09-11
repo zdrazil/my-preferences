@@ -68,6 +68,9 @@ if [[ $OSTYPE == darwin* ]]; then
 
     alias subl='open -a "Sublime Text"'
     alias vcode='open -a "Visual Studio Code"'
+    alias chrome='open -a "Google Chrome"'
+    alias firefox='open -a "Firefox"'
+    alias safari='open -a "Safari"'
 
     function wolfram() {
         open 'https://www.wolframalpha.com/input/?i='"$@"

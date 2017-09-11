@@ -13,3 +13,8 @@ export HOMEBREW_NO_ANALYTICS=1
 export EDITOR=vim
 # eval "$(pyenv init -)"
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export LC_ALL=en_US.UTF-8  
+    export LANG=en_US.UTF-8
+fi
