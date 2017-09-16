@@ -1,6 +1,3 @@
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " ================ General Config ====================
 set hidden
 set encoding=utf-8
@@ -29,8 +26,10 @@ set mouse=a
 set clipboard^=unnamedplus,unnamed
 
 " Undo
-set undodir=~/.vim/undodir/
-set undofile
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
 
 " ================ Completion =======================
 set wildignorecase
@@ -86,10 +85,16 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-nnoremap <c-p> :FZF<cr>
+
+" A tree explorer plugin
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Use ack instead of grep
 Plug 'mileszs/ack.vim'
+
+" Undo history visualizer
+Plug 'mbbill/undotree'
 
 " === Documentation ===
 " Auto generate ctags
@@ -97,13 +102,13 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " Look Up Documentation 
 Plug 'rizzatti/dash.vim'
-nmap <silent> <leader>d <Plug>DashSearch
 " Plug 'rhysd/devdocs.vim'
 " Plug 'keith/investigate.vim'
 
 " === Editing ===
 " Syntax checking plugin
-Plug 'https://github.com/vim-syntastic/syntastic'
+" Plug 'https://github.com/vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
 " A code-completion engine for Vim
 Plug 'https://github.com/Valloric/YouCompleteMe'
@@ -121,6 +126,8 @@ Plug 'https://github.com/tpope/vim-surround'
 Plug 'godlygeek/tabular'
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
+" Better whitespace highlighting and stripping
+Plug 'ntpeters/vim-better-whitespace'
 
 " EditorConfig plugin
 Plug 'editorconfig/editorconfig-vim'
@@ -175,12 +182,29 @@ runtime plugin/sensible.vim
 " Ack.vim
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
+    " let g:ackprg = 'rg --vimgrep --no-heading'
 endif
+
+" Ale
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+let g:ale_linters = {
+\   'javascript': ['eslint']
+\}
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
 
 " Syntastic
 " let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 0
 let g:syntastic_swift_checkers = ['swiftlint']
+let g:syntastic_javascript_checkers = ['eslint']
+" https://github.com/vim-syntastic/syntastic/issues/1692#issuecomment-241672883
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -190,10 +214,23 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " ================ Sources ===========================
 
 " ================ Keybindings =======================
+let g:mapleader = "\<Space>"
+inoremap <C-Space> <Space>
 
 "Dash Plugin mapping
 nmap <silent> <leader>d <Plug>DashSearch
 " nmap <silent> <leader>d <Plug>(devdocs-under-cursor)
+" FZF
+nnoremap <leader>o :FZF<cr>
+nnoremap <leader>p :Commands<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :Lines<cr>
+
+" NerdTree
+noremap <leader>e :NERDTreeToggle<CR>
+
+" ================ Commands =========================
+
 
 " http://dougblack.io/words/a-good-vimrc.html
 " http://stevelosh.com/blog/2010/09/coming-home-to-vim/
