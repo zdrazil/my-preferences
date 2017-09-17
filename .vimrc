@@ -71,7 +71,10 @@ Plug 'tpope/vim-sensible'
 " === UI ===
 " = Windows, buffer, tab management =
 " Takes over the tabline and renders the buffer list in it instead of a tab list
-Plug 'ap/vim-buftabline'
+" Plug 'ap/vim-buftabline'
+
+" Continuously updated session files
+Plug 'tpope/vim-obsession'
 
 " = Color schemes =
 " Plug 'robertmeta/nofrils'
@@ -144,6 +147,9 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 " = HTML =
 " Provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim'
+
+" Preview colours in source code while editing
+Plug 'ap/vim-css-color'
 
 " = Markdown =
 " Vim plugin for automated bullet lists.
