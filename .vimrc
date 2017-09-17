@@ -26,7 +26,7 @@ set mouse=a
 set clipboard^=unnamedplus,unnamed
 
 " Undo
-if has("persistent_undo")
+if has('persistent_undo')
     set undodir=~/.undodir/
     set undofile
 endif
@@ -228,6 +228,9 @@ nnoremap <leader>/ :Lines<cr>
 
 " NerdTree
 noremap <leader>e :NERDTreeToggle<CR>
+
+" YouCompleteMe
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
 " ================ Commands =========================
 
