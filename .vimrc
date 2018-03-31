@@ -103,7 +103,7 @@ Plug 'mbbill/undotree'
 " Auto generate ctags
 Plug 'ludovicchabant/vim-gutentags'
 
-" Look Up Documentation 
+" Look Up Documentation
 Plug 'rizzatti/dash.vim'
 " Plug 'rhysd/devdocs.vim'
 " Plug 'keith/investigate.vim'
@@ -214,6 +214,8 @@ let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+let g:jsx_ext_required = 0
 
 " ================ File Formats =====================
 
