@@ -1,18 +1,9 @@
-PATH=$PATH:$HOME/.local/bin
-PATH=$PATH:$HOME/Library/Python/3.6/bin:
-PATH=$PATH:$HOME/Library/Python/2.7/bin:
-PATH=$PATH:$HOME/.npm-packages/bin
-PATH=$PATH:$HOME/bin
-export PATH
-
 # Enable colors
 export CLICOLOR=1
 
 export HOMEBREW_NO_ANALYTICS=1
 
 export EDITOR=vim
-# eval "$(pyenv init -)"
-# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export LC_ALL=en_US.UTF-8  

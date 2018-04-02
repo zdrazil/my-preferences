@@ -20,49 +20,18 @@ alias lsa='ls -a'
 # Compatibility with other Unix systems
 ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
 
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
-
-# gitignore.io
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-alias yt-music-download='youtube-dl -x --audio-format m4a --embed-thumbnail --add-metadata'
-
-function yt-music-search() {
-    mpv --no-video --ytdl-format=bestaudio --term-playing-msg='Title: ${media-title}'  ytdl://ytsearch10:"$@"
-}
-
-function yt-music-stream() {
-    mpv --no-video --term-playing-msg='Title: ${media-title}' "$@"
-}
-
-alias subliminal-download='subliminal download -l cs -f -s -v'
-alias iflicks="open -a 'iFlicks 2'"
 
 # Mac Specific Aliases
 if [[ $OSTYPE == darwin* ]]; then
     alias suz='su -l zdraz'
-    alias mac-lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-    alias mac-restart="osascript -e 'tell app "loginwindow" to «event aevtrrst»'"
-    alias mac-sleep='pmset sleepnow'
-    alias mac-shutdown="osascript -e 'tell app "loginwindow" to «event aevtrsdn»'"
     alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
     alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
-    alias mac-screensaver='open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app'
-    alias mac-eject-all="osascript -e 'tell application "Finder" to eject (every disk whose executable is true)'"
-    alias mac-battery='pmset -g batt'
-    alias mac-preventing-sleep='pmset -g assertions'
-    alias mac-mouse-acceleration-disable='defaults write .GlobalPreferences com.apple.mouse.scaling -1'
-    alias mac-mouse-acceleration-enable='defaults write .GlobalPreferences com.apple.mouse.scaling 0.875'
 
     alias vnchorus='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://horus-desktop.local:36154'
     alias vncmacmini='open vnc://Mac-mini.local'
     alias vncamun='open vnc://amun-laptop.local'
     alias vncra='open vnc://ra-desktop.local'
     alias vnclocal='open vnc://localhost:5901'
-    alias firefox-cmd='nohup /Applications/Firefox.app/Contents/MacOS/firefox-bin
-    -profile CommandLine --no-remote >/dev/null &'
 
     alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
 
@@ -71,26 +40,4 @@ if [[ $OSTYPE == darwin* ]]; then
     alias chrome='open -a "Google Chrome"'
     alias firefox='open -a "Firefox"'
     alias safari='open -a "Safari"'
-
-    function wolfram() {
-        open 'https://www.wolframalpha.com/input/?i='"$@"
-    }
-
-    # invert colors
-    alias mac-invert-colors='osascript -e "tell application \"System Events\"" -e "key code 28 using {control down, option down, command down}" -e "end tell"'
-
-    # open man-page(s) in its own window. Use: "manx" instead of "man" (OS X)
-    function manx() { local i; for i; do open x-man-page://$i; done; }
-
-    alias zeal='~/Applications/Zeal.app/Contents/MacOS/Zeal'
-
-    # Change directory to the current Finder directory
-    mac-finder() {
-    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
-    if [ "$target" != "" ]; then
-        cd "$target"; pwd
-    else
-        echo 'No Finder window found' >&2
-    fi
-    }
 fi
