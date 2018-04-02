@@ -1,7 +1,0 @@
-set nocompatible
-set incsearch
-set hlsearch
-set clipboard=unnamed
-set ignorecase      " Ignore case when searching...
-set noexpandtab
-set blinkcursor
