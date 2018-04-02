@@ -1,6 +1,13 @@
-if [ -f $HOME/.commonprofile ]; then
-    . $HOME/.commonprofile
+# Enable colors
+export CLICOLOR=1
+
+export EDITOR=vim
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export LC_ALL=en_US.UTF-8  
+    export LANG=en_US.UTF-8
 fi
+
 
 if [ "$BASH" ]; then
     . ~/.bashrc
