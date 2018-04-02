@@ -1,6 +1,15 @@
-# Source config files that are the same for zsh and bash
-if [ -f $HOME/.commonrc ]; then
-    . $HOME/.commonrc
+# Source config files that are not to be public (API tokens etc.) 
+if [ -r ~/.not-public ]
+then
+    source ~/.not-public
+fi
+
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+    . /opt/local/etc/profile.d/autojump.sh
+fi
+
+if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+    . /usr/local/etc/profile.d/autojump.sh
 fi
 
 # Use bash completion
@@ -12,14 +21,11 @@ if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
 
+#-------------------- SETTINGS ---------------------
+
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# function tab_title {
-  # echo -ne "\033]0;$(basename ${PWD})\007"
-# }
-
-# export PROMPT_COMMAND="tab_title; $PROMPT_COMMAND"
 export PS1="\u@\h \W> \[$(tput sgr0)\]"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
@@ -50,3 +56,33 @@ PROMPT_DIRTRIM=2
 bind Space:magic-space
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+#-------------------- ALIASES ------------------------
+# Shortcuts for ls.
+alias lsl='ls -l'
+alias lsa='ls -a'
+
+# Compatibility with other Unix systems
+ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
+
+# Mac Specific Aliases
+if [[ $OSTYPE == darwin* ]]; then
+    alias suz='su -l zdraz'
+    alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
+    alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
+
+    alias vnchorus='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://horus-desktop.local:36154'
+    alias vncmacmini='open vnc://Mac-mini.local'
+    alias vncamun='open vnc://amun-laptop.local'
+    alias vncra='open vnc://ra-desktop.local'
+    alias vnclocal='open vnc://localhost:5901'
+
+    alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
+
+    alias subl='open -a "Sublime Text"'
+    alias vcode='open -a "Visual Studio Code"'
+    alias chrome='open -a "Google Chrome"'
+    alias firefox='open -a "Firefox"'
+    alias safari='open -a "Safari"'
+fi
