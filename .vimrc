@@ -3,6 +3,7 @@ set encoding=utf-8
 set mouse=a
 set clipboard^=unnamedplus,unnamed
 set wildignorecase
+set hidden
 
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
@@ -40,21 +41,21 @@ Plug 'tpope/vim-dispatch'
 Plug 'editorconfig/editorconfig-vim'
 
 " FrontEnd 
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'mxw/vim-jsx'
+" Plug 'pangloss/vim-javascript'
+" Plug 'elzr/vim-json'
+" Plug 'mxw/vim-jsx'
 
 Plug 'mattn/emmet-vim'
 
-Plug '1995eaton/vim-better-javascript-completion'
+" Plug '1995eaton/vim-better-javascript-completion'
 
 call plug#end()
 
 runtime plugin/sensible.vim
 
 " Ack.vim
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
 let g:mapleader = "\<Space>"
@@ -70,3 +71,4 @@ nnoremap <leader>/ :Lines<cr>
 let g:gutentags_file_list_command = 'rg --files'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
+

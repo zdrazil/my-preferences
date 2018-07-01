@@ -4,19 +4,11 @@ then
     source ~/.not-public
 fi
 
-if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
-    . /opt/local/etc/profile.d/autojump.sh
-fi
-
 if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
 
 # Use bash completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-  . /opt/local/etc/profile.d/bash_completion.sh
-fi
-
 if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
@@ -86,3 +78,9 @@ if [[ $OSTYPE == darwin* ]]; then
     alias firefox='open -a "Firefox"'
     alias safari='open -a "Safari"'
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
