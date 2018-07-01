@@ -1,3 +1,12 @@
+# Source config files that are not to be public (API tokens etc.) 
+if [ -r ~/.not-public ]
+then
+    source ~/.not-public
+fi
+
+if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+    . /usr/local/etc/profile.d/autojump.sh
+fi
 
 #-------------------- ALIASES ------------------------
 
