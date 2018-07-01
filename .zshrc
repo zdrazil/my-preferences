@@ -130,4 +130,4 @@ bindkey '^[[B' history-substring-search-down
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 
-alias config='/usr/bin/git --git-dir=$HOME/project/my-preferences/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
