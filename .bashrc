@@ -1,6 +1,7 @@
 # Source config files that are the same for zsh and bash
 if [ -f $HOME/.commonrc ]; then
     . $HOME/.commonrc
+ fi
 
 # Use bash completion
 if [ -f /usr/local/etc/bash_completion ]; then
