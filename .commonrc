@@ -46,6 +46,23 @@ if [[ $OSTYPE == darwin* ]]; then
     alias safari='open -a "Safari"'
 fi
 
+# FrontEnd
+alias format:prettier='prettier --write \"**/*.js\'
+alias format:eslint='eslint dev src --fix'
+alias format:stylelint='stylelint --config=.stylelintrc \"src/**/*.scss\" --fix'
+alias format:stylelint-sort='stylelint --config="$HOME/bin/linter/stylelint-sort" \"src/**/*.scss\" --fix'
+
+function zin-test {
+    yarn format:js
+    yarn format:styles
+    yarn jest
+    yarn flow
+}
+
+function stylelint-sort {
+    stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$1"
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
