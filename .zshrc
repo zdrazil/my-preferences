@@ -1,3 +1,6 @@
+PATH=$PATH:$HOME/bin
+export PATH
+
 if [ -f $HOME/.commonrc ]; then
     . $HOME/.commonrc
 fi
