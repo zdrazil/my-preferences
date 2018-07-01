@@ -102,7 +102,8 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
-
+source ~/.zsh/functions.zsh
+source ~/.zsh/terminal.zsh
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then
@@ -129,5 +130,3 @@ bindkey '^[[B' history-substring-search-down
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
-
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
