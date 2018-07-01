@@ -1,12 +1,6 @@
-# Source config files that are not to be public (API tokens etc.) 
-if [ -r ~/.not-public ]
-then
-    source ~/.not-public
-fi
-
-if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
-    . /usr/local/etc/profile.d/autojump.sh
-fi
+# Source config files that are the same for zsh and bash
+if [ -f $HOME/.commonrc ]; then
+    . $HOME/.commonrc
 
 # Use bash completion
 if [ -f /usr/local/etc/bash_completion ]; then
@@ -49,38 +43,3 @@ bind Space:magic-space
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
-#-------------------- ALIASES ------------------------
-# Shortcuts for ls.
-alias lsl='ls -l'
-alias lsa='ls -a'
-
-# Compatibility with other Unix systems
-ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
-
-# Mac Specific Aliases
-if [[ $OSTYPE == darwin* ]]; then
-    alias suz='su -l zdraz'
-    alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
-    alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
-
-    alias vnchorus='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://horus-desktop.local:36154'
-    alias vncmacmini='open vnc://Mac-mini.local'
-    alias vncamun='open vnc://amun-laptop.local'
-    alias vncra='open vnc://ra-desktop.local'
-    alias vnclocal='open vnc://localhost:5901'
-
-    alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
-
-    alias subl='open -a "Sublime Text"'
-    alias vcode='open -a "Visual Studio Code"'
-    alias chrome='open -a "Google Chrome"'
-    alias firefox='open -a "Firefox"'
-    alias safari='open -a "Safari"'
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
