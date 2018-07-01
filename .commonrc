@@ -5,6 +5,10 @@ function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+function rgv {
+    vim -c "Ack argv"
+}
+
 # Shortcuts for ls.
 alias lsl='ls -l'
 alias lsa='ls -a'
