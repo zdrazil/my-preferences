@@ -4,9 +4,11 @@ then
     source ~/.not-public
 fi
 
-if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
-    . /usr/local/etc/profile.d/autojump.sh
-fi
+# if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+    # . /usr/local/etc/profile.d/autojump.sh
+# fi
+
+eval "$(fasd --init auto)"
 
 #-------------------- ALIASES ------------------------
 

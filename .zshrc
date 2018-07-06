@@ -132,4 +132,7 @@ bindkey '^[[B' history-substring-search-down
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
