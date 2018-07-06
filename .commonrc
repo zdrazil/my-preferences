@@ -49,20 +49,28 @@ if [[ $OSTYPE == darwin* ]]; then
 fi
 
 # FrontEnd
-alias format:prettier='prettier --write \"**/*.js\'
+alias format:prettier='prettier --write \"**/*.js\"'
 alias format:eslint='eslint dev src --fix'
 alias format:stylelint='stylelint --config=.stylelintrc \"src/**/*.scss\" --fix'
 alias format:stylelint-sort='stylelint --config="$HOME/bin/linter/stylelint-sort" \"src/**/*.scss\" --fix'
-
-function zin-test {
-    yarn format:js
-    yarn format:styles
-    yarn jest
-    yarn flow
-}
+alias svgo-viewbox='svgo --disable=removeViewBox'
 
 function stylelint-sort {
-    stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$1"
+    stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$@"
+}
+
+function git-ls-files-changed {
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    git diff --name-only --diff-filter=AM HEAD --relative "${GIT_ROOT}"
+}
+
+function stylelint-sort-changed {
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    for file in $(git diff --name-only --diff-filter=AM HEAD  \
+        --relative "${GIT_ROOT}" | grep -E '\.(scss|css|less|sass|sss)$')
+    do
+        stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$file"
+    done
 }
 
 export NVM_DIR="$HOME/.nvm"
