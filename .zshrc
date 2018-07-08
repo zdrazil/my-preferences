@@ -10,8 +10,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Completion system; prompt
-zstyle :compinstall filename '/Users/zdrazil/.zshrc'
-fpath=(/Users/zdrazil/.zsh/packages/zsh-completions $fpath)
+zstyle :compinstall filename '~/.zshrc'
+fpath=(~/.zsh/packages/zsh-completions $fpath)
 autoload -Uz compinit promptinit
 compinit -u
 promptinit
@@ -94,19 +94,17 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
 # ------------------ EXTERNAL SOURCE FILES --------
 
-# if [ -d $HOME/.zsh/ ]; then
-#   for file in $HOME/.zsh/*.zsh; do
-#     source $file
-#   done
-# fi
+if [ -d $HOME/.zsh/ ]; then
+  for file in $HOME/.zsh/*.zsh; do
+    source $file
+  done
+fi
 
 # ------------------ PLUGINS ----------------------
 
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh/functions.zsh
-source ~/.zsh/terminal.zsh
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then
