@@ -1,0 +1,12 @@
+[user]
+	name = Vladimír Zdražil
+	email = mail@vzdrazil.com
+[core]
+	excludesfile = ~/.gitignore_global
+[credential]
+	helper = osxkeychain
+[commit]
+	template = ~/.git_commit_msg.txt
+	cleanup = strip
+[merge]
+	tool = kdiff3
