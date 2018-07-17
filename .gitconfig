@@ -3,6 +3,7 @@
 	email = mail@vzdrazil.com
 [core]
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [credential]
 	helper = osxkeychain
 [commit]
@@ -10,3 +11,8 @@
 	cleanup = strip
 [merge]
 	tool = kdiff3
+[diff]
+	tool = kdiff3
+[mergetool]
+    keepBackup = false
+	prompt = false
