@@ -43,6 +43,7 @@ if [[ $OSTYPE == darwin* ]]; then
 
     alias subl='open -a "Sublime Text"'
     alias vcode='open -a "Visual Studio Code"'
+    alias webstorm='open -a "WebStorm"'
     alias chrome='open -a "Google Chrome"'
     alias firefox='open -a "Firefox"'
     alias safari='open -a "Safari"'
