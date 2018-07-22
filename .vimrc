@@ -14,6 +14,8 @@ set showmode
 set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 
+set background=dark
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
@@ -26,7 +28,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'mileszs/ack.vim'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'w0rp/ale'
 
@@ -39,11 +41,13 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'markonm/traces.vim'
+Plug 'nelstrom/vim-visual-star-search'
 
 " FrontEnd 
-" Plug 'pangloss/vim-javascript'
-" Plug 'elzr/vim-json'
-" Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'mxw/vim-jsx'
 
 Plug 'mattn/emmet-vim'
 
@@ -69,6 +73,10 @@ nnoremap <leader>/ :Lines<cr>
 
 " Gutentags
 let g:gutentags_file_list_command = 'rg --files'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_enter = 0
+" let g:ale_completion_enabled = 1
+let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
 
+nnoremap <leader>] :ALEGoToDefinition<cr>

@@ -105,6 +105,7 @@ fi
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.zsh/packages/zsh-you-should-use/you-should-use.plugin.zsh
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then
@@ -134,3 +135,4 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
+export ZSH_AUTOSUGGEST_USE_ASYNC="true"
