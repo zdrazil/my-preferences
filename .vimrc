@@ -80,3 +80,18 @@ let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
 
 nnoremap <leader>] :ALEGoToDefinition<cr>
+
+" Project settings
+augroup ProjectSetup
+    au BufRead,BufEnter ~/projects/zindulka/customer-zone/* 
+                \let g:ale_fixers = {
+                \ 'javascript': ['prettier', 'eslint'],
+                \ 'json': ['prettier', 'eslint'],
+                \ 'scss': ['prettier', 'stylelint'],
+                \} |
+                \let g:ale_linters = {
+                \ 'javascript': ['eslint', 'flow', 'flow-language-server'],
+                \ 'scss': ['stylelint'],
+                \}
+    au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
+augroup END
