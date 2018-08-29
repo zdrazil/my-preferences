@@ -56,6 +56,10 @@ alias format:stylelint='stylelint --config=.stylelintrc \"src/**/*.scss\" --fix'
 alias format:stylelint-sort='stylelint --config="$HOME/bin/linter/stylelint-sort" \"src/**/*.scss\" --fix'
 alias svgo-viewbox='svgo --disable=removeViewBox'
 
+function svgo-clean {
+    svgo --disable=removeViewBox --config='{ "plugins": [ { "removeAttrs": { "attrs": "(fill|stroke)" } } ] }' "$@"
+}
+
 function stylelint-sort {
     stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$@"
 }
