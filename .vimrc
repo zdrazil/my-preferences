@@ -39,15 +39,18 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'mhinz/vim-signify'
 
 " FrontEnd 
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
+Plug 'galooshi/vim-import-js'
 
 Plug 'mattn/emmet-vim'
 
