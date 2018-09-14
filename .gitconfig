@@ -16,3 +16,12 @@
 [mergetool]
     keepBackup = false
 	prompt = false
+[alias]
+  co = checkout
+  com = checkout master
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
