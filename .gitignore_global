@@ -6,6 +6,7 @@ tags
 .code
 .vscode/*
 
+node_modules/
 
 ### Windows ###
 # Windows thumbnail cache files
