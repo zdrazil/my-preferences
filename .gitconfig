@@ -1,6 +1,6 @@
 [user]
 	name = Vladimír Zdražil
-	email = vladimir.zdrazil@yachting.com
+	email = mail@vzdrazil.com
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
