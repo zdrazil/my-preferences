@@ -1,6 +1,6 @@
 [user]
 	name = Vladimír Zdražil
-	email = mail@vzdrazil.com
+	email = vladimir.zdrazil@yachting.com
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
@@ -14,7 +14,7 @@
 [diff]
 	tool = kdiff3
 [mergetool]
-    keepBackup = false
+  keepBackup = false
 	prompt = false
 [alias]
   co = checkout

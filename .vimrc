@@ -78,7 +78,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
 
 " Gutentags
-let g:gutentags_file_list_command = 'rg --files'
+" let g:gutentags_file_list_command = 'rg --files'
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_enter = 0
 " let g:ale_completion_enabled = 1
