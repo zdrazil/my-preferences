@@ -28,7 +28,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'mileszs/ack.vim'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'w0rp/ale'
 
@@ -40,11 +40,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-abolish'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-signify'
+
+Plug 'chiedojohn/vim-case-convert'
 
 " FrontEnd 
 Plug 'pangloss/vim-javascript'
