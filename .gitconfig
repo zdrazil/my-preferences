@@ -1,21 +1,21 @@
 [user]
-	name = Vladimír Zdražil
-	email = mail@vzdrazil.com
+  name = Vladimír Zdražil
+  email = mail@vzdrazil.com
 [core]
-	excludesfile = ~/.gitignore_global
-	autocrlf = input
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [commit]
-	template = ~/.git_commit_msg.txt
-	cleanup = strip
+  template = ~/.git_commit_msg.txt
+  cleanup = strip
 [merge]
-	tool = kdiff3
+  tool = kdiff3
 [diff]
-	tool = kdiff3
+  tool = kdiff3
 [mergetool]
   keepBackup = false
-	prompt = false
+  prompt = false
 [alias]
   co = checkout
   com = checkout master
@@ -25,6 +25,6 @@
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   type = cat-file -t
   dump = cat-file -p
-  ctags = !.git/hooks/ctags
+  ; ctags = !.git/hooks/ctags
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
