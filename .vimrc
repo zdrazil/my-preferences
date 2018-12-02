@@ -16,6 +16,13 @@ set title               " e.g. | page.html (~) - VIM | as a windows title
 
 set background=dark
 
+silent !mkdir ~/.vim/undo > /dev/null 2>&1
+silent !mkdir ~/.vim/backup > /dev/null 2>&1
+silent !mkdir ~/.vim/swap > /dev/null 2>&1
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
