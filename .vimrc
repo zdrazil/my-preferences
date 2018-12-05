@@ -38,14 +38,18 @@ Plug 'mileszs/ack.vim'
 " Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'w0rp/ale'
+
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
 
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'ryanolsonx/vim-lsp-typescript'
+Plug 'prabirshrestha/asyncomplete-flow.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+
+Plug 'runoshun/tscompletejob'
+Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
 
 " Plug 'ajh17/VimCompletesMe'
 
@@ -101,15 +105,17 @@ let g:ale_fix_on_save = 1
 " let g:javascript_plugin_flow = 1
 " let g:javascript_plugin_jsdoc = 1
 
-" LSP
-let g:asyncomplete_smart_completion = 1
-let g:asyncomplete_auto_popup = 1
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
+" LSP
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 nnoremap <leader>] :LspDefinition<cr>
+
 
 " Project settings
 augroup ProjectSetup
@@ -120,23 +126,49 @@ augroup ProjectSetup
                 \ 'scss': ['prettier', 'stylelint'],
                 \} |
                 \let g:ale_linters = {
-                \ 'javascript': ['eslint', 'flow', 'flow-language-server'],
+                \ 'javascript': ['eslint'],
                 \ 'scss': ['stylelint'],
                 \}
     au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
 augroup END
 
 " Asyncomplete
-set completeopt+=preview
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+    \ 'name': 'flow',
+    \ 'whitelist': ['javascript'],
+    \ 'completor': function('asyncomplete#sources#flow#completor'),
+    \ }))
 
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
     \ 'name': 'file',
     \ 'whitelist': ['*'],
+    \ 'priority': 10,
     \ 'completor': function('asyncomplete#sources#file#completor')
     \ }))
 
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+    \ 'name': 'tscompletejob',
+    \ 'whitelist': ['typescript'],
+    \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+    \ }))
+
+
 " Language servers
+if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
 
 if executable('flow')
     au User lsp_setup call lsp#register_server({
@@ -147,29 +179,12 @@ if executable('flow')
         \ })
 endif
 
-if executable('css-languageserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'css-languageserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-        \ 'whitelist': ['css', 'less', 'sass'],
-        \ })
-endif
-
 if executable('typescript-language-server')
     au User lsp_setup call lsp#register_server({
-      \ 'name': 'typescript-language-server',
-      \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-      \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-      \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
-      \ })
-endif
-
-
-if executable('html-languageserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'html-languageserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
-        \ 'whitelist': ['html'],
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript'],
         \ })
 endif
 
