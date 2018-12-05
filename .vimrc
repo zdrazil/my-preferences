@@ -39,19 +39,10 @@ Plug 'mileszs/ack.vim'
 
 Plug 'w0rp/ale'
 
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-Plug 'prabirshrestha/asyncomplete-flow.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-
-Plug 'runoshun/tscompletejob'
-Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
-
-" Plug 'ajh17/VimCompletesMe'
+Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
@@ -96,8 +87,6 @@ nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
 
-" Gutentags
-" let g:gutentags_file_list_command = 'rg --files'
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_enter = 0
 " let g:ale_completion_enabled = 1
@@ -109,11 +98,6 @@ let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 " LSP
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-imap <c-space> <Plug>(asyncomplete_force_refresh)
 nnoremap <leader>] :LspDefinition<cr>
 
 
@@ -131,35 +115,6 @@ augroup ProjectSetup
                 \}
     au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
 augroup END
-
-" Asyncomplete
-
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-    \ 'name': 'flow',
-    \ 'whitelist': ['javascript'],
-    \ 'completor': function('asyncomplete#sources#flow#completor'),
-    \ }))
-
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'whitelist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
-
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \ 'name': 'buffer',
-    \ 'whitelist': ['*'],
-    \ 'blacklist': ['go'],
-    \ 'completor': function('asyncomplete#sources#buffer#completor'),
-    \ }))
-
-call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
-    \ 'name': 'tscompletejob',
-    \ 'whitelist': ['typescript'],
-    \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
-    \ }))
-
 
 " Language servers
 if executable('css-languageserver')
@@ -188,3 +143,12 @@ if executable('typescript-language-server')
         \ })
 endif
 
+if executable('typescript-language-server')
+    autocmd FileType typescript setlocal omnifunc=lsp#complete
+endif
+
+
+if executable('flow')
+    autocmd FileType javascript setlocal omnifunc=lsp#complete
+    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
+endif
