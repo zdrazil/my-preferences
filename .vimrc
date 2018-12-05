@@ -14,6 +14,8 @@ set showmode
 set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 
+set completeopt=longest,menuone
+
 set background=dark
 
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
