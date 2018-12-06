@@ -82,6 +82,8 @@ endif
 
 let g:mapleader = "\<Space>"
 inoremap <C-Space> <Space> 
+inoremap jk <esc>
+inoremap kj <esc>
 
 " FZF
 nnoremap <leader>o :FZF<cr>
