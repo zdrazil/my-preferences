@@ -17,6 +17,7 @@ set title               " e.g. | page.html (~) - VIM | as a windows title
 set completeopt=longest,menuone
 
 set background=dark
+" set termguicolors
 
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
 silent !mkdir ~/.vim/backup > /dev/null 2>&1
@@ -31,6 +32,7 @@ Plug 'tpope/vim-sensible'
 
 " Plug 'robertmeta/nofrils'
 Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 " Plug 'vim-scripts/CycleColor'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -74,6 +76,9 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 
 runtime plugin/sensible.vim
+
+" colorscheme solarized
+" colorscheme solarized8
 
 " Ack.vim
 if executable('rg')
