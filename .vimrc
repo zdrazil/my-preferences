@@ -39,6 +39,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
 " Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'w0rp/ale'
@@ -80,15 +81,16 @@ runtime plugin/sensible.vim
 " colorscheme solarized
 " colorscheme solarized8
 
-" Ack.vim
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading'
-endif
+let g:grepper = {}
+let g:grepper.tools = ['grep', 'git', 'rg']
+
+
+" if executable('rg')
+"     let g:ackprg = 'rg --vimgrep --no-heading'
+" endif
 
 let g:mapleader = "\<Space>"
 inoremap <C-Space> <Space> 
-inoremap jk <esc>
-inoremap kj <esc>
 
 " FZF
 nnoremap <leader>o :FZF<cr>
@@ -108,6 +110,12 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 
 " LSP
 nnoremap <leader>] :LspDefinition<cr>
+
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+nnoremap <Leader>g :Grepper -tool rg<CR>
 
 
 " Project settings
