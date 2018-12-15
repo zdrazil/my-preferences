@@ -26,6 +26,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "/usr/local/lib/python3.7/site-packages" ] ; then
+    PATH="/usr/local/lib/python3.7/site-packages:$PATH"
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export LC_ALL=en_US.UTF-8  
     export LANG=en_US.UTF-8
@@ -44,7 +48,6 @@ fi
 
 export CLICOLOR=1
 export EDITOR=vim
-
 
 
 

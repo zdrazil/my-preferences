@@ -31,61 +31,68 @@ Plug 'tpope/vim-sensible'
 
 " Plug 'robertmeta/nofrils'
 Plug 'altercation/vim-colors-solarized'
-" Plug 'vim-scripts/CycleColor'
+Plug 'morhetz/gruvbox'
+Plug 'vim-scripts/CycleColor'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
-" Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'w0rp/ale'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-
 Plug 'ajh17/VimCompletesMe'
 
-Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-abolish'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-Plug 'nelstrom/vim-visual-star-search'
+" Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-signify'
 
+Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
+Plug 'machakann/vim-highlightedyank'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'jpalardy/vim-slime'
 
 " FrontEnd 
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'mxw/vim-jsx'
 Plug 'galooshi/vim-import-js'
 
 Plug 'mattn/emmet-vim'
-
-" Plug '1995eaton/vim-better-javascript-completion'
 
 call plug#end()
 
 runtime plugin/sensible.vim
 
+colorscheme gruvbox
+" dark mode enabled?
+if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+   set background=dark
+else
+  set background=light
+endif
+
 let g:grepper = {}
-let g:grepper.tools = ['grep', 'git', 'rg']
-
-
-" if executable('rg')
-"     let g:ackprg = 'rg --vimgrep --no-heading'
-" endif
+let g:grepper.tools = ['rg','grep', 'git' ]
 
 let g:mapleader = "\<Space>"
 inoremap <C-Space> <Space> 
+
+" CDC = Change to Directory of Current file
+command CDC cd %:p:h
 
 " FZF
 nnoremap <leader>o :FZF<cr>
@@ -93,15 +100,15 @@ nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
 
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 0
-" let g:ale_completion_enabled = 1
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
-" let g:javascript_plugin_flow = 1
-" let g:javascript_plugin_jsdoc = 1
 
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+let g:slime_target = "vimterminal"
+
+let g:highlightedyank_highlight_duration = 200 
 
 " LSP
 nnoremap <leader>] :LspDefinition<cr>
