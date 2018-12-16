@@ -85,4 +85,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
+export FZF_DEFAULT_COMMAND='rg --files'

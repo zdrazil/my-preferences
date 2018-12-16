@@ -51,6 +51,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -68,8 +69,12 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'sheerun/vim-polyglot'
 Plug 'jpalardy/vim-slime'
 
+Plug 'rizzatti/dash.vim'
+
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
+Plug 'moll/vim-node'
+Plug 'ryanolsonx/vim-lsp-typescript'
 
 Plug 'mattn/emmet-vim'
 
@@ -106,6 +111,8 @@ let g:ale_fix_on_save = 1
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
+let g:javascript_plugin_flow = 1
+
 let g:slime_target = "vimterminal"
 
 let g:highlightedyank_highlight_duration = 200 
@@ -119,6 +126,7 @@ xmap gs <plug>(GrepperOperator)
 
 nnoremap <Leader>g :Grepper -tool rg<CR>
 
+:nmap <silent> <leader>d <Plug>DashSearch
 
 " Project settings
 augroup ProjectSetup
@@ -132,8 +140,21 @@ augroup ProjectSetup
                 \ 'javascript': ['eslint'],
                 \ 'scss': ['stylelint'],
                 \}
+    au BufRead,BufEnter ~/projects/zindulka/advent-of-code/* 
+                \let g:ale_fixers = {
+                \ 'javascript': ['prettier', 'eslint'],
+                \ 'json': ['prettier', 'eslint'],
+                \ 'scss': ['prettier', 'stylelint'],
+                \} |
+                \let g:ale_linters = {
+                \ 'javascript': ['eslint'],
+                \ 'scss': ['stylelint'],
+                \}
     au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
 augroup END
+
+" Projectionist
+" Dash
 
 " Language servers
 if executable('css-languageserver')
@@ -153,14 +174,14 @@ if executable('flow')
         \ })
 endif
 
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \ 'whitelist': ['typescript'],
-        \ })
-endif
+" if executable('typescript-language-server')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'typescript-language-server',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+"         \ 'whitelist': ['typescript'],
+"         \ })
+" endif
 
 if executable('typescript-language-server')
     autocmd FileType typescript setlocal omnifunc=lsp#complete
