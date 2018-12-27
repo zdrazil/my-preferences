@@ -197,3 +197,16 @@ if executable('flow')
     autocmd FileType javascript setlocal omnifunc=lsp#complete
     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
 endif
+
+if executable('hie')
+    autocmd FileType haskell setlocal omnifunc=lsp#complete
+endif
+
+if executable('hie')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'hie',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
+        \ 'whitelist': ['haskell'],
+        \ })
+endif
+
