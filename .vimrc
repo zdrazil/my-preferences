@@ -131,6 +131,8 @@ xmap gs <plug>(GrepperOperator)
 
 nnoremap <Leader>g :Grepper -tool rg<CR>
 
+nnoremap <Leader>h :LspHover<CR>
+
 :nmap <silent> <leader>d <Plug>DashSearch
 
 " Project settings
@@ -143,6 +145,18 @@ augroup ProjectSetup
                 \} |
                 \let g:ale_linters = {
                 \ 'javascript': ['eslint'],
+                \ 'json': ['eslint'],
+                \ 'scss': ['stylelint'],
+                \}
+    au BufRead,BufEnter ~/projects/zindulka/yachting-frontend/* 
+                \let g:ale_fixers = {
+                \ 'javascript': ['prettier', 'eslint'],
+                \ 'json': ['prettier', 'eslint'],
+                \ 'scss': ['prettier', 'stylelint'],
+                \} |
+                \let g:ale_linters = {
+                \ 'javascript': ['eslint'],
+                \ 'json': ['eslint'],
                 \ 'scss': ['stylelint'],
                 \}
     au BufRead,BufEnter ~/projects/zindulka/advent-of-code/* 
