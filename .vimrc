@@ -88,11 +88,13 @@ runtime plugin/sensible.vim
 " colorscheme solarized8
 
 colorscheme gruvbox
-" dark mode enabled?
-if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-   set background=dark
-else
-  set background=light
+" dark mode on mac enabled?
+if has('macunix')
+  if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+    set background=dark
+  else
+    set background=light
+  endif
 endif
 
 let g:grepper = {}
