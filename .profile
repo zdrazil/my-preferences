@@ -44,10 +44,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
         . ~/.nix-profile/etc/profile.d/nix.sh; 
     fi
+
+    if [ -d "/home/linuxbrew/.linuxbrew/bin" ]; then
+        PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
+        MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+        INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+    fi
 fi
 
 export CLICOLOR=1
 export EDITOR=vim
-
-
-
