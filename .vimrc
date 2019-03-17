@@ -146,6 +146,9 @@ nmap <leader>y <Plug>(coc-type-definition)
 nmap <leader>i <Plug>(coc-implementation)
 nmap <leader>r <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 nnoremap <leader> K :call <SID>show_documentation()<CR>
 
