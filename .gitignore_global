@@ -5,6 +5,7 @@ tags
 .idea
 .code
 .vscode/*
+.vim/*
 
 node_modules/
 
