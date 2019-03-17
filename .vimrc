@@ -16,6 +16,8 @@ set title               " e.g. | page.html (~) - VIM | as a windows title
 
 set completeopt=longest,menuone
 
+set cmdheight=2
+
 set background=dark
 " set termguicolors
 
@@ -74,6 +76,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jpalardy/vim-slime'
 
 Plug 'rizzatti/dash.vim'
+" Plug 'Shougo/echodoc.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
@@ -117,8 +120,8 @@ nnoremap <leader>/ :Lines<cr>
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+" let g:lsp_signs_enabled = 1         " enable signs
+" let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 let g:javascript_plugin_flow = 1
 
@@ -141,16 +144,16 @@ nnoremap <Leader>g :Grepper -tool rg<CR>
 " :nmap <silent> <leader>d <Plug>DashSearch
 
 " Coc
-nmap <leader>] <Plug>(coc-definition)
-nmap <leader>y <Plug>(coc-type-definition)
-nmap <leader>i <Plug>(coc-implementation)
-nmap <leader>r <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>] <Plug>(coc-definition)
+nmap <silent> <leader>y <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>r <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
-nnoremap <leader> K :call <SID>show_documentation()<CR>
+nnoremap <silent><leader>K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if &filetype == 'vim'
@@ -173,7 +176,8 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-inoremap <silent><expr> <leader><TAB> coc#refresh()
+" inoremap <silent><expr> <leader><TAB> coc#refresh()
+
 
 " Project settings
 augroup ProjectSetup

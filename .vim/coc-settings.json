@@ -1,6 +1,7 @@
 {
   "suggest.minTriggerInputLength": 2,
   "suggest.autoTrigger": "none",
+  "diagnostic.displayByAle": true,
   "languageserver": {
     "flow": {
       "command": "flow",
