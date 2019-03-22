@@ -23,15 +23,16 @@ promptinit
 autoload -Uz colors && colors
 
 # used %{...%} to prevent jumping text when writing
+# export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 
 # Git in prompt
-autoload -Uz vcs_info
-zstyle ':vcs_info*' formats "%b"
-setopt prompt_subst
-precmd() { vcs_info }
+# autoload -Uz vcs_info
+# zstyle ':vcs_info*' formats "%b"
+# setopt prompt_subst
+# precmd() { vcs_info }
 
-export RPROMPT='${vcs_info_msg_0_}'
+# export RPROMPT='${vcs_info_msg_0_}'
 
 setopt AUTO_MENU           # Show completion menu on a successive tab press.
 setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
