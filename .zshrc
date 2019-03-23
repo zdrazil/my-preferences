@@ -23,6 +23,7 @@ promptinit
 autoload -Uz colors && colors
 
 # used %{...%} to prevent jumping text when writing
+# export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 
 # Git in prompt
