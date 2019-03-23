@@ -25,7 +25,7 @@ alias lsl='ls -l'
 alias lsa='ls -a'
 
 # Compatibility with other Unix systems
-ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
+# ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
 
 # Mac Specific Aliases
 if [[ $OSTYPE == darwin* ]]; then
