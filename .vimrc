@@ -178,6 +178,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " inoremap <silent><expr> <leader><TAB> coc#refresh()
 
+func! GetSelectedText()
+    normal gv"xy
+    let result = getreg("x")
+    return result
+endfunc
+
+if !has("clipboard") && executable("clip.exe")
+    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
+    noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
+endif
 
 " Project settings
 augroup ProjectSetup
