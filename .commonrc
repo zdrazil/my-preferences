@@ -9,7 +9,7 @@ if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
 fi
 
 # eval "$(fasd --init auto)"
-if [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
+if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
     eval $(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)
 fi
 

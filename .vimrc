@@ -102,8 +102,10 @@ if has('macunix')
   endif
 endif
 
-let g:grepper = {}
-let g:grepper.tools = ['rg','grep', 'git' ]
+runtime plugin/grepper.vim
+let g:grepper.prompt_quote = 1 
+let g:grepper.rg.grepprg .= ' -S --'
+let g:grepper.tools = ['rg', 'grep', 'git' ]
 
 let g:mapleader = "\<Space>"
 inoremap <C-Space> <Space> 
