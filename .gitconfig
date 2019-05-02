@@ -5,7 +5,7 @@
   excludesfile = ~/.gitignore_global
   autocrlf = input
 [credential]
-  helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
+  helper = osxkeychain
 [commit]
   template = ~/.git_commit_msg.txt
   cleanup = strip
