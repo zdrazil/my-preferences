@@ -2,6 +2,9 @@
   "suggest.minTriggerInputLength": 2,
   "suggest.autoTrigger": "none",
   "diagnostic.displayByAle": true,
+  "suggest.noselect": false,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.echodocSupport": true,
   "languageserver": {
     "flow": {
       "command": "flow",
