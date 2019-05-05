@@ -46,11 +46,9 @@ Plug 'mhinz/vim-grepper'
 
 Plug 'w0rp/ale'
 
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'ajh17/VimCompletesMe'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -85,6 +83,11 @@ Plug 'ryanolsonx/vim-lsp-typescript'
 
 Plug 'mattn/emmet-vim'
 
+" Clojure
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
 call plug#end()
 
 runtime plugin/sensible.vim
@@ -93,28 +96,20 @@ runtime plugin/sensible.vim
 " colorscheme solarized8
 
 colorscheme gruvbox
-" dark mode on mac enabled?
-if has('macunix')
-  if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-    set background=dark
-  else
-    set background=light
-  endif
-endif
 
 runtime plugin/grepper.vim
 let g:grepper.prompt_quote = 1 
-let g:grepper.rg.grepprg .= ' -S --'
+let g:grepper.rg.grepprg .= ' -s --'
 let g:grepper.tools = ['rg', 'grep', 'git' ]
 
-let g:mapleader = "\<Space>"
-inoremap <C-Space> <Space> 
+let g:mapleader = "\<space>"
+inoremap <c-space> <space> 
 inoremap jj <Esc>
 
-" CDC = Change to Directory of Current file
-command CDC cd %:p:h
+" " cdc = change to directory of current file
+" command cdc cd %:p:h
 
-" FZF
+" fzf
 nnoremap <leader>o :FZF<cr>
 nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
@@ -122,9 +117,10 @@ nnoremap <leader>/ :Lines<cr>
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
 
-" let g:lsp_signs_enabled = 1         " enable signs
-" let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 let g:javascript_plugin_flow = 1
 
@@ -133,8 +129,7 @@ let g:slime_target = "vimterminal"
 let g:highlightedyank_highlight_duration = 200 
 
 " LSP
-" nnoremap <leader>] :LspDefinition<cr>
-
+nnoremap <leader>] :LspDefinition<cr>
 
 nnoremap <Leader>* :Grepper -cword -noprompt<CR>
 nmap gs <plug>(GrepperOperator)
@@ -142,46 +137,12 @@ xmap gs <plug>(GrepperOperator)
 
 nnoremap <Leader>g :Grepper -tool rg<CR>
 
-" nnoremap <Leader>h :LspHover<CR>
+nnoremap <Leader>h :LspHover<CR>
 
 " :nmap <silent> <leader>d <Plug>DashSearch
 
-" Coc
-nmap <silent> <leader>] <Plug>(coc-definition)
-nmap <silent> <leader>y <Plug>(coc-type-definition)
-nmap <silent> <leader>i <Plug>(coc-implementation)
-nmap <silent> <leader>r <Plug>(coc-references)
-nmap <silent> <leader>rn <Plug>(coc-rename)
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-nnoremap <silent><leader>K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
-" inoremap <silent><expr> <leader><TAB> coc#refresh()
+nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
 func! GetSelectedText()
     normal gv"xy
@@ -249,55 +210,53 @@ augroup ProjectSetup
     au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
 augroup END
 
-" Projectionist
-" Dash
 
 " Language servers
-" if executable('css-languageserver')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'css-languageserver',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-"         \ 'whitelist': ['css', 'less', 'sass'],
-"         \ })
-" endif
+if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
 
-" if executable('flow')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'flow',
-"         \ 'cmd': {server_info->['flow', 'lsp']},
-"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-"         \ 'whitelist': ['javascript', 'javascript.jsx'],
-"         \ })
-" endif
+if executable('flow')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'flow',
+        \ 'cmd': {server_info->['flow', 'lsp']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+        \ 'whitelist': ['javascript', 'javascript.jsx'],
+        \ })
+endif
 
-" if executable('typescript-language-server')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'typescript-language-server',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-"         \ 'whitelist': ['typescript'],
-"         \ })
-" endif
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript'],
+        \ })
+endif
 
-" if executable('typescript-language-server')
-"     autocmd FileType typescript setlocal omnifunc=lsp#complete
-" endif
+if executable('typescript-language-server')
+    autocmd FileType typescript setlocal omnifunc=lsp#complete
+endif
 
 
-" if executable('flow')
-"     autocmd FileType javascript setlocal omnifunc=lsp#complete
-"     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
-" endif
+if executable('flow')
+    autocmd FileType javascript setlocal omnifunc=lsp#complete
+    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
+endif
 
-" if executable('hie')
-"     autocmd FileType haskell setlocal omnifunc=lsp#complete
-" endif
+if executable('hie')
+    autocmd FileType haskell setlocal omnifunc=lsp#complete
+endif
 
-" if executable('hie')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'hie',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
-"         \ 'whitelist': ['haskell'],
-"         \ })
-" endif
+if executable('hie')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'hie',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
+        \ 'whitelist': ['haskell'],
+        \ })
+endif
 
