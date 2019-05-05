@@ -76,7 +76,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jpalardy/vim-slime'
 
 Plug 'rizzatti/dash.vim'
-" Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
@@ -178,6 +178,8 @@ inoremap <silent><expr> <TAB>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 " inoremap <silent><expr> <leader><TAB> coc#refresh()
 
 func! GetSelectedText()
@@ -235,6 +237,13 @@ augroup ProjectSetup
                 \let g:ale_linters = {
                 \ 'javascript': ['eslint'],
                 \ 'scss': ['stylelint'],
+                \}
+    au BufRead,BufEnter ~/projects/hexchange/* 
+                \let g:ale_fixers = {
+                \ 'haskell': ['brittany'],
+                \} |
+                \let g:ale_linters = {
+                \ 'haskell': ['hie'],
                 \}
     au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
 augroup END
