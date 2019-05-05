@@ -109,6 +109,7 @@ let g:grepper.tools = ['rg', 'grep', 'git' ]
 
 let g:mapleader = "\<Space>"
 inoremap <C-Space> <Space> 
+inoremap jj <Esc>
 
 " CDC = Change to Directory of Current file
 command CDC cd %:p:h
