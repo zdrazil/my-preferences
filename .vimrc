@@ -32,6 +32,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
+
 " Plug 'robertmeta/nofrils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
@@ -79,7 +82,7 @@ Plug 'Shougo/echodoc.vim'
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
 Plug 'moll/vim-node'
-Plug 'ryanolsonx/vim-lsp-typescript'
+" Plug 'ryanolsonx/vim-lsp-typescript'
 
 Plug 'mattn/emmet-vim'
 
@@ -124,7 +127,7 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 
 let g:javascript_plugin_flow = 1
 
-let g:slime_target = "vimterminal"
+let g:slime_target = "tmux"
 
 let g:highlightedyank_highlight_duration = 200 
 
@@ -155,61 +158,20 @@ if !has("clipboard") && executable("clip.exe")
     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
 endif
 
-" Project settings
-augroup ProjectSetup
-    au BufRead,BufEnter ~/projects/zindulka/customer-zone/* 
-                \let g:ale_fixers = {
-                \ 'javascript': ['prettier', 'eslint'],
-                \ 'json': ['prettier', 'eslint'],
-                \ 'scss': ['prettier', 'stylelint'],
-                \} |
-                \let g:ale_linters = {
-                \ 'javascript': ['eslint'],
-                \ 'json': ['eslint'],
-                \ 'scss': ['stylelint'],
-                \}
-    au BufRead,BufEnter ~/projects/zindulka/yachting-frontend/* 
-                \let g:ale_fixers = {
-                \ 'javascript': ['prettier', 'eslint'],
-                \ 'json': ['prettier', 'eslint'],
-                \ 'scss': ['prettier', 'stylelint'],
-                \} |
-                \let g:ale_linters = {
-                \ 'javascript': ['eslint'],
-                \ 'json': ['eslint'],
-                \ 'scss': ['stylelint'],
-                \}
-    au BufRead,BufEnter ~/projects/yachting-frontend/* 
-                \let g:ale_fixers = {
-                \ 'javascript': ['prettier', 'eslint'],
-                \ 'json': ['prettier', 'eslint'],
-                \ 'scss': ['prettier', 'stylelint'],
-                \} |
-                \let g:ale_linters = {
-                \ 'javascript': ['eslint'],
-                \ 'json': ['eslint'],
-                \ 'scss': ['stylelint'],
-                \}
-    au BufRead,BufEnter ~/projects/zindulka/advent-of-code/* 
-                \let g:ale_fixers = {
-                \ 'javascript': ['prettier', 'eslint'],
-                \ 'json': ['prettier', 'eslint'],
-                \ 'scss': ['prettier', 'stylelint'],
-                \} |
-                \let g:ale_linters = {
-                \ 'javascript': ['eslint'],
-                \ 'scss': ['stylelint'],
-                \}
-    au BufRead,BufEnter ~/projects/hexchange/* 
-                \let g:ale_fixers = {
-                \ 'haskell': ['brittany'],
-                \} |
-                \let g:ale_linters = {
-                \ 'haskell': ['hie'],
-                \}
-    au BufRead,BufEnter /path/to/project2/* set noet sts=4 cindent cinoptions=...
-augroup END
 
+let g:ale_fixers = {
+            \ 'javascript': ['prettier', 'eslint'],
+            \ 'json': ['prettier', 'eslint'],
+            \ 'scss': ['prettier', 'stylelint'],
+            \ 'haskell': ['brittany'],
+            \}
+
+let g:ale_linters = {
+            \ 'javascript': ['eslint'],
+            \ 'json': ['eslint'],
+            \ 'scss': ['stylelint'],
+            \ 'haskell': ['hie'],
+            \}
 
 " Language servers
 if executable('css-languageserver')
@@ -234,12 +196,15 @@ if executable('typescript-language-server')
         \ 'name': 'typescript-language-server',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \ 'whitelist': ['typescript'],
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
         \ })
 endif
 
 if executable('typescript-language-server')
     autocmd FileType typescript setlocal omnifunc=lsp#complete
+    autocmd FileType typescript.tsx setlocal omnifunc=lsp#complete
+    autocmd FileType javascript setlocal omnifunc=lsp#complete
+    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
 endif
 
 

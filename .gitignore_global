@@ -7,6 +7,9 @@ tags
 .vscode/*
 .vim
 
+_vimrc_local.vim
+_scratch*
+
 node_modules/
 
 ### Windows ###
