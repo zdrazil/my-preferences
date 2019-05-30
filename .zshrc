@@ -110,7 +110,7 @@ fi
 source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ~/.zsh/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.zsh/packages/zsh-you-should-use/you-should-use.plugin.zsh
+# source ~/.zsh/packages/zsh-you-should-use/you-should-use.plugin.zsh
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then

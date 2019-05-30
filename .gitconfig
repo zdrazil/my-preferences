@@ -10,9 +10,10 @@
   template = ~/.git_commit_msg.txt
   cleanup = strip
 [merge]
-  tool = kdiff3
+  tool = vimdiff
 [diff]
-  tool = kdiff3
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
   keepBackup = false
   prompt = false
@@ -27,4 +28,4 @@
   dump = cat-file -p
   ; ctags = !.git/hooks/ctags
 [init]
-  templatedir = ~/.git_template
+  ; templatedir = ~/.git_template

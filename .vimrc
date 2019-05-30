@@ -32,8 +32,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 
-Plug 'LucHermitte/lh-vim-lib'
-Plug 'LucHermitte/local_vimrc'
+" Plug 'LucHermitte/lh-vim-lib'
+" Plug 'LucHermitte/local_vimrc'
+Plug 'embear/vim-localvimrc'
 
 " Plug 'robertmeta/nofrils'
 Plug 'altercation/vim-colors-solarized'
@@ -48,6 +49,8 @@ Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'w0rp/ale'
+
+Plug 'sheerun/vim-polyglot'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -73,7 +76,6 @@ Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
 
-Plug 'sheerun/vim-polyglot'
 Plug 'jpalardy/vim-slime'
 
 Plug 'rizzatti/dash.vim'
@@ -147,16 +149,26 @@ nnoremap <Leader>h :LspHover<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
-func! GetSelectedText()
-    normal gv"xy
-    let result = getreg("x")
-    return result
-endfunc
+" func! GetSelectedText()
+"     normal gv"xy
+"     let result = getreg("x")
+"     return result
+" endfunc
 
-if !has("clipboard") && executable("clip.exe")
-    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
-    noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
-endif
+" if !has("clipboard") && executable("clip.exe")
+"     noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
+"     noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
+" endif
+
+let s:clip = '/mnt/c/Windows/System32/clip.exe' 
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+    augroup END
+end
+
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*']
 
 
 let g:ale_fixers = {
