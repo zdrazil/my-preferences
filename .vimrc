@@ -14,6 +14,10 @@ set showmode
 set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 
+set breakindent
+let &showbreak = '> '
+set linebreak
+
 set completeopt=longest,menuone
 
 set cmdheight=2
@@ -103,8 +107,8 @@ runtime plugin/sensible.vim
 colorscheme gruvbox
 
 runtime plugin/grepper.vim
-let g:grepper.prompt_quote = 1 
-let g:grepper.rg.grepprg .= ' -s --'
+" let g:grepper.prompt_quote = 1 
+let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
 
 let g:mapleader = "\<space>"
@@ -168,22 +172,26 @@ if executable(s:clip)
     augroup END
 end
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*']
 
 
 let g:ale_fixers = {
+            \ 'haskell': ['brittany'],
             \ 'javascript': ['prettier', 'eslint'],
             \ 'json': ['prettier', 'eslint'],
             \ 'scss': ['prettier', 'stylelint'],
-            \ 'haskell': ['brittany'],
+            \ 'typescript': ['prettier', 'tslint'],
             \}
 
 let g:ale_linters = {
-            \ 'javascript': ['eslint'],
+            \ 'haskell': ['hie'],
+            \ 'javascript': ['eslint', 'tsserver'],
             \ 'json': ['eslint'],
             \ 'scss': ['stylelint'],
-            \ 'haskell': ['hie'],
+            \ 'typescript': ['tslint', 'tsserver'],
             \}
+" let g:ale_linter_aliases = {'typescript': ['']}
+let g:ale_linters = {'ts': ['tslint']}
 
 " Language servers
 if executable('css-languageserver')
@@ -208,7 +216,7 @@ if executable('typescript-language-server')
         \ 'name': 'typescript-language-server',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx', 'typescript.jsx'],
         \ })
 endif
 

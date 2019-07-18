@@ -6,6 +6,7 @@ tags
 .code
 .vscode/*
 .vim
+.jscpd
 
 .lvimrc
 _scratch*
