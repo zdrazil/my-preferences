@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -763,13 +765,17 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>769 110 445 474 0 0 1280 800 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>330 306 620 392 0 0 1280 800 </string>
+	<string>410 381 620 392 0 0 1440 900 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>269 126 606 469 0 0 1280 800 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>0 234 796 486 0 0 1280 800 </string>
+	<string>138 195 796 486 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 359 650 427 0 0 1280 800 </string>
+	<string>0 0 1280 800 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>3 0 884 800 0 0 1280 800 </string>
+	<string>0 373 650 427 0 0 1280 800 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>173 32 650 427 0 0 1280 800 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2119,6 +2125,8 @@
 	<integer>0</integer>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -2166,6 +2174,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/zdrazil/.config/iterm2</string>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -2175,7 +2185,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-12-16T15:58:40Z</date>
+	<date>2019-07-05T20:06:47Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ToolbeltTools</key>
@@ -2187,7 +2197,7 @@
 	<key>disableMetalWhenUnplugged</key>
 	<true/>
 	<key>iTerm Version</key>
-	<string>3.2.6</string>
+	<string>3.2.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
