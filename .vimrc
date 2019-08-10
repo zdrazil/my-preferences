@@ -123,6 +123,7 @@ nnoremap <leader>o :FZF<cr>
 nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
+nnoremap <leader>r :Rg 
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -139,14 +140,15 @@ let g:highlightedyank_highlight_duration = 200
 
 " LSP
 nnoremap <leader>] :LspDefinition<cr>
+nnoremap <leader>gd :LspDefinition<cr>
+nnoremap <Leader>h :LspHover<CR>
+nnoremap <Leader>gh :LspHover<CR>
 
 nnoremap <Leader>* :Grepper -cword -noprompt<CR>
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
-nnoremap <Leader>g :Grepper -tool rg<CR>
-
-nnoremap <Leader>h :LspHover<CR>
+nnoremap <Leader>f :Grepper -tool rg<CR>
 
 " :nmap <silent> <leader>d <Plug>DashSearch
 
