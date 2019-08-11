@@ -18,7 +18,8 @@ set breakindent
 let &showbreak = '> '
 set linebreak
 
-set completeopt=longest,menuone
+" set completeopt=longest,menuone
+
 
 set cmdheight=2
 
@@ -56,8 +57,9 @@ Plug 'w0rp/ale'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
@@ -82,7 +84,7 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'jpalardy/vim-slime'
 
-Plug 'rizzatti/dash.vim'
+" Plug 'rizzatti/dash.vim'
 Plug 'Shougo/echodoc.vim'
 
 " FrontEnd 
@@ -97,6 +99,8 @@ Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
+" Other
+Plug 'sevko/vim-nand2tetris-syntax'
 call plug#end()
 
 runtime plugin/sensible.vim
@@ -112,7 +116,7 @@ let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
 
 let g:mapleader = "\<space>"
-inoremap <c-space> <space> 
+" inoremap <c-space> <space> 
 inoremap jj <Esc>
 
 " " cdc = change to directory of current file
@@ -123,7 +127,7 @@ nnoremap <leader>o :FZF<cr>
 nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
-nnoremap <leader>r :Rg 
+" nnoremap <leader>r :Rg<cr>
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -139,18 +143,43 @@ let g:slime_target = "tmux"
 let g:highlightedyank_highlight_duration = 200 
 
 " LSP
-nnoremap <leader>] :LspDefinition<cr>
-nnoremap <leader>gd :LspDefinition<cr>
-nnoremap <Leader>h :LspHover<CR>
-nnoremap <Leader>gh :LspHover<CR>
+" nnoremap <leader>] :LspDefinition<cr>
+" nnoremap <leader>gd :LspDefinition<cr>
+" nnoremap <Leader>h :LspHover<CR>
+" nnoremap <Leader>gh :LspHover<CR>
 
-nnoremap <Leader>* :Grepper -cword -noprompt<CR>
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
+" Coc.nvim
+let g:coc_global_extensions = ['coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
+set updatetime=1000
+inoremap <silent><expr> <c-space>a coc#refresh()
+
+nmap <leader>d <Plug>(coc-definition)
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
+
+nmap <leader>[c <Plug>(coc-diagnostic-prev)
+nmap <leader>]c <Plug>(coc-diagnostic-next)
+
+nmap <leader>grn <Plug>(coc-rename)
+
+inoremap <silent><expr> <c-space> coc#refresh()
+imap <C-@> <C-Space>
+
+
+nnoremap <leader>K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 nnoremap <Leader>f :Grepper -tool rg<CR>
 
-" :nmap <silent> <leader>d <Plug>DashSearch
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
@@ -196,54 +225,55 @@ let g:ale_linters = {
 let g:ale_linters = {'ts': ['tslint']}
 
 " Language servers
-if executable('css-languageserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'css-languageserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-        \ 'whitelist': ['css', 'less', 'sass'],
-        \ })
-endif
+" B
+" if executable('css-languageserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'css-languageserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+"         \ 'whitelist': ['css', 'less', 'sass'],
+"         \ })
+" endif
 
-if executable('flow')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'flow',
-        \ 'cmd': {server_info->['flow', 'lsp']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx'],
-        \ })
-endif
+" if executable('flow')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'flow',
+"         \ 'cmd': {server_info->['flow', 'lsp']},
+"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+"         \ 'whitelist': ['javascript', 'javascript.jsx'],
+"         \ })
+" endif
 
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx', 'typescript.jsx'],
-        \ })
-endif
+" if executable('typescript-language-server')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'typescript-language-server',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+"         \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx', 'typescript.jsx'],
+"         \ })
+" endif
 
-if executable('typescript-language-server')
-    autocmd FileType typescript setlocal omnifunc=lsp#complete
-    autocmd FileType typescript.tsx setlocal omnifunc=lsp#complete
-    autocmd FileType javascript setlocal omnifunc=lsp#complete
-    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
-endif
+" if executable('typescript-language-server')
+"     autocmd FileType typescript setlocal omnifunc=lsp#complete
+"     autocmd FileType typescript.tsx setlocal omnifunc=lsp#complete
+"     autocmd FileType javascript setlocal omnifunc=lsp#complete
+"     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
+" endif
 
 
-if executable('flow')
-    autocmd FileType javascript setlocal omnifunc=lsp#complete
-    autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
-endif
+" if executable('flow')
+"     autocmd FileType javascript setlocal omnifunc=lsp#complete
+"     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
+" endif
 
-if executable('hie')
-    autocmd FileType haskell setlocal omnifunc=lsp#complete
-endif
+" if executable('hie')
+"     autocmd FileType haskell setlocal omnifunc=lsp#complete
+" endif
 
-if executable('hie')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'hie',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
-        \ 'whitelist': ['haskell'],
-        \ })
-endif
+" if executable('hie')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'hie',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
+"         \ 'whitelist': ['haskell'],
+"         \ })
+" endif
 
