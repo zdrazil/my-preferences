@@ -11,6 +11,7 @@ fi
 # eval "$(fasd --init auto)"
 if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
     eval $(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)
+    export BROWSER='wslview'
 fi
 
 #-------------------- ALIASES ------------------------
