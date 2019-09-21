@@ -208,10 +208,10 @@ let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '
 
 let g:ale_fixers = {
             \ 'haskell': ['brittany'],
-            \ 'javascript': ['prettier', 'eslint'],
+            \ 'javascript': ['eslint'],
             \ 'json': ['prettier', 'eslint'],
             \ 'scss': ['prettier', 'stylelint'],
-            \ 'typescript': ['prettier', 'tslint'],
+            \ 'typescript': ['tslint'],
             \}
 
 let g:ale_linters = {
@@ -222,7 +222,7 @@ let g:ale_linters = {
             \ 'typescript': ['tslint', 'tsserver'],
             \}
 " let g:ale_linter_aliases = {'typescript': ['']}
-let g:ale_linters = {'ts': ['tslint']}
+" let g:ale_linters = {'ts': ['tslint']}
 
 " Language servers
 " B
