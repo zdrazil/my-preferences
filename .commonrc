@@ -25,6 +25,8 @@ if [[ $OSTYPE == darwin* ]]; then
     alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
 fi
 
+export NVM_DIR="$HOME/.nvm"		
+ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
