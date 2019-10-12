@@ -37,11 +37,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 
-" Plug 'LucHermitte/lh-vim-lib'
-" Plug 'LucHermitte/local_vimrc'
 Plug 'embear/vim-localvimrc'
 
-" Plug 'robertmeta/nofrils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
@@ -57,8 +54,6 @@ Plug 'w0rp/ale'
 
 Plug 'sheerun/vim-polyglot'
 
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ajh17/VimCompletesMe'
 
@@ -84,13 +79,11 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'jpalardy/vim-slime'
 
-" Plug 'rizzatti/dash.vim'
 Plug 'Shougo/echodoc.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
 Plug 'moll/vim-node'
-" Plug 'ryanolsonx/vim-lsp-typescript'
 
 Plug 'mattn/emmet-vim'
 
@@ -99,8 +92,6 @@ Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
-" Other
-Plug 'sevko/vim-nand2tetris-syntax'
 call plug#end()
 
 runtime plugin/sensible.vim
@@ -141,12 +132,6 @@ let g:javascript_plugin_flow = 1
 let g:slime_target = "tmux"
 
 let g:highlightedyank_highlight_duration = 200 
-
-" LSP
-" nnoremap <leader>] :LspDefinition<cr>
-" nnoremap <leader>gd :LspDefinition<cr>
-" nnoremap <Leader>h :LspHover<CR>
-" nnoremap <Leader>gh :LspHover<CR>
 
 " Coc.nvim
 let g:coc_global_extensions = ['coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
@@ -221,59 +206,3 @@ let g:ale_linters = {
             \ 'scss': ['stylelint'],
             \ 'typescript': ['tslint', 'tsserver'],
             \}
-" let g:ale_linter_aliases = {'typescript': ['']}
-" let g:ale_linters = {'ts': ['tslint']}
-
-" Language servers
-" B
-" if executable('css-languageserver')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'css-languageserver',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-"         \ 'whitelist': ['css', 'less', 'sass'],
-"         \ })
-" endif
-
-" if executable('flow')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'flow',
-"         \ 'cmd': {server_info->['flow', 'lsp']},
-"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-"         \ 'whitelist': ['javascript', 'javascript.jsx'],
-"         \ })
-" endif
-
-" if executable('typescript-language-server')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'typescript-language-server',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-"         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-"         \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx', 'typescript.jsx'],
-"         \ })
-" endif
-
-" if executable('typescript-language-server')
-"     autocmd FileType typescript setlocal omnifunc=lsp#complete
-"     autocmd FileType typescript.tsx setlocal omnifunc=lsp#complete
-"     autocmd FileType javascript setlocal omnifunc=lsp#complete
-"     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
-" endif
-
-
-" if executable('flow')
-"     autocmd FileType javascript setlocal omnifunc=lsp#complete
-"     autocmd FileType javascript.jsx setlocal omnifunc=lsp#complete
-" endif
-
-" if executable('hie')
-"     autocmd FileType haskell setlocal omnifunc=lsp#complete
-" endif
-
-" if executable('hie')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'hie',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'hie-wrapper --lsp']},
-"         \ 'whitelist': ['haskell'],
-"         \ })
-" endif
-
