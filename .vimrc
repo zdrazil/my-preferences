@@ -114,6 +114,7 @@ runtime plugin/grepper.vim
 " let g:grepper.prompt_quote = 1 
 let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
+nnoremap <leader>* :Grepper -tool git -open -switch -cword -noprompt<cr>
 
 let g:mapleader = "\<space>"
 " inoremap <c-space> <space> 
