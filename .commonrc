@@ -8,7 +8,6 @@ if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
 
-# eval "$(fasd --init auto)"
 if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
     eval $(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)
     export BROWSER='wslview'
@@ -20,78 +19,15 @@ function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-function rgv {
-    vim -c "Ack argv"
-}
-
-# Shortcuts for ls.
-alias lsl='ls -l'
-alias lsa='ls -a'
-
-# Compatibility with other Unix systems
-# ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
 
 # Mac Specific Aliases
 if [[ $OSTYPE == darwin* ]]; then
-    alias suz='su -l zdraz'
     alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
     alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
-
-    alias vnchorus='wakeonlan d8:cb:8a:e4:01:dd && sleep 2 && open vnc://horus-desktop.local:36154'
-    alias vncmacmini='open vnc://Mac-mini.local'
-    alias vncamun='open vnc://amun-laptop.local'
-    alias vncra='open vnc://ra-desktop.local'
-    alias vnclocal='open vnc://localhost:5901'
-
-    alias wolwindows='wakeonlan d8:cb:8a:e4:01:dd'
-
-    alias dash='open dash://'
-    alias subl='open -a "Sublime Text"'
-    alias vcode='open -a "Visual Studio Code"'
-    alias webstorm='open -a "WebStorm"'
-    alias chrome='open -a "Google Chrome"'
-    alias firefox='open -a "Firefox"'
-    alias safari='open -a "Safari"'
 fi
 
-# FrontEnd
-alias format:prettier='prettier --write \"**/*.js\"'
-alias format:eslint='eslint dev src --fix'
-alias format:stylelint='stylelint --config=.stylelintrc \"src/**/*.scss\" --fix'
-alias format:stylelint-sort='stylelint --config="$HOME/bin/linter/stylelint-sort" \"src/**/*.scss\" --fix'
-alias svgo-viewbox='svgo --disable=removeViewBox'
-
-function svgo-clean {
-    svgo --disable=removeViewBox --config='{ "plugins": [ { "removeAttrs": { "attrs": "(fill|stroke)" } } ] }' "$@"
-}
-
-function stylelint-sort {
-    stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$@"
-}
-
-function git-ls-files-changed {
-    GIT_ROOT="$(git rev-parse --show-toplevel)"
-    git diff --name-only --diff-filter=AM HEAD --relative "${GIT_ROOT}"
-}
-
-function stylelint-sort-changed {
-    GIT_ROOT="$(git rev-parse --show-toplevel)"
-    for file in $(git diff --name-only --diff-filter=AM HEAD  \
-        --relative "${GIT_ROOT}" | grep -E '\.(scss|css|less|sass|sss)$')
-    do
-        stylelint --config="$HOME/bin/linter/stylelint-sort" --fix "$file"
-    done
-}
-
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+export NVM_DIR="$HOME/.nvm"		
+ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
-if  [ -f "$HOME/.profile" ]; then
-    source "$HOME/.profile"
-fi
-
-export FZF_DEFAULT_COMMAND='rg --files'
