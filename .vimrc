@@ -124,6 +124,7 @@ nnoremap <leader>/ :Lines<cr>
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
+let g:ale_javascript_eslint_options = "--cache"
 
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
@@ -154,7 +155,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
 
 
-nnoremap <leader>K :call <SID>show_documentation()<CR>
+nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

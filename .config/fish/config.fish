@@ -22,11 +22,14 @@ set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
 set -gx EDITOR vim
 
-if test -d "mnt/c/Users"
-    keychain --quiet --agents ssh --attempts 3 --eval id_rsa
-end
+# if test -d "mnt/c/Users"
+#     keychain --quiet --agents ssh --attempts 3 --eval id_rsa
+# end
 
 set fish_greeting
+
+# eval (ssh-agent -c)
+fish_ssh_agent
 
 #-------------------- ALIASES ------------------------
 
