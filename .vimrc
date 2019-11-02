@@ -6,7 +6,7 @@ set wildignorecase
 set hidden
 
 set hlsearch        " Highlight searches by default
-set ignorecase      " Ignore case when searching...
+set smartcase
 set showmatch       " highlight matching [{()}]
 
 set showcmd
@@ -119,7 +119,16 @@ nnoremap <leader>o :FZF<cr>
 nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>/ :Lines<cr>
-" nnoremap <leader>r :Rg<cr>
+nnoremap <leader>f :Rg<cr>
+
+" FZF preview
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -137,7 +146,7 @@ let g:highlightedyank_highlight_duration = 200
 
 " Coc.nvim
 let g:coc_global_extensions = ['coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
-set updatetime=1000
+set updatetime=300
 inoremap <silent><expr> <c-space>a coc#refresh()
 
 nmap <leader>d <Plug>(coc-definition)
@@ -165,7 +174,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-nnoremap <Leader>f :Grepper -tool rg<CR>
+nnoremap <Leader>F :Grepper -tool rg<CR>
 
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
@@ -190,7 +199,7 @@ if executable(s:clip)
     augroup END
 end
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
 
 let g:ale_fixers = {

@@ -8,6 +8,7 @@ tags
 .vim
 .jscpd
 .eslintcache
+.ignore
 
 .lvimrc
 _scratch*
