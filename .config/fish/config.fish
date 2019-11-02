@@ -29,7 +29,7 @@ set -gx EDITOR vim
 set fish_greeting
 
 # eval (ssh-agent -c)
-fish_ssh_agent
+# fish_ssh_agent
 
 #-------------------- ALIASES ------------------------
 
