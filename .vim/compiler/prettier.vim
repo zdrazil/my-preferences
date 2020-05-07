@@ -1,3 +1,3 @@
 if executable('prettier')
-    let &l:formatprg = 'prettier --option --option ...'
+    formatprg=prettier\ --stdin
 endif

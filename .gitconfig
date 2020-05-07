@@ -10,9 +10,11 @@
   template = ~/.git_commit_msg.txt
   cleanup = strip
 [merge]
-  tool = vimdiff
+  tool = kdiff3
+  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 [diff]
-  tool = vimdiff
+  tool = kdiff3
+  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
   conflictstyle = diff3
 [mergetool]
   keepBackup = false
@@ -26,6 +28,6 @@
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   type = cat-file -t
   dump = cat-file -p
-  ; ctags = !.git/hooks/ctags
+  ctags = !.git/hooks/ctags
 [init]
-  ; templatedir = ~/.git_template
+  templatedir = ~/.git_template
