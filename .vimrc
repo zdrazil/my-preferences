@@ -18,6 +18,8 @@ set breakindent
 let &showbreak = '> '
 set linebreak
 
+set ignorecase
+set smartcase
 " set completeopt=longest,menuone
 
 
@@ -91,6 +93,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-salve'
 
 call plug#end()
 
@@ -145,7 +149,7 @@ let g:slime_target = "tmux"
 let g:highlightedyank_highlight_duration = 200 
 
 " Coc.nvim
-let g:coc_global_extensions = ['coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
+let g:coc_global_extensions = ['coc-fsharp', 'coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
 set updatetime=300
 inoremap <silent><expr> <c-space>a coc#refresh()
 

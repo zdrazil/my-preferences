@@ -10,9 +10,9 @@
   template = ~/.git_commit_msg.txt
   cleanup = strip
 [merge]
-  tool = vimdiff
+  tool = kdiff3
 [diff]
-  tool = vimdiff
+  tool = kdiff3
   conflictstyle = diff3
 [mergetool]
   keepBackup = false
