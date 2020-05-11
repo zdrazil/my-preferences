@@ -30,6 +30,9 @@ set cmdheight=2
 set background=dark
 " set termguicolors
 
+" always show gutter so it doesn't move
+set signcolumn=yes 
+
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
 silent !mkdir ~/.vim/backup > /dev/null 2>&1
 silent !mkdir ~/.vim/swap > /dev/null 2>&1
@@ -71,6 +74,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+
+" Fugitive extensions
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
