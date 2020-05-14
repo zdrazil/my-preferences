@@ -167,7 +167,17 @@ let g:slime_target = "tmux"
 let g:highlightedyank_highlight_duration = 200 
 
 " Coc.nvim
-let g:coc_global_extensions = ['coc-fsharp', 'coc-html', 'coc-tsserver', 'coc-css', 'coc-json', 'coc-eslint', 'coc-stylelint', ]
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-fsharp',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-stylelint',
+  \ 'coc-tsserver',
+  \ 'coc-tsserver',
+  \ ]
+
 set updatetime=300
 inoremap <silent><expr> <c-space>a coc#refresh()
 
