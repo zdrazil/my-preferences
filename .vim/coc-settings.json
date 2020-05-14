@@ -5,16 +5,10 @@
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.echodocSupport": true,
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "css.validate": false,
   "languageserver": {
-    "flow": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact"],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".flowconfig"]
-    },
     "haskell": {
       "command": "hie-wrapper",
       "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],

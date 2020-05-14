@@ -153,21 +153,21 @@ let g:dispatch_compilers = {
   \ 'ytsc': 'ytsc'}
 
 let g:ale_lint_on_text_changed = 'never'
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_options = "--cache"
 
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 let g:slime_target = "tmux"
 
 let g:highlightedyank_highlight_duration = 200 
 
 " Coc.nvim
-let g:coc_global_extensions = ['coc-fsharp', 'coc-html', 'coc-tsserver', 'coc-css', 'coc-json' ]
+let g:coc_global_extensions = ['coc-fsharp', 'coc-html', 'coc-tsserver', 'coc-css', 'coc-json', 'coc-eslint', 'coc-stylelint' ]
 set updatetime=300
 inoremap <silent><expr> <c-space>a coc#refresh()
 
@@ -214,18 +214,18 @@ let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '
 
 let g:typescript_compiler_binary = 'yarn tsc'
 
-let g:ale_fixers = {
-            \ 'haskell': ['brittany'],
-            \ 'javascript': ['eslint'],
-            \ 'json': ['prettier', 'eslint'],
-            \ 'scss': ['prettier', 'stylelint'],
-            \ 'typescript': ['tslint'],
-            \}
+" let g:ale_fixers = {
+"             \ 'haskell': ['brittany'],
+"             \ 'javascript': ['eslint'],
+"             \ 'json': ['prettier', 'eslint'],
+"             \ 'scss': ['prettier', 'stylelint'],
+"             \ 'typescript': ['tslint'],
+"             \}
 
-let g:ale_linters = {
-            \ 'haskell': ['hie'],
-            \ 'javascript': ['eslint', 'tsserver'],
-            \ 'json': ['eslint'],
-            \ 'scss': ['stylelint'],
-            \ 'typescript': ['tslint', 'tsserver'],
-            \}
+" let g:ale_linters = {
+"             \ 'haskell': ['hie'],
+"             \ 'javascript': ['eslint', 'tsserver'],
+"             \ 'json': ['eslint'],
+"             \ 'scss': ['stylelint'],
+"             \ 'typescript': ['tslint', 'tsserver'],
+"             \}
