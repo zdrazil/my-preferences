@@ -1,0 +1,2 @@
+kill pane
+x
