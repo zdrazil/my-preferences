@@ -27,7 +27,7 @@ set smartcase
 
 set cmdheight=2
 
-set background=dark
+set background=light
 " set termguicolors
 
 " always show gutter so it doesn't move
@@ -50,6 +50,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/CycleColor'
+Plug 'robertmeta/nofrils'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -118,7 +119,8 @@ runtime plugin/sensible.vim
 " colorscheme solarized
 " colorscheme solarized8
 
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme nofrils-acme
 
 runtime plugin/grepper.vim
 " let g:grepper.prompt_quote = 1 
