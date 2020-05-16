@@ -1,20 +1,20 @@
 {
   "suggest.minTriggerInputLength": 2,
-  "suggest.autoTrigger": "none",
+  "suggest.autoTrigger": "always",
   "diagnostic.displayByAle": true,
-  "suggest.noselect": false,
-  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.noselect": true,
+  "suggest.preferCompleteThanJumpPlaceholder": false,
   "suggest.echodocSupport": true,
+  "eslint.run": "onSave",
+  "eslint.autoFixOnSave": true,
+  "css.validate": false,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "languageserver": {
-    "flow": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact"],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".flowconfig"]
-    },
     "haskell": {
       "command": "hie-wrapper",
       "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
