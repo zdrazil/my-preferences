@@ -58,7 +58,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -94,6 +94,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'jpalardy/vim-slime'
 
 Plug 'Shougo/echodoc.vim'
+Plug 'wellle/context.vim'
 
 " Plug 'ludovicchabant/vim-gutentags'
 
@@ -165,6 +166,8 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 " let g:javascript_plugin_flow = 1
 
 let g:slime_target = "tmux"
+
+let g:context_enabled = 0
 
 let g:highlightedyank_highlight_duration = 200 
 

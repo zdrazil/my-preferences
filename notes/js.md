@@ -1,7 +1,7 @@
 js, ts repl
 
 yarn build --watch navigator=./src/constants.ts
-Watch --color node dist/
+watch --color node dist/
 
 function output() {
     for (var o of arguments) { 
