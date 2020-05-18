@@ -191,6 +191,8 @@ nmap <leader>gr <Plug>(coc-references)
 nmap <leader>[c <Plug>(coc-diagnostic-prev)
 nmap <leader>]c <Plug>(coc-diagnostic-next)
 
+nmap <leader>gca <Plug>(coc-codeaction)
+
 nmap <leader>grn <Plug>(coc-rename)
 
 inoremap <silent><expr> <c-space> coc#refresh()
