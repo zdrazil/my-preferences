@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -z "$CMREF_DIR" ]; then
+        CMREF_DIR="$HOME/notes"
+fi
+
+cat "$CMREF_DIR/${1}.md"
