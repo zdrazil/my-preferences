@@ -58,7 +58,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
+
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -226,6 +229,9 @@ if executable(s:clip)
         autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
     augroup END
 end
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
