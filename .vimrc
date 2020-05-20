@@ -24,7 +24,6 @@ set ignorecase
 set smartcase
 " set completeopt=longest,menuone
 
-
 set cmdheight=2
 
 set background=light
@@ -232,6 +231,10 @@ end
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vimwiki_conceallevel = 0
 
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
