@@ -79,6 +79,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
+Plug 'liuchengxu/vim-which-key'
 
 " Fugitive extensions
 Plug 'tpope/vim-rhubarb'
@@ -172,6 +173,8 @@ let g:slime_target = "tmux"
 let g:context_enabled = 0
 
 let g:highlightedyank_highlight_duration = 200 
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Coc.nvim
 let g:coc_global_extensions = [
