@@ -99,6 +99,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'Shougo/echodoc.vim'
 Plug 'wellle/context.vim'
 
+Plug 'rhysd/devdocs.vim'
+
 " Plug 'ludovicchabant/vim-gutentags'
 
 " FrontEnd 
@@ -208,7 +210,6 @@ nmap <leader>grn <Plug>(coc-rename)
 inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
 
-
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -220,6 +221,8 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <Leader>F :Grepper -tool rg<CR>
+
+nmap <Leader>gk <Plug>(devdocs-under-cursor)
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
@@ -242,6 +245,14 @@ let g:vimwiki_conceallevel = 0
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
 let g:typescript_compiler_binary = 'yarn tsc'
+
+" let g:devdocs_filetype_map = {
+"     \   'java': 'java',
+"     \   'javascriptreact': 'javascript',
+"     \   'typescriptreact': 'typescript',
+"     \   'javascript': 'javascript',
+"     \   'typescript': 'typescript',
+"     \ }
 
 " let g:ale_fixers = {
 "             \ 'haskell': ['brittany'],
