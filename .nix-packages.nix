@@ -8,7 +8,6 @@ in buildEnv {
     pkgs.autojump
     pkgs.ctags
     pkgs.fd
-    pkgs.fx
     pkgs.fzf
     pkgs.git
     pkgs.htop

@@ -41,3 +41,8 @@ switch (uname)
         alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
     case '*'
 end
+
+# Source Nix setup script
+if test -e '~/.nix-profile/etc/profile.d/nix.sh'
+    fenv source ~/.nix-profile/etc/profile.d/nix.sh
+end
