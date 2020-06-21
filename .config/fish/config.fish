@@ -43,6 +43,6 @@ switch (uname)
 end
 
 # Source Nix setup script
-if test -e '~/.nix-profile/etc/profile.d/nix.sh'
+if test -e ~/.nix-profile/etc/profile.d/nix.sh
     fenv source ~/.nix-profile/etc/profile.d/nix.sh
 end
