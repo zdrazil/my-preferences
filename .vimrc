@@ -78,6 +78,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-obsession'
 
 Plug 'liuchengxu/vim-which-key'
 
@@ -241,6 +242,8 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vimwiki_conceallevel = 0
+
+let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
