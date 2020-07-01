@@ -248,6 +248,7 @@ let g:zettel_format = "%y%m%d-%H%M%S"
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
 let g:typescript_compiler_binary = 'yarn tsc'
+hi Pmenu ctermbg=black ctermfg=white
 
 " let g:devdocs_filetype_map = {
 "     \   'java': 'java',
