@@ -23,8 +23,9 @@ in buildEnv {
     pkgs.tig
     pkgs.tldr
     pkgs.tmux
-    pkgs.vim
     pkgs.watch
+    pkgs.vimHugeX
     pkgs.youtube-dl
+    pkgs.stack
     ];
 }
