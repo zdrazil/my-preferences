@@ -16,18 +16,30 @@
   ],
   "languageserver": {
     "haskell": {
-      "command": "hie-wrapper",
-      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
-      "filetypes": ["hs", "lhs", "haskell"],
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "hie.yaml",
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
       "initializationOptions": {
-        "languageServerHaskell": {}
+        "haskell": {
+        }
       }
     },
     "purescript": {
-       "command": "purescript-language-server",
-       "args": ["--stdio"],
-       "filetypes": ["purescript"],
-       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
-     }
+      "command": "purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
+    }
   }
 }
