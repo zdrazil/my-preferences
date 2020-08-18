@@ -10,6 +10,10 @@ if test -d "$HOME/.local/bin"
     set PATH $HOME/.local/bin $PATH
 end
 
+if test -d "$HOME/.fzf/bin" 
+    set PATH $PATH ~/.fzf/bin
+end
+
 switch (uname)
     case Darwin
         export LC_ALL=en_US.UTF-8  
