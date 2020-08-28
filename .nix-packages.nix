@@ -5,6 +5,7 @@ let
 in buildEnv {
   name = "user-tools";
   paths = [ 
+    "pkgs.glibc-locales"
     pkgs.autojump
     pkgs.ctags
     pkgs.fd
@@ -20,11 +21,12 @@ in buildEnv {
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
+    pkgs.stack
     pkgs.tig
     pkgs.tldr
     pkgs.tmux
-    pkgs.vim
     pkgs.watch
+    pkgs.vimHugeX
     pkgs.youtube-dl
     ];
 }

@@ -29,5 +29,3 @@
   ctags = !.git/hooks/ctags
 [init]
   templatedir = ~/.git_template
-[url "git@github.com:"]
-	insteadOf = https://github.com/

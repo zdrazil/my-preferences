@@ -80,7 +80,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-obsession'
 
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
 
 " Fugitive extensions
 Plug 'tpope/vim-rhubarb'
@@ -173,7 +173,7 @@ let g:context_enabled = 0
 
 let g:highlightedyank_highlight_duration = 200 
 
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Coc.nvim
 let g:coc_global_extensions = [
@@ -244,7 +244,7 @@ let g:zettel_format = "%y%m%d-%H%M%S"
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
 
 let g:typescript_compiler_binary = 'yarn tsc'
-hi Pmenu ctermbg=White ctermfg=Black
+hi Pmenu ctermbg=Black ctermfg=White
 
 " let g:devdocs_filetype_map = {
 "     \   'java': 'java',
