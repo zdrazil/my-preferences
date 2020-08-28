@@ -101,6 +101,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'wellle/context.vim'
 
 Plug 'rhysd/devdocs.vim'
+Plug 'justinmk/vim-gtfo'
 
 " Plug 'ludovicchabant/vim-gutentags'
 
@@ -165,11 +166,6 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_options = "--cache"
-
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-
-" let g:javascript_plugin_flow = 1
 
 let g:slime_target = "tmux"
 
