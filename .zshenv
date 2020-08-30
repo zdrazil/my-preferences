@@ -16,6 +16,7 @@ if [ -d "/usr/local/lib/python3.7/site-packages" ] ; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias darkMode="2>/dev/null defaults read -g AppleInterfaceStyle"
     export LC_ALL=en_US.UTF-8  
     export LANG=en_US.UTF-8
 fi
@@ -38,3 +39,5 @@ fi
 export CLICOLOR=1
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files'
+
+

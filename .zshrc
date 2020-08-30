@@ -139,3 +139,11 @@ export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Set colors only when terminal is kitty
+if [ -n "$KITTY_WINDOW_ID" ]; then
+  if [[ ( $(darkMode) =~ 'Dark' ) ]]; then
+    kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_dusk.conf"
+  else
+    kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_day.conf"
+  fi
+fi

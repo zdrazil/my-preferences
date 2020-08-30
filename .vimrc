@@ -45,11 +45,13 @@ Plug 'tpope/vim-sensible'
 
 Plug 'embear/vim-localvimrc'
 
+" Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/CycleColor'
 Plug 'robertmeta/nofrils'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -57,14 +59,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
-Plug 'w0rp/ale'
-
 Plug 'vimwiki/vimwiki'
 Plug 'michal-h21/vim-zettel'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
@@ -130,6 +132,14 @@ runtime plugin/sensible.vim
 " colorscheme gruvbox
 colorscheme nofrils-acme
 
+" dark mode enabled?
+if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+   colorscheme nofrils-dark
+   set background=dark
+else
+  set background=light
+endif
+
 runtime plugin/grepper.vim
 " let g:grepper.prompt_quote = 1 
 let g:grepper.rg.grepprg .= ' -S '
@@ -158,14 +168,12 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-let g:dispatch_compilers = {
-  \ 'yeslint': 'yeslint',
-  \ 'ytsc': 'ytsc'}
-
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_options = "--cache"
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_disable_lsp = 1
 
 let g:slime_target = "tmux"
 
@@ -217,6 +225,15 @@ function! s:show_documentation()
   endif
 endfunction
 
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 nnoremap <Leader>F :Grepper -tool rg<CR>
 
 nmap <Leader>gk <Plug>(devdocs-under-cursor)
@@ -241,10 +258,10 @@ let g:vimwiki_conceallevel = 0
 
 let g:zettel_format = "%y%m%d-%H%M%S"
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*', 'Users/zdrazil/projects/haskell/.*']
 
-let g:typescript_compiler_binary = 'yarn tsc'
 hi Pmenu ctermbg=Black ctermfg=White
+
 
 " let g:devdocs_filetype_map = {
 "     \   'java': 'java',
