@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+alias darkMode="2>/dev/null defaults read -g AppleInterfaceStyle"
+
+# Set colors only when terminal is kitty
+if [ -n "$KITTY_WINDOW_ID" ]; then
+  if [[ ( $(darkMode) =~ 'Dark' ) ]]; then
+    kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_night.conf"
+  else
+    kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_day.conf"
+  fi
+fi

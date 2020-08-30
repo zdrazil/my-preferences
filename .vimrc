@@ -27,7 +27,7 @@ set smartcase
 set cmdheight=2
 
 set background=light
-" set termguicolors
+set termguicolors
 
 " always show gutter so it doesn't move
 set signcolumn=yes 

@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+case "$1" in
+"light")
+  kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_day.conf"
+  ;;
+"dark")
+  kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_night.conf"
+  ;;
+*)
+  cat <<EOF
+    usage: kitty-theme [light|dark]
+EOF
+esac
