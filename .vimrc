@@ -26,8 +26,13 @@ set smartcase
 
 set cmdheight=2
 
-set background=light
-set termguicolors
+" set background=light
+" Fix colors in tmux
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " always show gutter so it doesn't move
 set signcolumn=yes 
@@ -46,9 +51,9 @@ Plug 'tpope/vim-sensible'
 Plug 'embear/vim-localvimrc'
 
 " Themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'lifepillar/vim-solarized8'
+" Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/CycleColor'
 Plug 'robertmeta/nofrils'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
@@ -135,9 +140,9 @@ colorscheme nofrils-acme
 " dark mode enabled?
 if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
    colorscheme nofrils-dark
-   set background=dark
+   " set background=dark
 else
-  set background=light
+  " set background=light
 endif
 
 runtime plugin/grepper.vim
