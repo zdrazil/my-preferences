@@ -197,7 +197,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-tsserver',
-  \ 'coc-tsserver',
+  \ 'coc-emmet',
   \ ]
 
 set updatetime=300
@@ -268,6 +268,8 @@ let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '
 hi Pmenu ctermbg=Black ctermfg=White
 
 
+
+
 " let g:devdocs_filetype_map = {
 "     \   'java': 'java',
 "     \   'javascriptreact': 'javascript',
@@ -276,18 +278,14 @@ hi Pmenu ctermbg=Black ctermfg=White
 "     \   'typescript': 'typescript',
 "     \ }
 
-" let g:ale_fixers = {
-"             \ 'haskell': ['brittany'],
-"             \ 'javascript': ['eslint'],
-"             \ 'json': ['prettier', 'eslint'],
-"             \ 'scss': ['prettier', 'stylelint'],
-"             \ 'typescript': ['tslint'],
-"             \}
+let g:ale_fixers = {
+            \ 'haskell': ['brittany'],
+            \ 'javascript': ['eslint'],
+            \ 'typescript': ['eslint'],
+            \}
 
-" let g:ale_linters = {
-"             \ 'haskell': ['hie'],
-"             \ 'javascript': ['eslint', 'tsserver'],
-"             \ 'json': ['eslint'],
-"             \ 'scss': ['stylelint'],
-"             \ 'typescript': ['tslint', 'tsserver'],
-"             \}
+let g:ale_linters = {
+            \ 'haskell': ['brittany'],
+            \ 'javascript': ['eslint', 'tsserver'],
+            \ 'typescript': ['eslint', 'tsserver'],
+            \}
