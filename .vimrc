@@ -26,8 +26,13 @@ set smartcase
 
 set cmdheight=2
 
-set background=light
-" set termguicolors
+" set background=light
+" Fix colors in tmux
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " always show gutter so it doesn't move
 set signcolumn=yes 
@@ -45,11 +50,13 @@ Plug 'tpope/vim-sensible'
 
 Plug 'embear/vim-localvimrc'
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
-Plug 'morhetz/gruvbox'
+" Themes
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'lifepillar/vim-solarized8'
+" Plug 'morhetz/gruvbox'
 Plug 'vim-scripts/CycleColor'
 Plug 'robertmeta/nofrils'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -57,14 +64,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
-Plug 'w0rp/ale'
-
 Plug 'vimwiki/vimwiki'
 Plug 'michal-h21/vim-zettel'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
@@ -101,6 +108,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'wellle/context.vim'
 
 Plug 'rhysd/devdocs.vim'
+Plug 'justinmk/vim-gtfo'
 
 " Plug 'ludovicchabant/vim-gutentags'
 
@@ -128,6 +136,14 @@ runtime plugin/sensible.vim
 
 " colorscheme gruvbox
 colorscheme nofrils-acme
+
+" dark mode enabled?
+if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
+   colorscheme nofrils-dark
+   " set background=dark
+else
+  " set background=light
+endif
 
 runtime plugin/grepper.vim
 " let g:grepper.prompt_quote = 1 
@@ -157,19 +173,12 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-let g:dispatch_compilers = {
-  \ 'yeslint': 'yeslint',
-  \ 'ytsc': 'ytsc'}
-
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_options = "--cache"
-
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-
-" let g:javascript_plugin_flow = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_disable_lsp = 1
 
 let g:slime_target = "tmux"
 
@@ -188,7 +197,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-stylelint',
   \ 'coc-tsserver',
-  \ 'coc-tsserver',
+  \ 'coc-emmet',
   \ ]
 
 set updatetime=300
@@ -221,6 +230,15 @@ function! s:show_documentation()
   endif
 endfunction
 
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 nnoremap <Leader>F :Grepper -tool rg<CR>
 
 nmap <Leader>gk <Plug>(devdocs-under-cursor)
@@ -245,10 +263,12 @@ let g:vimwiki_conceallevel = 0
 
 let g:zettel_format = "%y%m%d-%H%M%S"
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*', 'Users/zdrazil/projects/haskell/.*']
 
-let g:typescript_compiler_binary = 'yarn tsc'
 hi Pmenu ctermbg=Black ctermfg=White
+
+
+
 
 " let g:devdocs_filetype_map = {
 "     \   'java': 'java',
@@ -258,18 +278,14 @@ hi Pmenu ctermbg=Black ctermfg=White
 "     \   'typescript': 'typescript',
 "     \ }
 
-" let g:ale_fixers = {
-"             \ 'haskell': ['brittany'],
-"             \ 'javascript': ['eslint'],
-"             \ 'json': ['prettier', 'eslint'],
-"             \ 'scss': ['prettier', 'stylelint'],
-"             \ 'typescript': ['tslint'],
-"             \}
+let g:ale_fixers = {
+            \ 'haskell': ['brittany'],
+            \ 'javascript': ['eslint'],
+            \ 'typescript': ['eslint'],
+            \}
 
-" let g:ale_linters = {
-"             \ 'haskell': ['hie'],
-"             \ 'javascript': ['eslint', 'tsserver'],
-"             \ 'json': ['eslint'],
-"             \ 'scss': ['stylelint'],
-"             \ 'typescript': ['tslint', 'tsserver'],
-"             \}
+let g:ale_linters = {
+            \ 'haskell': ['brittany'],
+            \ 'javascript': ['eslint', 'tsserver'],
+            \ 'typescript': ['eslint', 'tsserver'],
+            \}

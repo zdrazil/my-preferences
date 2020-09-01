@@ -3,11 +3,7 @@ if exists("current_compiler")
 endif
 let current_compiler = "ytsc"
 
-let s:cpo_save = &cpo
-set cpo-=C
+CompilerSet makeprg=yarn\ tsc\ --noEmit\ 
 
-CompilerSet makeprg=yarn\ tsc\ 
-CompilerSet errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
+setlocal errorformat^=%E%f\ %#(%l\\,%c):\ %trror\ TS%n:\ %m,
+        \%W%f\ %#(%l\\,%c):\ %tarning\ TS%n:\ %m,
