@@ -29,3 +29,5 @@
   ctags = !.git/hooks/ctags
 [init]
   templatedir = ~/.git_template
+[pull]
+	rebase = false

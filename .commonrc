@@ -23,6 +23,9 @@ function cdl {
     builtin cd "$@" && ls
 }
 
+function vimwiki {
+    cd ~/vimwiki && vim index.md
+}
 
 # Mac Specific Aliases
 if [[ $OSTYPE == darwin* ]]; then

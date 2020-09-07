@@ -20,7 +20,7 @@ in buildEnv {
     pkgs.fzf
     pkgs.gawk
     pkgs.gifski
-    pkgs.git
+    # pkgs.git
     pkgs.gnugrep
     pkgs.gnused
     pkgs.graphviz
