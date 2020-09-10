@@ -95,7 +95,6 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-" Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-signify'
 
 Plug 'rstacruz/vim-closer'
@@ -110,13 +109,10 @@ Plug 'wellle/context.vim'
 Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
-" Plug 'ludovicchabant/vim-gutentags'
-
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
 Plug 'moll/vim-node'
 Plug 'suy/vim-context-commentstring'
-" Plug 'kristijanhusak/vim-js-file-import'
 
 Plug 'mattn/emmet-vim'
 
@@ -279,13 +275,13 @@ hi Pmenu ctermbg=Black ctermfg=White
 "     \ }
 
 let g:ale_fixers = {
-            \ 'haskell': ['brittany'],
+            \ 'haskell': ['hlint', 'brittany'],
             \ 'javascript': ['eslint'],
             \ 'typescript': ['eslint'],
             \}
 
 let g:ale_linters = {
-            \ 'haskell': ['brittany'],
+            \ 'haskell': ['hlint'],
             \ 'javascript': ['eslint', 'tsserver'],
             \ 'typescript': ['eslint', 'tsserver'],
             \}
