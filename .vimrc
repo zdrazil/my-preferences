@@ -109,6 +109,8 @@ Plug 'wellle/context.vim'
 Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
+" Plug 'wellle/targets.vim'
+
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
 Plug 'moll/vim-node'
@@ -168,6 +170,13 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" :command DeleteFirst 1delete
+
+command FoldIndent setlocal foldmethod=indent
+command FoldManual setlocal foldmethod=manual
+command FoldSyntax setlocal foldmethod=syntax
+
 
 " let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1

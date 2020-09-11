@@ -30,7 +30,7 @@ in buildEnv {
     pkgs.moreutils
     pkgs.mpv
     pkgs.ncdu
-    pkgs.nodejs-12_x
+    # pkgs.nodejs-12_x
     pkgs.p7zip
     pkgs.pwgen
     pkgs.python

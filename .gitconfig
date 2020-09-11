@@ -30,4 +30,6 @@
 [init]
   templatedir = ~/.git_template
 [pull]
-	rebase = false
+  rebase = false
+[url "git@github.com:"]
+ insteadOf = https://github.com/
