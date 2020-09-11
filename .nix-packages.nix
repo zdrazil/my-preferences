@@ -45,6 +45,7 @@ in buildEnv {
     pkgs.stack
     pkgs.tig
     pkgs.tldr
+    pkgs.tree
     pkgs.tmux
     pkgs.trash-cli
     # pkgs.vimHugeX
