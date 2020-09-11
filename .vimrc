@@ -95,7 +95,6 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-" Plug 'nelstrom/vim-visual-star-search'
 Plug 'mhinz/vim-signify'
 
 Plug 'rstacruz/vim-closer'
@@ -110,13 +109,12 @@ Plug 'wellle/context.vim'
 Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
-" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'wellle/targets.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
 Plug 'moll/vim-node'
 Plug 'suy/vim-context-commentstring'
-" Plug 'kristijanhusak/vim-js-file-import'
 
 Plug 'mattn/emmet-vim'
 
@@ -172,6 +170,13 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+" :command DeleteFirst 1delete
+
+command FoldIndent setlocal foldmethod=indent
+command FoldManual setlocal foldmethod=manual
+command FoldSyntax setlocal foldmethod=syntax
+
 
 " let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -279,13 +284,13 @@ hi Pmenu ctermbg=Black ctermfg=White
 "     \ }
 
 let g:ale_fixers = {
-            \ 'haskell': ['brittany'],
+            \ 'haskell': ['hlint', 'brittany'],
             \ 'javascript': ['eslint'],
             \ 'typescript': ['eslint'],
             \}
 
 let g:ale_linters = {
-            \ 'haskell': ['brittany'],
+            \ 'haskell': ['hlint'],
             \ 'javascript': ['eslint', 'tsserver'],
             \ 'typescript': ['eslint', 'tsserver'],
             \}
