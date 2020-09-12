@@ -175,6 +175,8 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+let g:fzf_layout = { 'down': '40%' }
+
 " :command DeleteFirst 1delete
 
 command FoldIndent setlocal foldmethod=indent
@@ -301,3 +303,5 @@ let g:ale_linters = {
             \ 'javascript': ['eslint', 'tsserver'],
             \ 'typescript': ['eslint', 'tsserver'],
             \}
+
+
