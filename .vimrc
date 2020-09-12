@@ -109,7 +109,11 @@ Plug 'wellle/context.vim'
 Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
-" Plug 'wellle/targets.vim'
+Plug 'wellle/targets.vim'
+" Plug 'terryma/vim-expand-region'
+Plug 'takac/vim-hardtime'
+Plug 'justinmk/vim-sneak'
+Plug 'metakirby5/codi.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
@@ -235,13 +239,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 nnoremap <Leader>F :Grepper -tool rg<CR>
@@ -268,17 +265,20 @@ let g:vimwiki_conceallevel = 0
 
 let g:zettel_format = "%y%m%d-%H%M%S"
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*', 'Users/zdrazil/projects/haskell/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*', 'Users/zdrazil/projects/haskell/.*', 'Users/zdrazil/projects/playgrounds/.*']
 
 hi Pmenu ctermbg=Black ctermfg=White
 
+let g:hardtime_default_on = 1
 
-
+augroup plugin-devdocs
+  autocmd!
+  autocmd FileType javascript,javascriptreact,typescript,typescriptreact,haskell,python nmap <buffer>K <Plug>(devdocs-under-cursor)
+augroup END
 
 " let g:devdocs_filetype_map = {
-"     \   'java': 'java',
-"     \   'javascriptreact': 'javascript',
-"     \   'typescriptreact': 'typescript',
+"     \   'javascriptreact': 'react',
+"     \   'typescriptreact': 'react',
 "     \   'javascript': 'javascript',
 "     \   'typescript': 'typescript',
 "     \ }
