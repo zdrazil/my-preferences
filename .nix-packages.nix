@@ -53,7 +53,7 @@ in buildEnv {
     pkgs.watchman
     pkgs.wget
     pkgs.xz
-    pkgs.yarn
+    # pkgs.yarn
     pkgs.youtube-dl
     pkgs.zsh
     pkgs.zsh-completions

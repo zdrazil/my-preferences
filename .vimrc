@@ -13,7 +13,7 @@ set showmatch       " highlight matching [{()}]
 
 set showcmd
 set showmode
-set number
+" set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 
 set breakindent
@@ -112,8 +112,8 @@ Plug 'justinmk/vim-gtfo'
 Plug 'wellle/targets.vim'
 " Plug 'terryma/vim-expand-region'
 Plug 'takac/vim-hardtime'
-Plug 'justinmk/vim-sneak'
-Plug 'metakirby5/codi.vim'
+" Plug 'justinmk/vim-sneak'
+" Plug 'metakirby5/codi.vim'
 
 " FrontEnd 
 Plug 'galooshi/vim-import-js'
@@ -226,6 +226,11 @@ nmap <leader>gca <Plug>(coc-codeaction)
 
 nmap <leader>grn <Plug>(coc-rename)
 
+nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+
+nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+
+
 inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
 
@@ -240,6 +245,8 @@ function! s:show_documentation()
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
 
 nnoremap <Leader>F :Grepper -tool rg<CR>
 
