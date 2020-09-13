@@ -31,6 +31,11 @@ function my-js-playground {
     cd ~/projects/playgrounds/js/src && vim index.js
 }
 
+function rgp()
+{
+  rg -p "$@" | less -RFX
+}
+
 # Mac Specific Aliases
 if [[ $OSTYPE == darwin* ]]; then
     alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
