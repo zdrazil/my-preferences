@@ -55,8 +55,10 @@ in buildEnv {
     pkgs.xz
     # pkgs.yarn
     pkgs.youtube-dl
-    pkgs.zsh
+    # pkgs.zsh
     pkgs.zsh-completions
+    pkgs.browsh
+    pkgs.w3m
     ];
 }
 

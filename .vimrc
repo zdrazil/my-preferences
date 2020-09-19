@@ -2,9 +2,6 @@ set shell=/bin/bash
 set encoding=utf-8
 
 set mouse=a
-" "+p
-" "y*
-" set clipboard^=unnamedplus,unnamed
 set wildignorecase
 set hidden
 
@@ -15,15 +12,13 @@ set showmatch       " highlight matching [{()}]
 
 set showcmd
 set showmode
-" set number
+set number
 set title               " e.g. | page.html (~) - VIM | as a windows title
 
 set breakindent
 let &showbreak = '> '
 set linebreak
 
-set ignorecase
-set smartcase
 " set completeopt=longest,menuone
 
 set cmdheight=2
@@ -56,14 +51,13 @@ Plug 'embear/vim-localvimrc'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'morhetz/gruvbox'
-Plug 'vim-scripts/CycleColor'
+" Plug 'vim-scripts/CycleColor'
 Plug 'robertmeta/nofrils'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
@@ -89,38 +83,25 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-obsession'
 
-" Plug 'liuchengxu/vim-which-key'
-
-" Fugitive extensions
-Plug 'tpope/vim-rhubarb'
-Plug 'shumphrey/fugitive-gitlab.vim'
-
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-Plug 'mhinz/vim-signify'
 
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
+" Plug 'tommcdo/vim-exchange'
+Plug 'andrewradev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
-
-Plug 'Shougo/echodoc.vim'
-Plug 'wellle/context.vim'
 
 Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
-Plug 'wellle/targets.vim'
-" Plug 'terryma/vim-expand-region'
-Plug 'takac/vim-hardtime'
 Plug 'justinmk/vim-sneak'
-" Plug 'easymotion/vim-easymotion'
-" Plug 'metakirby5/codi.vim'
 
 " FrontEnd 
-Plug 'galooshi/vim-import-js'
-Plug 'moll/vim-node'
+" Plug 'galooshi/vim-import-js'
+" Plug 'moll/vim-node'
 Plug 'suy/vim-context-commentstring'
 
 Plug 'mattn/emmet-vim'
@@ -132,12 +113,11 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-salve'
 
+Plug 'tweekmonster/startuptime.vim'
+
 call plug#end()
 
 runtime plugin/sensible.vim
-
-" colorscheme solarized
-" colorscheme solarized8
 
 " colorscheme gruvbox
 colorscheme nofrils-acme
@@ -151,7 +131,6 @@ else
 endif
 
 runtime plugin/grepper.vim
-" let g:grepper.prompt_quote = 1 
 let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
 nnoremap <leader>* :Grepper -tool git -open -switch -cword -noprompt<cr>
@@ -180,8 +159,6 @@ command! -bang -nargs=* Rg
 
 let g:fzf_layout = { 'down': '40%' }
 
-" :command DeleteFirst 1delete
-
 command FoldIndent setlocal foldmethod=indent
 command FoldManual setlocal foldmethod=manual
 command FoldSyntax setlocal foldmethod=syntax
@@ -196,7 +173,7 @@ let g:ale_disable_lsp = 1
 
 let g:slime_target = "tmux"
 
-let g:context_enabled = 0
+" let g:context_enabled = 0
 
 let g:highlightedyank_highlight_duration = 200 
 
@@ -252,8 +229,9 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
-
 nnoremap <Leader>F :Grepper -tool rg<CR>
+nmap <Leader>gs  <plug>(GrepperOperator)
+xmap <Leader>gs  <plug>(GrepperOperator)
 
 nmap <Leader>gk <Plug>(devdocs-under-cursor)
 
@@ -277,23 +255,15 @@ let g:vimwiki_conceallevel = 0
 
 let g:zettel_format = "%y%m%d-%H%M%S"
 
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/linux/mews-js/.*', '/home/zdrazil/projects/mews/mews-js/.*', 'Users/mews/projects/mews-js/.*', 'Users/zdrazil/projects/mews-js/.*', 'Users/zdrazil/projects/haskell/.*', 'Users/zdrazil/projects/playgrounds/.*']
+let g:localvimrc_name = [ ".scilvimrc"]
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*']
 
 hi Pmenu ctermbg=Black ctermfg=White
-
-let g:hardtime_default_on = 1
 
 augroup plugin-devdocs
   autocmd!
   autocmd FileType javascript,javascriptreact,typescript,typescriptreact,haskell,python nmap <buffer>K <Plug>(devdocs-under-cursor)
 augroup END
-
-" let g:devdocs_filetype_map = {
-"     \   'javascriptreact': 'react',
-"     \   'typescriptreact': 'react',
-"     \   'javascript': 'javascript',
-"     \   'typescript': 'typescript',
-"     \ }
 
 let g:ale_fixers = {
             \ 'haskell': ['hlint', 'brittany'],
@@ -309,7 +279,5 @@ let g:ale_linters = {
 
 let g:sneak#label = 1
 
-let g:list_of_normal_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-let g:list_of_visual_keys = ["h", "j", "k", "l", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-let g:list_of_disabled_keys = []
+nmap <leader>s< <Plug>SidewaysLeft
+nmap <leader>s> <Plug>SidewaysRight
