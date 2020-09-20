@@ -6,17 +6,29 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Completion system; prompt
-zstyle :compinstall filename '~/.zshrc'
-fpath=(~/.zsh/packages/zsh-completions $fpath)
-autoload -Uz compinit promptinit
-compinit -u
-promptinit
+# ------------------ PLUGINS ----------------------
+#
+source "${HOME}/.zgen/zgen.zsh"
+
+# if the init script doesn't exist
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen load zsh-users/zsh-autosuggestions
+  zgen load zsh-users/zsh-history-substring-search
+
+  zgen load zsh-users/zsh-completions src
+
+
+  # generate the init script from plugins above
+  zgen save
+fi
+
+# ---------------------------------------------------
 
 autoload -Uz colors && colors
 
 # used %{...%} to prevent jumping text when writing
-# export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
 
 # Git in prompt
@@ -98,10 +110,8 @@ if [ -d $HOME/.zsh/ ]; then
   done
 fi
 
-# ------------------ PLUGINS ----------------------
 
-source ~/.zsh/packages/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/packages/zsh-history-substring-search/zsh-history-substring-search.zsh
+# ------------------ Custom Settings ------------------
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then
@@ -137,13 +147,3 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# # Set colors only when terminal is kitty
-# if [ -n "$KITTY_WINDOW_ID" ]; then
-#   if [[ ( $(darkMode) =~ 'Dark' ) ]]; then
-#     kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_night.conf"
-#   else
-#     kitty @ set-colors -a -c "$HOME/.config/kitty/themes/tempus-themes/tempus_day.conf"
-#   fi
-# fi
