@@ -11,7 +11,8 @@ in buildEnv {
     pkgs.bash
     pkgs.bash-completion
     pkgs.coreutils
-    pkgs.ctags
+    # pkgs.ctags
+    pkgs.universal-ctags
     pkgs.dos2unix
     pkgs.exercism
     pkgs.fd

@@ -71,6 +71,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
@@ -90,7 +91,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
 " Plug 'tommcdo/vim-exchange'
-Plug 'andrewradev/sideways.vim'
+Plug 'AndrewRadev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
 
@@ -129,6 +130,8 @@ if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
 else
   " set background=light
 endif
+
+syntax off
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
@@ -281,3 +284,4 @@ let g:sneak#label = 1
 
 nmap <leader>s< <Plug>SidewaysLeft
 nmap <leader>s> <Plug>SidewaysRight
+
