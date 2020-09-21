@@ -20,8 +20,10 @@ function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 function cdl {
-    builtin cd "$@" && ls
+    builtin cd "$@" && pwd && ls
 }
+
+alias cl=cd
 
 function vimwiki {
     cd ~/vimwiki && vim index.md
@@ -41,6 +43,15 @@ if [[ $OSTYPE == darwin* ]]; then
     alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
     alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
 fi
+
+
+# eval $(thefuck --alias)
+alias oops=fuck
+alias dammit=fuck
+alias notagain=fuck
+alias shit=fuck
+alias ohgod=fuck
+alias FUCK=fuck
 
 export NVM_DIR="$HOME/.nvm"		
  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm

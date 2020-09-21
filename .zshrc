@@ -16,13 +16,18 @@ if ! zgen saved; then
   # specify plugins here
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
+  zgen load laggardkernel/zsh-thefuck
+  zgen load agkozak/zsh-z
+  # zgen load marlonrichert/zsh-autocomplete
+
 
   zgen load zsh-users/zsh-completions src
-
 
   # generate the init script from plugins above
   zgen save
 fi
+
+zstyle ":prezto:module:thefuck" alias "damn"
 
 # ---------------------------------------------------
 
@@ -147,3 +152,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
+function cowsay-random {
+  cowsay -f "$(cowsay -l | sed '1d' | tr ' ' '\n' | sort -R | head -1)"
+}
+
+# fortune -sa | cowsay
+
+# For zsh-autocomplete
+# zstyle ':autocomplete:list-choices:*' min-input 3

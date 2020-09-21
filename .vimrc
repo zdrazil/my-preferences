@@ -61,7 +61,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vim-zettel'
+" Plug 'michal-h21/vim-zettel'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -149,7 +149,7 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>o :FZF<cr>
 nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>/ :Lines<cr>
+nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
 
 " FZF preview
@@ -241,6 +241,8 @@ nmap <Leader>gk <Plug>(devdocs-under-cursor)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
+nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
+
 let s:clip = '/mnt/c/Windows/System32/clip.exe' 
 if executable(s:clip)
     augroup WSLYank
@@ -250,13 +252,15 @@ if executable(s:clip)
 end
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'links_space_char': '-'}
+                      \]
 
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vimwiki_conceallevel = 0
 
-let g:zettel_format = "%y%m%d-%H%M%S"
+" let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_name = [ ".scilvimrc"]
 let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*']

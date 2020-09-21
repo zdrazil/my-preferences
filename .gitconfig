@@ -33,3 +33,7 @@
   rebase = false
 [url "git@github.com:"]
  insteadOf = https://github.com/
+[help]
+	autocorrect = 1
+[rerere]
+	enabled = true

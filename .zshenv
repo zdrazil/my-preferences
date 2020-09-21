@@ -40,3 +40,4 @@ export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files'
 
 
+

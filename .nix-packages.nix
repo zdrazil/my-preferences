@@ -8,8 +8,8 @@ in buildEnv {
     # "pkgs.glibc-locales"
     pkgs.ack
     pkgs.autojump
-    pkgs.bash
-    pkgs.bash-completion
+    # pkgs.bash
+    # pkgs.bash-completion
     pkgs.coreutils
     # pkgs.ctags
     pkgs.universal-ctags
@@ -57,9 +57,21 @@ in buildEnv {
     # pkgs.yarn
     pkgs.youtube-dl
     # pkgs.zsh
-    pkgs.zsh-completions
+    # pkgs.zsh-completions
     pkgs.browsh
     pkgs.w3m
+    # Fun
+    pkgs.fortune
+    pkgs.cowsay
+    pkgs.sl
+    pkgs.figlet
+    pkgs.cmatrix
+    pkgs.lolcat
+    pkgs.doge
+    pkgs.bb
+    pkgs.nyancat
+    pkgs.thefuck
+    pkgs.gti
     ];
 }
 
