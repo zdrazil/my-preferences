@@ -266,7 +266,7 @@ let g:vimwiki_auto_header = 1
 " let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_name = [ ".scilvimrc"]
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*', 'Users/zdrazil/vimwiki']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*', 'Users/zdrazil/vimwiki', 'Users/mews/projects/.*', 'Users/mews/vimwiki',]
 
 hi Pmenu ctermbg=Black ctermfg=White
 

@@ -12,6 +12,7 @@ tags
 .ignore
 
 .lvimrc
+.scilvimrc
 _scratch*
 
 node_modules/
