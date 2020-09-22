@@ -63,7 +63,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 " Plug 'michal-h21/vim-zettel'
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -86,6 +86,8 @@ Plug 'tpope/vim-obsession'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
+Plug 'junegunn/vim-easy-align'
+
 
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
@@ -259,11 +261,12 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vimwiki_conceallevel = 0
+let g:vimwiki_auto_header = 1
 
 " let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_name = [ ".scilvimrc"]
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*']
+let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*', 'Users/zdrazil/vimwiki']
 
 hi Pmenu ctermbg=Black ctermfg=White
 
@@ -289,3 +292,5 @@ let g:sneak#label = 1
 nmap <leader>s< <Plug>SidewaysLeft
 nmap <leader>s> <Plug>SidewaysRight
 
+" vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
+nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
