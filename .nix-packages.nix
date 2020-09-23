@@ -13,6 +13,9 @@ in buildEnv {
     pkgs.gitAndTools.git-extras
     pkgs.coreutils
     # pkgs.ctags
+    pkgs.gitAndTools.git-open
+    pkgs.git-quick-stats
+    pkgs.gitAndTools.git-fame
     pkgs.universal-ctags
     pkgs.dos2unix
     pkgs.exercism
