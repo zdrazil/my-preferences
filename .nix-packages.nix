@@ -10,6 +10,7 @@ in buildEnv {
     pkgs.autojump
     # pkgs.bash
     # pkgs.bash-completion
+    pkgs.gitAndTools.git-extras
     pkgs.coreutils
     # pkgs.ctags
     pkgs.universal-ctags

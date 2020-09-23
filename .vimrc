@@ -289,8 +289,8 @@ let g:ale_linters = {
 
 let g:sneak#label = 1
 
-nmap <leader>s< <Plug>SidewaysLeft
-nmap <leader>s> <Plug>SidewaysRight
+nmap <leader>gs< <Plug>SidewaysLeft
+nmap <leader>gs> <Plug>SidewaysRight
 
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel

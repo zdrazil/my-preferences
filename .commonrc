@@ -79,3 +79,5 @@ if uname -r |grep -q 'Microsoft' ; then
 
     unset env
 fi
+
+export REVIEW_BASE="master"
