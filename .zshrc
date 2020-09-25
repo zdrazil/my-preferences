@@ -6,6 +6,8 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
+fpath=(~/.zsh/completions $fpath)
+
 # ------------------ PLUGINS ----------------------
 #
 source "${HOME}/.zgen/zgen.zsh"
