@@ -1,3 +1,8 @@
+# allow shortcut ctrl-W to delete parts of path only
+# e.g. a/b/c + ctrl-W -> results in a/b
+autoload -U select-word-style
+select-word-style bash
+
 if [ -f $HOME/.commonrc ]; then
     . $HOME/.commonrc
 fi
@@ -150,6 +155,8 @@ bindkey "^X^E" edit-command-line
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
+
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"

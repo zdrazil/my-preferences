@@ -15,6 +15,8 @@ fi
 
 #-------------------- ALIASES ------------------------
 
+alias grep='grep --color=auto'
+
 function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -22,8 +24,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 function cdl {
     builtin cd "$@" && pwd && ls
 }
-
-alias cl=cd
 
 function vimwiki {
     cd ~/vimwiki && vim index.md
