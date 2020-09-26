@@ -65,17 +65,17 @@ in buildEnv {
     pkgs.xz
     pkgs.youtube-dl
     # Fun
-    pkgs.fortune
-    pkgs.cowsay
-    pkgs.sl
-    pkgs.figlet
-    pkgs.cmatrix
-    pkgs.lolcat
-    pkgs.doge
     pkgs.bb
-    pkgs.nyancat
-    pkgs.thefuck
+    pkgs.cmatrix
+    pkgs.cowsay
+    pkgs.doge
+    pkgs.figlet
+    pkgs.fortune
     pkgs.gti
+    pkgs.lolcat
+    pkgs.nyancat
+    pkgs.sl
+    pkgs.thefuck
     ];
 }
 
