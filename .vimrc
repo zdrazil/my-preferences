@@ -5,15 +5,18 @@ set mouse=a
 set wildignorecase
 set hidden
 
-set hlsearch        " Highlight searches by default
+" Highlight searches by default
+set hlsearch
 set ignorecase
 set smartcase
-set showmatch       " highlight matching [{()}]
+" highlight matching [{()}]
+set showmatch
 
 set showcmd
 set showmode
 set number
-set title               " e.g. | page.html (~) - VIM | as a windows title
+" e.g. | page.html (~) - VIM | as a windows title
+set title
 
 set breakindent
 let &showbreak = '> '
@@ -32,7 +35,7 @@ if exists('+termguicolors')
 endif
 
 " always show gutter so it doesn't move
-set signcolumn=yes 
+set signcolumn=yes
 
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
 silent !mkdir ~/.vim/backup > /dev/null 2>&1
@@ -67,7 +70,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
-" Plug 'michal-h21/vim-zettel'
 
 " Plug 'sheerun/vim-polyglot'
 
@@ -108,9 +110,7 @@ Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
 
-" FrontEnd 
-" Plug 'galooshi/vim-import-js'
-" Plug 'moll/vim-node'
+" FrontEnd
 Plug 'suy/vim-context-commentstring'
 
 Plug 'mattn/emmet-vim'
@@ -130,8 +130,8 @@ runtime plugin/sensible.vim
 
 " dark mode enabled?
 if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-   colorscheme solarized8
-   set background=dark
+  colorscheme solarized8
+  set background=dark
 else
   colorscheme gruvbox-high
   " colorscheme nofrils-acme
@@ -145,7 +145,7 @@ let g:grepper.tools = ['rg', 'grep', 'git' ]
 nnoremap <leader>* :Grepper -tool git -open -switch -cword -noprompt<cr>
 
 let g:mapleader = "\<space>"
-" inoremap <c-space> <space> 
+" inoremap <c-space> <space>
 inoremap jj <Esc>
 
 " " cdc = change to directory of current file
@@ -160,18 +160,17 @@ nnoremap <leader>f :Rg<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 let g:fzf_layout = { 'down': '40%' }
 
 command FoldIndent setlocal foldmethod=indent
 command FoldManual setlocal foldmethod=manual
 command FoldSyntax setlocal foldmethod=syntax
-
 
 " let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -182,23 +181,19 @@ let g:ale_disable_lsp = 1
 
 let g:slime_target = "tmux"
 
-" let g:context_enabled = 0
-
-let g:highlightedyank_highlight_duration = 200 
-
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+let g:highlightedyank_highlight_duration = 200
 
 " Coc.nvim
 let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-fsharp',
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-stylelint',
-  \ 'coc-tsserver',
-  \ 'coc-emmet',
-  \ ]
+      \ 'coc-css',
+      \ 'coc-eslint',
+      \ 'coc-fsharp',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-stylelint',
+      \ 'coc-tsserver',
+      \ 'coc-emmet',
+      \ ]
 
 set updatetime=300
 inoremap <silent><expr> <c-space>a coc#refresh()
@@ -249,18 +244,18 @@ nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
 nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 
-let s:clip = '/mnt/c/Windows/System32/clip.exe' 
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-    augroup END
+  augroup WSLYank
+    autocmd!
+    autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+  augroup END
 end
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md',
-                      \ 'links_space_char': '-'}
-                      \]
+      \ 'syntax': 'markdown', 'ext': '.md',
+      \ 'links_space_char': '-'}
+      \]
 
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
@@ -270,7 +265,14 @@ let g:vimwiki_auto_header = 1
 " let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_name = [ ".scilvimrc"]
-let g:localvimrc_whitelist=['/mnt/c/Users/Vladimir/projects/.*', 'Users/zdrazil/projects/.*', 'home/zdrazil/projects/.*', 'Users/zdrazil/vimwiki', 'Users/mews/projects/.*', 'Users/mews/vimwiki',]
+let g:localvimrc_whitelist=[
+      \ '/Users/mews/projects/.*',
+      \ '/Users/mews/vimwiki',
+      \ '/Users/zdrazil/projects/.*',
+      \ '/Users/zdrazil/vimwiki',
+      \ '/home/zdrazil/projects/.*',
+      \ '/mnt/c/Users/Vladimir/projects/.*',
+      \]
 
 hi Pmenu ctermbg=Black ctermfg=White
 
@@ -280,16 +282,16 @@ augroup plugin-devdocs
 augroup END
 
 let g:ale_fixers = {
-            \ 'haskell': ['hlint', 'brittany'],
-            \ 'javascript': ['eslint'],
-            \ 'typescript': ['eslint'],
-            \}
+      \ 'haskell': ['hlint', 'brittany'],
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
+      \}
 
 let g:ale_linters = {
-            \ 'haskell': ['hlint'],
-            \ 'javascript': ['eslint', 'tsserver'],
-            \ 'typescript': ['eslint', 'tsserver'],
-            \}
+      \ 'haskell': ['hlint'],
+      \ 'javascript': ['eslint', 'tsserver'],
+      \ 'typescript': ['eslint', 'tsserver'],
+      \}
 
 let g:sneak#label = 1
 
