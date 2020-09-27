@@ -17,6 +17,7 @@ in buildEnv {
     # pkgs.zsh-completions
     pkgs.ack
     pkgs.autojump
+    pkgs.pandoc
     pkgs.browsh
     pkgs.coreutils
     pkgs.dos2unix

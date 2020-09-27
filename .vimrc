@@ -1,4 +1,4 @@
-set shell=/bin/bash
+" set shell=/bin/bash
 set encoding=utf-8
 
 set mouse=a
@@ -48,12 +48,18 @@ Plug 'tpope/vim-sensible'
 Plug 'embear/vim-localvimrc'
 
 " Themes
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'lifepillar/vim-solarized8'
-" Plug 'morhetz/gruvbox'
-" Plug 'vim-scripts/CycleColor'
+Plug 'vim-scripts/CycleColor'
 Plug 'robertmeta/nofrils'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
+
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'lifepillar/vim-solarized8'
+
+Plug 'jan-warchol/selenized'
+Plug 'zefei/cake16'
+Plug 'plan9-for-vimspace/acme-colors'
+Plug 'andreasvc/vim-256noir'
+Plug 'Lokaltog/vim-monotone'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -122,18 +128,16 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
-" colorscheme gruvbox
-colorscheme nofrils-acme
-
 " dark mode enabled?
 if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-   colorscheme nofrils-dark
-   " set background=dark
+   colorscheme solarized8
+   set background=dark
 else
-  " set background=light
+  colorscheme gruvbox-high
+  " colorscheme nofrils-acme
+  " colorscheme monotone
+  set background=light
 endif
-
-syntax off
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
@@ -294,3 +298,4 @@ nmap <leader>gs> <Plug>SidewaysRight
 
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
+
