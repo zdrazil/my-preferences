@@ -71,7 +71,7 @@ Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
 
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -265,20 +265,20 @@ let g:vimwiki_auto_header = 1
 " let g:zettel_format = "%y%m%d-%H%M%S"
 
 let g:localvimrc_name = [ ".scilvimrc"]
-let g:localvimrc_whitelist=[
-      \ '/Users/mews/projects/.*',
-      \ '/Users/mews/vimwiki',
-      \ '/Users/zdrazil/projects/.*',
-      \ '/Users/zdrazil/vimwiki',
-      \ '/home/zdrazil/projects/.*',
-      \ '/mnt/c/Users/Vladimir/projects/.*',
-      \]
+let g:localvimrc_persistent = 2
 
 hi Pmenu ctermbg=Black ctermfg=White
 
 augroup plugin-devdocs
   autocmd!
-  autocmd FileType javascript,javascriptreact,typescript,typescriptreact,haskell,python nmap <buffer>K <Plug>(devdocs-under-cursor)
+  autocmd FileType
+        \ haskell,
+        \ javascript,
+        \ javascriptreact,
+        \ python,
+        \ typescript,
+        \ typescriptreact
+        \ nmap <buffer>K <Plug>(devdocs-under-cursor)
 augroup END
 
 let g:ale_fixers = {
