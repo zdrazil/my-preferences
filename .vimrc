@@ -57,6 +57,7 @@ Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
+Plug 'chriskempson/base16-vim'
 
 Plug 'jan-warchol/selenized'
 Plug 'zefei/cake16'
@@ -133,7 +134,8 @@ if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
   colorscheme solarized8
   set background=dark
 else
-  colorscheme gruvbox-high
+  " colorscheme gruvbox-high
+  colorscheme base16-gruvbox-soft
   " colorscheme nofrils-acme
   " colorscheme monotone
   set background=light
