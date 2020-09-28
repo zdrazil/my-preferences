@@ -40,8 +40,12 @@ zstyle ":prezto:module:thefuck" alias "damn"
 
 autoload -Uz colors && colors
 
+export DEFAULT_USER="$USER"
+
 # used %{...%} to prevent jumping text when writing
-export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
+# export PROMPT="·%n@%m %{$fg[reset_color]%}%1~%{$reset_color%}> "
+# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+export PROMPT="·%(1j.[%j].)%(0?..%?) %1~ > "
 
 # Git in prompt
 autoload -Uz vcs_info
@@ -169,3 +173,4 @@ function cowsay-random {
 
 # For zsh-autocomplete
 # zstyle ':autocomplete:list-choices:*' min-input 3
+#
