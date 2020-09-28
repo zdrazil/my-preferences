@@ -271,17 +271,17 @@ let g:localvimrc_persistent = 2
 
 hi Pmenu ctermbg=Black ctermfg=White
 
-augroup plugin-devdocs
-  autocmd!
-  autocmd FileType
-        \ haskell,
-        \ javascript,
-        \ javascriptreact,
-        \ python,
-        \ typescript,
-        \ typescriptreact
-        \ nmap <buffer>K <Plug>(devdocs-under-cursor)
-augroup END
+" augroup plugin-devdocs
+"   autocmd!
+"   autocmd FileType
+"         \ haskell,
+"         \ javascript,
+"         \ javascriptreact,
+"         \ python,
+"         \ typescript,
+"         \ typescriptreact
+"         \ nmap <buffer>K <Plug>(devdocs-under-cursor)
+" augroup END
 
 let g:ale_fixers = {
       \ 'haskell': ['hlint', 'brittany'],
