@@ -302,4 +302,3 @@ nmap <leader>gs> <Plug>SidewaysRight
 
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
-
