@@ -135,7 +135,7 @@ if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
   set background=dark
 else
   " colorscheme gruvbox-high
-  colorscheme base16-gruvbox-soft
+  colorscheme base16-gruvbox-light-medium
   " colorscheme nofrils-acme
   " colorscheme monotone
   set background=light

@@ -17,7 +17,6 @@ in buildEnv {
     # pkgs.zsh-completions
     pkgs.ack
     pkgs.highlight
-    pkgs.text2html
     pkgs.autojump
     pkgs.pandoc
     pkgs.browsh
