@@ -73,6 +73,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 
 Plug 'sheerun/vim-polyglot'
+" Plug 'purescript-contrib/purescript-vim'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -110,6 +111,7 @@ Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
+Plug 'liuchengxu/vista.vim'
 
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
@@ -173,6 +175,8 @@ let g:fzf_layout = { 'down': '40%' }
 command FoldIndent setlocal foldmethod=indent
 command FoldManual setlocal foldmethod=manual
 command FoldSyntax setlocal foldmethod=syntax
+set foldmethod=indent
+set foldlevel=99
 
 " let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -216,7 +220,8 @@ nmap <leader>grn <Plug>(coc-rename)
 
 nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
 
-nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
 
 
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -287,15 +292,19 @@ let g:ale_fixers = {
       \ 'haskell': ['hlint', 'brittany'],
       \ 'javascript': ['eslint'],
       \ 'typescript': ['eslint'],
+      \ 'purescript': ['purty'],
       \}
 
 let g:ale_linters = {
       \ 'haskell': ['hlint'],
       \ 'javascript': ['eslint', 'tsserver'],
       \ 'typescript': ['eslint', 'tsserver'],
+      \ 'purescript': ['purescript-language-server'],
       \}
 
 let g:sneak#label = 1
+
+let g:vista_default_executive = 'coc'
 
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
