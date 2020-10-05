@@ -309,5 +309,8 @@ let g:vista_default_executive = 'coc'
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
 
+autocmd FileType purescript setlocal commentstring=--%s
+autocmd FileType purescript setlocal comments=:--
+
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
