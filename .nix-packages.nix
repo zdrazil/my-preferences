@@ -15,18 +15,14 @@ in buildEnv {
     # pkgs.yarn
     # pkgs.zsh
     # pkgs.zsh-completions
-    pkgs.ddgr
-    pkgs.languagetool
-    pkgs.nodePackages.write-good
     pkgs.ack
-    pkgs.up
-    pkgs.entr
-    pkgs.highlight
     pkgs.autojump
-    pkgs.pandoc
     pkgs.browsh
     pkgs.coreutils
+    pkgs.ddgr
+    pkgs.ddgr
     pkgs.dos2unix
+    pkgs.entr
     pkgs.exercism
     pkgs.fd
     pkgs.findutils
@@ -41,13 +37,18 @@ in buildEnv {
     pkgs.gnugrep
     pkgs.gnused
     pkgs.graphviz
+    pkgs.gron
+    pkgs.highlight
     pkgs.htop
     pkgs.jq
+    pkgs.languagetool
     pkgs.leiningen
     pkgs.moreutils
     pkgs.mpv
     pkgs.ncdu
+    pkgs.nodePackages.write-good
     pkgs.p7zip
+    pkgs.pandoc
     pkgs.pwgen
     pkgs.python
     pkgs.python38Packages.wakeonlan
@@ -65,6 +66,8 @@ in buildEnv {
     pkgs.trash-cli
     pkgs.tree
     pkgs.universal-ctags
+    pkgs.up
+    pkgs.up
     pkgs.w3m
     pkgs.watch
     pkgs.watchman
