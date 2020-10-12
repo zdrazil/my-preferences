@@ -16,9 +16,7 @@ in buildEnv {
     # pkgs.zsh
     # pkgs.zsh-completions
     pkgs.ack
-    pkgs.highlight
     pkgs.autojump
-    pkgs.pandoc
     pkgs.browsh
     pkgs.coreutils
     pkgs.dos2unix
@@ -36,6 +34,8 @@ in buildEnv {
     pkgs.gnugrep
     pkgs.gnused
     pkgs.graphviz
+    pkgs.gron
+    pkgs.highlight
     pkgs.htop
     pkgs.jq
     pkgs.leiningen
@@ -43,6 +43,7 @@ in buildEnv {
     pkgs.mpv
     pkgs.ncdu
     pkgs.p7zip
+    pkgs.pandoc
     pkgs.pwgen
     pkgs.python
     pkgs.python38Packages.wakeonlan
@@ -60,6 +61,7 @@ in buildEnv {
     pkgs.trash-cli
     pkgs.tree
     pkgs.universal-ctags
+    pkgs.up
     pkgs.w3m
     pkgs.watch
     pkgs.watchman
