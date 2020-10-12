@@ -39,5 +39,4 @@ export CLICOLOR=1
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files'
 
-
-
+alias ddgb='ddgr --np'

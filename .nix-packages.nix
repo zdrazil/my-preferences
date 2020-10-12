@@ -15,7 +15,11 @@ in buildEnv {
     # pkgs.yarn
     # pkgs.zsh
     # pkgs.zsh-completions
+    pkgs.ddgr
     pkgs.ack
+    pkgs.up
+    pkgs.entr
+    pkgs.highlight
     pkgs.autojump
     pkgs.browsh
     pkgs.coreutils

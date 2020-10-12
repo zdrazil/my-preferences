@@ -71,6 +71,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
+Plug 'szw/vim-g'
 
 Plug 'sheerun/vim-polyglot'
 " Plug 'purescript-contrib/purescript-vim'
@@ -297,6 +298,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
       \ 'haskell': ['hlint'],
+      \ 'sh': ['shellcheck'],
       \ 'javascript': ['eslint', 'tsserver'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'purescript': ['purescript-language-server'],
@@ -314,3 +316,8 @@ autocmd FileType purescript setlocal comments=:--
 
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
+
+let g:vim_g_command = "Google"
+let g:vim_g_query_url ="http://duckduckgo.com/?q="
+
+nmap <Leader>gK :Google \!
