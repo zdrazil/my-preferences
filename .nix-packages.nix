@@ -16,6 +16,8 @@ in buildEnv {
     # pkgs.zsh
     # pkgs.zsh-completions
     pkgs.ddgr
+    pkgs.languagetool
+    pkgs.nodePackages.write-good
     pkgs.ack
     pkgs.up
     pkgs.entr

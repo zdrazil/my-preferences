@@ -297,6 +297,8 @@ let g:ale_fixers = {
       \}
 
 let g:ale_linters = {
+      \ 'markdown':['writegood'],
+      \ 'vimwiki':['writegood'],
       \ 'haskell': ['hlint'],
       \ 'sh': ['shellcheck'],
       \ 'javascript': ['eslint', 'tsserver'],
