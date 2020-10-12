@@ -15,15 +15,13 @@ in buildEnv {
     # pkgs.yarn
     # pkgs.zsh
     # pkgs.zsh-completions
-    pkgs.ddgr
     pkgs.ack
-    pkgs.up
-    pkgs.entr
-    pkgs.highlight
     pkgs.autojump
     pkgs.browsh
     pkgs.coreutils
+    pkgs.ddgr
     pkgs.dos2unix
+    pkgs.entr
     pkgs.exercism
     pkgs.fd
     pkgs.findutils
@@ -39,6 +37,7 @@ in buildEnv {
     pkgs.gnused
     pkgs.graphviz
     pkgs.gron
+    pkgs.highlight
     pkgs.highlight
     pkgs.htop
     pkgs.jq
@@ -65,6 +64,7 @@ in buildEnv {
     pkgs.trash-cli
     pkgs.tree
     pkgs.universal-ctags
+    pkgs.up
     pkgs.up
     pkgs.w3m
     pkgs.watch
