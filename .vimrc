@@ -136,12 +136,15 @@ runtime plugin/sensible.vim
 if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
   colorscheme solarized8
   set background=dark
-else
+elseif has("gui_macvim")
   " colorscheme gruvbox-high
   colorscheme base16-gruvbox-light-medium
   " colorscheme nofrils-acme
   " colorscheme monotone
   set background=light
+else 
+  colorscheme solarized8
+  set background=dark
 endif
 
 runtime plugin/grepper.vim
