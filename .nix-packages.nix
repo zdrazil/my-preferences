@@ -34,6 +34,7 @@ in buildEnv {
     pkgs.gitAndTools.git-extras
     pkgs.gitAndTools.git-fame
     pkgs.gitAndTools.git-open
+    pkgs.gitAndTools.delta
     pkgs.gnugrep
     pkgs.gnused
     pkgs.graphviz
