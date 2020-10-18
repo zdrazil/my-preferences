@@ -26,7 +26,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -d "$HOME/.local/share/umake/bin" ]; then
         PATH=~/.local/share/umake/bin:$PATH
     fi
+    if [ -e /home/zdrazil/.nix-profile/etc/profile.d/nix.sh ]; then . /home/zdrazil/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 fi
+
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
     # Fix locales
