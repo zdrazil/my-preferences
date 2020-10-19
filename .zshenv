@@ -30,12 +30,12 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
-    # Fix locales
-    export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-    export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
-    export LOCALE_ARCHIVE="/usr/bin/locale"
-fi
+# if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
+#     # Fix locales
+#     export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+#     export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+#     export LOCALE_ARCHIVE="/usr/bin/locale"
+# fi
 
 export CLICOLOR=1
 export EDITOR=vim
