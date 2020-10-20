@@ -4,6 +4,7 @@
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = input
+	attributesfile = /Users/zdrazil/.gitattributes
 [credential]
   helper = osxkeychain
 [commit]

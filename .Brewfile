@@ -78,4 +78,5 @@ cask "font-fira-code"
 cask "font-hasklig"
 cask "parsec"
 cask "openemu"
+cask "xquartz"
 
