@@ -20,13 +20,11 @@ in buildEnv {
     pkgs.browsh
     pkgs.coreutils
     pkgs.ddgr
-    pkgs.ddgr
     pkgs.dos2unix
     pkgs.entr
     pkgs.exercism
     pkgs.fd
     pkgs.findutils
-    pkgs.fish
     pkgs.fzf
     pkgs.gawk
     pkgs.gifski
@@ -42,17 +40,16 @@ in buildEnv {
     pkgs.highlight
     pkgs.htop
     pkgs.jq
-    pkgs.languagetool
+    # pkgs.languagetool
     pkgs.leiningen
     pkgs.moreutils
     pkgs.mpv
     pkgs.ncdu
-    pkgs.nodePackages.write-good
     pkgs.p7zip
     pkgs.pandoc
     pkgs.pwgen
     pkgs.python
-    pkgs.python38Packages.wakeonlan
+    # pkgs.python38Packages.wakeonlan
     pkgs.ranger
     pkgs.readline
     pkgs.ripgrep
@@ -60,14 +57,12 @@ in buildEnv {
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
-    pkgs.stack
-    pkgs.tig
     pkgs.tldr
+    pkgs.tig
     pkgs.tmux
     pkgs.trash-cli
     pkgs.tree
     pkgs.universal-ctags
-    pkgs.up
     pkgs.up
     pkgs.w3m
     pkgs.watch
