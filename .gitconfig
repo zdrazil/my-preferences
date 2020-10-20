@@ -1,44 +1,44 @@
 [user]
-  name = Vladimír Zdražil
-  email = git@vzdrazil.com
+	name = Vladimír Zdražil
+	email = git@vzdrazil.com
 [core]
-  excludesfile = ~/.gitignore_global
-  autocrlf = input
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
 	attributesfile = /Users/zdrazil/.gitattributes
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [commit]
-  template = ~/.git_commit_msg.txt
-  cleanup = strip
+	template = ~/.git_commit_msg.txt
+	cleanup = strip
 [merge]
-  tool = vimdiff
+	tool = vimdiff
 [diff]
-  tool = vimdiff
-  conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
-  keepBackup = false
-  prompt = false
+	keepBackup = false
+	prompt = false
 [alias]
-  co = checkout
-  com = checkout master
-  ci = commit
-  st = status
-  br = branch
+	co = checkout
+	com = checkout master
+	ci = commit
+	st = status
+	br = branch
 
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  type = cat-file -t
-  dump = cat-file -p
-  ctags = !.git/hooks/ctags
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	ctags = !.git/hooks/ctags
 
-  gstat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
-  gfiles =!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+	gstat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
+	gfiles =!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
 [init]
-  templatedir = ~/.git_template
+	templatedir = ~/.git_template
 [url "git@github.com:"]
-  insteadOf = https://github.com/
+	insteadOf = https://github.com/
 [help]
-  autocorrect = 1
+	autocorrect = 1
 [rerere]
-  enabled = true
+	enabled = true
 [delta]
 	side-by-side = true
