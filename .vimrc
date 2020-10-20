@@ -26,13 +26,13 @@ set linebreak
 
 set cmdheight=2
 
-" set background=light
+set background=light
 " Fix colors in tmux
-" if exists('+termguicolors')
-"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"   set termguicolors
-" endif
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
 " always show gutter so it doesn't move
 set signcolumn=yes
@@ -136,20 +136,20 @@ runtime plugin/sensible.vim
 
 " dark mode enabled?
 if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-  " colorscheme solarized8
+  colorscheme solarized8
   set background=dark
 elseif has("gui_macvim")
-  " colorscheme gruvbox-high
-  " colorscheme base16-gruvbox-light-medium
+  colorscheme gruvbox-high
+  colorscheme base16-gruvbox-light-medium
   " colorscheme nofrils-acme
   " colorscheme monotone
   set background=light
 else 
-  " colorscheme solarized8
+  colorscheme solarized8
   set background=dark
 endif
 
-colors dim
+" colors dim
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
