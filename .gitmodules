@@ -1,0 +1,3 @@
+[submodule ".config/kitty/themes/base16"]
+	path = .config/kitty/themes/base16
+	url = git@github.com:kdrag0n/base16-kitty.git
