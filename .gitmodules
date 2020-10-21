@@ -1,3 +1,9 @@
 [submodule ".config/kitty/themes/base16"]
 	path = .config/kitty/themes/base16
 	url = git@github.com:kdrag0n/base16-kitty.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".zgen"]
+	path = .zgen
+	url = https://github.com/tarjoilija/zgen.git
