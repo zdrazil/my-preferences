@@ -81,3 +81,14 @@ if uname -r |grep -q 'Microsoft' ; then
 fi
 
 export REVIEW_BASE="master"
+
+# Use cheat.sh
+chtsh() {
+  # Ask cheat.sh website for details about a Linux command.
+  curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
+}
+
+# Search wiki
+wiki() {
+   vim -c ':copen' -q <(rg --vimgrep ${1} $HOME/vimwiki)
+}
