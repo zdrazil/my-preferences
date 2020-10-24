@@ -90,5 +90,5 @@ chtsh() {
 
 # Search wiki
 wiki() {
-   vim -c ':copen' -q <(rg --vimgrep ${1} $HOME/vimwiki)
+   vim -c ':copen' -q <(rg --vimgrep "$@" "$HOME/vimwiki")
 }
