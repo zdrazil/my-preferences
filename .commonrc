@@ -82,6 +82,10 @@ fi
 
 export REVIEW_BASE="master"
 
+if command -v vimx &> /dev/null; then 
+    alias vim=vimx
+fi
+
 # Use cheat.sh
 chtsh() {
   # Ask cheat.sh website for details about a Linux command.
