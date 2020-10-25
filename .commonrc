@@ -9,7 +9,7 @@ if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
 fi
 
 if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
-    eval $(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)
+    # eval "$(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)"
     export BROWSER='wslview'
 fi
 
@@ -17,7 +17,7 @@ fi
 
 alias grep='grep --color=auto'
 
-function npm-do { (PATH=$(npm bin):$PATH; eval $@;) }
+function npm-do { (PATH=$(npm bin):$PATH; eval "$@";) }
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -70,10 +70,10 @@ if uname -r |grep -q 'Microsoft' ; then
 
     agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
 
-    if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    if [ ! "$SSH_AUTH_SOCK" ] || [ "$agent_run_state" = 2 ]; then
         agent_start
         ssh-add
-    elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    elif [ "$SSH_AUTH_SOCK" ] && [ "$agent_run_state" = 1 ]; then
         ssh-add
     fi
 
