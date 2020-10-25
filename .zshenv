@@ -29,6 +29,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -e /home/zdrazil/.nix-profile/etc/profile.d/nix.sh ]; then . /home/zdrazil/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 fi
 
+if command -v keychain &> /dev/null; then 
+    eval "$(keychain --quiet --eval --agents ssh id_rsa)"
+fi
 
 # if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then 
 #     # Fix locales

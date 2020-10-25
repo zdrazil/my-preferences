@@ -308,6 +308,8 @@ let g:ale_linters = {
       \ 'vimwiki':['writegood'],
       \ 'haskell': ['hlint'],
       \ 'sh': ['shellcheck'],
+      \ 'zsh': ['shellcheck'],
+      \ 'bash': ['shellcheck'],
       \ 'javascript': ['eslint', 'tsserver'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'purescript': ['purescript-language-server'],
