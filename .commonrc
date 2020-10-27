@@ -19,6 +19,14 @@ alias grep='grep --color=auto'
 
 function npm-do { (PATH=$(npm bin):$PATH; eval "$@";) }
 
+# Done this way because official way here is not compatible with nvm
+# https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+
+function npm-g { 
+    NPM_GLOBAL="$HOME/.npm-global/node_modules/.bin"
+    (PATH=$NPM_GLOBAL:$PATH; eval "$@";) 
+}
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 function cdl {
