@@ -15,6 +15,11 @@ if [ -d "/usr/local/lib/python3.7/site-packages" ] ; then
     PATH="/usr/local/lib/python3.7/site-packages:$PATH"
 fi
 
+MY_NPM_GLOBAL="$HOME/.local/npm-tools/node_modules/.bin"
+if [ -d "$MY_NPM_GLOBAL" ] ; then
+    PATH="$MY_NPM_GLOBAL:$PATH"
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias darkMode="2>/dev/null defaults read -g AppleInterfaceStyle"
     export LC_ALL=en_US.UTF-8  
