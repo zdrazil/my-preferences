@@ -35,6 +35,16 @@
         }
       }
     },
+    "clojure-lsp": {
+      "command": "bash",
+      "args": ["-c", "clojure-lsp"],
+      "filetypes": ["clojure"],
+      "rootPatterns": ["project.clj"],
+      "additionalSchemes": ["jar", "zipfile"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+      }
+    },
     "purescript": {
       "command": "purescript-language-server",
       "args": ["--stdio"],
@@ -43,7 +53,7 @@
       "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
       "settings": {
         "purescript": {
-          "addSpagoSources": true // etc
+          "addSpagoSources": true
         }
       }
     }

@@ -127,6 +127,7 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-salve'
+" Plug 'venantius/vim-cljfmt'
 
 Plug 'tweekmonster/startuptime.vim'
 
