@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "prettier": "^2.1.2",
+    "readability-cli": "^1.1.5",
     "yarn": "^1.22.10"
   }
 }
