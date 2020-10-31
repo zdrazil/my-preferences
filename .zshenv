@@ -20,13 +20,13 @@ if [ -d "$MY_NPM_GLOBAL" ]; then
     PATH="$MY_NPM_GLOBAL:$PATH"
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ $OSTYPE == "darwin"* ]]; then
     alias darkMode="2>/dev/null defaults read -g AppleInterfaceStyle"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 fi
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ $OSTYPE == "linux-gnu" ]]; then
     # Ubuntu make installation of Ubuntu Make binary symlink
     if [ -d "$HOME/.local/share/umake/bin" ]; then
         PATH=~/.local/share/umake/bin:$PATH
