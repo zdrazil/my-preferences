@@ -5,6 +5,7 @@
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	attributesfile = /Users/zdrazil/.gitattributes
+	pager = less -x4
 [credential]
 	helper = osxkeychain
 [commit]
