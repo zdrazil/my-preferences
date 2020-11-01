@@ -35,6 +35,14 @@
         }
       }
     },
+    "racket": {
+      "command": "racket",
+      "args": ["-l", "racket-langserver"],
+      "filetypes": ["scheme.racket"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+      }
+    },
     "clojure-lsp": {
       "command": "bash",
       "args": ["-c", "clojure-lsp"],

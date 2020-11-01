@@ -335,3 +335,7 @@ let g:vim_g_command = "Google"
 let g:vim_g_query_url ="http://duckduckgo.com/?q="
 
 nmap <Leader>gK :Google \!
+
+if has("autocmd")
+  au BufReadPost *.rkt,*.rktl set filetype=scheme.racket
+endif
