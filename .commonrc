@@ -1,14 +1,13 @@
-# Source config files that are not to be public (API tokens etc.) 
-if [ -r ~/.not-public ]
-then
+# Source config files that are not to be public (API tokens etc.)
+if [ -r ~/.not-public ]; then
     source ~/.not-public
 fi
 
-if  [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+if [ -f /usr/local/etc/profile.d/autojump.sh ]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
 
-if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(< /proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then  
+if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then
     # eval "$(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)"
     export BROWSER='wslview'
 fi
@@ -17,34 +16,39 @@ fi
 
 alias grep='grep --color=auto'
 
-function npm-do { (PATH=$(npm bin):$PATH; eval "$@";) }
+function npm-do() { (
+    PATH=$(npm bin):$PATH
+    eval "$@"
+); }
 
 # Done this way because official way here is not compatible with nvm
 # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
 alias npm-g='npm --prefix $HOME/.local/npm-tools'
 
-function npm-g { 
+function npm-g() {
     NPM_GLOBAL="$HOME/.npm-global/node_modules/.bin"
-    (PATH=$NPM_GLOBAL:$PATH; eval "$@";) 
+    (
+        PATH=$NPM_GLOBAL:$PATH
+        eval "$@"
+    )
 }
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-function cdl {
+function cdl() {
     builtin cd "$@" && pwd && ls
 }
 
-function vimwiki {
+function vimwiki() {
     cd ~/vimwiki && vim index.md
 }
 
-function my-js-playground {
+function my-js-playground() {
     cd ~/projects/playgrounds/js/src && vim index.js
 }
 
-function rgp()
-{
-  rg -p "$@" | less -RFX
+function rgp() {
+    rg -p "$@" | less -RFX
 }
 
 # Mac Specific Aliases
@@ -52,7 +56,6 @@ if [[ $OSTYPE == darwin* ]]; then
     alias mac-showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
     alias mac-hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
 fi
-
 
 # eval $(thefuck --alias)
 alias oops=fuck
@@ -62,22 +65,29 @@ alias shit=fuck
 alias ohgod=fuck
 alias FUCK=fuck
 
-export NVM_DIR="$HOME/.nvm"		
- [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 # ssh-agent configuration
-if uname -r |grep -q 'Microsoft' ; then
+if uname -r | grep -q 'Microsoft'; then
     env=~/.ssh/agent.env
 
-    agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+    agent_load_env() { test -f "$env" && . "$env" >|/dev/null; }
 
-    agent_start () {
-        (umask 077; ssh-agent >| "$env")
-        . "$env" >| /dev/null ; }
+    agent_start() {
+        (
+            umask 077
+            ssh-agent >|"$env"
+        )
+        . "$env" >|/dev/null
+    }
 
     agent_load_env
 
-    agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+    agent_run_state=$(
+        ssh-add -l >|/dev/null 2>&1
+        echo $?
+    )
 
     if [ ! "$SSH_AUTH_SOCK" ] || [ "$agent_run_state" = 2 ]; then
         agent_start
@@ -91,17 +101,17 @@ fi
 
 export REVIEW_BASE="master"
 
-if command -v vimx &> /dev/null; then 
+if command -v vimx &>/dev/null; then
     alias vim=vimx
 fi
 
 # Use cheat.sh
 chtsh() {
-  # Ask cheat.sh website for details about a Linux command.
-  curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
+    # Ask cheat.sh website for details about a Linux command.
+    curl -m 10 "http://cheat.sh/${1}" 2>/dev/null || printf '%s\n' "[ERROR] Something broke"
 }
 
 # Search wiki
 wiki() {
-   vim -c ':copen' -q <(rg --vimgrep "$@" "$HOME/vimwiki")
+    vim -c ':copen' -q <(rg --vimgrep "$@" "$HOME/vimwiki")
 }

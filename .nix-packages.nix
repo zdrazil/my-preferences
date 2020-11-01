@@ -58,7 +58,7 @@ in buildEnv {
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
-    pkgs.surfraw
+    # pkgs.surfraw
     pkgs.tldr
     pkgs.tig
     pkgs.tmux
