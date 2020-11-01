@@ -49,7 +49,7 @@ in buildEnv {
     pkgs.p7zip
     pkgs.pandoc
     pkgs.pwgen
-    pkgs.python
+    # pkgs.python
     # pkgs.python38Packages.wakeonlan
     pkgs.ranger
     pkgs.readline

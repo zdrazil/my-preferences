@@ -11,6 +11,10 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/Library/Python/3.8/bin" ]; then
+    PATH="$HOME/Library/Python/3.8/bin:$PATH"
+fi
+
 if [ -d "/usr/local/lib/python3.7/site-packages" ]; then
     PATH="/usr/local/lib/python3.7/site-packages:$PATH"
 fi

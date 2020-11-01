@@ -201,13 +201,14 @@ let g:highlightedyank_highlight_duration = 200
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
-      \ 'coc-eslint',
       \ 'coc-fsharp',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-stylelint',
       \ 'coc-tsserver',
       \ 'coc-emmet',
+      \ 'coc-eslint',
+      \ 'coc-python',
       \ ]
 
 set updatetime=300
@@ -302,6 +303,7 @@ let g:ale_fixers = {
       \ 'javascript': ['eslint'],
       \ 'typescript': ['eslint'],
       \ 'purescript': ['purty'],
+      \ 'python': ['black'],
       \}
 
 let g:ale_linters = {
