@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fx": "^20.0.2",
     "prettier": "^2.1.2",
     "readability-cli": "^1.1.5",
     "yarn": "^1.22.10"
