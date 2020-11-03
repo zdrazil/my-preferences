@@ -12,7 +12,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(evil-collection evil use-package)))
+ '(package-selected-packages
+   '(helm-ag helm-projectile projectile helm evil-collection evil use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,3 +39,15 @@
   :ensure t
   :config
   (evil-collection-init))
+
+(use-package helm
+  :ensure t
+  :config (helm-mode t))
+(use-package projectile
+  :ensure projectile
+  :config
+  (setq projectile-indexing-method 'git))
+(use-package helm-projectile
+  :ensure t)
+(use-package helm-ag
+  :ensure t)
