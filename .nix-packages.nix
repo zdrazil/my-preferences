@@ -19,6 +19,7 @@ in buildEnv {
     pkgs.autojump
     pkgs.browsh
     pkgs.coreutils
+    pkgs.clojure-lsp
     # pkgs.clojure-lsp
     pkgs.ddgr
     pkgs.dos2unix
@@ -46,6 +47,7 @@ in buildEnv {
     pkgs.moreutils
     pkgs.mpv
     pkgs.ncdu
+    pkgs.newsboat
     pkgs.p7zip
     pkgs.pandoc
     pkgs.pwgen
@@ -73,7 +75,7 @@ in buildEnv {
     pkgs.xz
     pkgs.youtube-dl
     # Fun
-    pkgs.bb
+    # pkgs.bb
     pkgs.cmatrix
     pkgs.cowsay
     pkgs.doge

@@ -19,6 +19,10 @@ if [ -d "/usr/local/lib/python3.7/site-packages" ]; then
     PATH="/usr/local/lib/python3.7/site-packages:$PATH"
 fi
 
+if [[ -d "${HOME}/.emacs.d/bin" ]]; then
+    PATH="${HOME}/.emacs.d/bin:${PATH}"
+fi
+
 MY_NPM_GLOBAL="$HOME/.local/npm-tools/node_modules/.bin"
 if [ -d "$MY_NPM_GLOBAL" ]; then
     PATH="$MY_NPM_GLOBAL:$PATH"
