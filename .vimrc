@@ -169,6 +169,7 @@ nnoremap <leader>p :Commands<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
+nnoremap <leader>h :History:<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
