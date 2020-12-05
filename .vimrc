@@ -72,7 +72,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'vimwiki/vimwiki'
-Plug 'szw/vim-g'
 
 Plug 'sheerun/vim-polyglot'
 " Plug 'purescript-contrib/purescript-vim'
@@ -194,6 +193,8 @@ let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_options = "--cache"
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_disable_lsp = 1
+highlight ALEError ctermbg=none cterm=underline
+highlight ALEWarning ctermbg=none cterm=underline
 
 let g:slime_target = "tmux"
 
