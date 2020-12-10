@@ -9,6 +9,11 @@
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
   "css.validate": false,
+  "snippets.extends": {
+    "javascriptreact": ["javascript", "javascript-react", "javascript_react"],
+    "typescriptreact": ["typescript", "javascript", "typescript-react"],
+    "typescript": ["javascript"]
+  },
   "eslint.filetypes": [
     "javascript",
     "javascriptreact",
