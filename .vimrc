@@ -78,6 +78,7 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
 
@@ -170,6 +171,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>h :History:<cr>
+nnoremap <leader>ss :Snippets<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
@@ -210,6 +212,7 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-emmet',
       \ 'coc-python',
+      \ 'coc-snippets',
       \ ]
 
 set updatetime=300
@@ -335,3 +338,8 @@ nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 if has("autocmd")
   au BufReadPost *.rkt,*.rktl set filetype=scheme.racket
 endif
+
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
