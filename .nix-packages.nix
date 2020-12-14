@@ -57,13 +57,13 @@ in buildEnv {
     # pkgs.python
     # pkgs.python38Packages.wakeonlan
     pkgs.ranger
+    pkgs.rlwrap
     pkgs.readline
     pkgs.ripgrep
     pkgs.shellcheck
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
-    # pkgs.surfraw
     pkgs.tldr
     pkgs.tig
     pkgs.tmux
