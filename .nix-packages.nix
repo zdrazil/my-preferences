@@ -19,9 +19,12 @@ in buildEnv {
     pkgs.autojump
     pkgs.browsh
     pkgs.coreutils
+    # pkgs.elinks
     pkgs.clojure-lsp
-    # pkgs.clojure-lsp
+    # pkgs.cht-sh
+    pkgs.dasht
     pkgs.ddgr
+    pkgs.navi
     pkgs.dos2unix
     pkgs.entr
     pkgs.exercism

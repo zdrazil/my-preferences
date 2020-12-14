@@ -26,6 +26,7 @@ set linebreak
 
 set cmdheight=2
 
+
 set background=light
 " Fix colors in tmux
 if exists('+termguicolors')
@@ -110,7 +111,7 @@ Plug 'AndrewRadev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
 
-Plug 'rhysd/devdocs.vim'
+" Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
@@ -251,6 +252,8 @@ function! s:show_documentation()
   endif
 endfunction
 
+
+
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
@@ -258,7 +261,7 @@ nnoremap <Leader>F :Grepper -tool rg<CR>
 nmap <Leader>gs  <plug>(GrepperOperator)
 xmap <Leader>gs  <plug>(GrepperOperator)
 
-nmap <Leader>gk <Plug>(devdocs-under-cursor)
+" nmap <Leader>gk <Plug>(devdocs-under-cursor)
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
@@ -339,7 +342,12 @@ if has("autocmd")
   au BufReadPost *.rkt,*.rktl set filetype=scheme.racket
 endif
 
-" let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+autocmd FileType javascript set keywordprg=srd\ dd
+autocmd FileType javascriptreact set keywordprg=srd\ dd
+autocmd FileType typescript set keywordprg=srd\ dd
+autocmd FileType typescriptreact set keywordprg=srd\ dd
+
+:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
+:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
+:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
+

@@ -10,7 +10,20 @@ fi
 if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then
     # eval "$(keychain --quiet --agents ssh --attempts 3 --eval id_rsa)"
     export BROWSER='wslview'
-fi
+    alias open="wslview"
+else
+    case "$OSTYPE" in
+       cygwin*)
+          alias open="cmd /c start"
+          ;;
+       linux*)
+          alias open="xdg-open"
+          ;;
+       darwin*)
+          ;;
+    esac
+fi 
+
 
 #-------------------- ALIASES ------------------------
 
@@ -115,3 +128,4 @@ chtsh() {
 wiki() {
     vim -c ':copen' -q <(rg --vimgrep "$@" "$HOME/vimwiki")
 }
+
