@@ -52983,7 +52983,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>tmux new -s q</string>
+			<string>tmux new-session -A -s q</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
