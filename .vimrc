@@ -115,6 +115,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
+" Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vista.vim'
 
 " FrontEnd
@@ -131,6 +132,8 @@ Plug 'guns/vim-clojure-static'
 " Plug 'venantius/vim-cljfmt'
 
 Plug 'tweekmonster/startuptime.vim'
+Plug 'takac/vim-hardtime'
+" Plug 'danth/pathfinder.vim'
 
 call plug#end()
 
@@ -176,11 +179,11 @@ nnoremap <leader>ss :Snippets<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%')
+    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \   <bang>0)
 
 let g:fzf_layout = { 'down': '40%' }
 
@@ -326,6 +329,21 @@ let g:ale_linters = {
       \}
 
 let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
+" let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" " nmap s <Plug>(easymotion-bd-w)
+" nmap s <Plug>(easymotion-overwin-f2)
+
+" " Turn on case-insensitive feature
+" let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_use_upper = 1
+" let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+
+" " JK motions: Line motions
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
+
+
 
 let g:vista_default_executive = 'coc'
 
@@ -351,3 +369,16 @@ autocmd FileType typescriptreact set keywordprg=srd\ dd
 :command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
 :command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
 
+" toogle line numbers
+" set number relativenumber
+
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
+"
+let g:hardtime_default_on = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:hardtime_ignore_quickfix = 1
