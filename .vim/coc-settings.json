@@ -1,4 +1,5 @@
 {
+  "omnisharp.version": "v1.37.3",
   "suggest.minTriggerInputLength": 1,
   "suggest.autoTrigger": "always",
   "suggest.noselect": true,

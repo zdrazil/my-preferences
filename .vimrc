@@ -217,6 +217,7 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-python',
       \ 'coc-snippets',
+      \ 'coc-omnisharp',
       \ ]
 
 set updatetime=300
@@ -232,7 +233,9 @@ nmap <leader>gr <Plug>(coc-references)
 nmap <leader>[c <Plug>(coc-diagnostic-prev)
 nmap <leader>]c <Plug>(coc-diagnostic-next)
 
-nmap <leader>gca <Plug>(coc-codeaction)
+nmap <leader>gca <Plug>(coc-codeaction-selected)
+xmap <leader>gca <Plug>(coc-codeaction-selected)
+nmap <leader>gcaa <Plug>(coc-codeaction)
 
 nmap <leader>grn <Plug>(coc-rename)
 
@@ -241,6 +244,7 @@ nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
 " nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
 
+command! -nargs=0 CocFormat :call CocAction('format')
 
 inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
@@ -314,6 +318,7 @@ let g:ale_fixers = {
       \ 'typescript': ['eslint'],
       \ 'purescript': ['purty'],
       \ 'python': ['black'],
+      \ 'cs': ['uncrustify'],
       \}
 
 let g:ale_linters = {
@@ -365,9 +370,15 @@ autocmd FileType javascriptreact set keywordprg=srd\ dd
 autocmd FileType typescript set keywordprg=srd\ dd
 autocmd FileType typescriptreact set keywordprg=srd\ dd
 
+:command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
+nmap <leader>gov  :VSCode<cr>
+
 :command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
 :command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
 :command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
+
+:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'
+:command! -nargs=+ CSharpDoc execute ':silent !srd csharp '.<q-args> | execute ':redraw!'
 
 " toogle line numbers
 " set number relativenumber
@@ -381,4 +392,8 @@ autocmd FileType typescriptreact set keywordprg=srd\ dd
 let g:hardtime_default_on = 1
 let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
+
 let g:hardtime_ignore_quickfix = 1
+
+
