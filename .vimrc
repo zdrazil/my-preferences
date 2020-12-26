@@ -116,12 +116,13 @@ Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
 " Plug 'easymotion/vim-easymotion'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'liuchengxu/vista.vim'
 
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
 
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 " Clojure
 Plug 'tpope/vim-fireplace'
@@ -134,6 +135,7 @@ Plug 'guns/vim-clojure-static'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'takac/vim-hardtime'
 " Plug 'danth/pathfinder.vim'
+" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 call plug#end()
 
@@ -292,8 +294,8 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vimwiki_conceallevel = 0
 let g:vimwiki_auto_header = 1
-
-" let g:zettel_format = "%y%m%d-%H%M%S"
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_global_ext = 0
 
 let g:localvimrc_name = [ ".scilvimrc"]
 let g:localvimrc_persistent = 2
@@ -395,5 +397,14 @@ let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<R
 
 
 let g:hardtime_ignore_quickfix = 1
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 
