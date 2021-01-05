@@ -1,4 +1,7 @@
 {
+  "python.pythonPath": "python3",
+  "python.linting.flake8Enabled": "true",
+  "python.formatting.provider": "",
   "omnisharp.version": "v1.37.3",
   "suggest.minTriggerInputLength": 1,
   "suggest.autoTrigger": "always",

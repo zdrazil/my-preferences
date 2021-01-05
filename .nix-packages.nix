@@ -76,7 +76,7 @@ in buildEnv {
     pkgs.watchman
     pkgs.wget
     pkgs.xz
-    pkgs.youtube-dl
+    # pkgs.youtube-dl
     # Fun
     # pkgs.bb
     pkgs.cmatrix

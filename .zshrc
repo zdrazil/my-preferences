@@ -17,6 +17,7 @@ fpath=(~/.zsh/completions $fpath)
 #
 source "${HOME}/.zgen/zgen.zsh"
 
+# Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
 # if the init script doesn't exist
 if ! zgen saved; then
 
@@ -29,6 +30,7 @@ if ! zgen saved; then
 
 
   zgen load zsh-users/zsh-completions src
+  zgen load spwhitt/nix-zsh-completions
 
   # generate the init script from plugins above
   zgen save
@@ -163,6 +165,7 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
 
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 function cowsay-random {

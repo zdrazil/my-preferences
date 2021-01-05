@@ -129,3 +129,4 @@ wiki() {
     vim -c ':copen' -q <(rg --vimgrep "$@" "$HOME/vimwiki")
 }
 
+alias ungron="gron --ungron"

@@ -5,6 +5,9 @@ set mouse=a
 set wildignorecase
 set hidden
 
+set wildmenu
+set wildmode=list:longest,list:full
+
 " Highlight searches by default
 set hlsearch
 set ignorecase
@@ -84,6 +87,7 @@ Plug 'honza/vim-snippets'
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -116,6 +120,7 @@ Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
 " Plug 'easymotion/vim-easymotion'
+Plug 'welle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'liuchengxu/vista.vim'
 
@@ -177,7 +182,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>h :History:<cr>
-nnoremap <leader>ss :Snippets<cr>
+" nnoremap <leader>ss :Snippets<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
@@ -212,12 +217,14 @@ let g:highlightedyank_highlight_duration = 200
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
+      \ 'coc-perl',
+      \ 'coc-sql',
       \ 'coc-fsharp',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-tsserver',
       \ 'coc-emmet',
-      \ 'coc-python',
+      \ 'coc-pyright',
       \ 'coc-snippets',
       \ 'coc-omnisharp',
       \ ]
@@ -242,6 +249,8 @@ nmap <leader>gcaa <Plug>(coc-codeaction)
 nmap <leader>grn <Plug>(coc-rename)
 
 nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+
+nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
 
 " nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
@@ -407,4 +416,6 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-
+if !exists("g:netrw_banner")
+  let g:netrw_banner = 1
+endif

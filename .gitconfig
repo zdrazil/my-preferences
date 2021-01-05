@@ -35,11 +35,12 @@
 	gfiles =!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = master
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[help]
-	autocorrect = 1
 [rerere]
 	enabled = true
 [delta]
 	side-by-side = true
+[pull]
+	rebase = true
