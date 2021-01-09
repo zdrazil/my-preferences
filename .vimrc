@@ -120,7 +120,7 @@ Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
 " Plug 'easymotion/vim-easymotion'
-Plug 'welle/targets.vim'
+Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'liuchengxu/vista.vim'
 
