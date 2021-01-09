@@ -110,7 +110,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
-" Plug 'tommcdo/vim-exchange'
+Plug 'tommcdo/vim-exchange'
 Plug 'AndrewRadev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
