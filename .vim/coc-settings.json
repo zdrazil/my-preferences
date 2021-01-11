@@ -1,14 +1,13 @@
 {
   "python.pythonPath": "python3",
-  "python.linting.flake8Enabled": "true",
-  "python.formatting.provider": "",
+  "python.linting.flake8Enabled": true,
   "omnisharp.version": "v1.37.3",
   "suggest.minTriggerInputLength": 1,
   "suggest.autoTrigger": "always",
   "suggest.noselect": true,
   "suggest.preferCompleteThanJumpPlaceholder": false,
   "suggest.echodocSupport": true,
-  "diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": false,
   "coc.preferences.promptInput": false,
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
@@ -18,7 +17,7 @@
     "typescriptreact": ["typescript", "javascript", "typescript-react"],
     "typescript": ["javascript"]
   },
-  "eslint.filetypes": [
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
