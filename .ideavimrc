@@ -95,7 +95,6 @@ map <leader>sv :source ~/.ideavimrc<cr>
 map ]c <Action>(GotoNextError)
 map [c <Action>(GotoPreviousError)
 
-
 set commentary
 set surround
 set easymotion
