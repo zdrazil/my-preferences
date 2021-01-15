@@ -461,3 +461,6 @@ endif
 
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-l>"
+
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact
+  \ UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
