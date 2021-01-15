@@ -81,7 +81,8 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'purescript-contrib/purescript-vim'
 
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'natebosch/vim-lsc'
 Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
@@ -206,7 +207,6 @@ let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_options = "--cache"
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_disable_lsp = 1
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 
@@ -215,65 +215,99 @@ let g:slime_target = "tmux"
 let g:highlightedyank_highlight_duration = 200
 
 " Coc.nvim
-let g:coc_global_extensions = [
-      \ 'coc-css',
-      \ 'coc-perl',
-      \ 'coc-sql',
-      \ 'coc-fsharp',
-      \ 'coc-html',
-      \ 'coc-json',
-      \ 'coc-tsserver',
-      \ 'coc-emmet',
-      \ 'coc-pyright',
-      \ 'coc-snippets',
-      \ 'coc-omnisharp',
-      \ ]
+" let g:coc_global_extensions = [
+"       \ 'coc-css',
+"       \ 'coc-perl',
+"       \ 'coc-sql',
+"       \ 'coc-fsharp',
+"       \ 'coc-html',
+"       \ 'coc-json',
+"       \ 'coc-tsserver',
+"       \ 'coc-emmet',
+"       \ 'coc-pyright',
+"       \ 'coc-snippets',
+"       \ 'coc-omnisharp',
+"       \ ]
 
-set updatetime=300
-inoremap <silent><expr> <c-space>a coc#refresh()
+" set updatetime=300
+" inoremap <silent><expr> <c-space>a coc#refresh()
 
-nmap <leader>d <Plug>(coc-definition)
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
+" nmap <leader>d <Plug>(coc-definition)
+" nmap <leader>gd <Plug>(coc-definition)
+" nmap <leader>gy <Plug>(coc-type-definition)
 
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+" nmap <leader>gi <Plug>(coc-implementation)
+" nmap <leader>gr <Plug>(coc-references)
 
-nmap <leader>[c <Plug>(coc-diagnostic-prev)
-nmap <leader>]c <Plug>(coc-diagnostic-next)
+" nmap <leader>[c <Plug>(coc-diagnostic-prev)
+" nmap <leader>]c <Plug>(coc-diagnostic-next)
 
-nmap <leader>gca <Plug>(coc-codeaction-selected)
-xmap <leader>gca <Plug>(coc-codeaction-selected)
-nmap <leader>gcaa <Plug>(coc-codeaction)
+" nmap <leader>gca <Plug>(coc-codeaction-selected)
+" xmap <leader>gca <Plug>(coc-codeaction-selected)
+" nmap <leader>gcaa <Plug>(coc-codeaction)
 
-nmap <leader>grn <Plug>(coc-rename)
+" nmap <leader>grn <Plug>(coc-rename)
 
-nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
 
-nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
+" nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
 
-" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
+" " nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+" nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
 
-command! -nargs=0 CocFormat :call CocAction('format')
+" command! -nargs=0 CocFormat :call CocAction('format')
 
-inoremap <silent><expr> <c-space> coc#refresh()
-imap <C-@> <C-Space>
+" inoremap <silent><expr> <c-space> coc#refresh()
+" imap <C-@> <C-Space>
 
-nnoremap <leader>gh :call <SID>show_documentation()<CR>
+" nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': ['<leader>d', '<leader>gd'],
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': '<leader>gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': '<leader>gI',
+    \ 'FindCodeActions': '<leader>gca',
+    \ 'Rename': '<leader>grn',
+    \ 'ShowHover': '<leader>gh',
+    \ 'DocumentSymbol': '<leader>gcs',
+    \ 'WorkspaceSymbol': '<leader>gcS',
+    \ 'SignatureHelp': '<leader>gy',
+    \ 'Completion': 'completefunc',
+    \}
 
+let g:lsc_server_commands = {
+  \ 'javascript': 'typescript-language-server --stdio',
+  \ 'typescript': 'typescript-language-server --stdio',
+  \ 'javascriptreact': 'typescript-language-server --stdio',
+  \ 'typescriptreact': 'typescript-language-server --stdio',
+  \ 'html': 'html-languageserver --stdio',
+  \ 'css': 'css-languageserver --stdio',
+  \ 'json': 'vscode-json-languageserver --stdio',
+  \ 'vim' : {
+    \   'name': 'vim-language-server',
+    \   'command': 'vim-language-server --stdio',
+    \      'message_hooks': {
+    \          'initialize': {
+    \              'initializationOptions': { 'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp },
+    \          },
+    \      },
+    \   },
+	\ 'sh': 'bash-language-server start',
+  \ }
 
 nnoremap <Leader>F :Grepper -tool rg<CR>
 nmap <Leader>gs  <plug>(GrepperOperator)
@@ -326,7 +360,9 @@ hi Pmenu ctermbg=Black ctermfg=White
 let g:ale_fixers = {
       \ 'haskell': ['hlint', 'brittany'],
       \ 'javascript': ['eslint'],
+      \ 'javascriptreact': ['eslint'],
       \ 'typescript': ['eslint'],
+      \ 'typescriptreact': ['eslint'],
       \ 'purescript': ['purty'],
       \ 'python': ['black'],
       \ 'cs': ['uncrustify'],
@@ -340,7 +376,9 @@ let g:ale_linters = {
       \ 'zsh': ['shellcheck'],
       \ 'bash': ['shellcheck'],
       \ 'javascript': ['eslint', 'tsserver'],
+      \ 'javascriptreact': ['eslint', 'tsserver'],
       \ 'typescript': ['eslint', 'tsserver'],
+      \ 'typescriptreact': ['eslint', 'tsserver'],
       \ 'purescript': ['purescript-language-server'],
       \}
 
@@ -361,7 +399,7 @@ let g:sneak#use_ic_scs = 1
 
 
 
-let g:vista_default_executive = 'coc'
+" let g:vista_default_executive = 'coc'
 
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight

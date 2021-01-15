@@ -130,3 +130,8 @@ wiki() {
 }
 
 alias ungron="gron --ungron"
+
+MY_NPM_GLOBAL="$HOME/.local/npm-tools/node_modules/.bin"
+if [ -d "$MY_NPM_GLOBAL" ]; then
+    PATH="$MY_NPM_GLOBAL:$PATH"
+fi
