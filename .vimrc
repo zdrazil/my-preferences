@@ -83,9 +83,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'natebosch/vim-lsc'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'xabikos/vscode-javascript'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
@@ -186,7 +184,7 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>h :History:<cr>
-" nnoremap <leader>ss :Snippets<cr>
+nnoremap <leader>ss :Snippets<cr>
 
 " FZF preview
 command! -bang -nargs=* Rg
@@ -279,7 +277,7 @@ let g:highlightedyank_highlight_duration = 200
 let g:lsc_auto_map = {
     \ 'GoToDefinition': ['<leader>d', '<leader>gd'],
     \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
-    \ 'FindReferences': '<leader>gr',
+    \ 'FindReferences': '<leader>grr',
     \ 'NextReference': '<C-n>',
     \ 'PreviousReference': '<C-p>',
     \ 'FindImplementations': '<leader>gI',
@@ -461,11 +459,5 @@ if !exists("g:netrw_banner")
   let g:netrw_banner = 1
 endif
 
-let g:vsnip_filetypes = {}
-let g:vsnip_filetypes.javascriptreact = ['javascript']
-let g:vsnip_filetypes.typescriptreact = ['javascript']
-let g:vsnip_filetypes.typescript = ['javascript']
-
-imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-l>"
