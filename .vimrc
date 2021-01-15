@@ -462,10 +462,9 @@ if !exists("g:netrw_banner")
 endif
 
 let g:vsnip_filetypes = {}
-let g:vsnip_filetypes.javascript = ['javascript']
 let g:vsnip_filetypes.javascriptreact = ['javascript']
-let g:vsnip_filetypes.typescript = ['javascript']
 let g:vsnip_filetypes.typescriptreact = ['javascript']
+let g:vsnip_filetypes.typescript = ['javascript']
 
 imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
