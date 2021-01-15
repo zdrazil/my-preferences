@@ -138,7 +138,7 @@ Plug 'guns/vim-clojure-static'
 " Plug 'venantius/vim-cljfmt'
 
 Plug 'tweekmonster/startuptime.vim'
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 " Plug 'danth/pathfinder.vim'
 " Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
