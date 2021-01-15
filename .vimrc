@@ -83,6 +83,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'natebosch/vim-lsc'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'xabikos/vscode-javascript'
 Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
@@ -457,3 +460,13 @@ omap ac <Plug>(coc-classobj-a)
 if !exists("g:netrw_banner")
   let g:netrw_banner = 1
 endif
+
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascript = ['javascript']
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescript = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['javascript']
+
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
