@@ -88,6 +88,7 @@ map <leader>ss <Action>(InsertLiveTemplate)
 map <leader>gh <Action>(QuickJavaDoc)
 map <leader>gcs <Action>(GotoSymbol)
 map <leader>gco <Action>(FileStructurePopup)
+map <leader>gto <Action>(Terminal.OpenInTerminal)
 
 map <leader>ev :vsplit ~/.ideavimrc<cr>
 map <leader>sv :source ~/.ideavimrc<cr>
@@ -101,6 +102,7 @@ set easymotion
 set argtextobj
 nmap s <Plug>(easymotion-f2)
 nmap S <Plug>(easymotion-F2)
+
 
 nmap <leader>gs< <Action>(MoveElementLeft)
 nmap <leader>gs> <Action>(MoveElementRight)

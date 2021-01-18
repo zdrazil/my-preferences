@@ -38,6 +38,12 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+" Make mouse work in tmux
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=sgr
+endif
+
 " always show gutter so it doesn't move
 set signcolumn=yes
 
@@ -298,15 +304,6 @@ let g:lsc_server_commands = {
   \ 'html': 'html-languageserver --stdio',
   \ 'css': 'css-languageserver --stdio',
   \ 'json': 'vscode-json-languageserver --stdio',
-  \ 'vim' : {
-    \   'name': 'vim-language-server',
-    \   'command': 'vim-language-server --stdio',
-    \      'message_hooks': {
-    \          'initialize': {
-    \              'initializationOptions': { 'vimruntime': $VIMRUNTIME, 'runtimepath': &rtp },
-    \          },
-    \      },
-    \   },
 	\ 'sh': 'bash-language-server start',
   \ }
 
