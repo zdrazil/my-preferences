@@ -24,19 +24,14 @@ if ! zgen saved; then
   # specify plugins here
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
-  zgen load laggardkernel/zsh-thefuck
   zgen load agkozak/zsh-z
-  # zgen load marlonrichert/zsh-autocomplete
 
 
   zgen load zsh-users/zsh-completions src
-  zgen load spwhitt/nix-zsh-completions
 
   # generate the init script from plugins above
   zgen save
 fi
-
-zstyle ":prezto:module:thefuck" alias "damn"
 
 # ---------------------------------------------------
 
@@ -168,4 +163,3 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 eval "$(direnv hook zsh)"
-
