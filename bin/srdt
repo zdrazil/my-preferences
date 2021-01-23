@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# w3m "http://www.duckduckgo.com/html/?q=$1"
-# w3m "http://www.duckduckgo.com/html/?q=$1"
-sr -t duckduckgo \!$*

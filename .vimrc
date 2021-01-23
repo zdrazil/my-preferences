@@ -116,7 +116,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
-Plug 'tommcdo/vim-exchange'
 Plug 'AndrewRadev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
@@ -126,7 +125,6 @@ Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-sneak'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'liuchengxu/vista.vim'
 
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
@@ -143,27 +141,14 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
-" dark mode enabled?
-if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'
-  colorscheme solarized8
-  set background=dark
-elseif has("gui_macvim")
-  colorscheme gruvbox-high
-  colorscheme base16-gruvbox-light-medium
-  " colorscheme nofrils-acme
-  " colorscheme monotone
-  set background=light
-else 
-  colorscheme solarized8
-  set background=dark
-endif
-
-" colors dim
+colorscheme base16-oceanicnext
+set background=dark
+" colorscheme solarized8
+" set background=dark
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
-nnoremap <leader>* :Grepper -tool git -open -switch -cword -noprompt<cr>
 
 let g:mapleader = "\<space>"
 inoremap jj <Esc>
@@ -189,12 +174,6 @@ command! -bang -nargs=* Rg
     \   <bang>0)
 
 let g:fzf_layout = { 'down': '40%' }
-
-command FoldIndent setlocal foldmethod=indent
-command FoldManual setlocal foldmethod=manual
-command FoldSyntax setlocal foldmethod=syntax
-set foldmethod=indent
-set foldlevel=99
 
 " let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -237,13 +216,9 @@ let g:lsc_server_commands = {
   \ }
 
 nnoremap <Leader>F :Grepper -tool rg<CR>
-nmap <Leader>gs  <plug>(GrepperOperator)
-xmap <Leader>gs  <plug>(GrepperOperator)
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
-
-nnoremap <Leader>/ /\%><C-R>=line('w0')-1<CR>l\%<<C-R>=line('w$')+1<CR>l
 
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
@@ -271,20 +246,15 @@ let g:localvimrc_persistent = 2
 hi Pmenu ctermbg=Black ctermfg=White
 
 let g:ale_fixers = {
-      \ 'haskell': ['hlint', 'brittany'],
       \ 'javascript': ['eslint'],
       \ 'javascriptreact': ['eslint'],
       \ 'typescript': ['eslint'],
       \ 'typescriptreact': ['eslint'],
-      \ 'purescript': ['purty'],
       \ 'python': ['black'],
-      \ 'cs': ['uncrustify'],
       \}
 
 let g:ale_linters = {
-      \ 'markdown':['writegood'],
       \ 'vimwiki':['writegood'],
-      \ 'haskell': ['hlint'],
       \ 'sh': ['shellcheck'],
       \ 'zsh': ['shellcheck'],
       \ 'bash': ['shellcheck'],
@@ -292,7 +262,6 @@ let g:ale_linters = {
       \ 'javascriptreact': ['eslint', 'tsserver'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'typescriptreact': ['eslint', 'tsserver'],
-      \ 'purescript': ['purescript-language-server'],
       \}
 
 let g:sneak#label = 1
@@ -301,20 +270,8 @@ let g:sneak#use_ic_scs = 1
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
 
-autocmd FileType purescript setlocal commentstring=--%s
-autocmd FileType purescript setlocal comments=:--
-
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
-
-if has("autocmd")
-  au BufReadPost *.rkt,*.rktl set filetype=scheme.racket
-endif
-
-autocmd FileType javascript set keywordprg=srd\ dd
-autocmd FileType javascriptreact set keywordprg=srd\ dd
-autocmd FileType typescript set keywordprg=srd\ dd
-autocmd FileType typescriptreact set keywordprg=srd\ dd
 
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 nmap <leader>gov  :VSCode<cr>
