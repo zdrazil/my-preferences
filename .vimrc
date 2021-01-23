@@ -84,10 +84,8 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 
 Plug 'sheerun/vim-polyglot'
-" Plug 'purescript-contrib/purescript-vim'
 
 Plug 'w0rp/ale'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'natebosch/vim-lsc'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -123,11 +121,9 @@ Plug 'AndrewRadev/sideways.vim'
 
 Plug 'jpalardy/vim-slime'
 
-" Plug 'rhysd/devdocs.vim'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'justinmk/vim-sneak'
-" Plug 'easymotion/vim-easymotion'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'liuchengxu/vista.vim'
@@ -135,20 +131,13 @@ Plug 'liuchengxu/vista.vim'
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
 
-" Plug 'mattn/emmet-vim'
-
 " Clojure
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
-" Plug 'tpope/vim-salve'
-" Plug 'venantius/vim-cljfmt'
 
 Plug 'tweekmonster/startuptime.vim'
-" Plug 'takac/vim-hardtime'
-" Plug 'danth/pathfinder.vim'
-" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 call plug#end()
 
@@ -177,7 +166,6 @@ let g:grepper.tools = ['rg', 'grep', 'git' ]
 nnoremap <leader>* :Grepper -tool git -open -switch -cword -noprompt<cr>
 
 let g:mapleader = "\<space>"
-" inoremap <c-space> <space>
 inoremap jj <Esc>
 
 " " cdc = change to directory of current file
@@ -221,65 +209,6 @@ let g:slime_target = "tmux"
 
 let g:highlightedyank_highlight_duration = 200
 
-" Coc.nvim
-" let g:coc_global_extensions = [
-"       \ 'coc-css',
-"       \ 'coc-perl',
-"       \ 'coc-sql',
-"       \ 'coc-fsharp',
-"       \ 'coc-html',
-"       \ 'coc-json',
-"       \ 'coc-tsserver',
-"       \ 'coc-emmet',
-"       \ 'coc-pyright',
-"       \ 'coc-snippets',
-"       \ 'coc-omnisharp',
-"       \ ]
-
-" set updatetime=300
-" inoremap <silent><expr> <c-space>a coc#refresh()
-
-" nmap <leader>d <Plug>(coc-definition)
-" nmap <leader>gd <Plug>(coc-definition)
-" nmap <leader>gy <Plug>(coc-type-definition)
-
-" nmap <leader>gi <Plug>(coc-implementation)
-" nmap <leader>gr <Plug>(coc-references)
-
-" nmap <leader>[c <Plug>(coc-diagnostic-prev)
-" nmap <leader>]c <Plug>(coc-diagnostic-next)
-
-" nmap <leader>gca <Plug>(coc-codeaction-selected)
-" xmap <leader>gca <Plug>(coc-codeaction-selected)
-" nmap <leader>gcaa <Plug>(coc-codeaction)
-
-" nmap <leader>grn <Plug>(coc-rename)
-
-" nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
-
-" nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
-
-" " nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
-" nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
-
-" command! -nargs=0 CocFormat :call CocAction('format')
-
-" inoremap <silent><expr> <c-space> coc#refresh()
-" imap <C-@> <C-Space>
-
-" nnoremap <leader>gh :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-
-
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:lsc_auto_map = {
     \ 'GoToDefinition': ['<leader>d', '<leader>gd'],
     \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
@@ -311,8 +240,6 @@ nnoremap <Leader>F :Grepper -tool rg<CR>
 nmap <Leader>gs  <plug>(GrepperOperator)
 xmap <Leader>gs  <plug>(GrepperOperator)
 
-" nmap <Leader>gk <Plug>(devdocs-under-cursor)
-
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
@@ -343,18 +270,6 @@ let g:localvimrc_persistent = 2
 
 hi Pmenu ctermbg=Black ctermfg=White
 
-" augroup plugin-devdocs
-"   autocmd!
-"   autocmd FileType
-"         \ haskell,
-"         \ javascript,
-"         \ javascriptreact,
-"         \ python,
-"         \ typescript,
-"         \ typescriptreact
-"         \ nmap <buffer>K <Plug>(devdocs-under-cursor)
-" augroup END
-
 let g:ale_fixers = {
       \ 'haskell': ['hlint', 'brittany'],
       \ 'javascript': ['eslint'],
@@ -382,22 +297,6 @@ let g:ale_linters = {
 
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
-" let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" " nmap s <Plug>(easymotion-bd-w)
-" nmap s <Plug>(easymotion-overwin-f2)
-
-" " Turn on case-insensitive feature
-" let g:EasyMotion_smartcase = 1
-" let g:EasyMotion_use_upper = 1
-" let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-
-" " JK motions: Line motions
-" map <Leader>j <Plug>(easymotion-j)
-" map <Leader>k <Plug>(easymotion-k)
-
-
-
-" let g:vista_default_executive = 'coc'
 
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
@@ -419,38 +318,6 @@ autocmd FileType typescriptreact set keywordprg=srd\ dd
 
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 nmap <leader>gov  :VSCode<cr>
-
-:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
-:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
-:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
-
-:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'
-:command! -nargs=+ CSharpDoc execute ':silent !srd csharp '.<q-args> | execute ':redraw!'
-
-" toogle line numbers
-" set number relativenumber
-
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
-"
-let g:hardtime_default_on = 0
-let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-
-
-let g:hardtime_ignore_quickfix = 1
-
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
 
 if !exists("g:netrw_banner")
   let g:netrw_banner = 1
