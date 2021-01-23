@@ -11,7 +11,12 @@ if test -d "$HOME/.local/bin"
 end
 
 if test -d "$HOME/.fzf/bin" 
-    set PATH $PATH ~/.fzf/bin
+    set PATH ~/.fzf/bin $PATH 
+end
+
+
+if test -d "$HOME/.local/npm-tools/node_modules/.bin"
+    set PATH "$HOME/.local/npm-tools/node_modules/.bin" $PATH
 end
 
 switch (uname)
@@ -21,19 +26,10 @@ switch (uname)
     case '*'
 end
 
-set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
 set -gx EDITOR vim
 
-# if test -d "mnt/c/Users"
-#     keychain --quiet --agents ssh --attempts 3 --eval id_rsa
-# end
-
 set fish_greeting
-
-# eval (ssh-agent -c)
-# fish_ssh_agent
 
 #-------------------- ALIASES ------------------------
 
@@ -46,7 +42,10 @@ switch (uname)
     case '*'
 end
 
-# Source Nix setup script
-if test -e ~/.nix-profile/etc/profile.d/nix.sh
-    fenv source ~/.nix-profile/etc/profile.d/nix.sh
-end
+# FZF
+set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
+
+
+direnv hook fish | source

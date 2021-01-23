@@ -1,0 +1,3 @@
+#! /bin/bash
+
+builtin cd "$@" && pwd && ls

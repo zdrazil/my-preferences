@@ -163,17 +163,9 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
 
-
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-function cowsay-random {
-  cowsay -f "$(cowsay -l | sed '1d' | tr ' ' '\n' | sort -R | head -1)"
-}
+eval "$(direnv hook zsh)"
 
-# fortune -sa | cowsay
-
-# For zsh-autocomplete
-# zstyle ':autocomplete:list-choices:*' min-input 3
-#

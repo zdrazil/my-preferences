@@ -6,6 +6,9 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "markwu/personal"
 
+brew "mitmproxy"
+brew "direnv"
+
 # From nix
 brew "ack"
 brew "autojump"
@@ -127,3 +130,4 @@ cask "vmware-fusion"
 cask "xquartz"
 cask "yacreader"
 cask "zotero"
+
