@@ -37,4 +37,6 @@ set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 
+set -gx HOMEBREW_NO_ANALYTICS "1"
+
 direnv hook fish | source
