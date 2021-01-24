@@ -93,4 +93,11 @@ bind Space:magic-space
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+if [ -d "$HOME/.asdf" ] ; then
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+     eval "$(asdf exec direnv hook bash)"
+fi
+

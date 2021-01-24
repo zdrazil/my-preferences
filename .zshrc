@@ -24,6 +24,7 @@ if ! zgen saved; then
   # specify plugins here
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
+  # zgen load kiurchv/asdf.plugin.zsh
   zgen load agkozak/zsh-z
 
 
@@ -162,4 +163,8 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-eval "$(direnv hook zsh)"
+if [ -d "$HOME/.asdf" ] ; then
+    . $HOME/.asdf/asdf.sh
+    eval "$(asdf exec direnv hook zsh)"
+fi
+
