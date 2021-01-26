@@ -142,7 +142,7 @@ runtime plugin/sensible.vim
 
 colorscheme base16-oceanicnext
 set background=dark
-" colorscheme solarized8
+colorscheme solarized8
 " set background=dark
 
 runtime plugin/grepper.vim
@@ -273,7 +273,9 @@ nmap <leader>gs> <Plug>SidewaysRight
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
+:command! WebStorm execute ':silent !webstorm' . " --line " . line(". ") . " --column " . virtcol("."). ' %' | execute ':redraw!'
 nmap <leader>gov  :VSCode<cr>
+nmap <leader>gow  :WebStorm<cr>
 
 if !exists("g:netrw_banner")
   let g:netrw_banner = 1
