@@ -78,7 +78,7 @@ map <leader>gd <Action>(GotoDeclaration)
 map <leader>gy <Action>(GotoTypeDefinition)
 
 map <leader>gi <Action>(GotoImplementation)
-map <leader>grr <Action>(GotoDeclaration)
+map <leader>grr <Action>(FindUsages)
 
 map <leader>gca <Action>(ShowIntentionActions)
 
