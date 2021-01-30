@@ -21,6 +21,12 @@ if [[ $OSTYPE == "darwin"* ]]; then
     export LANG=en_US.UTF-8
 fi
 
+if [ -d "/opt/local/bin" ]; then
+    PATH=/opt/local/bin:/opt/local/sbin:$PATH
+    MANPATH=/opt/local/share/man:$MANPATH
+fi
+
+
 export CLICOLOR=1
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files'

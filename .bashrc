@@ -101,3 +101,9 @@ if [ -d "$HOME/.asdf" ] ; then
      eval "$(asdf exec direnv hook bash)"
 fi
 
+
+if [ -d "/opt/local/bin" ]; then
+    PATH=/opt/local/bin:/opt/local/sbin:$PATH
+    MANPATH=/opt/local/share/man:$MANPATH
+fi
+

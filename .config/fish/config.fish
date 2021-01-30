@@ -6,6 +6,10 @@ if test -d "/usr/local/bin"
     set PATH /usr/local/bin $PATH
 end
 
+if test -d "/opt/local/bin" 
+    set PATH /opt/local/bin /opt/local/sbin $PATH
+end
+
 if test -d "$HOME/.local/bin" 
     set PATH $HOME/.local/bin $PATH
 end
