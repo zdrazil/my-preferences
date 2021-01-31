@@ -29,7 +29,6 @@ set linebreak
 
 set cmdheight=2
 
-
 set background=light
 " Fix colors in tmux
 if exists('+termguicolors')

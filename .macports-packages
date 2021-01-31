@@ -69,6 +69,7 @@ subversion
 
 macvim
 vim +perl +lua +python38 
+imagemagick
 
 
 gron
