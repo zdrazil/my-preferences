@@ -11,6 +11,11 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.local/homebrew/bin" ]; then
+    PATH="$HOME/.local/homebrew/bin:$PATH"
+fi
+
+
 MY_NPM_GLOBAL="$HOME/.local/npm-tools/node_modules/.bin"
 if [ -d "$MY_NPM_GLOBAL" ]; then
     PATH="$MY_NPM_GLOBAL:$PATH"

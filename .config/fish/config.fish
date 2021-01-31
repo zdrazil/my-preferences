@@ -14,6 +14,10 @@ if test -d "$HOME/.local/bin"
     set PATH $HOME/.local/bin $PATH
 end
 
+if test -d "$HOME/.local/homebrew/bin" 
+    set PATH $HOME/.local/homebrew/bin $PATH
+end
+
 if test -d "$HOME/.fzf/bin" 
     set PATH ~/.fzf/bin $PATH 
 end

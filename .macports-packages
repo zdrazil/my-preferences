@@ -65,6 +65,10 @@ nodejs14
 perl5
 youtube-dl
 zsh
+subversion
+
+macvim
+vim +perl +lua +python38 
 
 
 gron
