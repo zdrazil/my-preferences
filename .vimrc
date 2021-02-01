@@ -214,6 +214,9 @@ let g:lsc_server_commands = {
 	\ 'sh': 'bash-language-server start',
   \ }
 
+let g:lsc_autocomplete_length = 1
+let g:lsc_enable_diagnostics = 0
+
 nnoremap <Leader>F :Grepper -tool rg<CR>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
