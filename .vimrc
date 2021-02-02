@@ -85,8 +85,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
-Plug 'natebosch/vim-lsc'
-Plug 'SirVer/ultisnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
@@ -111,7 +111,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
 Plug 'junegunn/vim-easy-align'
 
-
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
@@ -134,6 +133,9 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
 
+" C#
+Plug 'OmniSharp/omnisharp-vim'
+
 Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
@@ -142,7 +144,7 @@ runtime plugin/sensible.vim
 
 colorscheme base16-oceanicnext
 set background=dark
-colorscheme solarized8
+" colorscheme solarized8
 " set background=dark
 
 runtime plugin/grepper.vim
@@ -187,40 +189,66 @@ let g:slime_target = "tmux"
 
 let g:highlightedyank_highlight_duration = 200
 
-let g:lsc_auto_map = {
-    \ 'GoToDefinition': ['<leader>d', '<leader>gd'],
-    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
-    \ 'FindReferences': '<leader>grr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': '<leader>gI',
-    \ 'FindCodeActions': '<leader>gca',
-    \ 'Rename': '<leader>grn',
-    \ 'ShowHover': '<leader>gh',
-    \ 'DocumentSymbol': '<leader>gcs',
-    \ 'WorkspaceSymbol': '<leader>gcS',
-    \ 'SignatureHelp': '<leader>gy',
-    \ 'Completion': 'completefunc',
-    \}
-
-let g:lsc_server_commands = {
-  \ 'javascript': 'typescript-language-server --stdio',
-  \ 'typescript': 'typescript-language-server --stdio',
-  \ 'javascriptreact': 'typescript-language-server --stdio',
-  \ 'typescriptreact': 'typescript-language-server --stdio',
-  \ 'html': 'html-languageserver --stdio',
-  \ 'css': 'css-languageserver --stdio',
-  \ 'json': 'vscode-json-languageserver --stdio',
-	\ 'sh': 'bash-language-server start',
-  \ }
-
-let g:lsc_autocomplete_length = 1
-let g:lsc_enable_diagnostics = 0
-
 nnoremap <Leader>F :Grepper -tool rg<CR>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
+
+" Coc.nvim		
+let g:coc_global_extensions = [		
+      \ 'coc-css',		
+      \ 'coc-perl',		
+      \ 'coc-sql',		
+      \ 'coc-fsharp',		
+      \ 'coc-html',		
+      \ 'coc-json',		
+      \ 'coc-tsserver',		
+      \ 'coc-emmet',		
+      \ 'coc-pyright',		
+      \ 'coc-snippets',		
+      \ 'coc-omnisharp',		
+      \ ]		
+
+set updatetime=300		
+
+nmap <leader>d <Plug>(coc-definition)		
+nmap <leader>gd <Plug>(coc-definition)		
+nmap <leader>gy <Plug>(coc-type-definition)		
+
+nmap <leader>gi <Plug>(coc-implementation)		
+nmap <leader>gr <Plug>(coc-references)		
+
+nmap <leader>[c <Plug>(coc-diagnostic-prev)		
+nmap <leader>]c <Plug>(coc-diagnostic-next)		
+
+nmap <leader>gca <Plug>(coc-codeaction-selected)		
+xmap <leader>gca <Plug>(coc-codeaction-selected)		
+nmap <leader>gcaa <Plug>(coc-codeaction)		
+
+nmap <leader>grn <Plug>(coc-rename)		
+
+nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>		
+nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>		
+
+" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>		
+nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>		
+
+command! -nargs=0 CocFormat :call CocAction('format')		
+
+inoremap <silent><expr> <c-space> coc#refresh()		
+imap <C-@> <C-Space>		
+
+nnoremap <leader>gh :call <SID>show_documentation()<CR>		
+
+function! s:show_documentation()		
+  if (index(['vim','help'], &filetype) >= 0)		
+    execute 'h '.expand('<cword>')		
+  else		
+    call CocAction('doHover')		
+  endif		
+endfunction		
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
@@ -275,6 +303,14 @@ nmap <leader>gs> <Plug>SidewaysRight
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
+" External commands
+:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'		
+:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'		
+:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'		
+
+:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'		
+:command! -nargs=+ CSharpDoc execute ':silent !srd csharp '.<q-args> | execute ':redraw!'
+
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 :command! WebStorm execute ':silent !webstorm' . " --line " . line(". ") . " --column " . virtcol("."). ' %' | execute ':redraw!'
 nmap <leader>gov  :VSCode<cr>
@@ -284,8 +320,7 @@ if !exists("g:netrw_banner")
   let g:netrw_banner = 1
 endif
 
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-l>"
+" coc-omnisharp can't go to definition of Microsoft packages, so use
+" omnisharp-vim
+autocmd FileType cs nnoremap <buffer><leader>gd :OmniSharpGotoDefinition<CR>
 
-autocmd FileType javascript,javascriptreact,typescript,typescriptreact
-  \ UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact

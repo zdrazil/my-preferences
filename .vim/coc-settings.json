@@ -8,6 +8,7 @@
   "suggest.preferCompleteThanJumpPlaceholder": false,
   "suggest.echodocSupport": true,
   "diagnostic.displayByAle": false,
+  "diagnostic.enable": false,
   "coc.preferences.promptInput": false,
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
