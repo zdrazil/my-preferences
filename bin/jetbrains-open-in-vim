@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Add external command to WebStorm:
+# - Program: bin/jetbrains-open-in-vim
+# - Arguments: $ProjectFileDir$ $FilePath$ '+call cursor($LineNumber$,$ColumnNumber$)'
+# - Working Directory: $SourcepathEntry$
+
 vim="vim $2 $3 $4"
 osascript -e "
 tell application \"iTerm\"
