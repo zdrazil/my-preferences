@@ -142,9 +142,13 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
-colorscheme base16-oceanicnext
+if $USER == 'mews'
+  colorscheme solarized8
+else
+  colorscheme base16-oceanicnext
+endif
+
 set background=dark
-" colorscheme solarized8
 " set background=dark
 
 runtime plugin/grepper.vim
