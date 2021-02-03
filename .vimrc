@@ -149,7 +149,6 @@ else
 endif
 
 set background=dark
-" set background=dark
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
