@@ -51,3 +51,6 @@ source ~/.asdf/asdf.fish
 asdf exec direnv hook fish | source
 # direnv hook fish | source
 
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
+
