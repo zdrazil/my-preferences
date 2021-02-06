@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ -x "$(command -v git)" ]; then
-  exec delta
-else
-  exec less
-fi

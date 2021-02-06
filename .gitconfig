@@ -21,18 +21,9 @@
 	prompt = false
 [alias]
 	co = checkout
-	com = checkout master
 	ci = commit
 	st = status
 	br = branch
-
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	type = cat-file -t
-	dump = cat-file -p
-	ctags = !.git/hooks/ctags
-
-	gstat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
-	gfiles =!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
 [init]
 	templatedir = ~/.git_template
 	defaultBranch = master
@@ -40,7 +31,5 @@
 	insteadOf = https://github.com/
 [rerere]
 	enabled = true
-[delta]
-	side-by-side = true
 [pull]
 	rebase = true
