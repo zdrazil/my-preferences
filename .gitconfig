@@ -4,8 +4,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
-	attributesfile = /Users/zdrazil/.gitattributes
-	pager = less -x4
 [credential]
 	helper = osxkeychain
 [commit]
@@ -25,7 +23,6 @@
 	st = status
 	br = branch
 [init]
-	templatedir = ~/.git_template
 	defaultBranch = master
 [url "git@github.com:"]
 	insteadOf = https://github.com/
