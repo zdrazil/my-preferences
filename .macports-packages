@@ -2,6 +2,7 @@ fish
 zsh
 bash
 
+git-delta
 direnv
 ack
 autojump
@@ -66,6 +67,7 @@ perl5
 youtube-dl
 zsh
 subversion
+bat
 
 macvim
 vim +perl +lua +python38 

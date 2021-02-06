@@ -54,3 +54,12 @@ asdf exec direnv hook fish | source
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
 
+# Fish has a bug on Mac https://github.com/fish-shell/fish-shell/issues/6270
+if test (uname) = Darwin
+    set -l darwin_version (uname -r | string split .)
+    # macOS 15 is Darwin 19
+    if test "$darwin_version[1]" = 20 -a "$darwin_version[2]" -le 3
+        function __fish_describe_command; end
+        exit
+    end
+end
