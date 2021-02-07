@@ -15,7 +15,6 @@ entr
 fd
 findutils
 fish
-fzf
 gawk
 git-extras
 grep
