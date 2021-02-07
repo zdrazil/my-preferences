@@ -188,7 +188,7 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 
-let g:slime_target = "tmux"
+let g:slime_target = "vimterminal"
 
 let g:highlightedyank_highlight_duration = 200
 

@@ -22,7 +22,6 @@ if test -d "$HOME/.fzf/bin"
     set PATH ~/.fzf/bin $PATH 
 end
 
-
 if test -d "$HOME/.local/npm-tools/node_modules/.bin"
     set PATH "$HOME/.local/npm-tools/node_modules/.bin" $PATH
 end
