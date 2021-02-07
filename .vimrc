@@ -143,7 +143,7 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
-if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
   if $USER == 'mews'
     colorscheme solarized8
   else
