@@ -7275,6 +7275,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.19696468287120664</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -7963,6 +7965,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.18434628172416909</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
