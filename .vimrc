@@ -29,9 +29,9 @@ set linebreak
 
 set cmdheight=2
 
-set background=light
-" Fix colors in tmux
-if exists('+termguicolors')
+" Fix colors in tmux, set better 24bit colors if supported
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+  " Enable true color in Vim on tmux (not necessary for NeoVim)
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
@@ -69,6 +69,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
 
 Plug 'jeffkreeftmeijer/vim-dim'
+Plug 'noahfrederick/vim-noctu'
 Plug 'jan-warchol/selenized'
 Plug 'zefei/cake16'
 Plug 'plan9-for-vimspace/acme-colors'
@@ -142,10 +143,14 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
-if $USER == 'mews'
-  colorscheme solarized8
-else
-  colorscheme base16-oceanicnext
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+  if $USER == 'mews'
+    colorscheme solarized8
+  else
+    colorscheme base16-oceanicnext
+  endif
+else 
+    colorscheme noctu
 endif
 
 set background=dark
