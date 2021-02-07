@@ -68,7 +68,6 @@ zsh
 subversion
 bat
 
-macvim
 vim +perl +lua +python38 
 imagemagick
 

@@ -26,6 +26,10 @@ if test -d "$HOME/.local/npm-tools/node_modules/.bin"
     set PATH "$HOME/.local/npm-tools/node_modules/.bin" $PATH
 end
 
+if test -d "/Applications/MacVim.app/Contents/bin"
+    set PATH "/Applications/MacVim.app/Contents/bin" $PATH
+end
+
 switch (uname)
     case Darwin
         export LC_ALL=en_US.UTF-8  
