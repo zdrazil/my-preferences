@@ -197,59 +197,59 @@ nnoremap <Leader>F :Grepper -tool rg<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
-" Coc.nvim		
-let g:coc_global_extensions = [		
-      \ 'coc-css',		
-      \ 'coc-perl',		
-      \ 'coc-sql',		
-      \ 'coc-fsharp',		
-      \ 'coc-html',		
-      \ 'coc-json',		
-      \ 'coc-tsserver',		
-      \ 'coc-emmet',		
-      \ 'coc-pyright',		
-      \ 'coc-snippets',		
-      \ 'coc-omnisharp',		
-      \ ]		
+" Coc.nvim
+let g:coc_global_extensions = [
+      \ 'coc-css',
+      \ 'coc-perl',
+      \ 'coc-sql',
+      \ 'coc-fsharp',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-tsserver',
+      \ 'coc-emmet',
+      \ 'coc-pyright',
+      \ 'coc-snippets',
+      \ 'coc-omnisharp',
+      \ ]
 
-set updatetime=300		
+set updatetime=300
 
-nmap <leader>d <Plug>(coc-definition)		
-nmap <leader>gd <Plug>(coc-definition)		
-nmap <leader>gy <Plug>(coc-type-definition)		
+nmap <leader>d <Plug>(coc-definition)
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
 
-nmap <leader>gi <Plug>(coc-implementation)		
-nmap <leader>gr <Plug>(coc-references)		
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
 
-nmap <leader>[c <Plug>(coc-diagnostic-prev)		
-nmap <leader>]c <Plug>(coc-diagnostic-next)		
+nmap <leader>[c <Plug>(coc-diagnostic-prev)
+nmap <leader>]c <Plug>(coc-diagnostic-next)
 
-nmap <leader>gca <Plug>(coc-codeaction-selected)		
-xmap <leader>gca <Plug>(coc-codeaction-selected)		
-nmap <leader>gcaa <Plug>(coc-codeaction)		
+nmap <leader>gca <Plug>(coc-codeaction-selected)
+xmap <leader>gca <Plug>(coc-codeaction-selected)
+nmap <leader>gcaa <Plug>(coc-codeaction)
 
-nmap <leader>grn <Plug>(coc-rename)		
+nmap <leader>grn <Plug>(coc-rename)
 
-nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>		
-nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>		
+nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
 
-" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>		
-nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>		
+" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
 
-command! -nargs=0 CocFormat :call CocAction('format')		
+command! -nargs=0 CocFormat :call CocAction('format')
 
-inoremap <silent><expr> <c-space> coc#refresh()		
-imap <C-@> <C-Space>		
+inoremap <silent><expr> <c-space> coc#refresh()
+imap <C-@> <C-Space>
 
-nnoremap <leader>gh :call <SID>show_documentation()<CR>		
+nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()		
-  if (index(['vim','help'], &filetype) >= 0)		
-    execute 'h '.expand('<cword>')		
-  else		
-    call CocAction('doHover')		
-  endif		
-endfunction		
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -307,11 +307,11 @@ nmap <leader>gs> <Plug>SidewaysRight
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 " External commands
-:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'		
-:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'		
-:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'		
+:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
+:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
+:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
 
-:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'		
+:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'
 :command! -nargs=+ CSharpDoc execute ':silent !srd csharp '.<q-args> | execute ':redraw!'
 
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'

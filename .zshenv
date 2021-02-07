@@ -16,6 +16,11 @@ if [ -d "$HOME/.local/homebrew/bin" ]; then
 fi
 
 
+if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
+    PATH="/Applications/MacVim.app/Contents/bin:$PATH"
+fi
+
+
 MY_NPM_GLOBAL="$HOME/.local/npm-tools/node_modules/.bin"
 if [ -d "$MY_NPM_GLOBAL" ]; then
     PATH="$MY_NPM_GLOBAL:$PATH"

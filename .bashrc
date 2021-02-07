@@ -16,6 +16,7 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -110,3 +111,8 @@ fi
 if [ -d "$HOME/.local/homebrew/bin" ]; then
     PATH="$HOME/.local/homebrew/bin:$PATH"
 fi
+
+if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
+    PATH="/Applications/MacVim.app/Contents/bin:$PATH"
+fi
+
