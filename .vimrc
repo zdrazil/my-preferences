@@ -116,6 +116,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'jpalardy/vim-slime'
 
@@ -332,3 +333,7 @@ endif
 " omnisharp-vim
 autocmd FileType cs nnoremap <buffer><leader>gd :OmniSharpGotoDefinition<CR>
 
+if executable('uctags')
+  let g:gutentags_ctags_executable = 'uctags'
+end
+let g:gutentags_file_list_command = 'rg --files'

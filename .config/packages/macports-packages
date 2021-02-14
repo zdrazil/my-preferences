@@ -41,7 +41,7 @@ tig
 tmux
 tmux-pasteboard
 tree
-ctags
+universal-ctags
 up
 w3m
 watch
