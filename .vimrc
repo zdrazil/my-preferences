@@ -225,7 +225,7 @@ nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 
 nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+nmap <leader>grr <Plug>(coc-references)
 
 nmap <leader>[c <Plug>(coc-diagnostic-prev)
 nmap <leader>]c <Plug>(coc-diagnostic-next)
