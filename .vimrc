@@ -51,9 +51,9 @@ if !isdirectory(undodir)
   call mkdir(undodir)
 endif
 
-let swapdir = expand('~/.vim/swap')
-if !isdirectory(swapdir)
-  call mkdir(swapdir)
+let directory = expand('~/.vim/swap')
+if !isdirectory(directory)
+  call mkdir(directory)
 endif
 
 let backupdir = expand('~/.vim/backup')
@@ -68,7 +68,7 @@ Plug 'tpope/vim-sensible'
 Plug 'embear/vim-localvimrc'
 
 " Themes
-Plug 'vim-scripts/CycleColor'
+Plug 'vim-scripts/CycleColor', { 'on': ['CycleColorNext', 'CycleColorPrev'] }
 Plug 'robertmeta/nofrils'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
@@ -139,7 +139,7 @@ Plug 'suy/vim-context-commentstring'
 
 " Clojure
 Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-sexp'
+Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme'] }
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
 
