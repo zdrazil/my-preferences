@@ -51,15 +51,19 @@ if !isdirectory(undodir)
   call mkdir(undodir)
 endif
 
-let directory = expand('~/.vim/swap')
-if !isdirectory(directory)
-  call mkdir(directory)
+let swapdir = expand('~/.vim/swap')
+if !isdirectory(swapdir)
+  call mkdir(swapdir)
 endif
 
 let backupdir = expand('~/.vim/backup')
 if !isdirectory(backupdir)
   call mkdir(backupdir)
 endif
+
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backup//
+set undodir=~/.vim/undo//
 
 call plug#begin('~/.vim/plugged')
 
@@ -92,7 +96,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 
 " Starts slower
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
