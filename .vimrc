@@ -230,9 +230,8 @@ nmap <leader>grr <Plug>(coc-references)
 nmap <leader>[c <Plug>(coc-diagnostic-prev)
 nmap <leader>]c <Plug>(coc-diagnostic-next)
 
-nmap <leader>gca <Plug>(coc-codeaction-selected)
 xmap <leader>gca <Plug>(coc-codeaction-selected)
-nmap <leader>gcaa <Plug>(coc-codeaction)
+nmap <leader>gcA <Plug>(coc-codeaction)
 
 nmap <leader>grn <Plug>(coc-rename)
 
