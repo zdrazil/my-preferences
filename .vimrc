@@ -96,7 +96,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 
 " Starts slower
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
