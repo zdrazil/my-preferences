@@ -46,12 +46,20 @@ endif
 " always show gutter so it doesn't move
 set signcolumn=yes
 
-silent !mkdir ~/.vim/undo > /dev/null 2>&1
-silent !mkdir ~/.vim/backup > /dev/null 2>&1
-silent !mkdir ~/.vim/swap > /dev/null 2>&1
-set undodir=~/.vim/undo//
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+let undodir = expand('~/.vim/undo')
+if !isdirectory(undodir)
+  call mkdir(undodir)
+endif
+
+let swapdir = expand('~/.vim/swap')
+if !isdirectory(swapdir)
+  call mkdir(swapdir)
+endif
+
+let backupdir = expand('~/.vim/backup')
+if !isdirectory(backupdir)
+  call mkdir(backupdir)
+endif
 
 call plug#begin('~/.vim/plugged')
 
