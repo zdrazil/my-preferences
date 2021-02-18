@@ -172,6 +172,10 @@ set background=dark
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
 let g:grepper.tools = ['rg', 'grep', 'git' ]
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
+nnoremap <Leader>F :Grepper -tool rg<CR>
 
 let g:mapleader = "\<space>"
 inoremap jj <Esc>
@@ -210,8 +214,6 @@ highlight ALEWarning ctermbg=none cterm=underline
 let g:slime_target = "vimterminal"
 
 let g:highlightedyank_highlight_duration = 200
-
-nnoremap <Leader>F :Grepper -tool rg<CR>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
