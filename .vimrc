@@ -175,8 +175,6 @@ let g:grepper.tools = ['rg', 'grep', 'git' ]
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
-nnoremap <Leader>F :Grepper -tool rg<CR>
-
 let g:mapleader = "\<space>"
 inoremap jj <Esc>
 
@@ -352,3 +350,5 @@ if executable('uctags')
   let g:gutentags_ctags_executable = 'uctags'
 end
 let g:gutentags_file_list_command = 'rg --files'
+
+nnoremap <leader>F :Grepper -tool rg<CR>
