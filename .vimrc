@@ -280,10 +280,12 @@ if executable(s:clip)
   augroup END
 end
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-      \ 'syntax': 'markdown', 'ext': '.md',
-      \ 'links_space_char': '-'}
-      \]
+let g:vimwiki_list = [{
+      \ 'path': '~/vimwiki/',
+      \ 'syntax': 'markdown', 
+      \ 'ext': '.md',
+      \ 'links_space_char': '-',
+      \}]
 
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
