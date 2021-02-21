@@ -30,3 +30,7 @@
 	enabled = true
 [pull]
 	rebase = true
+[delta]
+	line-numbers = true
+	side-by-side = true
+

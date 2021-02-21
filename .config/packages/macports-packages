@@ -67,6 +67,7 @@ youtube-dl
 zsh
 subversion
 bat
+git-delta
 
 vim +perl +lua +python38 
 imagemagick

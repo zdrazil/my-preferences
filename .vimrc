@@ -129,7 +129,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
 Plug 'AndrewRadev/sideways.vim'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'jpalardy/vim-slime'
 
@@ -189,14 +189,15 @@ nnoremap <leader>l :Lines<cr>
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>h :History:<cr>
 nnoremap <leader>ss :Snippets<cr>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" FZF preview
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-    \   <bang>0 ? fzf#vim#with_preview('up:60%')
-    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-    \   <bang>0)
+" " FZF preview
+" command! -bang -nargs=* Rg
+"     \ call fzf#vim#grep(
+"     \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"     \   <bang>0 ? fzf#vim#with_preview('up:60%')
+"     \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+"     \   <bang>0)
 
 let g:fzf_layout = { 'down': '40%' }
 
@@ -229,6 +230,8 @@ let g:coc_global_extensions = [
       \ 'coc-pyright',
       \ 'coc-snippets',
       \ 'coc-omnisharp',
+      \ 'coc-lines',
+      \ 'coc-tag',
       \ ]
 
 set updatetime=300
@@ -251,9 +254,7 @@ nmap <leader>grn <Plug>(coc-rename)
 
 nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
-
-" nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <leader>gco :<C-u>Vista finder<cr>
+nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
 
 command! -nargs=0 CocFormat :call CocAction('format')
 
