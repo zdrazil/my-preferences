@@ -317,7 +317,7 @@ let g:ale_linters = {
       \ 'bash': ['shellcheck'],
       \ 'javascript': ['eslint', 'tsserver'],
       \ 'javascriptreact': ['eslint', 'tsserver'],
-      \ 'python': [],
+      \ 'python': ['flake8'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'typescriptreact': ['eslint', 'tsserver'],
       \}
