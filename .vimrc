@@ -121,7 +121,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-obsession'
 
-Plug 'dhruvasagar/vim-prosession'
+" Plug 'dhruvasagar/vim-prosession'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
