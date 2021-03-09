@@ -2,24 +2,25 @@ fish
 zsh
 bash
 
-git-delta
-direnv
 ack
 autojump
+bat
 coreutils
 curl
-dos2unix
+direnv
 docker
 docker-machine
+dos2unix
 entr
 fd
 findutils
 fish
 gawk
+git-delta
 git-extras
+graphviz
 grep
 gsed
-graphviz
 highlight
 htop
 jq
@@ -35,11 +36,13 @@ ripgrep
 rlwrap
 shellcheck
 shfmt
-the_silver_searcher
 speedtest-cli
+the_silver_searcher
 tig
+tldr-cpp-client
 tmux
 tmux-pasteboard
+trash
 tree
 universal-ctags
 up
@@ -47,8 +50,6 @@ w3m
 watch
 watchman
 wget
-tldr-cpp-client
-trash
 
 cmatrix
 cowsay
@@ -60,14 +61,13 @@ thefuck
 bash-completion
 ffmpeg +nonfree
 git
+git-delta
 gnupg2
 nodejs14
 perl5
+subversion
 youtube-dl
 zsh
-subversion
-bat
-git-delta
 
 vim +perl +lua +python38 
 imagemagick

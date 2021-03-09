@@ -275,6 +275,9 @@ endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+imap <C-l> <Plug>(coc-snippets-expand)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
   augroup WSLYank
