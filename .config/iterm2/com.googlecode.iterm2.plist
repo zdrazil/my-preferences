@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Command</key>
-	<string>/opt/local/bin/fish</string>
+	<string></string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>base16-gruvbox-dark-hard</key>
@@ -6907,7 +6907,7 @@
 			<key>Columns</key>
 			<integer>104</integer>
 			<key>Command</key>
-			<string>/opt/local/bin/fish</string>
+			<string>/usr/local/bin/fish</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -6974,6 +6974,8 @@
 			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -7595,7 +7597,7 @@
 			<key>Columns</key>
 			<integer>104</integer>
 			<key>Command</key>
-			<string>/opt/local/bin/fish</string>
+			<string>/usr/local/bin/fish</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
