@@ -25,6 +25,8 @@ set breakindent
 let &showbreak = '> '
 set linebreak
 
+set incsearch
+
 " set completeopt=longest,menuone
 
 set cmdheight=2
