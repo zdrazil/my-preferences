@@ -297,6 +297,8 @@ augroup omnisharp_commands
   autocmd FileType cs xmap <silent> <buffer> <Leader>gca <Plug>(omnisharp_code_actions)
   autocmd FileType cs nmap <silent> <buffer> <Leader>grn <Plug>(omnisharp_rename)
 augroup END
+let g:OmniSharp_highlighting = 0
+autocmd BufWritePre *.cs :OmniSharpCodeFormat
 
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
