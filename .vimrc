@@ -233,7 +233,6 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-pyright',
       \ 'coc-snippets',
-      \ 'coc-omnisharp',
       \ 'coc-lines',
       \ 'coc-tag',
       \ ]
@@ -280,6 +279,25 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" coc-omnisharp can't go to definition of Microsoft packages, so use
+" omnisharp-vim
+" autocmd FileType cs nnoremap <buffer><leader>gd :OmniSharpGotoDefinition<CR>
+
+augroup omnisharp_commands
+  autocmd!
+
+  " The following commands are contextual, based on the cursor position.
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gy <Plug>(omnisharp_type_lookup)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>grr <Plug>(omnisharp_find_usages)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gi <Plug>(omnisharp_find_implementations)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gh <Plug>(omnisharp_documentation)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gcs <Plug>(omnisharp_find_symbol)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gca <Plug>(omnisharp_code_actions)
+  autocmd FileType cs xmap <silent> <buffer> <Leader>gca <Plug>(omnisharp_code_actions)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>grn <Plug>(omnisharp_rename)
+augroup END
+
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)
   augroup WSLYank
@@ -316,6 +334,7 @@ let g:ale_fixers = {
       \}
 
 let g:ale_linters = {
+      \ 'cs': ['OmniSharp'],
       \ 'vimwiki':['writegood'],
       \ 'sh': ['shellcheck'],
       \ 'zsh': ['shellcheck'],
@@ -353,9 +372,6 @@ if !exists("g:netrw_banner")
   let g:netrw_banner = 1
 endif
 
-" coc-omnisharp can't go to definition of Microsoft packages, so use
-" omnisharp-vim
-autocmd FileType cs nnoremap <buffer><leader>gd :OmniSharpGotoDefinition<CR>
 
 if executable('uctags')
   let g:gutentags_ctags_executable = 'uctags'
@@ -363,3 +379,4 @@ end
 let g:gutentags_file_list_command = 'rg --files'
 
 nnoremap <leader>F :Grepper -tool rg<CR>
+
