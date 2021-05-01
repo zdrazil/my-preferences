@@ -27,23 +27,7 @@ set linebreak
 
 set incsearch
 
-" set completeopt=longest,menuone
-
 set cmdheight=2
-
-" Fix colors in tmux, set better 24bit colors if supported
-if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
-  " Enable true color in Vim on tmux (not necessary for NeoVim)
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-" Make mouse work in tmux
-if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=sgr
-endif
 
 " always show gutter so it doesn't move
 set signcolumn=yes
@@ -70,7 +54,6 @@ set undodir=~/.vim/undo//
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-
 Plug 'embear/vim-localvimrc'
 
 " Themes
@@ -102,32 +85,25 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-obsession'
-
-" Plug 'dhruvasagar/vim-prosession'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
@@ -195,17 +171,6 @@ nnoremap <leader>h :History:<cr>
 nnoremap <leader>ss :Snippets<cr>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" " FZF preview
-" command! -bang -nargs=* Rg
-"     \ call fzf#vim#grep(
-"     \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"     \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"     \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"     \   <bang>0)
-
-let g:fzf_layout = { 'down': '40%' }
-
-" let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_use_global = 1
@@ -224,16 +189,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
-      \ 'coc-perl',
       \ 'coc-sql',
-      \ 'coc-fsharp',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-tsserver',
       \ 'coc-emmet',
       \ 'coc-pyright',
       \ 'coc-snippets',
-      \ 'coc-lines',
       \ 'coc-tag',
       \ ]
 
@@ -269,8 +231,10 @@ nnoremap <leader>gh :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -278,10 +242,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" coc-omnisharp can't go to definition of Microsoft packages, so use
-" omnisharp-vim
-" autocmd FileType cs nnoremap <buffer><leader>gd :OmniSharpGotoDefinition<CR>
 
 augroup omnisharp_commands
   autocmd!
@@ -299,14 +259,6 @@ augroup omnisharp_commands
 augroup END
 let g:OmniSharp_highlighting = 0
 autocmd BufWritePre *.cs :OmniSharpCodeFormat
-
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-  augroup WSLYank
-    autocmd!
-    autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-  augroup END
-end
 
 let g:vimwiki_list = [{
       \ 'path': '~/vimwiki/',
@@ -374,7 +326,6 @@ if !exists("g:netrw_banner")
   let g:netrw_banner = 1
 endif
 
-
 if executable('uctags')
   let g:gutentags_ctags_executable = 'uctags'
 end
@@ -382,3 +333,8 @@ let g:gutentags_file_list_command = 'rg --files'
 
 nnoremap <leader>F :Grepper -tool rg<CR>
 
+command FoldIndent setlocal foldmethod=indent
+command FoldManual setlocal foldmethod=manual
+command FoldSyntax setlocal foldmethod=syntax
+" set foldmethod=indent
+" set foldlevel=99
