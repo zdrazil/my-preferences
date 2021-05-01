@@ -193,6 +193,7 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-tsserver',
+      \ 'coc-react-refactor',
       \ 'coc-emmet',
       \ 'coc-pyright',
       \ 'coc-snippets',
