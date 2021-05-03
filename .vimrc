@@ -137,6 +137,14 @@ call plug#end()
 
 runtime plugin/sensible.vim
 
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+  " Enable true color in Vim on tmux (not necessary for NeoVim)
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  " Enable true color in supported terminals
+  set termguicolors
+endif
+
 if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
   if $USER == 'mews'
     colorscheme solarized8
