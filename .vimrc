@@ -101,6 +101,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
+Plug 'iberianpig/tig-explorer.vim'
+
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
 " Plug 'junegunn/vim-easy-align'
