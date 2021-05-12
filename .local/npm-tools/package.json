@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eslint_d": "^10.0.4",
+    "eslint_d": "^10.1.0",
     "fixjson": "^1.1.2",
     "fx": "^20.0.2",
     "prettier": "^2.2.1"
