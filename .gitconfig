@@ -23,6 +23,7 @@
 	ci = commit
 	st = status
 	br = branch
+	brt = "!git for-each-ref refs/heads --sort committerdate --format='%(HEAD) %(refname:short)'"
 [init]
 	defaultBranch = master
 [url "git@github.com:"]
