@@ -147,6 +147,12 @@ if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit'
   set termguicolors
 endif
 
+" Make mouse work in tmux
+if &term =~ '^screen'
+  " tmux knows the extended mouse mode
+  set ttymouse=sgr
+endif
+
 if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
   if $USER == 'mews'
     colorscheme solarized8
