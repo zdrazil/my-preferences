@@ -30,6 +30,11 @@ if test -d "/Applications/MacVim.app/Contents/bin"
     set PATH "/Applications/MacVim.app/Contents/bin" $PATH
 end
 
+
+if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    fenv source ~/.nix-profile/etc/profile.d/nix.sh
+end
+
 switch (uname)
     case Darwin
         export LC_ALL=en_US.UTF-8  
