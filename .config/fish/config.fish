@@ -31,8 +31,8 @@ if test -d "/Applications/MacVim.app/Contents/bin"
 end
 
 
-if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fenv source ~/.nix-profile/etc/profile.d/nix.sh
+if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 end
 
 switch (uname)
