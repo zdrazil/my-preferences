@@ -2,32 +2,18 @@
 let
   pkgs = import <nixpkgs> {};
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  inherit (pkgs) buildEnv;
-
-in buildEnv {
-  name = "user-tools";
-  paths = [ 
+  linuxPkgs = [
     # "pkgs.glibc-locales"
-    # pkgs.bash
-    # pkgs.bash-completion
-    # pkgs.ctags
-    # pkgs.git
-    # pkgs.nodejs-12_x
-    # pkgs.vimHugeX
-    # pkgs.yarn
-    # pkgs.zsh
-    # pkgs.zsh-completions
-    pkgs.direnv
+  ];
+  genericPkgs = [
     pkgs.ack
     pkgs.autojump
     pkgs.browsh
-    pkgs.coreutils
-    # pkgs.elinks
     pkgs.clojure-lsp
-    # pkgs.cht-sh
+    pkgs.coreutils
     pkgs.dasht
     pkgs.ddgr
-    pkgs.navi
+    pkgs.direnv
     pkgs.dos2unix
     pkgs.entr
     pkgs.exercism
@@ -37,10 +23,10 @@ in buildEnv {
     pkgs.gawk
     pkgs.gifski
     pkgs.git-quick-stats
+    pkgs.gitAndTools.delta
     pkgs.gitAndTools.git-extras
     pkgs.gitAndTools.git-fame
     pkgs.gitAndTools.git-open
-    pkgs.gitAndTools.delta
     pkgs.gnugrep
     pkgs.gnused
     pkgs.graphviz
@@ -48,27 +34,28 @@ in buildEnv {
     pkgs.highlight
     pkgs.htop
     pkgs.jq
-    # pkgs.languagetool
     pkgs.leiningen
     pkgs.moreutils
     pkgs.mpv
+    pkgs.navi
     pkgs.ncdu
     pkgs.newsboat
+    pkgs.nodePackages.eslint_d
+    pkgs.nodePackages.prettier
     pkgs.p7zip
     pkgs.pandoc
     pkgs.pwgen
-    # pkgs.python
-    # pkgs.python38Packages.wakeonlan
+    pkgs.python3
     pkgs.ranger
-    pkgs.rlwrap
     pkgs.readline
     pkgs.ripgrep
+    pkgs.rlwrap
     pkgs.shellcheck
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
-    pkgs.tldr
     pkgs.tig
+    pkgs.tldr
     pkgs.tmux
     pkgs.trash-cli
     pkgs.tree
@@ -79,14 +66,10 @@ in buildEnv {
     pkgs.watchman
     pkgs.wget
     pkgs.xz
-    pkgs.nodePackages.eslint_d
-    pkgs.nodePackages.prettier
     pkgs.yarn
     unstable.fx
     unstable.nodePackages.fixjson
-    # pkgs.youtube-dl
     # Fun
-    # pkgs.bb
     pkgs.cmatrix
     pkgs.cowsay
     pkgs.doge
@@ -97,6 +80,12 @@ in buildEnv {
     pkgs.nyancat
     pkgs.sl
     pkgs.thefuck
-    ];
+  ];
+  allLinuxPkgs = genericPkgs ++ linuxPkgs;
+  inherit (pkgs) buildEnv;
+
+in buildEnv {
+  name = "user-tools";
+  paths = if pkgs.stdenv.isDarwin then genericPkgs else allLinuxPkgs;
 }
 
