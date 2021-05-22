@@ -1,0 +1,26 @@
+# install with:
+# xargs sudo apt-get install < pkglist
+# xargs sudo dnf install < pkglist
+calibre
+chromium-browser
+default-jre
+emacs
+filezilla
+firefox
+google-chrome-stable
+handbrake
+kdiff3
+libreoffice
+meld
+mpv
+papirus-icon-theme
+steam
+sublime-text
+thunderbird
+transmission
+ubuntu-make
+virtualbox
+virtualbox-extension-pack
+vlc
+yacreader
+zeal	
