@@ -3,51 +3,55 @@ let
   pkgs = import <nixpkgs> {};
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   linuxPkgs = [
+    pkgs.clojure-lsp
+    pkgs.fish
+    pkgs.git
+    pkgs.mpv
+    pkgs.thefuck
     # "pkgs.glibc-locales"
+  ];
+  darwinPkgs = [
+    pkgs.bash
+    pkgs.bash-completion
+    # pkgs.coreutils
+    pkgs.gawk
+    # pkgs.gnugrep
+    # pkgs.gnused
+    pkgs.readline
+    pkgs.zsh
   ];
   genericPkgs = [
     pkgs.ack
-    pkgs.autojump
-    pkgs.browsh
-    pkgs.clojure-lsp
-    pkgs.coreutils
-    pkgs.dasht
-    pkgs.ddgr
+    pkgs.bat
+    pkgs.curl
     pkgs.direnv
     pkgs.dos2unix
     pkgs.entr
-    pkgs.exercism
+    pkgs.ffmpeg
     pkgs.fd
     pkgs.findutils
     pkgs.fzf
-    pkgs.gawk
     pkgs.gifski
-    pkgs.git-quick-stats
     pkgs.gitAndTools.delta
-    pkgs.gitAndTools.git-extras
-    pkgs.gitAndTools.git-fame
-    pkgs.gitAndTools.git-open
-    pkgs.gnugrep
-    pkgs.gnused
     pkgs.graphviz
     pkgs.gron
+    pkgs.gnupg
     pkgs.highlight
     pkgs.htop
+    pkgs.imagemagick
     pkgs.jq
     pkgs.leiningen
     pkgs.moreutils
-    pkgs.mpv
-    pkgs.navi
     pkgs.ncdu
-    pkgs.newsboat
+    pkgs.nodejs-14_x
     pkgs.nodePackages.eslint_d
     pkgs.nodePackages.prettier
+    pkgs.perl
     pkgs.p7zip
     pkgs.pandoc
     pkgs.pwgen
     pkgs.python3
     pkgs.ranger
-    pkgs.readline
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.shellcheck
@@ -65,10 +69,10 @@ let
     pkgs.watch
     pkgs.watchman
     pkgs.wget
-    pkgs.xz
     pkgs.yarn
     unstable.fx
     unstable.nodePackages.fixjson
+    unstable.youtube-dl
     # Fun
     pkgs.cmatrix
     pkgs.cowsay
@@ -79,13 +83,13 @@ let
     pkgs.lolcat
     pkgs.nyancat
     pkgs.sl
-    pkgs.thefuck
   ];
   allLinuxPkgs = genericPkgs ++ linuxPkgs;
+  allDarwinPkgs = genericPkgs ++ darwinPkgs;
   inherit (pkgs) buildEnv;
 
 in buildEnv {
   name = "user-tools";
-  paths = if pkgs.stdenv.isDarwin then genericPkgs else allLinuxPkgs;
+  paths = if pkgs.stdenv.isDarwin then allDarwinPkgs else allLinuxPkgs;
 }
 
