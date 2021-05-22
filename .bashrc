@@ -42,11 +42,12 @@ bind Space:magic-space
 
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-if [ -d "$HOME/.asdf" ] ; then
-    . $HOME/.asdf/asdf.sh
-    . $HOME/.asdf/completions/asdf.bash
-     eval "$(asdf exec direnv hook bash)"
-fi
+# if [ -d "$HOME/.asdf" ] ; then
+#     . $HOME/.asdf/asdf.sh
+#     . $HOME/.asdf/completions/asdf.bash
+#      eval "$(asdf exec direnv hook bash)"
+# fi
+eval "$(direnv hook bash)"
 
 
 if [ -d "/opt/local/bin" ]; then
@@ -61,4 +62,5 @@ fi
 if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
     PATH="/Applications/MacVim.app/Contents/bin:$PATH"
 fi
+
 
