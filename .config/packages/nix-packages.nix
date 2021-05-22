@@ -15,6 +15,7 @@ in buildEnv {
     # pkgs.yarn
     # pkgs.zsh
     # pkgs.zsh-completions
+    pkgs.nix-direnv
     pkgs.ack
     pkgs.autojump
     pkgs.browsh
