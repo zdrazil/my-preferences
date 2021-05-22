@@ -1,5 +1,7 @@
+# nix-env -i -f "$HOME/.config/packages/nix-packages.nix"
 let
   pkgs = import <nixpkgs> {};
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   inherit (pkgs) buildEnv;
 
 in buildEnv {
@@ -15,7 +17,7 @@ in buildEnv {
     # pkgs.yarn
     # pkgs.zsh
     # pkgs.zsh-completions
-    pkgs.nix-direnv
+    pkgs.direnv
     pkgs.ack
     pkgs.autojump
     pkgs.browsh
@@ -77,6 +79,11 @@ in buildEnv {
     pkgs.watchman
     pkgs.wget
     pkgs.xz
+    pkgs.nodePackages.eslint_d
+    pkgs.nodePackages.prettier
+    pkgs.yarn
+    unstable.fx
+    unstable.nodePackages.fixjson
     # pkgs.youtube-dl
     # Fun
     # pkgs.bb
