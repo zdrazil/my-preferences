@@ -5,22 +5,25 @@
         "revision": "05b6ef9157706ae619fb24ddc6db7387ad2ad3f1"
       },
       "homebrew/bundle": {
-        "revision": "10dd69f350afa58b4caa4dc060f83ec546ba115b"
+        "revision": "75e81f99bc41951c3c3a8d1c863748d9a4793dae"
       },
       "homebrew/cask": {
-        "revision": "cd883337e723686c2c1e4e510ef2e277d299deb2"
+        "revision": "8b03cb4cf47cf467eb3fe589cd24ae584bda1914"
       },
       "homebrew/cask-versions": {
-        "revision": "663ee403ddfdd847237f6b0500e977e3d90bdbe3"
+        "revision": "066a79be349f013e21e97834ec075c661dd3d13a"
       },
       "homebrew/cask-fonts": {
-        "revision": "80fb6875fdf5291876e1e1d18fd2e6d57f5a36a0"
+        "revision": "8962efc000e784721d64ffa3557af62aa42a4869"
       },
       "homebrew/core": {
-        "revision": "b9925a89507f2ef59ebc057cf2460d768b6f1f31"
+        "revision": "c86e0004a2e29d85d5674b41fc98f0ab18259f6c"
       },
       "markwu/personal": {
         "revision": "d91f5cde2168a52e34f021d2fabf03c20c644c64"
+      },
+      "koekeishiya/formulae": {
+        "revision": "726646add1a62a7c40895782a83734bb4f89fe72"
       }
     },
     "brew": {
@@ -2061,6 +2064,10 @@
             }
           }
         }
+      },
+      "yabai": {
+        "version": "3.3.8",
+        "bottle": false
       }
     },
     "cask": {
@@ -2209,7 +2216,7 @@
         }
       },
       "spotify": {
-        "version": "1.1.58.820.g2ae50076,1.1.58.820.g2ae50076-37",
+        "version": "1.1.59.714.g7e040462,1.1.59.714.g7e040462-44",
         "options": {
           "full_name": "spotify"
         }
@@ -2245,7 +2252,7 @@
         }
       },
       "visual-studio": {
-        "version": "8.9.9.3",
+        "version": "8.9.10.4",
         "options": {
           "full_name": "visual-studio"
         }
@@ -2285,15 +2292,27 @@
         "options": {
           "full_name": "microsoft-azure-storage-explorer"
         }
+      },
+      "adobe-acrobat-reader": {
+        "version": "21.001.20155",
+        "options": {
+          "full_name": "adobe-acrobat-reader"
+        }
+      },
+      "hookshot": {
+        "version": "1.22.2,48",
+        "options": {
+          "full_name": "hookshot"
+        }
       }
     }
   },
   "system": {
     "macos": {
       "big_sur": {
-        "HOMEBREW_VERSION": "3.1.8",
+        "HOMEBREW_VERSION": "3.1.9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "b9925a89507f2ef59ebc057cf2460d768b6f1f31",
+        "Homebrew/homebrew-core": "c86e0004a2e29d85d5674b41fc98f0ab18259f6c",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5",
         "macOS": "11.3.1"
