@@ -74,6 +74,7 @@ let
     unstable.fx
     unstable.nodePackages.fixjson
     unstable.youtube-dl
+    pkgs.git-extras
     # Fun
     pkgs.cmatrix
     pkgs.cowsay

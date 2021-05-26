@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Command</key>
-	<string>/usr/local/bin/fish</string>
+	<string></string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>base16-gruvbox-dark-hard</key>
