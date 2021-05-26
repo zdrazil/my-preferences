@@ -41,6 +41,7 @@ let
     pkgs.imagemagick
     pkgs.jq
     pkgs.leiningen
+    pkgs.lorri
     pkgs.moreutils
     pkgs.ncdu
     pkgs.nodejs-14_x
