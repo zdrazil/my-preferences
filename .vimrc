@@ -197,6 +197,8 @@ let g:ale_javascript_prettier_use_global = '1'
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 
+nmap <leader>ge :ALEDetail<CR>
+
 let g:slime_target = "vimterminal"
 
 let g:highlightedyank_highlight_duration = 200
