@@ -59,6 +59,7 @@ let
     pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
+    pkgs.stack
     pkgs.tig
     pkgs.tldr
     pkgs.tmux
@@ -75,6 +76,7 @@ let
     unstable.nodePackages.fixjson
     unstable.youtube-dl
     pkgs.git-extras
+    pkgs.haskellPackages.hoogle
     # Fun
     pkgs.cmatrix
     pkgs.cowsay
