@@ -72,8 +72,8 @@ let
     pkgs.watchman
     pkgs.wget
     pkgs.yarn
-    unstable.fx
-    unstable.nodePackages.fixjson
+    pkgs.fx
+    pkgs.nodePackages.fixjson
     unstable.youtube-dl
     pkgs.git-extras
     pkgs.haskellPackages.hoogle
