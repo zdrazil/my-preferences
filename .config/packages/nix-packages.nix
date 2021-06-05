@@ -24,6 +24,7 @@ let
     pkgs.ack
     pkgs.bat
     pkgs.curl
+    unstable.dasht
     pkgs.direnv
     pkgs.dos2unix
     pkgs.entr

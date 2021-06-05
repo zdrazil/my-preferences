@@ -224,6 +224,7 @@ set updatetime=300
 
 nmap <leader>d <Plug>(coc-definition)
 nmap <leader>gd <Plug>(coc-definition)
+nmap <silent>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 
 nmap <leader>gi <Plug>(coc-implementation)
@@ -235,6 +236,10 @@ nmap <leader>]c <Plug>(coc-diagnostic-next)
 nmap <leader>gca <Plug>(coc-codeaction-selected)
 xmap <leader>gca <Plug>(coc-codeaction-selected)
 nmap <leader>gcA <Plug>(coc-codeaction)
+
+nmap <leader>a <Plug>(coc-codeaction-selected)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>A <Plug>(coc-codeaction)
 
 nmap <leader>grn <Plug>(coc-rename)
 
@@ -333,6 +338,7 @@ nmap <leader>gs> <Plug>SidewaysRight
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 " External commands
+:command! -nargs=+ Dash execute ':silent !dash '.<q-args> | execute ':redraw!'
 :command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
 :command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
 :command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
@@ -362,3 +368,13 @@ command FoldSyntax setlocal foldmethod=syntax
 " set foldmethod=indent
 " set foldlevel=99
 "
+
+au filetype css
+  \clojure
+  \html
+  \haskell
+  \javascript,
+  \javascriptreact,
+  \typescript,
+  \typescriptreact,
+  \ setl keywordprg=dash

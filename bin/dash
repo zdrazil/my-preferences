@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ESCAPED=$(echo "$@" | sed s/\ /%20/)
+open dash://"$ESCAPED"
