@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+if [[ "$OSTYPE" == msys ]]; then
+  explorer $@
+elif (( $+commands[xdg-open] )); then
+  xdg-open $@
+elif [[ "$OSTYPE" == darwin* ]]; then
+  command open $@
+elif [[ "$OSTYPE" == cygwin* ]]; then
+  cygstart $@
+elif [[ $OSTYPE == linux* ]] && [[ -r /proc/version ]] && [[ $(< /proc/version) == *Microsoft* ]]; then
+  # WSL
+  explorer.exe $@
+fi

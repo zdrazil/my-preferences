@@ -93,6 +93,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
@@ -116,6 +117,10 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'jpalardy/vim-slime'
 
 Plug 'justinmk/vim-gtfo'
+
+Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
 Plug 'wellle/targets.vim'
@@ -174,17 +179,74 @@ xmap gs <plug>(GrepperOperator)
 let g:mapleader = "\<space>"
 inoremap jj <Esc>
 
-" " cdc = change to directory of current file
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Leader maps
+" nnoremap <leader>o :FZF<cr>
+nnoremap <leader><leader> :FZF<cr>
+" nnoremap <leader>p :Commands<cr>
+nnoremap <leader>; :Commands<cr>
+
+" buffer
+" nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>bb :Buffers<cr>
+
+" code
+nmap <leader>gx :ALEDetail<CR>
+
+nmap <leader>gd <Plug>(coc-definition)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <leader>gD <Plug>(coc-references)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gy <Plug>(coc-type-definition)
+
+nmap <leader>ga <Plug>(coc-codeaction-selected)
+xmap <leader>ga <Plug>(coc-codeaction-selected)
+nmap <leader>gA <Plug>(coc-codeaction)
+nmap <leader>grn <Plug>(coc-rename)
+
+nnoremap <leader>gh :call <SID>show_documentation()<CR>
+
+nmap <leader>gs< <Plug>SidewaysLeft
+nmap <leader>gs> <Plug>SidewaysRight
+
+command! -nargs=0 CocFormat :call CocAction('format')
+
+" file
+nnoremap <leader>fF :FoldIndent<cr>
+nnoremap <leader>fR :Rename<cr>
+nnoremap <leader>fve :vsplit $MYVIMRC<cr>
+nnoremap <leader>fvs :source $MYVIMRC<cr>
+nnoremap <leader>fy :YankPath<cr>
+
+" git
+nnoremap <leader>cb :Git blame<cr>
+nnoremap <leader>ct :TigBlame<cr>
+
+" open
+nmap <leader>ov  :VSCode<cr>
+nmap <leader>ow  :WebStorm<cr>
+nmap <leader>ot  :TermCurrentFileDir<cr>
+nmap <leader>of  :OpenCurrentFileDir<cr>
+
+" project
+" change to directory of current file
+nnoremap <leader>pc :cd %:p:h<CR>:pwd<CR>
+
+" search
+" nnoremap <leader>f :Rg<cr>
+nnoremap <leader>ss :Rg<cr>
+nnoremap <leader>. :Rg<cr>
+nnoremap <leader>sl :Lines<cr>
+nnoremap <leader>sh :History:<cr>
+nnoremap <leader>sm :Maps<cr>
+nnoremap <silent><nowait> <leader>s*  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>scs  :<C-u>CocList snippets<cr>
+nnoremap <silent><nowait> <leader>so  :<C-u>CocList outline<cr>
+nnoremap <leader>sS :Grepper -tool rg<CR>
+nnoremap <leader>> :Grepper -tool rg<CR>
+
+" window
 
 " fzf
-nnoremap <leader>o :FZF<cr>
-nnoremap <leader>p :Commands<cr>
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>l :Lines<cr>
-nnoremap <leader>f :Rg<cr>
-nnoremap <leader>h :History:<cr>
-nnoremap <leader>ss :Snippets<cr>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 let g:ale_fix_on_save = 1
@@ -193,18 +255,13 @@ let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_options = "--cache"
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
-let g:ale_javascript_prettier_use_global = '1'
+let g:ale_javascript_prettier_use_global = 1
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
-
-nmap <leader>ge :ALEDetail<CR>
 
 let g:slime_target = "vimterminal"
 
 let g:highlightedyank_highlight_duration = 200
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr> " Edit my Vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr> " Source my Vimrc
 
 " Coc.nvim
 let g:coc_global_extensions = [
@@ -222,37 +279,8 @@ let g:coc_global_extensions = [
 
 set updatetime=300
 
-nmap <leader>d <Plug>(coc-definition)
-nmap <leader>gd <Plug>(coc-definition)
-nmap <silent>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>grr <Plug>(coc-references)
-
-nmap <leader>[c <Plug>(coc-diagnostic-prev)
-nmap <leader>]c <Plug>(coc-diagnostic-next)
-
-nmap <leader>gca <Plug>(coc-codeaction-selected)
-xmap <leader>gca <Plug>(coc-codeaction-selected)
-nmap <leader>gcA <Plug>(coc-codeaction)
-
-nmap <leader>a <Plug>(coc-codeaction-selected)
-xmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>A <Plug>(coc-codeaction)
-
-nmap <leader>grn <Plug>(coc-rename)
-
-nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
-nnoremap <silent><nowait> <leader>ss  :<C-u>CocList snippets<cr>
-nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
-
-command! -nargs=0 CocFormat :call CocAction('format')
-
 inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
-
-nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -269,21 +297,21 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+let g:OmniSharp_highlighting = 0
 augroup omnisharp_commands
   autocmd!
 
   " The following commands are contextual, based on the cursor position.
   autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
   autocmd FileType cs nmap <silent> <buffer> <Leader>gy <Plug>(omnisharp_type_lookup)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>grr <Plug>(omnisharp_find_usages)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>gD <Plug>(omnisharp_find_usages)
   autocmd FileType cs nmap <silent> <buffer> <Leader>gi <Plug>(omnisharp_find_implementations)
   autocmd FileType cs nmap <silent> <buffer> <Leader>gh <Plug>(omnisharp_documentation)
   autocmd FileType cs nmap <silent> <buffer> <Leader>gcs <Plug>(omnisharp_find_symbol)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gca <Plug>(omnisharp_code_actions)
-  autocmd FileType cs xmap <silent> <buffer> <Leader>gca <Plug>(omnisharp_code_actions)
+  autocmd FileType cs nmap <silent> <buffer> <Leader>ga <Plug>(omnisharp_code_actions)
+  autocmd FileType cs xmap <silent> <buffer> <Leader>ga <Plug>(omnisharp_code_actions)
   autocmd FileType cs nmap <silent> <buffer> <Leader>grn <Plug>(omnisharp_rename)
 augroup END
-let g:OmniSharp_highlighting = 0
 autocmd BufWritePre *.cs :OmniSharpCodeFormat
 
 let g:vimwiki_list = [{
@@ -331,9 +359,6 @@ let g:ale_linters = {
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 
-nmap <leader>gs< <Plug>SidewaysLeft
-nmap <leader>gs> <Plug>SidewaysRight
-
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
@@ -348,8 +373,6 @@ nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 :command! WebStorm execute ':silent !webstorm' . " --line " . line(". ") . " --column " . virtcol("."). ' %' | execute ':redraw!'
-nmap <leader>gov  :VSCode<cr>
-nmap <leader>gow  :WebStorm<cr>
 
 if !exists("g:netrw_banner")
   let g:netrw_banner = 1
@@ -360,14 +383,11 @@ if executable('uctags')
 end
 let g:gutentags_file_list_command = 'rg --files'
 
-nnoremap <leader>F :Grepper -tool rg<CR>
-
 command FoldIndent setlocal foldmethod=indent
 command FoldManual setlocal foldmethod=manual
 command FoldSyntax setlocal foldmethod=syntax
-" set foldmethod=indent
-" set foldlevel=99
-"
+
+command YankPath execute ':let @+ = expand("%")'
 
 au filetype css
   \clojure
@@ -378,3 +398,22 @@ au filetype css
   \typescript,
   \typescriptreact,
   \ setl keywordprg=dash
+
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+let g:peekaboo_delay=400
+
+let g:which_key_map =  {}
+let g:which_key_map.b = { 'name' : '+buffer' }
+let g:which_key_map.g = { 'name' : '+code' }
+let g:which_key_map.f = { 'name' : '+file' }
+let g:which_key_map.c = { 'name' : '+git' }
+let g:which_key_map.h = { 'name' : '+help' }
+let g:which_key_map.o = { 'name' : '+open' }
+let g:which_key_map.s = { 'name' : '+search' }
+let g:which_key_map.t = { 'name' : '+toggle' }
+let g:which_key_map.w = { 'name' : '+window' }
+
+command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
+command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
