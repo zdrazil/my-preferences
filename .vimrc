@@ -417,3 +417,8 @@ let g:which_key_map.w = { 'name' : '+window' }
 
 command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
+
+function SlimeOverride_EscapeText_typescript(text)
+  return system("babel --presets @babel/preset-typescript -f a.ts", a:text)
+endfunction
+
