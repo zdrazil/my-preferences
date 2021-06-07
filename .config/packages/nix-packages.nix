@@ -11,14 +11,14 @@ let
     # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
-    pkgs.bash
-    pkgs.bash-completion
+    # pkgs.bash
+    # pkgs.bash-completion
     # pkgs.coreutils
     pkgs.gawk
     # pkgs.gnugrep
     # pkgs.gnused
     pkgs.readline
-    pkgs.zsh
+    # pkgs.zsh
   ];
   genericPkgs = [
     pkgs.ack
