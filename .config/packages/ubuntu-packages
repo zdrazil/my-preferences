@@ -1,33 +1,22 @@
-# install with:
-# xargs sudo apt-get install < pkglist
-# xargs sudo dnf install < pkglist
+direnv
 ack
 autojump
 bash
 bash-completion
-browsh
-clojure-lsp
 coreutils
 curl
-dasht
 ddgr
 delta
 dos2unix
 entr
-exercism
-fd
+fd-find
 findutils
 fish
 fzf
 gawk
-gifski
 git-extras
-git-fame
-git-open
 git-quick-stats
-gnugrep
 gnupg2
-gnused
 graphviz
 grep
 gron
@@ -37,9 +26,7 @@ jq
 leiningen
 moreutils
 mpv
-navi
 ncdu
-newsboat
 nodejs
 p7zip
 p7zip-full
@@ -47,13 +34,11 @@ p7zip-rar
 pandoc
 pwgen
 ranger
-readline
 ripgrep
 rlwrap
 sed
 shellcheck
-shfmt
-silver-searcher
+silversearcher-ag
 snapd
 speedtest-cli
 tig
@@ -63,7 +48,6 @@ trash-cli
 tree
 universal-ctags
 unrar
-up
 vim
 w3m
 wakeonlan
@@ -71,26 +55,18 @@ watch
 watchman
 wget
 xclip
-xz
 zplug
 zsh
-
-# Make
 cmake
 g++
 gcc
 make
-tlp 
-tlp-rdw 
-
-# Fun
 cmatrix
 cowsay
-doge
 figlet
 fortune
-gti
 lolcat
 nyancat
 sl
 thefuck
+

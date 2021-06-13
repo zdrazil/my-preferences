@@ -4,8 +4,8 @@ let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   linuxPkgs = [
     pkgs.clojure-lsp
-    pkgs.fish
-    pkgs.git
+    # pkgs.fish
+    # pkgs.git
     pkgs.mpv
     pkgs.thefuck
     # "pkgs.glibc-locales"
