@@ -8,6 +8,7 @@ let
     # pkgs.git
     pkgs.mpv
     pkgs.thefuck
+    pkgs.termpdfpy
     # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
@@ -88,6 +89,9 @@ let
     pkgs.lolcat
     pkgs.nyancat
     pkgs.sl
+    pkgs.mdcat
+    pkgs.nnn
+    pkgs.timg
   ];
   allLinuxPkgs = genericPkgs ++ linuxPkgs;
   allDarwinPkgs = genericPkgs ++ darwinPkgs;

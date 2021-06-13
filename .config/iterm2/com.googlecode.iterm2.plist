@@ -8741,6 +8741,8 @@
 			<string>/Users/zdrazil</string>
 		</dict>
 	</array>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -8774,6 +8776,8 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SGTRecentFileSearches</key>
 	<array>
 		<dict>
@@ -8800,7 +8804,7 @@
 	<key>SeparateWindowTitlePerTab</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SoundForEsc</key>
