@@ -1,3 +1,4 @@
+# sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-gui-packages" | sed '/^#/d')
 calibre
 chromium-browser
 emacs
