@@ -37,6 +37,7 @@ let
     pkgs.fd
     pkgs.findutils
     pkgs.fzf
+    pkgs.gh
     pkgs.gifski
     pkgs.gitAndTools.delta
     pkgs.graphviz

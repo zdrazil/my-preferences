@@ -202,7 +202,7 @@ nmap <leader>gx :ALEDetail<CR>
 
 nmap <leader>gd <Plug>(coc-definition)
 nmap <silent>gd <Plug>(coc-definition)
-nmap <leader>gD <Plug>(coc-references)
+nmap <leader>grr <Plug>(coc-references)
 nmap <leader>gi <Plug>(coc-implementation)
 nmap <leader>gy <Plug>(coc-type-definition)
 
