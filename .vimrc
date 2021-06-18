@@ -102,6 +102,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
+Plug 'ojroques/vim-oscyank'
+
 Plug 'iberianpig/tig-explorer.vim'
 
 Plug 'editorconfig/editorconfig-vim'
