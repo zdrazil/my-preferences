@@ -157,7 +157,7 @@ if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit'
 endif
 
 " Make mouse work in tmux
-if &term =~ '^screen'
+if &term =~ '^screen' || &term =~ '^xterm-kitty'
   " tmux knows the extended mouse mode
   set ttymouse=sgr
 endif
