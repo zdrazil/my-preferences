@@ -45,6 +45,7 @@ let
     pkgs.leiningen
     pkgs.lorri
     pkgs.moreutils
+    pkgs.mosh
     pkgs.ncdu
     pkgs.nodejs-14_x
     pkgs.nodePackages.eslint_d
