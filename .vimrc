@@ -116,6 +116,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
+Plug 'kana/vim-fakeclip'
+
 Plug 'jpalardy/vim-slime'
 
 Plug 'justinmk/vim-gtfo'
