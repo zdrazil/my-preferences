@@ -235,6 +235,9 @@ nmap <leader>of  :OpenCurrentFileDir<cr>
 " change to directory of current file
 nnoremap <leader>pc :cd %:p:h<CR>:pwd<CR>
 
+" register
+vnoremap <leader>ro :OSCYank<CR>
+
 " search
 " nnoremap <leader>f :Rg<cr>
 nnoremap <leader>ss :Rg<cr>
@@ -418,6 +421,7 @@ let g:which_key_map.o = { 'name' : '+open' }
 let g:which_key_map.s = { 'name' : '+search' }
 let g:which_key_map.t = { 'name' : '+toggle' }
 let g:which_key_map.w = { 'name' : '+window' }
+let g:which_key_map.r = { 'name' : '+register' }
 
 command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
