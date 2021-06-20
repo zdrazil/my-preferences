@@ -15,6 +15,7 @@ let
     # pkgs.bash
     # pkgs.bash-completion
     # pkgs.coreutils
+    pkgs.elinks
     pkgs.gawk
     # pkgs.gnugrep
     # pkgs.gnused
