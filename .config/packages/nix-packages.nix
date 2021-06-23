@@ -19,6 +19,7 @@ let
     pkgs.gawk
     # pkgs.gnugrep
     # pkgs.gnused
+    pkgs.ranger
     pkgs.readline
     # pkgs.zsh
   ];
@@ -56,7 +57,6 @@ let
     pkgs.pandoc
     pkgs.pwgen
     pkgs.python3
-    pkgs.ranger
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.shellcheck
