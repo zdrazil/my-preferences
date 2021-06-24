@@ -2453,6 +2453,12 @@
         "options": {
           "full_name": "betterzip"
         }
+      },
+      "apppolice": {
+        "version": "1.1",
+        "options": {
+          "full_name": "apppolice"
+        }
       }
     }
   },

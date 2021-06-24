@@ -23,7 +23,7 @@ brew "node"
 brew "yarn"
 brew "reattach-to-user-namespace"
 
-# cask "apppolice"
+cask "apppolice"
 # cask "font-cascadia-code"
 # cask "font-fira-code"
 # cask "font-hasklig"

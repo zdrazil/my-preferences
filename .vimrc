@@ -127,6 +127,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
+" Plug 'unblevable/quick-scope' 
+" Plug 'skamsie/vim-lineletters'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
@@ -188,6 +190,8 @@ inoremap jj <Esc>
 nnoremap <leader><leader> :FZF<cr>
 " nnoremap <leader>p :Commands<cr>
 nnoremap <leader>; :Commands<cr>
+" map <silent>s <Plug>LineLetters
+
 
 " buffer
 " nnoremap <leader>b :Buffers<cr>
@@ -429,4 +433,6 @@ command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curw
 function SlimeOverride_EscapeText_typescript(text)
   return system("babel --presets @babel/preset-typescript -f a.ts", a:text)
 endfunction
+
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
