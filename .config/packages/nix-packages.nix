@@ -9,13 +9,14 @@ let
     pkgs.mpv
     pkgs.thefuck
     pkgs.termpdfpy
+    pkgs.starship
+    pkgs.elinks
     # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
     # pkgs.bash
     # pkgs.bash-completion
     # pkgs.coreutils
-    pkgs.elinks
     pkgs.gawk
     # pkgs.gnugrep
     # pkgs.gnused
@@ -24,6 +25,7 @@ let
     # pkgs.zsh
   ];
   genericPkgs = [
+    pkgs.starship
     pkgs.ack
     pkgs.bat
     pkgs.curl

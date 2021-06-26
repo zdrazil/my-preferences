@@ -1,0 +1,136 @@
+add_newline = false
+
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+vicmd_symbol = "[<](bold green)"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[aws]
+symbol = "aws "
+
+[conda]
+symbol = "conda "
+disabled = true
+
+[crystal]
+symbol = "cr "
+disabled = true
+
+[cmake]
+symbol = "cmake "
+disabled = true
+
+[dart]
+symbol = "dart "
+disabled = true
+
+[deno]
+symbol = "deno "
+disabled = true
+
+[dotnet]
+symbol = ".NET "
+disabled = true
+
+[directory]
+read_only = " ro"
+
+[docker_context]
+symbol = "docker "
+disabled = true
+
+[elixir]
+symbol = "exs "
+disabled = true
+
+[elm]
+symbol = "elm "
+disabled = true
+
+[git_branch]
+symbol = "git "
+
+[golang]
+symbol = "go "
+disabled = true
+
+[hg_branch]
+symbol = "hg "
+
+[java]
+symbol = "java "
+disabled = true
+
+[julia]
+symbol = "jl "
+disabled = true
+
+[kotlin]
+symbol = "kt "
+disabled = true
+
+[nodejs]
+symbol = "nodejs "
+disabled = true
+
+[memory_usage]
+symbol = "memory "
+
+[nim]
+symbol = "nim "
+disabled = true
+
+[nix_shell]
+symbol = "nix "
+disabled = true
+
+[ocaml]
+symbol = "ml "
+disabled = true
+
+[package]
+symbol = "pkg "
+disabled = true
+
+[perl]
+symbol = "pl "
+disabled = true
+
+[php]
+symbol = "php "
+disabled = true
+
+[purescript]
+symbol = "purs "
+disabled = true
+
+[python]
+symbol = "py "
+disabled = true
+
+[ruby]
+symbol = "rb "
+disabled = true
+
+[rust]
+symbol = "rs "
+disabled = true
+
+[scala]
+symbol = "scala "
+disabled = true
+
+[swift]
+disabled = true
+symbol = "swift "

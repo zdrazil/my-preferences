@@ -95,3 +95,4 @@ export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 #     eval "$(asdf exec direnv hook zsh)"
 # fi
 eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
