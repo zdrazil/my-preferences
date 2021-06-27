@@ -64,4 +64,4 @@ if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
 fi
 
 
-eval "$(starship init bash)"
+# eval "$(starship init bash)"

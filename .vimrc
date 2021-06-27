@@ -436,3 +436,6 @@ endfunction
 
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
+set wildcharm=<C-z>
+cnoremap <expr> <Tab>   getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
