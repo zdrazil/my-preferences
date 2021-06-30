@@ -276,6 +276,7 @@ let g:highlightedyank_highlight_duration = 200
 
 " Coc.nvim
 let g:coc_global_extensions = [
+      \ 'coc-tabnine',
       \ 'coc-css',
       \ 'coc-sql',
       \ 'coc-html',
