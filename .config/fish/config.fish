@@ -30,7 +30,6 @@ if test -d "/Applications/MacVim.app/Contents/bin"
     set PATH "/Applications/MacVim.app/Contents/bin" $PATH
 end
 
-
 if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 end
