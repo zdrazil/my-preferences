@@ -84,5 +84,6 @@ cask "vlc"
 cask "xquartz"
 cask "yacreader"
 cask "zotero"
+cask "avibrazil-rdm"
 
 cask "qlvideo"

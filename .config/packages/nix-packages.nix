@@ -11,6 +11,7 @@ let
     pkgs.termpdfpy
     pkgs.starship
     pkgs.elinks
+    pkgs.nix-direnv
     # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
@@ -48,7 +49,7 @@ let
     pkgs.imagemagick
     pkgs.jq
     pkgs.leiningen
-    pkgs.lorri
+    # pkgs.lorri
     pkgs.moreutils
     pkgs.mosh
     pkgs.ncdu
