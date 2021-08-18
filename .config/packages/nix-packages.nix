@@ -26,7 +26,7 @@ let
     # pkgs.zsh
   ];
   genericPkgs = [
-    pkgs.starship
+    # pkgs.starship
     pkgs.ack
     pkgs.bat
     pkgs.curl
