@@ -11,7 +11,6 @@ let
     pkgs.termpdfpy
     pkgs.starship
     pkgs.elinks
-    pkgs.nix-direnv
     # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
@@ -32,6 +31,7 @@ let
     pkgs.curl
     unstable.dasht
     pkgs.direnv
+    pkgs.nix-direnv
     pkgs.dos2unix
     pkgs.entr
     pkgs.ffmpeg
