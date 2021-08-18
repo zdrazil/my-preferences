@@ -47,7 +47,7 @@ bind Space:magic-space
 #     . $HOME/.asdf/completions/asdf.bash
 #      eval "$(asdf exec direnv hook bash)"
 # fi
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
 
 
 if [ -d "/opt/local/bin" ]; then

@@ -80,7 +80,7 @@ let
     pkgs.watch
     pkgs.watchman
     pkgs.wget
-    pkgs.yarn
+    # pkgs.yarn
     pkgs.fx
     pkgs.nodePackages.fixjson
     unstable.youtube-dl
