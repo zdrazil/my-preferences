@@ -53,7 +53,7 @@ let
     pkgs.moreutils
     pkgs.mosh
     pkgs.ncdu
-    pkgs.ngrok
+    # pkgs.ngrok
     pkgs.nodejs-14_x
     pkgs.nodePackages.eslint_d
     pkgs.nodePackages.prettier
