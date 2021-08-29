@@ -4,68 +4,48 @@ let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   linuxPkgs = [
     pkgs.clojure-lsp
-    # pkgs.fish
-    # pkgs.git
-    pkgs.mpv
     pkgs.thefuck
     pkgs.termpdfpy
     pkgs.starship
     pkgs.elinks
-    # "pkgs.glibc-locales"
   ];
   darwinPkgs = [
-    # pkgs.bash
-    # pkgs.bash-completion
-    # pkgs.coreutils
-    pkgs.gawk
-    # pkgs.gnugrep
-    # pkgs.gnused
-    pkgs.ranger
-    pkgs.readline
-    # pkgs.zsh
-  ];
-  genericPkgs = [
-    # pkgs.starship
     pkgs.ack
     pkgs.bat
     pkgs.curl
-    unstable.dasht
     pkgs.direnv
-    pkgs.nix-direnv
     pkgs.dos2unix
     pkgs.entr
-    pkgs.ffmpeg
     pkgs.fd
+    pkgs.ffmpeg
     pkgs.findutils
     pkgs.fzf
-    pkgs.gh
-    pkgs.gifski
-    pkgs.gitAndTools.delta
+    pkgs.gawk
+    pkgs.git-extras
+    pkgs.gnupg
     pkgs.graphviz
     pkgs.gron
-    pkgs.gnupg
     pkgs.highlight
     pkgs.htop
     pkgs.imagemagick
     pkgs.jq
     pkgs.leiningen
-    # pkgs.lorri
     pkgs.moreutils
     pkgs.mosh
     pkgs.ncdu
-    # pkgs.ngrok
-    pkgs.nodejs-14_x
-    pkgs.nodePackages.eslint_d
+    pkgs.nix-direnv
     pkgs.nodePackages.prettier
-    pkgs.perl
+    pkgs.nodejs-14_x
     pkgs.p7zip
     pkgs.pandoc
+    pkgs.perl
     pkgs.pwgen
     pkgs.python3
+    pkgs.ranger
+    pkgs.readline
     pkgs.ripgrep
     pkgs.rlwrap
     pkgs.shellcheck
-    pkgs.shfmt
     pkgs.silver-searcher
     pkgs.speedtest-cli
     pkgs.stack
@@ -80,25 +60,32 @@ let
     pkgs.watch
     pkgs.watchman
     pkgs.wget
-    # pkgs.yarn
-    pkgs.fx
-    pkgs.nodePackages.fixjson
-    unstable.youtube-dl
-    pkgs.git-extras
-    pkgs.haskellPackages.hoogle
+    unstable.dasht
     # Fun
     pkgs.cmatrix
     pkgs.cowsay
     pkgs.doge
     pkgs.figlet
     pkgs.fortune
-    pkgs.gti
     pkgs.lolcat
     pkgs.nyancat
-    pkgs.sl
     pkgs.mdcat
     pkgs.nnn
     pkgs.timg
+  ];
+  genericPkgs = [
+    pkgs.fx
+    pkgs.gh
+    pkgs.gifski
+    pkgs.gitAndTools.delta
+    pkgs.haskellPackages.hoogle
+    pkgs.nodePackages.eslint_d
+    pkgs.nodePackages.fixjson
+    pkgs.shfmt
+    unstable.youtube-dl
+    # Fun
+    pkgs.gti
+    pkgs.sl
   ];
   allLinuxPkgs = genericPkgs ++ linuxPkgs;
   allDarwinPkgs = genericPkgs ++ darwinPkgs;

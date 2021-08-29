@@ -1,13 +1,14 @@
 # sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-packages" | sed '/^#/d')
-direnv
 ack
 autojump
 bash
 bash-completion
+cmake
 coreutils
 curl
 ddgr
 delta
+direnv
 dos2unix
 elinks
 entr
@@ -15,7 +16,9 @@ fd-find
 findutils
 fish
 fzf
+g++
 gawk
+gcc
 git-extras
 git-quick-stats
 gnupg2
@@ -26,6 +29,7 @@ highlight
 htop
 jq
 leiningen
+make
 moreutils
 mpv
 ncdu
@@ -41,7 +45,6 @@ rlwrap
 sed
 shellcheck
 silversearcher-ag
-snapd
 speedtest-cli
 tig
 tldr
@@ -56,13 +59,10 @@ wakeonlan
 watch
 watchman
 wget
+wl-clipboard
 xclip
-zplug
+xsel
 zsh
-cmake
-g++
-gcc
-make
 cmatrix
 cowsay
 figlet
@@ -71,6 +71,3 @@ lolcat
 nyancat
 sl
 thefuck
-xsel
-xclip
-wl-clipboard
