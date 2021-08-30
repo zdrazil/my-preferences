@@ -211,6 +211,10 @@ xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>gA <Plug>(coc-codeaction)
 nmap <leader>grn <Plug>(coc-rename)
 
+nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>gk  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>gl  :<C-u>CocListResume<CR>
+
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
 nmap <leader>gs< <Plug>SidewaysLeft
