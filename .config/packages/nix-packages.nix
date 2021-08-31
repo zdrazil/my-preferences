@@ -33,7 +33,6 @@ let
     pkgs.moreutils
     pkgs.mosh
     pkgs.ncdu
-    pkgs.nix-direnv
     pkgs.nodePackages.prettier
     pkgs.nodejs-14_x
     pkgs.p7zip
@@ -79,6 +78,7 @@ let
     pkgs.gifski
     pkgs.gitAndTools.delta
     pkgs.haskellPackages.hoogle
+    pkgs.nix-direnv
     pkgs.nodePackages.eslint_d
     pkgs.nodePackages.fixjson
     pkgs.shfmt
