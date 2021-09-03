@@ -16,7 +16,6 @@ let
     pkgs.direnv
     pkgs.dos2unix
     pkgs.entr
-    pkgs.fd
     pkgs.ffmpeg
     pkgs.findutils
     pkgs.fzf
@@ -73,6 +72,7 @@ let
     pkgs.timg
   ];
   genericPkgs = [
+    pkgs.fd
     pkgs.fx
     pkgs.gh
     pkgs.gifski
