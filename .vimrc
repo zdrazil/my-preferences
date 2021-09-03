@@ -54,7 +54,7 @@ set undodir=~/.vim/undo//
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-Plug 'embear/vim-localvimrc'
+" Plug 'embear/vim-localvimrc'
 
 " Themes
 Plug 'vim-scripts/CycleColor', { 'on': ['CycleColorNext', 'CycleColorPrev'] }
@@ -339,8 +339,8 @@ let g:vimwiki_auto_header = 1
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_global_ext = 0
 
-let g:localvimrc_name = [ ".scilvimrc"]
-let g:localvimrc_persistent = 2
+" let g:localvimrc_name = [ ".scilvimrc"]
+" let g:localvimrc_persistent = 2
 
 hi Pmenu ctermbg=Black ctermfg=White
 
@@ -439,3 +439,9 @@ endfunction
 set wildcharm=<C-z>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
+
+if exists("$EXTRA_VIM")
+  for path in split($EXTRA_VIM, ':')
+    exec "source ".path
+  endfor
+endif

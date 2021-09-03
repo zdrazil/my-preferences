@@ -34,6 +34,10 @@ if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 end
 
+if test -e "~/.nix-profile/etc/profile.d/nix.sh"
+    fenv source ~/.nix-profile/etc/profile.d/nix.sh
+end
+
 switch (uname)
     case Darwin
         export LC_ALL=en_US.UTF-8  
@@ -54,11 +58,8 @@ set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 
 set -gx HOMEBREW_NO_ANALYTICS "1"
 
-source ~/.asdf/asdf.fish
-asdf exec direnv hook fish | source
-# direnv hook fish | source
-
-
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
-
 # starship init fish | source
+# source ~/.asdf/asdf.fish
+direnv hook fish | source
+# asdf direnv hook fish | source
+#
