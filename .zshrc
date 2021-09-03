@@ -90,9 +90,9 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-# if [ -d "$HOME/.asdf" ] ; then
-#     . $HOME/.asdf/asdf.sh
-#     eval "$(asdf exec direnv hook zsh)"
-# fi
-eval "$(direnv hook zsh)"
+if [ -d "$HOME/.asdf" ] ; then
+    . $HOME/.asdf/asdf.sh
+    eval "$(asdf exec direnv hook zsh)"
+fi
+# eval "$(direnv hook zsh)"
 # eval "$(starship init zsh)"

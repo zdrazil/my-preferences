@@ -54,9 +54,9 @@ set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 
 set -gx HOMEBREW_NO_ANALYTICS "1"
 
-# source ~/.asdf/asdf.fish
-# asdf exec direnv hook fish | source
-direnv hook fish | source
+source ~/.asdf/asdf.fish
+asdf exec direnv hook fish | source
+# direnv hook fish | source
 
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish ; or true
