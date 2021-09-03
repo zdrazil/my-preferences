@@ -5,7 +5,7 @@ ISSUE=$(echo "${BRANCH}" | cut -d '-' -f1,2)
 FILE=".github/pull_request_template.md"
 APPNAME=$1
 
-gsed "s/XXX-YYYY/${ISSUE}/" $FILE \
-| gsed "s/{branch-name}/${BRANCH}/" \
-| gsed "s/{app-name}/${APPNAME}/" \
-| gsed '/^_Fill/{N;d;N;d}' 
+sed "s/XXX-YYYY/${ISSUE}/" $FILE \
+| sed "s/{branch-name}/${BRANCH}/" \
+| sed "s/{app-name}/${APPNAME}/" \
+| sed '/^_Fill/{N;d;N;d}' 
