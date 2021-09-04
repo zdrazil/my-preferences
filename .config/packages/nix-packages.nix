@@ -13,7 +13,6 @@ let
     pkgs.ack
     pkgs.bat
     pkgs.curl
-    pkgs.direnv
     pkgs.dos2unix
     pkgs.entr
     pkgs.ffmpeg
@@ -72,6 +71,7 @@ let
     pkgs.timg
   ];
   genericPkgs = [
+    pkgs.direnv
     pkgs.fd
     pkgs.fx
     pkgs.gh
