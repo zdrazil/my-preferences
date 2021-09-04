@@ -123,7 +123,6 @@ Plug 'jpalardy/vim-slime'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'liuchengxu/vim-which-key'
-" Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
@@ -248,7 +247,8 @@ nnoremap <leader>ss :Rg<cr>
 nnoremap <leader>. :Rg<cr>
 nnoremap <leader>sl :Lines<cr>
 nnoremap <leader>sh :History:<cr>
-nnoremap <leader>sm :Maps<cr>
+nnoremap <leader>sma :Maps<cr>
+nnoremap <leader>smm :Marks<cr>
 nnoremap <silent><nowait> <leader>s*  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <leader>scs  :<C-u>CocList snippets<cr>
 nnoremap <silent><nowait> <leader>so  :<C-u>CocList outline<cr>
@@ -270,9 +270,9 @@ let g:ale_javascript_prettier_use_global = 1
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 
-let g:slime_target = "vimterminal"
+let g:slime_target = "tmux"
 
-let g:highlightedyank_highlight_duration = 200
+let g:highlightedyank_highlight_duration = 100
 
 " Coc.nvim
 let g:coc_global_extensions = [
@@ -445,3 +445,11 @@ if exists("$EXTRA_VIM")
     exec "source ".path
   endfor
 endif
+
+" Content will be copied to clipboard after register yank operation
+" Uses execute because command doesn't have -bar attribute
+" https://vi.stackexchange.com/questions/13454/endif-treated-as-part-of-command-in-autocmd
+augroup MYOSCYank
+  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
+augroup END
+" let g:oscyank_silent = v:true
