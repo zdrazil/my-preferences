@@ -11,7 +11,6 @@ let
   ];
   darwinPkgs = [
     pkgs.ack
-    pkgs.bat
     pkgs.curl
     pkgs.dos2unix
     pkgs.entr
@@ -40,7 +39,6 @@ let
     pkgs.python3
     pkgs.ranger
     pkgs.readline
-    pkgs.ripgrep
     pkgs.rlwrap
     pkgs.shellcheck
     pkgs.silver-searcher
@@ -71,6 +69,7 @@ let
     pkgs.timg
   ];
   genericPkgs = [
+    pkgs.bat
     pkgs.direnv
     pkgs.fd
     pkgs.fx
@@ -81,6 +80,7 @@ let
     pkgs.nix-direnv
     pkgs.nodePackages.eslint_d
     pkgs.nodePackages.fixjson
+    pkgs.ripgrep
     pkgs.shfmt
     unstable.youtube-dl
     # Fun
