@@ -158,14 +158,14 @@ if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit'
 endif
 
 " Make mouse work in tmux
-if &term =~ '^screen' || &term =~ '^xterm-kitty'
+if &term =~# '^screen' || &term =~# '^xterm-kitty'
   " tmux knows the extended mouse mode
   set ttymouse=sgr
 endif
 
 
-if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
-  if $USER == 'mews'
+if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has('gui_running')
+  if $USER ==# 'mews'
     colorscheme solarized8
   else
     colorscheme base16-oceanicnext
@@ -264,14 +264,14 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_options = "--cache"
+let g:ale_javascript_eslint_options = '--cache'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_javascript_prettier_use_global = 1
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 
-let g:slime_target = "tmux"
+let g:slime_target = 'tmux'
 
 let g:highlightedyank_highlight_duration = 100
 
@@ -287,6 +287,7 @@ let g:coc_global_extensions = [
       \ 'coc-pyright',
       \ 'coc-snippets',
       \ 'coc-tag',
+      \ 'coc-vimlsp',
       \ ]
 
 set updatetime=300
@@ -300,11 +301,13 @@ function! s:show_documentation()
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    execute '!' . &keywordprg . ' ' . expand('<cword>')
   endif
 endfunction
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup cocHighlight
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -324,7 +327,10 @@ augroup omnisharp_commands
   autocmd FileType cs xmap <silent> <buffer> <Leader>ga <Plug>(omnisharp_code_actions)
   autocmd FileType cs nmap <silent> <buffer> <Leader>grn <Plug>(omnisharp_rename)
 augroup END
-autocmd BufWritePre *.cs :OmniSharpCodeFormat
+
+augroup omnisharp-autocommands
+  autocmd BufWritePre *.cs :OmniSharpCodeFormat
+augroup END
 
 let g:vimwiki_list = [{
       \ 'path': '~/vimwiki/',
@@ -367,6 +373,7 @@ let g:ale_linters = {
       \ 'python': ['flake8'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'typescriptreact': ['eslint', 'tsserver'],
+      \ 'vim': ['vint'],
       \}
 
 let g:sneak#label = 1
@@ -387,7 +394,7 @@ nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 :command! WebStorm execute ':silent !webstorm' . " --line " . line(". ") . " --column " . virtcol("."). ' %' | execute ':redraw!'
 
-if !exists("g:netrw_banner")
+if !exists('g:netrw_banner')
   let g:netrw_banner = 1
 endif
 
@@ -402,17 +409,19 @@ command FoldSyntax setlocal foldmethod=syntax
 
 command YankPath execute ':let @+ = expand("%")'
 
-au filetype css
-  \clojure
-  \html
-  \haskell
-  \javascript,
-  \javascriptreact,
-  \typescript,
-  \typescriptreact,
-  \ setl keywordprg=dash
+augroup dashfiletypes
+  au filetype css
+        \clojure
+        \html
+        \haskell
+        \javascript,
+        \javascriptreact,
+        \typescript,
+        \typescriptreact,
+        \ setl keywordprg=dash
+augroup END
 
-call which_key#register('<Space>', "g:which_key_map")
+call which_key#register('<Space>', 'g:which_key_map')
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 let g:peekaboo_delay=400
@@ -433,7 +442,7 @@ command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
 
 function SlimeOverride_EscapeText_typescript(text)
-  return system("babel --presets @babel/preset-typescript -f a.ts", a:text)
+  return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
 endfunction
 
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -442,9 +451,9 @@ set wildcharm=<C-z>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
 
-if exists("$EXTRA_VIM")
+if exists('$EXTRA_VIM')
   for path in split($EXTRA_VIM, ':')
-    exec "source ".path
+    exec 'source '.path
   endfor
 endif
 

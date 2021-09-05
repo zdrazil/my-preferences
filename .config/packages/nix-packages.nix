@@ -87,6 +87,7 @@ let
     # Fun
     pkgs.gti
     pkgs.sl
+    pkgs.vim-vint
   ];
   allLinuxPkgs = genericPkgs ++ linuxPkgs;
   allDarwinPkgs = genericPkgs ++ darwinPkgs;
