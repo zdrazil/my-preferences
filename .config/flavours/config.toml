@@ -13,7 +13,8 @@ file = "~/.tmux-colors.conf"
 template = "tmux"
 rewrite = true
 
-[[item]]
-file = "~/.vim-colors"
-template = "vim"
-rewrite = true
+# vim doesn't play nicely with flavours so let's not use it
+# [[item]]
+# file = "~/.vim-colors"
+# template = "vim"
+# rewrite = true

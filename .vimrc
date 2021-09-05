@@ -63,7 +63,7 @@ Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'noahfrederick/vim-noctu'
@@ -165,14 +165,13 @@ endif
 
 
 if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
-  source $HOME/.vim-colors
-  " if $USER == 'mews'
-  "   colorscheme solarized8
-  " else
-  "   colorscheme base16-oceanicnext
-  " endif
+  if $USER == 'mews'
+    colorscheme solarized8
+  else
+    colorscheme base16-oceanicnext
+  endif
 else 
-    colorscheme noctu
+  colorscheme noctu
 endif
 
 set background=dark
