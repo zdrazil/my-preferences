@@ -2,24 +2,24 @@
 
 # Source config files that are not to be public (API tokens etc.)
 if [ -r "$HOME/.not-public" ]; then
-   source "$HOME/.not-public"
+	source "$HOME/.not-public"
 fi
 
 if [ -f "$HOME/.shell-aliases" ]; then
-   source "$HOME/.shell-aliases"
+	source "$HOME/.shell-aliases"
 fi
 
 if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then
-   alias open="wslview"
+	alias open="wslview"
 else
-   case "$OSTYPE" in
-   cygwin*)
-      alias open="cmd /c start"
-      ;;
-   linux*)
-      alias open="xdg-open"
-      ;;
-   darwin*) ;;
+	case "$OSTYPE" in
+	cygwin*)
+		alias open="cmd /c start"
+		;;
+	linux*)
+		alias open="xdg-open"
+		;;
+	darwin*) ;;
 
-   esac
+	esac
 fi
