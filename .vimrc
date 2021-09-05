@@ -352,6 +352,7 @@ let g:ale_fixers = {
       \ 'typescriptreact': ['eslint', 'prettier'],
       \ 'python': ['black'],
       \ 'haskell': ['ormolu'],
+      \ 'sh': ['shfmt'],
       \}
 
 let g:ale_linters = {

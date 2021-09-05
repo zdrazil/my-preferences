@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cdl() {
+	cd "$@" || exit
+	ls -al
+}
+
+wiki() {
+	cd "$HOME/vimwiki" || exit
+	if [[ $# -eq 1 ]]; then
+		vim -c ':copen' -q <(rg --vimgrep -S $# "$HOME/vimwiki")
+		return
+	else
+		vim -c ':VimwikiIndex'
+		return
+	fi
+}

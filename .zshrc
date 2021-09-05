@@ -8,8 +8,8 @@ if [ -f $HOME/.commonrc ]; then
 fi
 
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=256000
+SAVEHIST=256000
 
 # ------------------ PLUGINS ----------------------
 #
@@ -82,6 +82,8 @@ bindkey "^X^E" edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -f ~/.shell-colors ] && sh "$HOME/.shell-colors"
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
@@ -90,9 +92,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
+export HOMEBREW_NO_ANALYTICS="1"
+
 # if [ -d "$HOME/.asdf" ] ; then
 #     . $HOME/.asdf/asdf.sh
 #     eval "$(asdf exec direnv hook zsh)"
 # fi
 eval "$(direnv hook zsh)"
-# eval "$(starship init zsh)"
+zgen load zsh-users/zsh-syntax-highlighting
