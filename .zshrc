@@ -22,6 +22,7 @@ if ! zgen saved; then
   # specify plugins here
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
+  zgen load agkozak/zsh-z
 
   zgen load zsh-users/zsh-completions src
 
@@ -44,6 +45,8 @@ precmd() { vcs_info }
 
 export RPROMPT='${vcs_info_msg_0_}'
 
+setopt AUTO_MENU           # Show completion menu on a successive tab press.
+
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
@@ -56,10 +59,23 @@ setopt AUTO_CD
 bindkey -e
 
 zstyle ':completion:*' rehash true
-# ignore case in completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Use caching to make completion for commands such as dpkg and apt usable.
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
 # Case-insensitive (all), partial-word, and then substring completion.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+
+# Don't complete unavailable commands.
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+
+# History
+zstyle ':completion:*:history-words' remove-all-dups yes
+
 unsetopt CASE_GLOB
 
 
