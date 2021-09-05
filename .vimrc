@@ -63,7 +63,7 @@ Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 
 Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'noahfrederick/vim-noctu'
@@ -171,8 +171,8 @@ if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit'
   " else
   "   colorscheme base16-oceanicnext
   " endif
-" else 
-  "   colorscheme noctu
+else 
+    colorscheme noctu
 endif
 
 set background=dark
