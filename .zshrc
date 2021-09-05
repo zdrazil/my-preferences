@@ -56,6 +56,8 @@ setopt AUTO_CD
 bindkey -e
 
 zstyle ':completion:*' rehash true
+# ignore case in completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Case-insensitive (all), partial-word, and then substring completion.
 unsetopt CASE_GLOB
