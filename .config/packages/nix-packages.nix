@@ -72,6 +72,7 @@ let
     pkgs.bat
     pkgs.direnv
     pkgs.fd
+    pkgs.flavours
     pkgs.fx
     pkgs.gh
     pkgs.gifski

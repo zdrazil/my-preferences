@@ -163,14 +163,16 @@ if &term =~ '^screen' || &term =~ '^xterm-kitty'
   set ttymouse=sgr
 endif
 
+
 if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has("gui_running")
-  if $USER == 'mews'
-    colorscheme solarized8
-  else
-    colorscheme base16-oceanicnext
-  endif
-else 
-    colorscheme noctu
+  source $HOME/.vim-colors
+  " if $USER == 'mews'
+  "   colorscheme solarized8
+  " else
+  "   colorscheme base16-oceanicnext
+  " endif
+" else 
+  "   colorscheme noctu
 endif
 
 set background=dark

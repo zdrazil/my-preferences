@@ -1,0 +1,19 @@
+[[item]]
+file = "~/.config/kitty/colors.conf"
+template = "kitty"
+rewrite = true
+
+[[item]]
+file = "~/.shell-colors"
+template = "shell"
+rewrite = true
+
+[[item]]
+file = "~/.tmux-colors.conf"
+template = "tmux"
+rewrite = true
+
+[[item]]
+file = "~/.vim-colors"
+template = "vim"
+rewrite = true

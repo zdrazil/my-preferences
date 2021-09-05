@@ -34,8 +34,12 @@ if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 end
 
-if test -e "~/.nix-profile/etc/profile.d/nix.sh"
+if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
     fenv source ~/.nix-profile/etc/profile.d/nix.sh
+end
+
+if test -e "$HOME/.shell-colors"
+     sh ~/.shell-colors
 end
 
 switch (uname)
@@ -62,4 +66,4 @@ set -gx HOMEBREW_NO_ANALYTICS "1"
 # source ~/.asdf/asdf.fish
 direnv hook fish | source
 # asdf direnv hook fish | source
-#
+
