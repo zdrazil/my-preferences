@@ -46,7 +46,6 @@ let
     pkgs.stack
     pkgs.tig
     pkgs.tldr
-    pkgs.tmux
     pkgs.trash-cli
     pkgs.tree
     pkgs.universal-ctags

@@ -2,22 +2,22 @@
   "entries": {
     "tap": {
       "d12frosted/emacs-plus": {
-        "revision": "eeba9c0a55768db6ad78ae839f3507b9781b63cd"
+        "revision": "f3c16d68bbf52c1779be279579d124d726f0d04a"
       },
       "homebrew/bundle": {
         "revision": "244bfa18b23948404fc2ee4253eb232053034212"
       },
       "homebrew/cask": {
-        "revision": "df238555837480a1ef320f66cb1d51cc09465378"
+        "revision": "fefad8eee63905dfe2c173fefd65af31e8ffc69c"
       },
       "homebrew/cask-versions": {
-        "revision": "bd407c0f201246367101a3b7700d79f8902f8d76"
+        "revision": "c5db479dc1b24933a5b0ef700fd36ba027285532"
       },
       "homebrew/cask-fonts": {
-        "revision": "e25fcea91c78c7336a44c72206d36a5234c73ce5"
+        "revision": "aad463484986830fd1cd355b37bdc1f1a6749ed0"
       },
       "homebrew/core": {
-        "revision": "f83251d5c490c52abb9937cec892aceb96b4d076"
+        "revision": "c7c06b5c23af07a99fab1677b2759f23179ec151"
       },
       "markwu/personal": {
         "revision": "d91f5cde2168a52e34f021d2fabf03c20c644c64"
@@ -2263,7 +2263,7 @@
         }
       },
       "brave-browser": {
-        "version": "1.28.106.0,128.106",
+        "version": "1.29.77.0,129.77",
         "options": {
           "full_name": "brave-browser"
         }
@@ -2287,7 +2287,7 @@
         }
       },
       "google-chrome": {
-        "version": "92.0.4515.159",
+        "version": "93.0.4577.63",
         "options": {
           "full_name": "google-chrome"
         }
@@ -2347,7 +2347,7 @@
         }
       },
       "microsoft-teams": {
-        "version": "1.4.00.16567",
+        "version": "1.4.00.22265",
         "options": {
           "full_name": "microsoft-teams"
         }
@@ -2419,7 +2419,7 @@
         }
       },
       "visual-studio-code": {
-        "version": "1.59.1",
+        "version": "1.60.0",
         "options": {
           "full_name": "visual-studio-code"
         }
@@ -2467,7 +2467,7 @@
         }
       },
       "docker": {
-        "version": "3.6.0,67351",
+        "version": "4.0.0,67817",
         "options": {
           "full_name": "docker"
         }
@@ -2479,25 +2479,25 @@
         }
       },
       "font-iosevka": {
-        "version": "10.1.0",
+        "version": "10.1.1",
         "options": {
           "full_name": "homebrew/cask-fonts/font-iosevka"
         }
       },
       "font-iosevka-aile": {
-        "version": "10.1.0",
+        "version": "10.1.1",
         "options": {
           "full_name": "homebrew/cask-fonts/font-iosevka-aile"
         }
       },
       "font-iosevka-etoile": {
-        "version": "10.1.0",
+        "version": "10.1.1",
         "options": {
           "full_name": "homebrew/cask-fonts/font-iosevka-etoile"
         }
       },
       "font-iosevka-slab": {
-        "version": "10.1.0",
+        "version": "10.1.1",
         "options": {
           "full_name": "homebrew/cask-fonts/font-iosevka-slab"
         }
@@ -2567,9 +2567,9 @@
   "system": {
     "macos": {
       "big_sur": {
-        "HOMEBREW_VERSION": "3.2.9",
+        "HOMEBREW_VERSION": "3.2.10",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "f83251d5c490c52abb9937cec892aceb96b4d076",
+        "Homebrew/homebrew-core": "c7c06b5c23af07a99fab1677b2759f23179ec151",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5.1",
         "macOS": "11.5.2"
