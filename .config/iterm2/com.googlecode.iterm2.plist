@@ -5,7 +5,7 @@
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>Command</key>
-	<string></string>
+	<string>/usr/local/bin/fish</string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>base16-gruvbox-dark-hard</key>
@@ -6946,7 +6946,7 @@
 				<real>0.105882354</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>Custom Shell</string>
+			<string>No</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -7636,7 +7636,7 @@
 				<real>0.0</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>Custom Shell</string>
+			<string>No</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -8324,7 +8324,7 @@
 				<real>0.105882354</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>Custom Shell</string>
+			<string>No</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
