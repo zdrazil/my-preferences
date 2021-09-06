@@ -1,24 +1,3 @@
-
-for myPath (
-    "$HOME/bin"
-    "/usr/local/bin"
-    "$HOME/.local/bin"
-    "$HOME/.local/homebrew/bin"
-    "/Applications/MacVim.app/Contents/bin"
-    "$HOME/.fzf/bin"
-    "$HOME/.local/npm-tools/node_modules/.bin"
-    ) 
-    {
-        if [ -d $myPath ]; then
-            PATH="$myPath:$PATH"
-        fi
-    }
-
-if [ -d "/opt/local/bin" ]; then
-    PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    MANPATH=/opt/local/share/man:$MANPATH
-fi
-
 if [[ $OSTYPE == "darwin"* ]]; then
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
