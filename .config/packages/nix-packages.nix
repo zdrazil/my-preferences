@@ -10,7 +10,6 @@ let
     pkgs.fx
     pkgs.gh
     pkgs.gitAndTools.delta
-    pkgs.gti
     pkgs.ripgrep
     pkgs.shfmt
     pkgs.starship
@@ -63,8 +62,9 @@ let
     unstable.dasht
     # Fun
     pkgs.doge
-    # pkgs.lolcat
-    # pkgs.nyancat
+    pkgs.gti
+    pkgs.lolcat
+    pkgs.nyancat
   ];
   genericPkgs = [
     pkgs.direnv
