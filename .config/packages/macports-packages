@@ -1,3 +1,4 @@
+# sudo port -N install $(cat "$HOME/.config/packages/macports-packages" | sed '/^#/d')
 fish
 zsh
 bash
@@ -8,28 +9,32 @@ bat
 coreutils
 curl
 direnv
-docker
-docker-machine
 dos2unix
 entr
 fd
 findutils
-fish
+fx
+fzf
 gawk
+git
 git-delta
 git-extras
+gnupg2
 graphviz
 grep
 gsed
+gron
 highlight
 htop
 jq
+imagemagick
 leiningen
 moreutils
 ncdu
 p7zip
 pandoc
 pwgen
+python39
 ranger
 readline
 ripgrep
@@ -37,6 +42,7 @@ rlwrap
 shellcheck
 shfmt
 speedtest-cli
+stack
 the_silver_searcher
 tig
 tldr-cpp-client
@@ -50,6 +56,7 @@ w3m
 watch
 watchman
 wget
+yarn
 
 cmatrix
 cowsay
@@ -63,17 +70,17 @@ ffmpeg +nonfree
 git
 git-delta
 gnupg2
-nodejs14
+nodejs16
 perl5
-subversion
 youtube-dl
-zsh
+zsh-completions
+vint
 
-vim +perl +lua +python38 
-imagemagick
-
-
-gron
+cowsay
+figlet
+fortune
 gti
+mdcat
+cmatrix
 lolcat
 nyancat
