@@ -1,6 +1,6 @@
 # eval "$(lorri direnv)"
 # source "$(asdf direnv hook asdf)"
-source $HOME/.nix-profile/share/nix-direnv/direnvrc
+# source $HOME/.nix-profile/share/nix-direnv/direnvrc
 
 add_extra_vimrc() {
   local extravim="$(find_up .vimrc)"

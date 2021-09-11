@@ -63,7 +63,7 @@ set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 set -gx HOMEBREW_NO_ANALYTICS "1"
 
 # starship init fish | source
-# source ~/.asdf/asdf.fish
+source ~/.asdf/asdf.fish
 direnv hook fish | source
 # asdf direnv hook fish | source
 

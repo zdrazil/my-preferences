@@ -112,9 +112,9 @@ export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 export HOMEBREW_NO_ANALYTICS="1"
 
-# if [ -d "$HOME/.asdf" ] ; then
-#     . $HOME/.asdf/asdf.sh
+if [ -d "$HOME/.asdf" ] ; then
+    . $HOME/.asdf/asdf.sh
 #     eval "$(asdf exec direnv hook zsh)"
-# fi
+fi
 eval "$(direnv hook zsh)"
 zgen load zsh-users/zsh-syntax-highlighting

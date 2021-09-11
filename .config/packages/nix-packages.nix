@@ -35,7 +35,7 @@ let
     # pkgs.moreutils
     # pkgs.mosh
     # pkgs.ncdu
-    pkgs.nodePackages.prettier
+    # pkgs.nodePackages.prettier
     # pkgs.nodejs-14_x
     # pkgs.p7zip
     # pkgs.pandoc
@@ -59,22 +59,22 @@ let
     # pkgs.watch
     # pkgs.watchman
     # pkgs.wget
-    unstable.dasht
+    # unstable.dasht
     # Fun
-    pkgs.doge
-    pkgs.gti
-    pkgs.lolcat
-    pkgs.nyancat
+    # pkgs.doge
+    # pkgs.gti
+    # pkgs.lolcat
+    # pkgs.nyancat
   ];
   genericPkgs = [
-    pkgs.direnv
+    # pkgs.direnv
     pkgs.flavours
-    pkgs.gifski
-    pkgs.haskellPackages.hoogle
-    pkgs.nix-direnv
-    pkgs.nodePackages.eslint_d
-    pkgs.nodePackages.fixjson
-    unstable.youtube-dl
+    # pkgs.gifski
+    # pkgs.haskellPackages.hoogle
+    # pkgs.nix-direnv
+    # pkgs.nodePackages.eslint_d
+    # pkgs.nodePackages.fixjson
+    # unstable.youtube-dl
   ];
   allLinuxPkgs = genericPkgs ++ linuxPkgs;
   allDarwinPkgs = genericPkgs ++ darwinPkgs;
