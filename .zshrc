@@ -117,4 +117,11 @@ if [ -d "$HOME/.asdf" ] ; then
 #     eval "$(asdf exec direnv hook zsh)"
 fi
 eval "$(direnv hook zsh)"
+
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 zgen load zsh-users/zsh-syntax-highlighting
+

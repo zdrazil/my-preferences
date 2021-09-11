@@ -68,7 +68,7 @@ let
   ];
   genericPkgs = [
     # pkgs.direnv
-    pkgs.flavours
+    # pkgs.flavours
     # pkgs.gifski
     # pkgs.haskellPackages.hoogle
     # pkgs.nix-direnv

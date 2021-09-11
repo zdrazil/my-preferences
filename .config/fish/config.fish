@@ -53,6 +53,11 @@ set -gx EDITOR vim
 
 set fish_greeting
 
+if status --is-interactive
+    set BASE16_SHELL "$HOME/.config/base16-shell/"
+    source "$BASE16_SHELL/profile_helper.fish"
+end
+
 #-------------------- ALIASES ------------------------
 
 # FZF
@@ -66,4 +71,5 @@ set -gx HOMEBREW_NO_ANALYTICS "1"
 source ~/.asdf/asdf.fish
 direnv hook fish | source
 # asdf direnv hook fish | source
+
 

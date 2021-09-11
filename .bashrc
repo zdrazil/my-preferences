@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-    *) return ;;
+*i*) ;;
+*) return ;;
 esac
 
 # Source config files that are the same for zsh and bash
@@ -20,8 +20,8 @@ export PS1="\u@\h \W> \[$(tput sgr0)\]"
 
 export HISTSIZE=10000     # big big history
 export HISTFILESIZE=10000 # big big history
-shopt -s histappend        # append to history, don't overwrite it
-shopt -s cmdhist           # Save multi-line commands as one command
+shopt -s histappend       # append to history, don't overwrite it
+shopt -s cmdhist          # Save multi-line commands as one command
 # Save multi-line commands to the history with embedded newlines
 shopt -s lithist
 
@@ -42,13 +42,12 @@ bind Space:magic-space
 
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-if [ -d "$HOME/.asdf" ] ; then
+if [ -d "$HOME/.asdf" ]; then
     . $HOME/.asdf/asdf.sh
     . $HOME/.asdf/completions/asdf.bash
 #      eval "$(asdf exec direnv hook bash)"
 fi
 eval "$(direnv hook bash)"
-
 
 if [ -d "/opt/local/bin" ]; then
     PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -63,5 +62,8 @@ if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
     PATH="/Applications/MacVim.app/Contents/bin:$PATH"
 fi
 
-
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] &&
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] &&
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
 # eval "$(starship init bash)"
