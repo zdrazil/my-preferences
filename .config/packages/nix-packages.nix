@@ -3,19 +3,17 @@ let
   pkgs = import <nixpkgs> {};
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   linuxPkgs = [
-    pkgs.bat
-    pkgs.clojure-lsp
-    pkgs.elinks
-    pkgs.fd
-    pkgs.fx
-    pkgs.gh
-    pkgs.gitAndTools.delta
-    pkgs.ripgrep
-    pkgs.shfmt
-    pkgs.starship
-    pkgs.termpdfpy
-    pkgs.thefuck
-    pkgs.vim-vint
+    # pkgs.bat
+    # pkgs.clojure-lsp
+    # pkgs.elinks
+    # pkgs.fx
+    # pkgs.gh
+    # pkgs.ripgrep
+    # pkgs.shfmt
+    # pkgs.starship
+    # pkgs.termpdfpy
+    # pkgs.thefuck
+    # pkgs.vim-vint
   ];
   darwinPkgs = [
     # pkgs.ack

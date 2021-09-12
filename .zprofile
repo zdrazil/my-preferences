@@ -15,7 +15,12 @@ for myPath (
         fi
     }
 
-if [ -d "/opt/local/bin" ]; then
-    MANPATH=/opt/local/share/man:$MANPATH
-fi
-
+for myMan (
+    "/opt/local/share/man"
+    "$HOME/.local/homebrew/share/man"
+    ) 
+    {
+        if [ -d $myMan ]; then
+            MANPATH="$myMan:$MANPATH"
+        fi
+    }
