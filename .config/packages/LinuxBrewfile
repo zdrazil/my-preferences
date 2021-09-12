@@ -1,0 +1,9 @@
+tap "homebrew/core"
+tap "homebrew/bundle"
+
+brew "bat"
+# brew "clojure-lsp"
+# brew "fx"
+# brew "gh"
+brew "shfmt"
+brew "vint"
