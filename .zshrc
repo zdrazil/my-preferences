@@ -7,6 +7,34 @@ if [ -f $HOME/.commonrc ]; then
     . $HOME/.commonrc
 fi
 
+for myPath (
+    "$HOME/bin"
+    "/usr/local/bin"
+    "$HOME/.local/bin"
+    "$HOME/.local/homebrew/bin"
+    "/Applications/MacVim.app/Contents/bin"
+    "$HOME/.fzf/bin"
+    "$HOME/.local/npm-tools/node_modules/.bin"
+    "/opt/local/bin"
+    "/opt/local/sbin"
+    ) 
+    {
+        if [ -d $myPath ]; then
+            PATH="$myPath:$PATH"
+        fi
+    }
+
+for myMan (
+    "/opt/local/share/man"
+    "$HOME/.local/homebrew/share/man"
+    ) 
+    {
+        if [ -d $myMan ]; then
+            MANPATH="$myMan:$MANPATH"
+        fi
+    }
+
+
 HISTFILE=~/.histfile
 HISTSIZE=256000
 SAVEHIST=256000
@@ -100,7 +128,8 @@ bindkey "^X^E" edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/.shell-colors ] && sh "$HOME/.shell-colors"
+# [ -f ~/.shell-colors ] && sh "$HOME/.shell-colors"
+export CLICOLOR=1
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -109,8 +138,6 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-
-export HOMEBREW_NO_ANALYTICS="1"
 
 if [ -d "$HOME/.asdf" ] ; then
     . $HOME/.asdf/asdf.sh

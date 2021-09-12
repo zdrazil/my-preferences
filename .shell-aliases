@@ -15,3 +15,18 @@ wiki() {
 		return
 	fi
 }
+
+if [[ $OSTYPE == "linux-gnu" ]] && [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]] && [ -t 1 ]; then
+	alias open="wslview"
+else
+	case "$OSTYPE" in
+	cygwin*)
+		alias open="cmd /c start"
+		;;
+	linux*)
+		alias open="xdg-open"
+		;;
+	darwin*) ;;
+
+	esac
+fi
