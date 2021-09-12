@@ -10,8 +10,8 @@
   "diagnostic.displayByAle": false,
   "diagnostic.enable": false,
   "coc.preferences.promptInput": false,
-  "eslint.run": "onSave",
-  "eslint.autoFixOnSave": true,
+  /* "eslint.run": "onSave", */
+  /* "eslint.autoFixOnSave": true, */
   "css.validate": false,
   "snippets.extends": {
     "javascriptreact": ["javascript", "javascript-react", "javascript_react"],

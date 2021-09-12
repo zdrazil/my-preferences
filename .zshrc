@@ -34,6 +34,9 @@ for myMan (
         fi
     }
 
+# if [ -f $HOME/.zprofile ]; then
+#     . $HOME/.zprofile
+# fi
 
 HISTFILE=~/.histfile
 HISTSIZE=256000
