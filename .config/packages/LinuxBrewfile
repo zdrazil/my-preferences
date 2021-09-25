@@ -1,10 +1,10 @@
 tap "homebrew/core"
 tap "homebrew/bundle"
 
-brew "bat"
+# brew "bat"
 brew "clojure-lsp"
 brew "fd"
-# brew "fx"
+brew "fx"
 # brew "gh"
 brew "shfmt"
 brew "vint"
