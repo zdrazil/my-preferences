@@ -10,6 +10,8 @@
   "diagnostic.displayByAle": false,
   "diagnostic.enable": false,
   "coc.preferences.promptInput": false,
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.diagnostic.enable": false,
   /* "eslint.run": "onSave", */
   /* "eslint.autoFixOnSave": true, */
   "css.validate": false,

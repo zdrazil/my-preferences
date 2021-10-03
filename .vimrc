@@ -144,6 +144,9 @@ Plug 'guns/vim-clojure-static'
 Plug 'OmniSharp/omnisharp-vim'
 
 Plug 'tweekmonster/startuptime.vim'
+Plug 'takac/vim-hardtime'
+
+" Plug 'jayflo/vim-skip'
 
 call plug#end()
 
@@ -380,7 +383,7 @@ let g:ale_linters = {
       \ 'vim': ['vint'],
       \}
 
-let g:sneak#label = 1
+" let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 
 " vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
@@ -468,3 +471,9 @@ augroup MYOSCYank
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
 augroup END
 " let g:oscyank_silent = v:true
+"
+let g:hardtime_default_on = 1
+let g:list_of_normal_keys = ['h', 'j', 'k', 'l', '<UP>', '<DOWN>', '<LEFT>', '<RIGHT>']
+let g:list_of_visual_keys = []
+let g:hardtime_ignore_quickfix = 1
+let g:hardtime_allow_different_key = 1
