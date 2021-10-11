@@ -27,6 +27,12 @@
     "typescriptreact"
   ],
   "languageserver": {
+    "rust": {
+      "command": "rls",
+      "args": [],
+      "rootPatterns": ["Cargo.toml"],
+      "filetypes": ["rust"]
+    }
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],

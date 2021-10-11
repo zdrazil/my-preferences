@@ -364,6 +364,7 @@ let g:ale_fixers = {
       \ 'typescript': ['eslint', 'prettier'],
       \ 'typescriptreact': ['eslint', 'prettier'],
       \ 'python': ['black'],
+      \ 'rust': ['rustfmt'],
       \ 'haskell': ['ormolu'],
       \ 'sh': ['shfmt'],
       \}
@@ -376,6 +377,7 @@ let g:ale_linters = {
       \ 'bash': ['shellcheck'],
       \ 'haskell': ['hls'],
       \ 'javascript': ['eslint', 'tsserver'],
+      \ 'rust': ['rls'],
       \ 'javascriptreact': ['eslint', 'tsserver'],
       \ 'python': ['flake8'],
       \ 'typescript': ['eslint', 'tsserver'],
