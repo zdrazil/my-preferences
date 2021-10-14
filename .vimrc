@@ -54,24 +54,17 @@ set undodir=~/.vim/undo//
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
-" Plug 'embear/vim-localvimrc'
 
 " Themes
 Plug 'vim-scripts/CycleColor', { 'on': ['CycleColorNext', 'CycleColorPrev'] }
-Plug 'robertmeta/nofrils'
-Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
-Plug 'lifepillar/vim-gruvbox8'
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
+Plug 'pbrisbin/vim-colors-off'
+Plug 'romainl/Apprentice'
+Plug 'fxn/vim-monochrome'
 
-Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'noahfrederick/vim-noctu'
-Plug 'jan-warchol/selenized'
-Plug 'zefei/cake16'
-Plug 'plan9-for-vimspace/acme-colors'
-Plug 'andreasvc/vim-256noir'
-Plug 'Lokaltog/vim-monotone'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -81,20 +74,16 @@ Plug 'mhinz/vim-grepper'
 Plug 'vimwiki/vimwiki'
 
 " Starts slower
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
-Plug 'ajh17/VimCompletesMe'
-
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sleuth'
@@ -108,26 +97,19 @@ Plug 'iberianpig/tig-explorer.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'markonm/traces.vim'
-" Plug 'junegunn/vim-easy-align'
 
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
 Plug 'AndrewRadev/sideways.vim'
-" Plug 'ludovicchabant/vim-gutentags'
-
-Plug 'kana/vim-fakeclip'
 
 Plug 'jpalardy/vim-slime'
-
 Plug 'justinmk/vim-gtfo'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
-" Plug 'unblevable/quick-scope' 
-" Plug 'skamsie/vim-lineletters'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
@@ -141,12 +123,10 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-clojure-static'
 
 " C#
-Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim', { 'for': ['csharp', 'fsharp'] }
 
-Plug 'tweekmonster/startuptime.vim'
+Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 Plug 'takac/vim-hardtime'
-
-" Plug 'jayflo/vim-skip'
 
 call plug#end()
 
