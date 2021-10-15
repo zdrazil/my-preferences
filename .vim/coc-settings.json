@@ -12,8 +12,6 @@
   "coc.preferences.promptInput": false,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.diagnostic.enable": false,
-  /* "eslint.run": "onSave", */
-  /* "eslint.autoFixOnSave": true, */
   "css.validate": false,
   "snippets.extends": {
     "javascriptreact": ["javascript", "javascript-react", "javascript_react"],
@@ -32,7 +30,7 @@
       "args": [],
       "rootPatterns": ["Cargo.toml"],
       "filetypes": ["rust"]
-    }
+    },
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
