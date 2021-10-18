@@ -454,7 +454,7 @@ augroup MYOSCYank
 augroup END
 " let g:oscyank_silent = v:true
 "
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 let g:list_of_normal_keys = ['h', 'j', 'k', 'l', '<UP>', '<DOWN>', '<LEFT>', '<RIGHT>']
 let g:list_of_visual_keys = []
 let g:hardtime_ignore_quickfix = 1
