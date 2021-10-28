@@ -324,6 +324,12 @@ let g:vimwiki_list = [{
       \ 'syntax': 'markdown', 
       \ 'ext': '.md',
       \ 'links_space_char': '-',
+      \},
+      \{
+      \ 'path': '~/OneDrive/wiki',
+      \ 'syntax': 'markdown', 
+      \ 'ext': '.md',
+      \ 'links_space_char': '-',
       \}]
 
 let g:vim_markdown_conceal = 0

@@ -26,6 +26,7 @@ for myPath (
 
 for myMan (
     "/opt/local/share/man"
+    "/usr/local/share/man"
     "$HOME/.local/homebrew/share/man"
     ) 
     {
@@ -41,6 +42,11 @@ for myMan (
 HISTFILE=~/.histfile
 HISTSIZE=256000
 SAVEHIST=256000
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 
 # ------------------ PLUGINS ----------------------
 #
@@ -142,7 +148,9 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+# export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+export HOMEBREW_NO_ANALYTICS=1
+HOMEBREW_NO_AUTO_UPDATE=1
 
 if [ -d "$HOME/.asdf" ] ; then
     . $HOME/.asdf/asdf.sh
