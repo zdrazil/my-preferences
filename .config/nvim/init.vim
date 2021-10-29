@@ -432,7 +432,7 @@ require('nvim-treesitter.configs').setup {
       init_selection = "gnn",
       node_incremental = "v",
       scope_incremental = "grc",
-      node_decremental = "V",
+      node_decremental = "<C-h>",
     },
   },
   textobjects = {
