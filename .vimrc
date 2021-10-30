@@ -82,6 +82,7 @@ Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
