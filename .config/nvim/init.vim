@@ -24,7 +24,7 @@ set cmdheight=2
 " always show gutter so it doesn't move
 set signcolumn=yes
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 " Themes
 Plug 'vim-scripts/CycleColor', { 'on': ['CycleColorNext', 'CycleColorPrev'] }
