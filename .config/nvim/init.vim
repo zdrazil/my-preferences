@@ -7,6 +7,7 @@ set wildmode=list:longest,list:full
 " Highlight searches by default
 set ignorecase
 set smartcase
+set incsearch
 " highlight matching [{()}]
 set showmatch
 
@@ -46,6 +47,7 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-abolish'
@@ -218,8 +220,8 @@ let g:ale_javascript_eslint_options = '--cache'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_javascript_prettier_use_global = 1
-highlight ALEError ctermbg=none cterm=underline
-highlight ALEWarning ctermbg=none cterm=underline
+highlight ALEError ctermbg=none cterm=underline gui=underline
+highlight ALEWarning ctermbg=none cterm=underline gui=underline
 
 let g:slime_target = 'tmux'
 
@@ -234,7 +236,6 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-pyright',
       \ 'coc-snippets',
-      \ 'coc-tag',
       \ 'coc-vimlsp',
       \ ]
 
