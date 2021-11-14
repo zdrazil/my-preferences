@@ -229,6 +229,7 @@ let g:slime_target = 'tmux'
 let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-sql',
+      \ 'coc-emoji',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-tsserver',
