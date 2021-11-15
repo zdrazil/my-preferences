@@ -47,7 +47,7 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-abolish'
@@ -211,7 +211,8 @@ nnoremap <leader>> :Grepper -tool rg<CR>
 " window
 
 " fzf
-imap <c-x><c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
 
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -243,6 +244,7 @@ let g:coc_global_extensions = [
 set updatetime=300
 
 inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-x><C-o> coc#refresh()
 imap <C-@> <C-Space>
 
 function! s:show_documentation()
