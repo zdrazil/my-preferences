@@ -229,15 +229,16 @@ let g:slime_target = 'tmux'
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
-      \ 'coc-sql',
+      \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-html',
       \ 'coc-json',
-      \ 'coc-tsserver',
-      \ 'coc-react-refactor',
-      \ 'coc-emmet',
       \ 'coc-pyright',
+      \ 'coc-react-refactor',
       \ 'coc-snippets',
+      \ 'coc-sql',
+      \ 'coc-tabnine',
+      \ 'coc-tsserver',
       \ 'coc-vimlsp',
       \ ]
 
