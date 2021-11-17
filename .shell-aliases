@@ -6,9 +6,9 @@ cdl() {
 }
 
 wiki() {
-	cd "$HOME/vimwiki" || exit
+	cd "$HOME/Dropbox/wiki" || exit
 	if [[ $# -eq 1 ]]; then
-		vim -c ':copen' -q <(rg --vimgrep -S $# "$HOME/vimwiki")
+		vim -c ':copen' -q <(rg --vimgrep -S $# "$HOME/Dropbox/wiki")
 		return
 	else
 		vim -c ':VimwikiIndex'
