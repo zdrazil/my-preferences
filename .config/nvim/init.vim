@@ -286,7 +286,7 @@ augroup omnisharp-autocommands
 augroup END
 
 let g:vimwiki_list = [{
-      \ 'path': '~/vimwiki/',
+      \ 'path': '~/Dropbox/wiki/',
       \ 'syntax': 'markdown', 
       \ 'ext': '.md',
       \ 'links_space_char': '-',
