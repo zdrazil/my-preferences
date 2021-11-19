@@ -162,13 +162,20 @@ xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>gA <Plug>(coc-codeaction)
 nmap <leader>grn <Plug>(coc-rename)
 
-nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>gk  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> [c  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> ]c  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>gl  :<C-u>CocListResume<CR>
 
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
 command! -nargs=0 CocFormat :call CocAction('format')
+
+nnoremap <silent><nowait> <leader>gcc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>gcl  :<C-u>CocListResume<CR>
 
 " file
 nnoremap <leader>fF :FoldIndent<cr>

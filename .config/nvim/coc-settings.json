@@ -9,7 +9,7 @@
   "diagnostic.displayByAle": false,
   "diagnostic.enable": false,
   "coc.preferences.promptInput": false,
-  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.useQuickfixForLocations": false,
   "css.validate": false,
   "tabnine.priority": 98,
   "snippets.extends": {
