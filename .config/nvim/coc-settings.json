@@ -11,7 +11,7 @@
   "coc.preferences.promptInput": false,
   "coc.preferences.useQuickfixForLocations": false,
   "css.validate": false,
-  "tabnine.priority": 98,
+  "tabnine.priority": 99,
   "snippets.extends": {
     "javascriptreact": ["javascript", "javascript-react", "javascript_react"],
     "typescriptreact": ["typescript", "javascript", "typescript-react"],
