@@ -74,6 +74,7 @@ brew "watch"
 brew "watchman"
 brew "wget"
 brew "neovim", args: ["HEAD"]
+brew "fsnotes"
 
 # cask "alacritty"
 # cask "font-cascadia-code"
