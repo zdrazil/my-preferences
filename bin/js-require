@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sed 's/^import /const /g ; s/from \(.*\)[;*]/= require(\1);/' "$@"
+sed 's/^export //g' "$@"

@@ -409,8 +409,16 @@ let g:which_key_map.r = { 'name' : '+register' }
 command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
 
+" function SlimeOverride_EscapeText_typescript(text)
+"   return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
+" endfunction
+"
 function SlimeOverride_EscapeText_typescript(text)
-  return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
+  return system('js-require', a:text)
+endfunction
+
+function SlimeOverride_EscapeText_javascript(text)
+  return system('js-require', a:text)
 endfunction
 
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
