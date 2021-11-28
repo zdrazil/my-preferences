@@ -100,16 +100,20 @@ cask "adobe-acrobat-reader"
 cask "alfred"
 cask "appcleaner"
 cask "apppolice"
+cask "browserstacklocal"
 cask "azure-data-studio"
 cask "bartender"
 cask "bettertouchtool"
-cask "boop"
+cask "brave-browser"
 cask "calibre"
 cask "cryptomator"
 cask "docker"
 cask "dotnet-sdk"
 cask "dropbox"
+cask "firefox"
+cask "firefox-developer-edition"
 cask "gog-galaxy"
+cask "google-chrome"
 cask "handbrake"
 cask "homebrew/cask/scummvm"
 cask "imageoptim"
@@ -129,6 +133,7 @@ cask "pdf-expert"
 cask "postman"
 cask "qlvideo"
 cask "rectangle"
+cask "screens"
 cask "spotify"
 cask "steam"
 cask "transmission"
@@ -138,6 +143,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "vmware-fusion"
 cask "xquartz"
+cask "homebrew/cask-drivers/sony-ps-remote-play"
 cask "yacreader"
 cask "zotero"
 
@@ -145,12 +151,18 @@ mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
 mas "BBEdit", id: 404009241
+mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Display Menu", id: 549083868
 mas "Focus for YouTube", id: 1514703160
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
+mas "hlidac shopu", id: 1488295734
+mas "iFlicks", id: 408937559
+mas "iMovie", id: 408981434
 mas "Infuse", id: 1136220934
+mas "iPreview", id: 1519213509
+mas "iStat Menus", id: 1319778037
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
 mas "Logic Pro", id: 634148309
@@ -170,13 +182,10 @@ mas "Shut Up", id: 1015043880
 mas "Slack", id: 803453959
 mas "Soulver 2", id: 413965349
 mas "SponsorBlock for YouTube", id: 1573461917
+mas "Steam Link", id: 1246969117
 mas "Streaks", id: 1493327990
 mas "Vimari", id: 1480933944
+mas "Vinegar", id: 1591303229
 mas "Xcode", id: 497799835
 mas "Yomu", id: 562211012
-mas "hlidac shopu", id: 1488295734
-mas "iFlicks", id: 408937559
-mas "iMovie", id: 408981434
-mas "iPreview", id: 1519213509
-mas "iStat Menus", id: 1319778037
 
