@@ -5,22 +5,23 @@ tap "homebrew/core"
 tap "homebrew/cask-versions"
 # tap "markwu/personal"
 
+# brew "emacs-plus"
+# brew "java"
+# brew "node"
+# brew "yarn"
 brew "bash"
 brew "bash-completion"
-brew "zsh"
-brew "zsh-completions"
 brew "coreutils"
-# brew "emacs-plus"
 brew "findutils"
 brew "fish"
 brew "git"
 brew "grep"
-# brew "java"
-brew "tmux"
-# brew "node"
-# brew "yarn"
 brew "reattach-to-user-namespace"
+brew "tmux"
+brew "zsh"
+brew "zsh-completions"
 
+# brew "neovim", args: ["HEAD"]
 brew "ack"
 brew "bat"
 brew "curl"
@@ -35,18 +36,20 @@ brew "gawk"
 brew "git"
 brew "git-delta"
 brew "git-extras"
+brew "gnu-sed"
 brew "gnupg2"
 brew "graphviz"
 brew "grep"
-brew "gsed"
 brew "gron"
 brew "highlight"
 brew "htop"
-brew "jq"
 brew "imagemagick"
+brew "jq"
 brew "leiningen"
+brew "mas"
 brew "moreutils"
 brew "ncdu"
+brew "neovim"
 brew "p7zip"
 brew "pandoc"
 brew "perl"
@@ -73,9 +76,6 @@ brew "w3m"
 brew "watch"
 brew "watchman"
 brew "wget"
-brew "neovim", args: ["HEAD"]
-brew "fsnotes"
-
 # cask "alacritty"
 # cask "font-cascadia-code"
 # cask "font-fira-code"
@@ -117,6 +117,7 @@ cask "inkscape"
 cask "insomnia"
 cask "intellij-idea-ce"
 cask "iterm2"
+cask "joplin"
 cask "keka"
 cask "kitty"
 cask "libreoffice"
@@ -124,7 +125,9 @@ cask "macvim"
 cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
 cask "parsec"
+cask "pdf-expert"
 cask "postman"
+cask "qlvideo"
 cask "rectangle"
 cask "spotify"
 cask "steam"
@@ -137,4 +140,43 @@ cask "vmware-fusion"
 cask "xquartz"
 cask "yacreader"
 cask "zotero"
-cask "qlvideo"
+
+mas "1Password 7", id: 1333542190
+mas "AdGuard for Safari", id: 1440147259
+mas "Amphetamine", id: 937984704
+mas "BBEdit", id: 404009241
+mas "DaisyDisk", id: 411643860
+mas "Display Menu", id: 549083868
+mas "Focus for YouTube", id: 1514703160
+mas "GarageBand", id: 682658836
+mas "Gifski", id: 1351639930
+mas "Infuse", id: 1136220934
+mas "Keynote", id: 409183694
+mas "Keyword Search", id: 1558453954
+mas "Logic Pro", id: 634148309
+mas "Microsoft OneNote", id: 784801555
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Microsoft To Do", id: 1274495053
+mas "Numbers", id: 409203825
+mas "OneDrive", id: 823766827
+mas "Pages", id: 409201541
+mas "PiPifier", id: 1160374471
+mas "Pixelmator Pro", id: 1289583905
+mas "Pocket", id: 568494494
+mas "Reeder", id: 1529448980
+mas "Save to Pocket", id: 1477385213
+mas "Shazam", id: 897118787
+mas "Shut Up", id: 1015043880
+mas "Slack", id: 803453959
+mas "Soulver 2", id: 413965349
+mas "SponsorBlock for YouTube", id: 1573461917
+mas "Streaks", id: 1493327990
+mas "Vimari", id: 1480933944
+mas "Xcode", id: 497799835
+mas "Yomu", id: 562211012
+mas "hlidac shopu", id: 1488295734
+mas "iFlicks", id: 408937559
+mas "iMovie", id: 408981434
+mas "iPreview", id: 1519213509
+mas "iStat Menus", id: 1319778037
+
