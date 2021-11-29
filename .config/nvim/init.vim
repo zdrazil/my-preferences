@@ -49,6 +49,7 @@ Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
+Plug 'joaohkfaria/vim-jest-snippets'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
@@ -413,9 +414,9 @@ command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curw
 "   return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
 " endfunction
 "
-function SlimeOverride_EscapeText_typescript(text)
-  return system('js-require', a:text)
-endfunction
+" function SlimeOverride_EscapeText_typescript(text)
+"   return system('js-require', a:text)
+" endfunction
 
 function SlimeOverride_EscapeText_javascript(text)
   return system('js-require', a:text)

@@ -21,7 +21,6 @@ brew "tmux"
 brew "zsh"
 brew "zsh-completions"
 
-# brew "neovim", args: ["HEAD"]
 brew "ack"
 brew "bat"
 brew "curl"
@@ -49,7 +48,7 @@ brew "leiningen"
 brew "mas"
 brew "moreutils"
 brew "ncdu"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "p7zip"
 brew "pandoc"
 brew "perl"
