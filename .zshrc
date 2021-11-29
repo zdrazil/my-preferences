@@ -9,6 +9,7 @@ fi
 
 for myPath (
     "$HOME/bin"
+    "/opt/homebrew/bin"
     "/usr/local/bin"
     "$HOME/.local/bin"
     "$HOME/.local/homebrew/bin"
@@ -25,6 +26,7 @@ for myPath (
     }
 
 for myMan (
+    "/opt/homebrew/share/man"
     "/opt/local/share/man"
     "/usr/local/share/man"
     "$HOME/.local/homebrew/share/man"
