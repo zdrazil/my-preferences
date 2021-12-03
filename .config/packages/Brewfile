@@ -1,5 +1,7 @@
 # Install with brew bundle --file '[path]' --verbose --force
 # tap "d12frosted/emacs-plus"
+# cask_args force: true
+
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/cask-versions"
