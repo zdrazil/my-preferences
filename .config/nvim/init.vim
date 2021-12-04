@@ -229,6 +229,7 @@ let g:ale_javascript_eslint_options = '--cache'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_javascript_prettier_use_global = 1
+let g:ale_disable_lsp = 1
 highlight ALEError ctermbg=none cterm=underline gui=underline
 highlight ALEWarning ctermbg=none cterm=underline gui=underline
 
