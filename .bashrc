@@ -54,6 +54,10 @@ if [ -d "/opt/local/bin" ]; then
     MANPATH=/opt/local/share/man:$MANPATH
 fi
 
+if [ -d "/opt/homebrew/bin" ]; then
+    PATH="/opt/homebrew/bin:$PATH"
+fi
+
 if [ -d "$HOME/.local/homebrew/bin" ]; then
     PATH="$HOME/.local/homebrew/bin:$PATH"
 fi

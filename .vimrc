@@ -79,10 +79,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
+Plug 'joaohkfaria/vim-jest-snippets'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
@@ -127,7 +127,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'OmniSharp/omnisharp-vim', { 'for': ['csharp', 'fsharp'] }
 
 Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
-Plug 'takac/vim-hardtime'
 
 call plug#end()
 
@@ -195,9 +194,21 @@ xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>gA <Plug>(coc-codeaction)
 nmap <leader>grn <Plug>(coc-rename)
 
-nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>gk  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> [c  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> ]c  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>gl  :<C-u>CocListResume<CR>
+
+xmap <silent>v <Plug>(coc-range-select)
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
 
@@ -205,6 +216,11 @@ nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
 
 command! -nargs=0 CocFormat :call CocAction('format')
+
+nnoremap <silent><nowait> <leader>gcc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>gco  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>gcs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>gcl  :<C-u>CocListResume<CR>
 
 " file
 nnoremap <leader>fF :FoldIndent<cr>
@@ -248,6 +264,7 @@ nnoremap <leader>> :Grepper -tool rg<CR>
 
 " fzf
 imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-x><c-f> <plug>(fzf-complete-path)
 
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -256,8 +273,9 @@ let g:ale_javascript_eslint_options = '--cache'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_javascript_prettier_use_global = 1
-highlight ALEError ctermbg=none cterm=underline
-highlight ALEWarning ctermbg=none cterm=underline
+let g:ale_disable_lsp = 1
+highlight ALEError ctermbg=none cterm=underline gui=underline
+highlight ALEWarning ctermbg=none cterm=underline gui=underline
 
 let g:slime_target = 'tmux'
 
@@ -266,21 +284,23 @@ let g:highlightedyank_highlight_duration = 100
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
-      \ 'coc-sql',
+      \ 'coc-emmet',
+      \ 'coc-emoji',
       \ 'coc-html',
       \ 'coc-json',
-      \ 'coc-tsserver',
-      \ 'coc-react-refactor',
-      \ 'coc-emmet',
       \ 'coc-pyright',
+      \ 'coc-react-refactor',
       \ 'coc-snippets',
-      \ 'coc-tag',
+      \ 'coc-sql',
+      \ 'coc-tabnine',
+      \ 'coc-tsserver',
       \ 'coc-vimlsp',
       \ ]
 
 set updatetime=300
 
 inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-x><C-o> coc#refresh()
 imap <C-@> <C-Space>
 
 function! s:show_documentation()
@@ -322,12 +342,6 @@ augroup END
 
 let g:vimwiki_list = [{
       \ 'path': '~/Dropbox/wiki/',
-      \ 'syntax': 'markdown', 
-      \ 'ext': '.md',
-      \ 'links_space_char': '-',
-      \},
-      \{
-      \ 'path': '~/OneDrive/wiki',
       \ 'syntax': 'markdown', 
       \ 'ext': '.md',
       \ 'links_space_char': '-',
@@ -437,8 +451,16 @@ let g:which_key_map.r = { 'name' : '+register' }
 command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
 
-function SlimeOverride_EscapeText_typescript(text)
-  return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
+" function SlimeOverride_EscapeText_typescript(text)
+"   return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
+" endfunction
+"
+" function SlimeOverride_EscapeText_typescript(text)
+"   return system('js-require', a:text)
+" endfunction
+
+function SlimeOverride_EscapeText_javascript(text)
+  return system('js-require', a:text)
 endfunction
 
 " let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -459,10 +481,4 @@ endif
 augroup MYOSCYank
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
 augroup END
-" let g:oscyank_silent = v:true
-"
-let g:hardtime_default_on = 0
-let g:list_of_normal_keys = ['h', 'j', 'k', 'l', '<UP>', '<DOWN>', '<LEFT>', '<RIGHT>']
-let g:list_of_visual_keys = []
-let g:hardtime_ignore_quickfix = 1
-let g:hardtime_allow_different_key = 1
+let g:oscyank_silent = v:true

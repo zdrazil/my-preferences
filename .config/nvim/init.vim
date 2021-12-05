@@ -47,7 +47,6 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
 Plug 'joaohkfaria/vim-jest-snippets'
 
@@ -296,12 +295,6 @@ augroup END
 
 let g:vimwiki_list = [{
       \ 'path': '~/Dropbox/wiki/',
-      \ 'syntax': 'markdown', 
-      \ 'ext': '.md',
-      \ 'links_space_char': '-',
-      \},
-      \{
-      \ 'path': '~/OneDrive/wiki',
       \ 'syntax': 'markdown', 
       \ 'ext': '.md',
       \ 'links_space_char': '-',

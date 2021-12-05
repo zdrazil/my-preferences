@@ -7,39 +7,27 @@ if [ -f $HOME/.commonrc ]; then
     . $HOME/.commonrc
 fi
 
-for myPath (
-    "$HOME/bin"
-    "/opt/homebrew/bin"
-    "/usr/local/bin"
-    "$HOME/.local/bin"
-    "$HOME/.local/homebrew/bin"
-    "/Applications/MacVim.app/Contents/bin"
-    "$HOME/.fzf/bin"
-    "$HOME/.local/npm-tools/node_modules/.bin"
-    "/opt/local/bin"
-    "/opt/local/sbin"
-    ) 
-    {
-        if [ -d $myPath ]; then
-            PATH="$myPath:$PATH"
-        fi
-    }
+if [ -f $HOME/.zshpath ]; then
+    . $HOME/.zshpath
+fi
 
-for myMan (
-    "/opt/homebrew/share/man"
-    "/opt/local/share/man"
-    "/usr/local/share/man"
-    "$HOME/.local/homebrew/share/man"
-    ) 
-    {
-        if [ -d $myMan ]; then
-            MANPATH="$myMan:$MANPATH"
-        fi
-    }
-
-# if [ -f $HOME/.zprofile ]; then
-#     . $HOME/.zprofile
-# fi
+# Remove duplicate PATH because we can have them already sourced in .zprofile
+# It's done because of macOS behavior where files are sourced differently than on Linux.
+# By doing this we can use same .zprofile and .zshrc on both systems.
+get_var () {
+    eval 'printf "%s\n" "${'"$1"'}"'
+}
+set_var () {
+    eval "$1=\"\$2\""
+}
+dedup_pathvar () {
+    pathvar_name="$1"
+    pathvar_value="$(get_var "$pathvar_name")"
+    deduped_path="$(perl -e 'print join(":",grep { not $seen{$_}++ } split(/:/, $ARGV[0]))' "$pathvar_value")"
+    set_var "$pathvar_name" "$deduped_path"
+}
+dedup_pathvar PATH
+dedup_pathvar MANPATH
 
 HISTFILE=~/.histfile
 HISTSIZE=256000
