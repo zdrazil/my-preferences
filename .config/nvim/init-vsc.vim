@@ -46,29 +46,8 @@ call plug#end()
 
 let g:mapleader = "\<space>"
 
-let g:coc_global_extensions = [
-      \ 'coc-css',
-      \ 'coc-emmet',
-      \ 'coc-emoji',
-      \ 'coc-html',
-      \ 'coc-json',
-      \ 'coc-pyright',
-      \ 'coc-react-refactor',
-      \ 'coc-snippets',
-      \ 'coc-sql',
-      \ 'coc-tabnine',
-      \ 'coc-tsserver',
-      \ 'coc-vimlsp',
-      \ ]
-
 let g:vimwiki_list = [{
       \ 'path': '~/Dropbox/wiki/',
-      \ 'syntax': 'markdown', 
-      \ 'ext': '.md',
-      \ 'links_space_char': '-',
-      \},
-      \{
-      \ 'path': '~/OneDrive/wiki',
       \ 'syntax': 'markdown', 
       \ 'ext': '.md',
       \ 'links_space_char': '-',
@@ -99,3 +78,75 @@ endif
 
 " Higlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=50}
+
+function! VSCodeNotifyVisual(cmd, leaveSelection, ...)
+    let mode = mode()
+    if mode ==# 'V'
+        let startLine = line('v')
+        let endLine = line('.')
+        call VSCodeNotifyRange(a:cmd, startLine, endLine, a:leaveSelection, a:000)
+    elseif mode ==# 'v' || mode ==# "\<C-v>"
+        let startPos = getpos('v')
+        let endPos = getpos('.')
+        call VSCodeNotifyRangePos(a:cmd, startPos[1], endPos[1], startPos[2], endPos[2] + 1, a:leaveSelection, a:000)
+    else
+        call VSCodeNotify(a:cmd, a:000)
+    endif
+endfunction
+
+nnoremap <leader><leader> <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+nnoremap <leader>; <Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>
+
+" buffer
+nnoremap <leader>bb <Cmd>call VSCodeNotify('workbench.action.openPreviousEditorFromHistory')<CR>
+nnoremap <leader>]b <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+nnoremap <leader>[b <Cmd>call VSCodeNotify('workbench.action.quickOpenNavigatePreviousInEditorPicker')<CR>
+
+" code
+nnoremap <leader>gx <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <leader>gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <leader>gd <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
+nnoremap gd <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
+nnoremap <leader>grr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+
+nnoremap <leader>gi <Cmd>call VSCodeNotcify('editor.action.goToImplementation')<CR>
+nnoremap <leader>gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+
+xnoremap <leader>ga <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
+nnoremap <leader>ga <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <leader>gA <Cmd>call VSCodeNotify('editor.action.sourceAction')<CR>
+nnoremap <leader>grn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+nnoremap ]c <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
+nnoremap [c <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
+
+nnoremap <leader>gco <Cmd>call VSCodeNotify('outline.focus')<CR>
+nnoremap <leader>gcs <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
+nnoremap <leader>gcl <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
+
+nnoremap <leader>fve :vsplit $MYVIMRC<CR>
+nnoremap <leader>fvs :source $MYVIMRC<CR>
+nnoremap <leader>fy <Cmd>call VSCodeNotify('copyRelativeFilePath')<CR>
+
+" git
+nnoremap <leader>ct <Cmd>call VSCodeNotify('command-runner.run', {"command": "tig blame"})<CR>
+
+" open
+nnoremap <leader>ot <Cmd>call VSCodeNotify('command-runner.run', {"command": "cd fwd"})<CR>
+nnoremap <leader>of <Cmd>call VSCodeNotify('revealFileInOS')<CR>
+
+" register
+nnoremap <leader>ro <Cmd>call VSCodeNotify('editor.action.clipboardCopyAction')<CR>
+
+" search
+nnoremap <leader>ss <Cmd>call VSCodeNotify('command-runner.run', {"command": "rgf"})<CR>
+nnoremap <leader>. <Cmd>call VSCodeNotify('command-runner.run', {"command": "rgf"})<CR>
+nnoremap <leader>scs <Cmd>call VSCodeNotify('editor.action.insertSnippet')<CR>
+nnoremap <leader>s* <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
+nnoremap <leader>so <Cmd>call VSCodeNotify('outline.focus')<CR>
+
+nnoremap <leader>> <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
+nnoremap <c-x><c-f> <Cmd>call VSCodeNotify('extension.relativePath')<CR>
+nnoremap K <Cmd>call VSCodeNotify('extension.dash.specific')<CR>
+
+
+nnoremap - <Cmd>call VSCodeNotify('workbench.files.action.focusFilesExplorer')<CR>
