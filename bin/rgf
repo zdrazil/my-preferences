@@ -1,0 +1,21 @@
+#!/bin/bash
+
+##
+# Interactive search.
+#
+[[ -n $1 ]] && cd $1 # go to provided folder or noop
+OPEN_COMMAND="code"
+COMMAND_OPTIONS="-g"
+
+selected=$(
+  FZF_DEFAULT_COMMAND="rg --column --line-number --no-heading --color=always --smart-case -- ''" fzf \
+    -m \
+    -e \
+    --ansi \
+    --bind "ctrl-a:select-all" \
+    --bind "f12:execute-silent:(code  {})" \
+    --preview 'bat -f --highlight-line=$(echo {} | cut -d":" -f2) $(echo {} | cut -d":" -f1)' | cut -d":" -f1,2,3
+  # --preview "rg -i --pretty --context 2 {q} {}" | cut -d":" -f1,2
+)
+
+[[ -n $selected ]] && "$OPEN_COMMAND" "${COMMAND_OPTIONS}" "$PWD"/"$selected" # open multiple files in editor
