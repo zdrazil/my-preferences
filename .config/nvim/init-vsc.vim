@@ -62,20 +62,6 @@ let g:vimwiki_global_ext = 0
 
 let g:sneak#use_ic_scs = 1
 
-function SlimeOverride_EscapeText_typescript(text)
-  return system('js-require', a:text)
-endfunction
-
-function SlimeOverride_EscapeText_javascript(text)
-  return system('js-require', a:text)
-endfunction
-
-if exists('$EXTRA_VIM')
-  for path in split($EXTRA_VIM, ':')
-    exec 'source '.path
-  endfor
-endif
-
 " Higlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=50}
 
@@ -123,9 +109,15 @@ nnoremap <leader>gco <Cmd>call VSCodeNotify('outline.focus')<CR>
 nnoremap <leader>gcs <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
 nnoremap <leader>gcl <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
 
+nnoremap <leader>gjr <Cmd>call VSCodeNotify('extension.runJest')<CR>
+nnoremap <leader>gjd <Cmd>call VSCodeNotify('extension.debugJest')<CR>
+
 nnoremap <leader>fve :vsplit $MYVIMRC<CR>
 nnoremap <leader>fvs :source $MYVIMRC<CR>
 nnoremap <leader>fy <Cmd>call VSCodeNotify('copyRelativeFilePath')<CR>
+
+nnoremap <leader>gs< <Cmd>call VSCodeNotify('shiftArgumentLeft')<CR>
+nnoremap <leader>gs> <Cmd>call VSCodeNotify('shiftArgumentRight')<CR>
 
 " git
 nnoremap <leader>ct <Cmd>call VSCodeNotify('command-runner.run', {"command": "tig blame"})<CR>
@@ -150,3 +142,11 @@ nnoremap K <Cmd>call VSCodeNotify('extension.dash.specific')<CR>
 
 
 nnoremap - <Cmd>call VSCodeNotify('workbench.files.action.focusFilesExplorer')<CR>
+nnoremap [q <Cmd>call VSCodeNotify('search.action.focusPreviousSearchResult')<CR>
+nnoremap ]q <Cmd>call VSCodeNotify('search.action.focusNextSearchResult')<CR>
+xnoremap v <Cmd>call VSCodeNotify('editor.action.smartSelect.expand')<CR>
+
+xmap gc  <Plug>VSCodeCommentary
+nmap gc  <Plug>VSCodeCommentary
+omap gc  <Plug>VSCodeCommentary
+nmap gcc <Plug>VSCodeCommentaryLine
