@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+cd "$HOME" || exit
+
+echo "Init submodules"
+yadm submodule update --recursive --init
+
+system_type=$(uname -s)
+
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Installing homebrew"
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if [ "$system_type" = "Darwin" ]; then
+	# install homebrew if it's missing
+	echo "Updating homebrew bundle"
+	brew bundle --verbose --file "$HOME/.config/packages/Brewfile"
+	# echo "MacPorts"
+	# sudo port -N install $(cat "$HOME/.config/packages/macports-packages" | sed '/^#/d')
+fi
+
+if [ "$system_type" = "Linux" ]; then
+	echo "Installing basic apt packages"
+	sudo apt update
+	sudo apt install build-essential procps curl file git dirmngr gpg gawk
+	echo "Updating homebrew bundle"
+	brew bundle --verbose --file "$HOME/.config/packages/LinuxBrewfile"
+	echo "Installing apt packages"
+	sudo apt install xclip vim-gtk3 nodejs npm
+	sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-packages" | sed '/^#/d')
+	sudo apt-get clean
+
+	if [ -n "$XDG_SESSION_TYPE" ]; then
+		echo "Installing GUI packages..."
+		sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-gui-packages" | sed '/^#/d')
+		snap install $(cat "$HOME/.config/packages/snap-packages" | sed '/^#/d')
+	fi
+fi
+
+echo "packages"
+curl -Lo ~/bin/theme-sh 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x ~/bin/theme-sh
+
+echo "fisher"
+curl -sL https://git.io/fisher | source && fisher update
+
+echo "tpm"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+echo "zgen"
+git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+
+echo "asdf"
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin-add python
+asdf plugin-add yarn
+asdf install
+
+echo "Vim plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
+
+echo "Neovim plug"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim -es -u "$HOME/.config/nvim/init.vim" -i NONE -c "PlugInstall" -c "qa"
