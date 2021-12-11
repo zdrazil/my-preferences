@@ -101,6 +101,9 @@ nnoremap <leader>grn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 nnoremap ]c <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
 nnoremap [c <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
 
+nnoremap <leader>gg <Cmd>call VSCodeNotify('editor.action.showContextMenu')<CR>
+
+
 nnoremap <leader>gco <Cmd>call VSCodeNotify('outline.focus')<CR>
 nnoremap <leader>gcs <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
 nnoremap <leader>gcl <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
@@ -117,10 +120,10 @@ nnoremap <leader>gs> <Cmd>call VSCodeNotify('shiftArgumentRight')<CR>
 
 " git
 nnoremap <leader>ct <Cmd>call VSCodeNotify('command-runner.run', {"command": "tig blame"})<CR>
-workbench.action.createTerminalEditor
+
 " open
-nnoremap <leader>oT <Cmd>call VSCodeNotify('workbench.action.createTerminalEditor')<CR>
-nnoremap <leader>o <Cmd>call VSCodeNotify('command-runner.run', {"command": "cd fwd"})<CR>
+nnoremap <leader>ot <Cmd>call VSCodeNotify('workbench.action.createTerminalEditor')<CR>
+nnoremap <leader>oT <Cmd>call VSCodeNotify('command-runner.run', {"command": "cd fwd"})<CR>
 nnoremap <leader>of <Cmd>call VSCodeNotify('revealFileInOS')<CR>
 
 " register
