@@ -41,8 +41,8 @@ fi
 echo "packages"
 curl -Lo ~/bin/theme-sh 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x ~/bin/theme-sh
 
-echo "fisher"
-curl -sL https://git.io/fisher | source && fisher update
+# echo "fisher"
+# curl -sL https://git.io/fisher | fish && fisher update
 
 echo "tpm"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
