@@ -50,7 +50,7 @@ brew "leiningen"
 brew "mas"
 brew "moreutils"
 brew "ncdu"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "p7zip"
 brew "pandoc"
 brew "perl"
