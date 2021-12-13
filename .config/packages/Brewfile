@@ -190,3 +190,4 @@ mas "Vinegar", id: 1591303229
 mas "Xcode", id: 497799835
 mas "Yomu", id: 562211012
 
+cask "hookshot"
