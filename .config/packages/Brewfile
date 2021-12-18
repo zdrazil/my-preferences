@@ -193,4 +193,9 @@ mas "Xcode", id: 497799835
 mas "Yomu", id: 562211012
 
 cask "hookshot"
-cask "font-hack-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-meslo-lg-nerd-font"
+cask "font-inconsolata-nerd-font"
+cask "font-iosevka-nerd-font"
+cask "font-ubuntu-nerd-font"
+cask "font-ubuntu-mono-nerd-font"
