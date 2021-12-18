@@ -178,3 +178,4 @@ fi
 
 zgen load zsh-users/zsh-syntax-highlighting
 
+eval "$(starship init zsh)"
