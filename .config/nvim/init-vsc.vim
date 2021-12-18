@@ -137,6 +137,7 @@ nnoremap <leader>so <Cmd>call VSCodeNotify('outline.focus')<CR>
 
 nnoremap <leader>> <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
 nnoremap <c-x><c-f> <Cmd>call VSCodeNotify('extension.relativePath')<CR>
+xnoremap K <Cmd>call VSCodeNotifyVisual('openInWeb.openInWebActionList', 1)<CR>
 nnoremap K <Cmd>call VSCodeNotify('extension.dash.specific')<CR>
 
 
