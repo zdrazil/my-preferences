@@ -5,6 +5,7 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/cask-versions"
+tap "homebrew/cask-fonts"
 # tap "markwu/personal"
 
 # brew "emacs-plus"
@@ -65,6 +66,7 @@ brew "shellcheck"
 brew "shfmt"
 brew "speedtest-cli"
 brew "stack"
+brew "starship"
 brew "the_silver_searcher"
 brew "tig"
 brew "tldr"
@@ -191,3 +193,4 @@ mas "Xcode", id: 497799835
 mas "Yomu", id: 562211012
 
 cask "hookshot"
+cask "font-hack-nerd-font"
