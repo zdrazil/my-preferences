@@ -60,53 +60,26 @@ let g:sneak#use_ic_scs = 1
 " Higlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=50}
 
-" function! VSCodeNotifyVisual(cmd, leaveSelection, ...)
-"     let mode = mode()
-"     if mode ==# 'V'
-"         let startLine = line('v')
-"         let endLine = line('.')
-"         call VSCodeNotifyRange(a:cmd, startLine, endLine, a:leaveSelection, a:000)
-"     elseif mode ==# 'v' || mode ==# "\<C-v>"
-"         let startPos = getpos('v')
-"         let endPos = getpos('.')
-"         call VSCodeNotifyRangePos(a:cmd, startPos[1], endPos[1], startPos[2], endPos[2] + 1, a:leaveSelection, a:000)
-"     else
-"         call VSCodeNotify(a:cmd, a:000)
-"     endif
-" endfunction
-
 nnoremap <leader><leader> <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 nnoremap <leader>; <Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>
 
-" buffer
-nnoremap <leader>bb <Cmd>call VSCodeNotify('workbench.action.openPreviousEditorFromHistory')<CR>
-nnoremap <leader>]b <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
-nnoremap <leader>[b <Cmd>call VSCodeNotify('workbench.action.quickOpenNavigatePreviousInEditorPicker')<CR>
+
+" search
+nnoremap <leader>ss <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
 
 " code
-nnoremap <leader>gx <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap <leader>gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap <leader>gd <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
 nnoremap gd <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
 nnoremap <leader>grr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 nnoremap <leader>grR <Cmd>call VSCodeNotify('references-view.findReferences')<CR>
-
 nnoremap <leader>gi <Cmd>call VSCodeNotcify('editor.action.goToImplementation')<CR>
 nnoremap <leader>gy <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
 
-xnoremap <leader>ga <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
-nnoremap <leader>ga <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
-nnoremap <leader>gA <Cmd>call VSCodeNotify('editor.action.sourceAction')<CR>
+nnoremap [c <Cmd>call VSCodeNotify('editor.action.marker.previous')<CR>
+nnoremap ]c <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
 nnoremap <leader>grn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
-nnoremap ]c <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
-nnoremap [c <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
-
 nnoremap <leader>gg <Cmd>call VSCodeNotify('editor.action.showContextMenu')<CR>
-
-
-nnoremap <leader>gco <Cmd>call VSCodeNotify('outline.focus')<CR>
-nnoremap <leader>gcs <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
-nnoremap <leader>gcl <Cmd>call VSCodeNotify('editor.action.marker.previousInFiles')<CR>
 
 nnoremap <leader>gjr <Cmd>call VSCodeNotify('extension.runJest')<CR>
 nnoremap <leader>gjd <Cmd>call VSCodeNotify('extension.debugJest')<CR>
@@ -132,14 +105,10 @@ nnoremap <leader>ro <Cmd>call VSCodeNotify('editor.action.clipboardCopyAction')<
 " search
 nnoremap <leader>. <Cmd>call VSCodeNotify('command-runner.run', {"command": "rgf"})<CR>
 nnoremap <leader>scs <Cmd>call VSCodeNotify('editor.action.insertSnippet')<CR>
-nnoremap <leader>ss <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
-nnoremap <leader>so <Cmd>call VSCodeNotify('outline.focus')<CR>
 
 nnoremap <leader>> <Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>
-nnoremap <c-x><c-f> <Cmd>call VSCodeNotify('extension.relativePath')<CR>
 xnoremap K <Cmd>call VSCodeNotifyVisual('openInWeb.openInWebActionList', 1)<CR>
 nnoremap K <Cmd>call VSCodeNotify('extension.dash.specific')<CR>
-
 
 nnoremap - <Cmd>call VSCodeNotify('workbench.files.action.focusFilesExplorer')<CR>
 nnoremap [q <Cmd>call VSCodeNotify('search.action.focusPreviousSearchResult')<CR>
@@ -150,3 +119,17 @@ xmap gc  <Plug>VSCodeCommentary
 nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
+
+" Deprecated
+" buffer
+nnoremap <leader>bb <Cmd>call VSCodeNotify('workbench.action.openPreviousEditorFromHistory')<CR>
+nnoremap <leader>]b <Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>
+nnoremap <leader>[b <Cmd>call VSCodeNotify('workbench.action.quickOpenNavigatePreviousInEditorPicker')<CR>
+
+" code
+nnoremap <leader>gx <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <leader>ga <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <leader>gco <Cmd>call VSCodeNotify('outline.focus')<CR>
+nnoremap <leader>gcs <Cmd>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
+xnoremap <leader>ga <Cmd>call VSCodeNotifyVisual('editor.action.quickFix', 1)<CR>
+nnoremap <leader>gA <Cmd>call VSCodeNotify('editor.action.sourceAction')<CR>
