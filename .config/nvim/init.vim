@@ -35,8 +35,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'pbrisbin/vim-colors-off'
 Plug 'romainl/Apprentice'
 Plug 'fxn/vim-monochrome'
+Plug 'VonHeikemen/rubber-themes.vim'
 
 Plug 'noahfrederick/vim-noctu'
+Plug 'jeffkreeftmeijer/vim-dim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -100,13 +102,23 @@ Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 
 call plug#end()
 
-if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
-  " Enable true color in Vim on tmux (not necessary for NeoVim)
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  " Enable true color in supported terminals
-  set termguicolors
-endif
+colorscheme dim
+" Dim and noctu colorscheme can't use following settings, they'd get broken.
+" They're only needed for 24bit themes
+" if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
+"   " Enable true color in Vim on tmux (not necessary for NeoVim)
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   " Enable true color in supported terminals
+"   " When 16bit colors scheme is used, we don't want to set this
+"   set termguicolors
+"   if $USER ==# 'mews'
+"     colorscheme solarized8
+"   else
+"     colorscheme base16-oceanicnext
+"   endif
+" set background=dark
+" endif
 
 " Make mouse work in tmux
 if &term =~# '^screen' || &term =~# '^xterm-kitty'
@@ -114,18 +126,6 @@ if &term =~# '^screen' || &term =~# '^xterm-kitty'
   set ttymouse=sgr
 endif
 
-
-if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit') || has('gui_running')
-  if $USER ==# 'mews'
-    colorscheme solarized8
-  else
-    colorscheme base16-oceanicnext
-  endif
-else 
-  colorscheme noctu
-endif
-
-set background=dark
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
@@ -266,9 +266,9 @@ function! s:show_documentation()
   endif
 endfunction
 
-augroup cocHighlight
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+" augroup cocHighlight
+"   autocmd CursorHold * silent call CocActionAsync('highlight')
+" augroup END
 
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -496,3 +496,19 @@ EOF
 
 " Higlight yank
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=50}
+
+highlight PreProc ctermfg=NONE
+highlight Special        ctermfg=NONE
+highlight Statement        ctermfg=NONE
+highlight Type ctermfg=NONE
+
+" Identify highlight groups
+" function! SynStack ()
+"     for i1 in synstack(line("."), col("."))
+"         let i2 = synIDtrans(i1)
+"         let n1 = synIDattr(i1, "name")
+"         let n2 = synIDattr(i2, "name")
+"         echo n1 "->" n2
+"     endfor
+" endfunction
+" map gm :call SynStack()<CR>
