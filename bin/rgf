@@ -3,7 +3,7 @@
 ##
 # Interactive search.
 #
-[[ -n $1 ]] && cd $1 # go to provided folder or noop
+[[ -n $1 ]] && cd "$1" # go to provided folder or noop
 OPEN_COMMAND="code"
 COMMAND_OPTIONS="-g"
 
