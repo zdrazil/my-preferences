@@ -3,6 +3,7 @@ for myPath (
     "/opt/homebrew/bin"
     "/usr/local/bin"
     "$HOME/.local/bin"
+    "$HOME/.emacs.d/bin"
     "$HOME/.local/homebrew/bin"
     "/Applications/MacVim.app/Contents/bin"
     "$HOME/.fzf/bin"

@@ -39,7 +39,10 @@ if [ "$system_type" = "Linux" ]; then
 fi
 
 echo "packages"
-curl -Lo ~/bin/theme-sh 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x ~/bin/theme-sh
+curl https://cht.sh/:cht.sh >"$HOME/bin/chtsh"
+chmod +x "$HOME/bin/chtsh"
+
+curl -Lo "HOME_PATH_DIR/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "$HOME_PATH_DIR/bin/theme-sh"
 
 # echo "fisher"
 # curl -sL https://git.io/fisher | fish && fisher update
