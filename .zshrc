@@ -140,7 +140,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 # export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 export HOMEBREW_NO_ANALYTICS=1
-HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 if [ -d "$HOME/.asdf" ] ; then
     . $HOME/.asdf/asdf.sh
@@ -154,26 +154,34 @@ eval "$(direnv hook zsh)"
 #         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
+BACKGROUND_THEME="dark"
+
+# save computer specific themes to .not-public
+if [[ -z $MY_THEME ]]; then
+    export MY_THEME="oceanicnext"
+fi
+
+if [[ -z $MY_LIGHT_THEME ]]; then
+    export MY_LIGHT_THEME="cupertino"
+fi
+
+case `uname` in
+    Darwin)
+	color_theme=`defaults read -g AppleInterfaceStyle 2>/dev/null`
+	if [ "$color_theme" != 'Dark' ]; then
+	    BACKGROUND_THEME="light"
+	fi
+	;;
+esac
+
+export BACKGROUND_THEME
+
 if command -v theme-sh > /dev/null; then
-	[ -e ~/.theme_history ] && theme-sh "$(theme-sh -l|tail -n1)"
-
-	# Optional
-
-	# Bind C-o to the last theme.
-	last_theme() {
-		theme-sh "$(theme-sh -l|tail -n2|head -n1)"
-	}
-
-	zle -N last_theme
-	bindkey '^O' last_theme
-
-	alias th='theme-sh -i'
-
-	# Interactively load a light theme
-	alias thl='theme-sh --light -i'
-
-	# Interactively load a dark theme
-	alias thd='theme-sh --dark -i'
+	if [ "$BACKGROUND_THEME" = 'light' ]; then
+	    theme-sh $MY_LIGHT_THEME
+	else
+	    theme-sh $MY_THEME
+	fi
 fi
 
 zgen load zsh-users/zsh-syntax-highlighting

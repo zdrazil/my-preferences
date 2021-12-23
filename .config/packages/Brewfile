@@ -191,11 +191,12 @@ mas "Slack", id: 803453959
 mas "Soulver 2", id: 413965349
 mas "SponsorBlock for YouTube", id: 1573461917
 mas "Steam Link", id: 1246969117
-mas "Streaks", id: 1493327990
 mas "Vimari", id: 1480933944
 mas "Vinegar", id: 1591303229
 mas "Xcode", id: 497799835
 mas "Yomu", id: 562211012
+mas "uBlacklist for Safari", id: 1547912640
+mas "Hush Nag Blocker", id: 1544743900
 
 cask "hookshot"
 cask "font-fira-code-nerd-font"

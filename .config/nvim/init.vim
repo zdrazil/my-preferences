@@ -120,6 +120,13 @@ colorscheme dim
 " set background=dark
 " endif
 
+if $BACKGROUND_THEME ==# 'dark'
+  set background=dark
+else
+  set background=light
+endif
+
+
 " Make mouse work in tmux
 if &term =~# '^screen' || &term =~# '^xterm-kitty'
   " tmux knows the extended mouse mode
@@ -512,3 +519,4 @@ highlight Type ctermfg=NONE
 "     endfor
 " endfunction
 " map gm :call SynStack()<CR>
+"
