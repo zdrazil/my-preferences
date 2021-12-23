@@ -158,7 +158,7 @@ BACKGROUND_THEME="dark"
 
 # save computer specific themes to .not-public
 if [[ -z $MY_THEME ]]; then
-    export MY_THEME="oceanicnext"
+    export MY_THEME="oceanic-next"
 fi
 
 if [[ -z $MY_LIGHT_THEME ]]; then
