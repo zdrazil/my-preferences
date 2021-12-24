@@ -21,6 +21,13 @@ export SAVEHIST=256000
 export CLICOLOR=1
 export LEIN_HOME="$MY_CONFIG_HOME"/lein
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--history=$MY_CONFIG_HOME/fzf/fzf-history"
+
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 BACKGROUND_THEME="dark"
 
 # save computer specific themes to .not-public

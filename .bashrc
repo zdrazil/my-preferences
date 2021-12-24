@@ -5,7 +5,7 @@ case $- in
 esac
 
 # Source config files that are the same for zsh and bash
-if [ -f $HOME/.commonrc ]; then
+if [ -f "$HOME"/.commonrc ]; then
     . $HOME/.commonrc
 fi
 
@@ -65,9 +65,3 @@ fi
 if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
     PATH="/Applications/MacVim.app/Contents/bin:$PATH"
 fi
-
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] &&
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] &&
-    eval "$("$BASE16_SHELL/profile_helper.sh")"
-# eval "$(starship init bash)"
