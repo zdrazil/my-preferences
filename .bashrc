@@ -45,7 +45,7 @@ PROMPT_DIRTRIM=2
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space
 
-[ -f "$MY_CONFIG_HOME/fzf/fzf.bash" ] && source "$MY_CONFIG_HOME/fzf/fzf.bash"
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
 eval "$(direnv hook bash)"
 

@@ -18,11 +18,9 @@ fi
 . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
-export HISTFILE="$MY_CONFIG_HOME/zsh/zsh_history"
-
 # ------------------ PLUGINS ----------------------
-#
-source "$MY_DATA_HOME/zgen/zgen.zsh"
+
+source "${HOME}/.zgen/zgen.zsh"
 
 # Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
 # if the init script doesn't exist
@@ -106,13 +104,11 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-[ -f "$MY_CONFIG_HOME/fzf/fzf.zsh" ] && source "$MY_CONFIG_HOME/fzf/fzf.zsh"
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-
-export ZSHZ_DATA="$MY_CONFIG_HOME/zsh/zshz"
 
 eval "$(direnv hook zsh)"
 

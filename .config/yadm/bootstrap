@@ -7,7 +7,6 @@ yadm submodule update --recursive --init
 
 system_type=$(uname -s)
 MY_CONFIG_HOME="$HOME/.config"
-MY_DATA_HOME="$HOME/.local/share"
 MY_BIN_HOME="$HOME/.local/bin"
 
 if ! command -v brew >/dev/null 2>&1; then
@@ -48,7 +47,7 @@ chmod +x "$MY_BIN_HOME/chtsh"
 curl -Lo "$MY_BIN_HOME/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "$MY_BIN_HOME/bin/theme-sh"
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --xdg
+~/.fzf/install
 
 # echo "fisher"
 # curl -sL https://git.io/fisher | fish && fisher update
@@ -57,7 +56,7 @@ echo "tpm"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "zgen"
-git clone https://github.com/tarjoilija/zgen.git "$MY_DATA_HOME/zgen"
+git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 echo "asdf"
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
