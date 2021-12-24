@@ -17,15 +17,12 @@
 	conflictstyle = diff3
 [mergetool]
 	keepBackup = false
-	prompt = false
 [alias]
 	co = checkout
 	ci = commit
 	st = status
 	br = branch
 	brt = "!git for-each-ref refs/heads --sort committerdate --format='%(HEAD) %(refname:short)'"
-[init]
-	defaultBranch = master
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [rerere]
