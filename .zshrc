@@ -3,43 +3,17 @@
 autoload -U select-word-style
 select-word-style bash
 
-if [ -f $HOME/.commonrc ]; then
-    . $HOME/.commonrc
+if [ -f "$HOME/.config/bash-like/commonrc" ]; then
+    . "$HOME/.config/bash-like/commonrc"
 fi
 
-if [ -f $HOME/.zshpath ]; then
-    . $HOME/.zshpath
-fi
-
-# Remove duplicate PATH because we can have them already sourced in .zprofile
-# It's done because of macOS behavior where files are sourced differently than on Linux.
-# By doing this we can use same .zprofile and .zshrc on both systems.
-get_var() {
-    eval 'printf "%s\n" "${'"$1"'}"'
-}
-set_var() {
-    eval "$1=\"\$2\""
-}
-dedup_pathvar() {
-    pathvar_name="$1"
-    pathvar_value="$(get_var "$pathvar_name")"
-    deduped_path="$(perl -e 'print join(":",grep { not $seen{$_}++ } split(/:/, $ARGV[0]))' "$pathvar_value")"
-    set_var "$pathvar_name" "$deduped_path"
-}
-dedup_pathvar PATH
-dedup_pathvar MANPATH
-
-HISTFILE=~/.histfile
-HISTSIZE=256000
-SAVEHIST=256000
-
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+if [ -f "$MY_CONFIG_HOME/zsh/zshpath" ]; then
+    . "$MY_CONFIG_HOME/zsh/zshpath"
 fi
 
 # ------------------ PLUGINS ----------------------
 #
-source "${HOME}/.zgen/zgen.zsh"
+source "$MY_DATA_HOME/zgen/zgen.zsh"
 
 # Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
 # if the init script doesn't exist
@@ -125,62 +99,19 @@ bindkey "^X^E" edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# [ -f ~/.shell-colors ] && sh "$HOME/.shell-colors"
-export CLICOLOR=1
-
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
+export FZF_DEFAULT_OPTS="--history=$MY_CONFIG_HOME/fzf/.fzf-history"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
-# export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-if [ -d "$HOME/.asdf" ]; then
-    . $HOME/.asdf/asdf.sh
-#     eval "$(asdf exec direnv hook zsh)"
-fi
+export ZSHZ_DATA="$MY_CONFIG_HOME/zsh/zshz"
+
 eval "$(direnv hook zsh)"
 
-# BASE16_SHELL="$HOME/.config/base16-shell/"
-# [ -n "$PS1" ] && \
-#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-BACKGROUND_THEME="dark"
-
-# save computer specific themes to .not-public
-if [[ -z $MY_THEME ]]; then
-    export MY_THEME="oceanic-next"
-fi
-
-if [[ -z $MY_LIGHT_THEME ]]; then
-    export MY_LIGHT_THEME="cupertino"
-fi
-
-case $(uname) in
-Darwin)
-    color_theme=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-    if [ "$color_theme" != 'Dark' ]; then
-        BACKGROUND_THEME="light"
-    fi
-    ;;
-esac
-
-export BACKGROUND_THEME
-
-if command -v theme-sh >/dev/null; then
-    if [ "$BACKGROUND_THEME" = 'light' ]; then
-        theme-sh $MY_LIGHT_THEME
-    else
-        theme-sh $MY_THEME
-    fi
-fi
-
 zgen load zsh-users/zsh-syntax-highlighting
-
-# eval "$(starship init zsh)"

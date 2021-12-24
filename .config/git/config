@@ -2,13 +2,13 @@
 	name = Vladimír Zdražil
 	email = git@vzdrazil.com
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
 [credential]
 	helper = osxkeychain
 	helper = cache
 [commit]
-	template = ~/.git_commit_msg.txt
+	template = ~/.config/git/git_commit_msg.txt
 	cleanup = strip
 [merge]
 	tool = vimdiff

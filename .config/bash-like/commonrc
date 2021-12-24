@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+export MY_CONFIG_HOME="$HOME/.config"
+export MY_DATA_HOME="$HOME/.local/share"
+export MY_BIN_HOME="$HOME/.local/bin"
+
+# Source config files that are not to be public (API tokens etc.)
+if [ -r "./not-public" ]; then
+	# shellcheck source=/dev/null
+	source "./not-public"
+fi
+
+if [ -f "./shell-aliases" ]; then
+	# shellcheck source=/dev/null
+	source "./shell-aliases"
+fi
+
+export HISTSIZE=256000
+export SAVEHIST=256000
+
+export CLICOLOR=1
+
+BACKGROUND_THEME="dark"
+
+# save computer specific themes to .not-public
+if [[ -z $MY_THEME ]]; then
+	export MY_THEME="oceanic-next"
+fi
+
+if [[ -z $MY_LIGHT_THEME ]]; then
+	export MY_LIGHT_THEME="cupertino"
+fi
+
+case $(uname) in
+Darwin)
+	color_theme=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+	if [ "$color_theme" != 'Dark' ]; then
+		BACKGROUND_THEME="light"
+	fi
+	;;
+esac
+
+export BACKGROUND_THEME
+
+if command -v theme-sh >/dev/null; then
+	if [ "$BACKGROUND_THEME" = 'light' ]; then
+		theme-sh $MY_LIGHT_THEME
+	else
+		theme-sh $MY_THEME
+	fi
+fi

@@ -16,6 +16,7 @@ brew "emacs-mac", args: ["with-modules"]
 # brew "java"
 # brew "node"
 # brew "yarn"
+brew "asdf"
 brew "yadm"
 brew "bash"
 brew "bash-completion"
