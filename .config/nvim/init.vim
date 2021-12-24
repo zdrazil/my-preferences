@@ -40,7 +40,7 @@ Plug 'VonHeikemen/rubber-themes.vim'
 Plug 'noahfrederick/vim-noctu'
 Plug 'jeffkreeftmeijer/vim-dim'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'

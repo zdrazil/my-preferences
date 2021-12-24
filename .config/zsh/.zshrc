@@ -7,8 +7,12 @@ if [ -f "$HOME/.config/bash-like/commonrc" ]; then
     . "$HOME/.config/bash-like/commonrc"
 fi
 
-if [ -f "$MY_CONFIG_HOME/zsh/zshpath" ]; then
-    . "$MY_CONFIG_HOME/zsh/zshpath"
+if [ -f "$MY_CONFIG_HOME/bash-like/append_paths" ]; then
+    . "$MY_CONFIG_HOME/bash-like/append_paths"
+fi
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
 export HISTFILE="$MY_CONFIG_HOME/zsh/zsh_history"

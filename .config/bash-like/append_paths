@@ -31,10 +31,6 @@ for myMan in "${manPaths[@]}"; do
     fi
 done
 
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
-
 # Remove duplicate PATH because we can have them already sourced in .zprofile
 # It's done because of macOS behavior where files are sourced differently than on Linux.
 # By doing this we can use same .zprofile and .zshrc on both systems.

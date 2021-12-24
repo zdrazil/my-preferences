@@ -9,6 +9,10 @@ if [ -f "$HOME"/.commonrc ]; then
     . $HOME/.commonrc
 fi
 
+if [ -f "$MY_CONFIG_HOME/bash-like/append_paths" ]; then
+    . "$MY_CONFIG_HOME/bash-like/append_paths"
+fi
+
 # Use bash completion
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
@@ -40,13 +44,6 @@ bind Space:magic-space
 
 [ -f "$MY_CONFIG_HOME/fzf/fzf.bash" ] && source "$MY_CONFIG_HOME/fzf/fzf.bash"
 
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-if [ -d "$HOME/.asdf" ]; then
-    . $HOME/.asdf/asdf.sh
-    . $HOME/.asdf/completions/asdf.bash
-#      eval "$(asdf exec direnv hook bash)"
-fi
 eval "$(direnv hook bash)"
 
 if [ -d "/opt/local/bin" ]; then
