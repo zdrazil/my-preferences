@@ -14,13 +14,13 @@ fi
 # Remove duplicate PATH because we can have them already sourced in .zprofile
 # It's done because of macOS behavior where files are sourced differently than on Linux.
 # By doing this we can use same .zprofile and .zshrc on both systems.
-get_var () {
+get_var() {
     eval 'printf "%s\n" "${'"$1"'}"'
 }
-set_var () {
+set_var() {
     eval "$1=\"\$2\""
 }
-dedup_pathvar () {
+dedup_pathvar() {
     pathvar_name="$1"
     pathvar_value="$(get_var "$pathvar_name")"
     deduped_path="$(perl -e 'print join(":",grep { not $seen{$_}++ } split(/:/, $ARGV[0]))' "$pathvar_value")"
@@ -37,7 +37,6 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
-
 # ------------------ PLUGINS ----------------------
 #
 source "${HOME}/.zgen/zgen.zsh"
@@ -46,15 +45,15 @@ source "${HOME}/.zgen/zgen.zsh"
 # if the init script doesn't exist
 if ! zgen saved; then
 
-  # specify plugins here
-  zgen load zsh-users/zsh-autosuggestions
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load agkozak/zsh-z
+    # specify plugins here
+    zgen load zsh-users/zsh-autosuggestions
+    zgen load zsh-users/zsh-history-substring-search
+    zgen load agkozak/zsh-z
 
-  zgen load zsh-users/zsh-completions src
+    zgen load zsh-users/zsh-completions src
 
-  # generate the init script from plugins above
-  zgen save
+    # generate the init script from plugins above
+    zgen save
 fi
 
 # ---------------------------------------------------
@@ -72,13 +71,13 @@ export PROMPT="·%(1j.[%j].)%(0?..%?) %1~ > "
 
 # export RPROMPT='${vcs_info_msg_0_}'
 
-setopt AUTO_MENU           # Show completion menu on a successive tab press.
+setopt AUTO_MENU # Show completion menu on a successive tab press.
 
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space.
+setopt HIST_VERIFY            # Do not execute immediately upon history expansion.
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
 
 setopt NO_LIST_BEEP
 setopt AUTO_CD
@@ -105,20 +104,19 @@ zstyle ':completion:*:history-words' remove-all-dups yes
 
 unsetopt CASE_GLOB
 
-
 # ------------------ Custom Settings ------------------
 
 # Substring keybindings
 if [[ -n "$key_info" ]]; then
-  # Emacs
-  bindkey -M emacs "$key_info[Control]P" history-substring-search-up
-  bindkey -M emacs "$key_info[Control]N" history-substring-search-down
+    # Emacs
+    bindkey -M emacs "$key_info[Control]P" history-substring-search-up
+    bindkey -M emacs "$key_info[Control]N" history-substring-search-down
 
-  # Emacs and Vi
-  for keymap in 'emacs' 'viins'; do
-    bindkey -M "$keymap" "$key_info[Up]" history-substring-search-up
-    bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
-  done
+    # Emacs and Vi
+    for keymap in 'emacs' 'viins'; do
+        bindkey -M "$keymap" "$key_info[Up]" history-substring-search-up
+        bindkey -M "$keymap" "$key_info[Down]" history-substring-search-down
+    done
 fi
 
 autoload -z edit-command-line
@@ -142,7 +140,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-if [ -d "$HOME/.asdf" ] ; then
+if [ -d "$HOME/.asdf" ]; then
     . $HOME/.asdf/asdf.sh
 #     eval "$(asdf exec direnv hook zsh)"
 fi
@@ -152,7 +150,6 @@ eval "$(direnv hook zsh)"
 # [ -n "$PS1" ] && \
 #     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 #         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
 
 BACKGROUND_THEME="dark"
 
@@ -165,23 +162,23 @@ if [[ -z $MY_LIGHT_THEME ]]; then
     export MY_LIGHT_THEME="cupertino"
 fi
 
-case `uname` in
-    Darwin)
-	color_theme=`defaults read -g AppleInterfaceStyle 2>/dev/null`
-	if [ "$color_theme" != 'Dark' ]; then
-	    BACKGROUND_THEME="light"
-	fi
-	;;
+case $(uname) in
+Darwin)
+    color_theme=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+    if [ "$color_theme" != 'Dark' ]; then
+        BACKGROUND_THEME="light"
+    fi
+    ;;
 esac
 
 export BACKGROUND_THEME
 
-if command -v theme-sh > /dev/null; then
-	if [ "$BACKGROUND_THEME" = 'light' ]; then
-	    theme-sh $MY_LIGHT_THEME
-	else
-	    theme-sh $MY_THEME
-	fi
+if command -v theme-sh >/dev/null; then
+    if [ "$BACKGROUND_THEME" = 'light' ]; then
+        theme-sh $MY_LIGHT_THEME
+    else
+        theme-sh $MY_THEME
+    fi
 fi
 
 zgen load zsh-users/zsh-syntax-highlighting

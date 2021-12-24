@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 BRANCH=$(git branch --show-current)
 ISSUE=$(echo "${BRANCH}" | cut -d '-' -f1,2)
 FILE=".github/pull_request_template.md"
 APPNAME=$1
 
-sed "s/XXX-YYYY/${ISSUE}/" $FILE \
-| sed "s/{branch-name}/${BRANCH}/" \
-| sed "s/{app-name}/${APPNAME}/" \
-| sed '/^_Fill/{N;d;N;d}' 
+sed "s/XXX-YYYY/${ISSUE}/" $FILE |
+    sed "s/{branch-name}/${BRANCH}/" |
+    sed "s/{app-name}/${APPNAME}/" |
+    sed '/^_Fill/{N;d;N;d}'

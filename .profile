@@ -12,29 +12,29 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
+if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d "/usr/local/bin" ] ; then
+if [ -d "/usr/local/bin" ]; then
     PATH="usr/local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "/usr/local/lib/python3.7/site-packages" ] ; then
+if [ -d "/usr/local/lib/python3.7/site-packages" ]; then
     PATH="/usr/local/lib/python3.7/site-packages:$PATH"
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    export LC_ALL=en_US.UTF-8  
+    export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 fi
 
@@ -46,10 +46,9 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 export CLICOLOR=1
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND='rg --files'
-
