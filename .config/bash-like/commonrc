@@ -28,7 +28,7 @@ export FZF_DEFAULT_OPTS="--history=$MY_CONFIG_HOME/fzf/fzf-history"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-BACKGROUND_THEME="dark"
+export BACKGROUND_THEME="dark"
 
 # save computer specific themes to .not-public
 if [[ -z $MY_THEME ]]; then
@@ -47,8 +47,6 @@ Darwin)
 	fi
 	;;
 esac
-
-export BACKGROUND_THEME
 
 if command -v theme-sh >/dev/null; then
 	if [ "$BACKGROUND_THEME" = 'light' ]; then
