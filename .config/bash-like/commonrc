@@ -19,6 +19,7 @@ export HISTSIZE=256000
 export SAVEHIST=256000
 
 export CLICOLOR=1
+export LEIN_HOME="$MY_CONFIG_HOME"/lein
 
 BACKGROUND_THEME="dark"
 

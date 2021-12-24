@@ -38,7 +38,7 @@ PROMPT_DIRTRIM=2
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$MY_CONFIG_HOME/fzf/fzf.bash" ] && source "$MY_CONFIG_HOME/fzf/fzf.bash"
 
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 

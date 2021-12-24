@@ -97,11 +97,11 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$MY_CONFIG_HOME/fzf/fzf.zsh" ] && source "$MY_CONFIG_HOME/fzf/fzf.zsh"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="--history=$MY_CONFIG_HOME/fzf/.fzf-history"
+export FZF_DEFAULT_OPTS="--history=$MY_CONFIG_HOME/fzf/fzf-history"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
