@@ -15,6 +15,9 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
+. $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+
 export HISTFILE="$MY_CONFIG_HOME/zsh/zsh_history"
 
 # ------------------ PLUGINS ----------------------

@@ -2,7 +2,6 @@ tap "homebrew/core"
 tap "homebrew/bundle"
 
 # brew "bat"
-brew "asdf"
 brew "clojure-lsp"
 brew "fd"
 brew "fx"

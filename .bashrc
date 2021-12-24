@@ -18,6 +18,9 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
+. "$HOME"/.asdf/asdf.sh
+. "$HOME"/.asdf/completions/asdf.bash
+
 #-------------------- SETTINGS ---------------------
 
 export PS1="\u@\h \W> \[$(tput sgr0)\]"
