@@ -129,10 +129,24 @@ call plug#end()
 runtime plugin/sensible.vim
 colorscheme dim
 
-if $BACKGROUND_THEME ==# 'dark'
-  set background=dark
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+if g:os ==# 'Darwin'
+  if system('defaults read -g AppleInterfaceStyle') =~# '^Dark'
+    set background=dark   " for the dark version of the theme
+  else
+    set background=light  " for the light version of the theme
+  endif
 else
-  set background=light
+  if $BACKGROUND_THEME ==# 'dark'
+    set background=dark
+  endif
 endif
 
 " Make mouse work in tmux
@@ -247,19 +261,11 @@ let g:ale_fixers = {
       \}
 
 let g:ale_linters = {
-      \ 'bash': ['shellcheck'],
-      \ 'cs': ['OmniSharp'],
-      \ 'haskell': ['hls'],
       \ 'javascript': ['eslint', 'tsserver'],
       \ 'javascriptreact': ['eslint', 'tsserver'],
-      \ 'python': ['flake8'],
-      \ 'rust': ['rls'],
       \ 'sh': ['shellcheck'],
       \ 'typescript': ['eslint', 'tsserver'],
       \ 'typescriptreact': ['eslint', 'tsserver'],
-      \ 'vim': ['vint'],
-      \ 'vimwiki':['writegood'],
-      \ 'zsh': ['shellcheck'],
       \}
 
 
