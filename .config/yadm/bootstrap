@@ -9,9 +9,11 @@ system_type=$(uname -s)
 MY_CONFIG_HOME="$HOME/.config"
 MY_BIN_HOME="$HOME/.local/bin"
 
+mkdir -p "$MY_CONFIG_HOME"
+
 if ! command -v brew >/dev/null 2>&1; then
 	echo "Installing homebrew"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if [ "$system_type" = "Darwin" ]; then
@@ -44,7 +46,7 @@ echo "packages"
 curl https://cht.sh/:cht.sh >"$MY_BIN_HOME/chtsh"
 chmod +x "$MY_BIN_HOME/chtsh"
 
-curl -Lo "$MY_BIN_HOME/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "$MY_BIN_HOME/bin/theme-sh"
+curl -Lo "$MY_BIN_HOME/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "$MY_BIN_HOME/theme-sh"
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install

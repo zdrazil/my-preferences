@@ -18,6 +18,8 @@ for myPath in "${myPaths[@]}"; do
     fi
 done
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 manPaths=(
     "/opt/homebrew/share/man"
     "/opt/local/share/man"
