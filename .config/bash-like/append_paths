@@ -2,6 +2,7 @@ myPaths=(
     "$HOME/bin"
     "/opt/homebrew/bin"
     "/usr/local/bin"
+    "/home/linuxbrew/.linuxbrew/bin"
     "$HOME/.local/bin"
     "$HOME/.emacs.d/bin"
     "$HOME/.local/homebrew/bin"
@@ -18,10 +19,9 @@ for myPath in "${myPaths[@]}"; do
     fi
 done
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 manPaths=(
     "/opt/homebrew/share/man"
+    "/home/linuxbrew/.linuxbrew/share/man"
     "/opt/local/share/man"
     "/usr/local/share/man"
     "$HOME/.local/homebrew/share/man"
