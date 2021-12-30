@@ -106,9 +106,7 @@ bindkey "^X^E" edit-command-line
 
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=3"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_USE_ASYNC="true"
 
 eval "$(direnv hook zsh)"
 
