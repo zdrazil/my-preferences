@@ -1,5 +1,4 @@
 # Install with brew bundle --file '[path]' --verbose --force
-# tap "d12frosted/emacs-plus"
 # cask_args force: true
 
 tap "homebrew/bundle"
@@ -8,29 +7,19 @@ tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-versions"
 tap "homebrew/cask-fonts"
-# tap "markwu/personal"
-#
-tap "railwaycat/emacsmacport"
-brew "emacs-mac", args: ["with-modules"]
 
-# brew "java"
-# brew "node"
-# brew "yarn"
-brew "yadm"
-brew "bash"
 brew "bash-completion"
+brew "bash"
 brew "coreutils"
 brew "findutils"
-brew "fish"
 brew "git"
 brew "grep"
 brew "reattach-to-user-namespace"
 brew "tmux"
-brew "zsh"
+brew "yadm"
 brew "zsh-completions"
+brew "zsh"
 
-brew "ack"
-brew "bat"
 brew "curl"
 brew "direnv"
 brew "dos2unix"
@@ -39,118 +28,67 @@ brew "fd"
 brew "findutils"
 brew "fx"
 brew "gawk"
-brew "git"
-brew "git-delta"
 brew "git-extras"
+brew "git"
 brew "gnu-sed"
 brew "gnupg2"
 brew "graphviz"
 brew "grep"
 brew "gron"
-brew "highlight"
 brew "htop"
 brew "imagemagick"
 brew "jq"
-brew "leiningen"
 brew "mas"
 brew "moreutils"
 brew "ncdu"
-brew "neovim"
-brew "p7zip"
 brew "pandoc"
 brew "perl"
 brew "pwgen"
-brew "python3"
 brew "ranger"
 brew "readline"
 brew "ripgrep"
 brew "rlwrap"
-brew "ruby"
 brew "shellcheck"
 brew "shfmt"
 brew "speedtest-cli"
-brew "stack"
-brew "starship"
 brew "the_silver_searcher"
 brew "tig"
-# brew "tldr"
 brew "tmux"
 brew "trash"
 brew "tree"
-brew "universal-ctags"
-brew "up"
-brew "w3m"
-brew "watch"
 brew "watchman"
 brew "wget"
-# cask "alacritty"
-# cask "font-cascadia-code"
-# cask "font-fira-code"
-# cask "font-hasklig"
-# cask "font-ibm-plex"
-# cask "font-ibm-plex-mono"
-# cask "font-ibm-plex-sans"
-# cask "font-ibm-plex-sans-condensed"
-# cask "font-ibm-plex-serif"
-# cask "homebrew/cask-fonts/font-iosevka"
-# cask "homebrew/cask-fonts/font-iosevka-aile"
-# cask "homebrew/cask-fonts/font-iosevka-etoile"
-# cask "homebrew/cask-fonts/font-iosevka-slab"
-# cask "homebrew/cask-fonts/font-iosevka-sparkle"
-# cask "jetbrains-toolbox"
-# cask "macs-fan-control"
-# cask "osxfuse"
-# cask "scroll-reverser"
-# cask "sublime-text"
-# cask "virtualbox"
+
 cask "adobe-acrobat-reader"
-cask "alfred"
 cask "appcleaner"
-cask "apppolice"
-cask "browserstacklocal"
 cask "azure-data-studio"
-cask "bartender"
 cask "bettertouchtool"
-cask "brave-browser"
 cask "calibre"
-cask "cryptomator"
-cask "docker"
-cask "dotnet-sdk"
 cask "dropbox"
-cask "firefox"
 cask "firefox-developer-edition"
+cask "firefox"
 cask "gog-galaxy"
 cask "google-chrome"
 cask "handbrake"
+cask "homebrew/cask-drivers/sony-ps-remote-play"
 cask "homebrew/cask/scummvm"
+cask "hookshot"
 cask "imageoptim"
-cask "inkscape"
-cask "insomnia"
 cask "intellij-idea-ce"
 cask "iterm2"
-cask "joplin"
 cask "keka"
-cask "kitty"
-cask "libreoffice"
 cask "macvim"
 cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
 cask "parsec"
-cask "pdf-expert"
 cask "postman"
-cask "qlvideo"
 cask "rectangle"
-cask "screens"
 cask "spotify"
 cask "steam"
 cask "transmission"
-cask "veracrypt"
+cask "utm"
 cask "visual-studio-code"
 cask "vlc"
-cask "xquartz"
-cask "homebrew/cask-drivers/sony-ps-remote-play"
-cask "yacreader"
-cask "utm"
 cask "zotero"
 
 mas "1Password 7", id: 1333542190
@@ -164,11 +102,11 @@ mas "Focus for YouTube", id: 1514703160
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
 mas "hlidac shopu", id: 1488295734
+mas "Hush Nag Blocker", id: 1544743900
 mas "iFlicks", id: 408937559
 mas "iMovie", id: 408981434
 mas "Infuse", id: 1136220934
 mas "iPreview", id: 1519213509
-mas "iStat Menus", id: 1319778037
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
 mas "Logic Pro", id: 634148309
@@ -180,29 +118,12 @@ mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
-mas "Pocket", id: 568494494
 mas "Reeder", id: 1529448980
-mas "Save to Pocket", id: 1477385213
 mas "Shazam", id: 897118787
 mas "Shut Up", id: 1015043880
 mas "Slack", id: 803453959
 mas "Soulver 2", id: 413965349
 mas "SponsorBlock for YouTube", id: 1573461917
 mas "Steam Link", id: 1246969117
-mas "Vimari", id: 1480933944
-mas "Vinegar", id: 1591303229
-mas "Xcode", id: 497799835
-mas "Yomu", id: 562211012
 mas "uBlacklist for Safari", id: 1547912640
-mas "Hush Nag Blocker", id: 1544743900
-
-cask "hookshot"
-cask "font-fira-code-nerd-font"
-cask "font-meslo-lg-nerd-font"
-cask "font-inconsolata-nerd-font"
-cask "font-iosevka-nerd-font"
-cask "font-ubuntu-nerd-font"
-cask "font-ubuntu-mono-nerd-font"
-cask "monitorcontrol"
-cask "todoist"
-cask "toggl-track"
+mas "Xcode", id: 497799835
