@@ -20,8 +20,6 @@ if [ "$system_type" = "Darwin" ]; then
 	# install homebrew if it's missing
 	echo "Updating homebrew bundle"
 	brew bundle --verbose --file "$MY_CONFIG_HOME/packages/Brewfile"
-	# echo "MacPorts"
-	# sudo port -N install $(cat "$MY_CONFIG_HOME/packages/macports-packages" | sed '/^#/d')
 fi
 
 if [ "$system_type" = "Linux" ]; then
@@ -38,7 +36,6 @@ if [ "$system_type" = "Linux" ]; then
 	if [ -n "$XDG_SESSION_TYPE" ]; then
 		echo "Installing GUI packages..."
 		sudo apt-get install $(cat "$MY_CONFIG_HOME/packages/ubuntu-gui-packages" | sed '/^#/d')
-		snap install $(cat "$MY_CONFIG_HOME/packages/snap-packages" | sed '/^#/d')
 	fi
 fi
 
@@ -51,9 +48,6 @@ curl -Lo "$MY_BIN_HOME/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# echo "fisher"
-# curl -sL https://git.io/fisher | fish && fisher update
-
 echo "tpm"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -65,16 +59,9 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add python
 asdf plugin-add yarn
-asdf plugin-add ruby
-asdf plugin-add rust
 asdf install
 
 echo "Vim plug"
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
-
-echo "Neovim plug"
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim -es -u "$MY_CONFIG_HOME/nvim/init.vim" -i NONE -c "PlugInstall" -c "qa"

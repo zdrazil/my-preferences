@@ -1,17 +1,8 @@
 # sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-gui-packages" | sed '/^#/d')
 calibre
 chromium-browser
-emacs
-filezilla
 firefox
 handbrake
 libreoffice
-meld
-mpv
-steam
 transmission
-ubuntu-make
-virtualbox
-virtualbox-ext-pack
 vlc
-zeal	
