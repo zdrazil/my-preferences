@@ -18,25 +18,6 @@ fi
 . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
-# ------------------ PLUGINS ----------------------
-
-source "${HOME}/.zgen/zgen.zsh"
-
-# Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
-# if the init script doesn't exist
-if ! zgen saved; then
-
-    # specify plugins here
-    zgen load zsh-users/zsh-autosuggestions
-    zgen load zsh-users/zsh-history-substring-search
-    zgen load agkozak/zsh-z
-
-    zgen load zsh-users/zsh-completions src
-
-    # generate the init script from plugins above
-    zgen save
-fi
-
 # ---------------------------------------------------
 
 # used %{...%} to prevent jumping text when writing
@@ -110,4 +91,20 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 eval "$(direnv hook zsh)"
 
-zgen load zsh-users/zsh-syntax-highlighting
+# ------------------ PLUGINS ----------------------
+
+source "${HOME}/.zgen/zgen.zsh"
+
+# Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
+# if the init script doesn't exist
+if ! zgen saved; then
+
+    zgen load agkozak/zsh-z
+    zgen load zsh-users/zsh-completions src
+    zgen load zsh-users/zsh-autosuggestions
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
+
+    # generate the init script from plugins above
+    zgen save
+fi
