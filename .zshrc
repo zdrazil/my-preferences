@@ -101,6 +101,7 @@ if ! zgen saved; then
 
     zgen load agkozak/zsh-z
     zgen load zsh-users/zsh-completions src
+    zgen load Aloxaf/fzf-tab
     zgen load zsh-users/zsh-autosuggestions
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
