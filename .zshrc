@@ -26,12 +26,12 @@ fpath=(${ASDF_DIR}/completions $fpath)
 export PROMPT="·%(1j.[%j].)%(0?..%?) %1~ > "
 
 # Git in prompt
-# autoload -Uz vcs_info
-# zstyle ':vcs_info*' formats "%b"
-# setopt prompt_subst
-# precmd() { vcs_info }
+autoload -Uz vcs_info
+zstyle ':vcs_info*' formats "%b"
+setopt prompt_subst
+precmd() { vcs_info }
 
-# export RPROMPT='${vcs_info_msg_0_}'
+export RPROMPT='${vcs_info_msg_0_}'
 
 setopt AUTO_MENU # Show completion menu on a successive tab press.
 
