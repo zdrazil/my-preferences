@@ -174,6 +174,7 @@ nnoremap <leader>bb :Buffers<cr>
 nmap <leader>gx :ALEDetail<CR>
 
 nmap <silent>gd <Plug>(coc-definition)
+nmap gd <Plug>(coc-definition)
 nmap <leader>grr <Plug>(coc-references)
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>ga <Plug>(coc-codeaction-selected)
