@@ -65,7 +65,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sheerun/vim-polyglot'
 
 " Plug 'liuchengxu/vim-which-key'
-" Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'
 
 " Clojure
 " Plug 'tpope/vim-fireplace'
@@ -192,6 +192,7 @@ xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
 
 nnoremap <leader>gh :call <SID>show_documentation()<CR>
+nnoremap gh :call <SID>show_documentation()<CR>
 
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
@@ -345,10 +346,10 @@ highlight Type ctermfg=NONE
 " nmap <leader>ot  :TermCurrentFileDir<cr>
 " nmap <leader>of  :OpenCurrentFileDir<cr>
 
-" let g:slime_target = 'tmux'
-" function SlimeOverride_EscapeText_javascript(text)
-"   return system('js-require', a:text)
-" endfunction
+let g:slime_target = 'tmux'
+function SlimeOverride_EscapeText_javascript(text)
+  return system('js-require', a:text)
+endfunction
 
 " let g:OmniSharp_highlighting = 0
 " augroup omnisharp_commands

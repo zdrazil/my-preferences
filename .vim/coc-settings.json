@@ -1,6 +1,4 @@
 {
-  "python.pythonPath": "python3",
-  "python.linting.flake8Enabled": true,
   "suggest.minTriggerInputLength": 1,
   "suggest.autoTrigger": "always",
   "suggest.noselect": true,
@@ -10,7 +8,6 @@
   "diagnostic.enable": true,
   "coc.preferences.promptInput": false,
   "coc.preferences.useQuickfixForLocations": false,
-  "css.validate": false,
   "snippets.extends": {
     "javascriptreact": ["javascript", "javascript-react", "javascript_react"],
     "typescriptreact": ["typescript", "javascript", "typescript-react"],
