@@ -33,3 +33,5 @@
 	line-numbers = false
 	side-by-side = false
 
+[init]
+	defaultBranch = master
