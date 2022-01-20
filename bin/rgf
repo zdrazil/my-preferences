@@ -14,7 +14,7 @@ selected=$(
     --ansi \
     --bind "ctrl-a:select-all" \
     --bind "f12:execute-silent:(code  {})" \
-    --preview 'cat -f --highlight-line=$(echo {} | cut -d":" -f2) $(echo {} | cut -d":" -f1)' | cut -d":" -f1,2,3
+    --preview 'bat -f --highlight-line=$(echo {} | cut -d":" -f2) $(echo {} | cut -d":" -f1)' | cut -d":" -f1,2,3
   # --preview "rg -i --pretty --context 2 {q} {}" | cut -d":" -f1,2
 )
 

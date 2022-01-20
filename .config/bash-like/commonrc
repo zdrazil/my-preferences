@@ -5,14 +5,14 @@ export MY_DATA_HOME="$HOME/.local/share"
 export MY_BIN_HOME="$HOME/.local/bin"
 
 # Source config files that are not to be public (API tokens etc.)
-if [ -r "./not-public" ]; then
+if [ -r "$MY_CONFIG_HOME/bash-like/not-public" ]; then
 	# shellcheck source=/dev/null
-	source "./not-public"
+	source "$MY_CONFIG_HOME/bash-like/not-public"
 fi
 
-if [ -f "./shell-aliases" ]; then
+if [ -f "$MY_CONFIG_HOME/bash-like//shell-aliases" ]; then
 	# shellcheck source=/dev/null
-	source "./shell-aliases"
+	source "$MY_CONFIG_HOME/bash-like/shell-aliases"
 fi
 
 export HISTSIZE=256000
@@ -54,3 +54,5 @@ if command -v theme-sh >/dev/null; then
 		theme-sh $MY_THEME
 	fi
 fi
+
+export BAT_THEME=base16-256
