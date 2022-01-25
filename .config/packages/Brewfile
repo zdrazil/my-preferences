@@ -106,6 +106,7 @@ cask "kitty"
 cask "qlvideo"
 cask "vmware-fusion"
 cask "yacreader"
+cask "jetbrains-toolbox"
 
 mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
