@@ -94,6 +94,18 @@ cask "utm"
 cask "visual-studio-code"
 cask "vlc"
 cask "zotero"
+cask "alfred"
+cask "bartender"
+cask "docker"
+cask "brave-browser"
+cask "browserstacklocal"
+cask "cryptomator"
+cask "inkscape"
+cask "librewoffice"
+cask "kitty"
+cask "qlvideo"
+cask "vmware-fusion"
+cask "yacreader"
 
 mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
