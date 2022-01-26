@@ -1,6 +1,7 @@
 myPaths=(
     "$HOME/bin"
     "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
     "/usr/local/bin"
     "/home/linuxbrew/.linuxbrew/bin"
     "$HOME/.local/bin"

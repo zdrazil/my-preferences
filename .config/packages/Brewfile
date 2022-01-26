@@ -106,7 +106,7 @@ cask "vlc"
 cask "vmware-fusion"
 cask "yacreader"
 cask "zotero"
-cask "onedrive"
+cask "unity-hub"
 
 mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
@@ -143,3 +143,4 @@ mas "SponsorBlock for YouTube", id: 1573461917
 mas "Steam Link", id: 1246969117
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
+mas "OneDrive", id: 823766827
