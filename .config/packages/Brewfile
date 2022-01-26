@@ -107,6 +107,7 @@ cask "vlc"
 cask "vmware-fusion"
 cask "yacreader"
 cask "zotero"
+cask "onedrive"
 
 mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
@@ -131,7 +132,6 @@ mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
 mas "Numbers", id: 409203825
-mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
