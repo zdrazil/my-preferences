@@ -8,7 +8,6 @@
 selected=$(
   FZF_DEFAULT_COMMAND="rga --no-heading --color=always --smart-case -- ''" fzf \
     -m \
-    -e \
     --ansi \
     --bind "ctrl-a:select-all" \
     --delimiter : \

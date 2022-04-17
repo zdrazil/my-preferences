@@ -10,7 +10,6 @@ COMMAND_OPTIONS="-g"
 selected=$(
   FZF_DEFAULT_COMMAND="rg --column --line-number --no-heading --color=always --smart-case -- ''" fzf \
     -m \
-    -e \
     --ansi \
     --bind "ctrl-a:select-all" \
     --delimiter : \
