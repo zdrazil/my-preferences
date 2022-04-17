@@ -6,12 +6,14 @@
 [[ -n $1 ]] && cd "$1" # go to provided folder or noop
 
 selected=$(
-  FZF_DEFAULT_COMMAND="rga --column --line-number --no-heading --color=always --smart-case -- ''" fzf \
+  FZF_DEFAULT_COMMAND="rga --no-heading --color=always --smart-case -- ''" fzf \
     -m \
     -e \
     --ansi \
     --bind "ctrl-a:select-all" \
-    --preview 'rga --pretty --context 5 {q} "$(echo {} | cut -d":" -f1)"'\  | cut -d":" -f1
+    --delimiter : \
+    --preview-window 'up,60%,border-bottom' \
+    --preview 'rga --pretty --context 5 {q} {1}'\  | cut -d":" -f1
 )
 
 [[ -n $selected ]] && open "$PWD"/"$selected" # open multiple files in editor
