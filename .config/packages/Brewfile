@@ -63,6 +63,13 @@ brew "watchman"
 brew "wget"
 brew "yarn"
 
+brew "rga"
+# rga needs these
+brew "pandoc"
+brew "poppler"
+brew "tesseract"
+brew "ffmpeg"
+
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "appcleaner"
