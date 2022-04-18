@@ -4,18 +4,17 @@
 # Interactive search.
 #
 [[ -n $1 ]] && cd "$1" # go to provided folder or noop
-OPEN_COMMAND="code"
-COMMAND_OPTIONS="-g"
 
+export FZF_DEFAULT_COMMAND="rg --column --line-number --no-heading --color=always --smart-case -- ''"
 selected=$(
-  FZF_DEFAULT_COMMAND="rg --column --line-number --no-heading --color=always --smart-case -- ''" fzf \
+  fzf \
     -m \
     --ansi \
     --bind "ctrl-a:select-all" \
     --delimiter : \
-    --bind "f12:execute-silent:(code  {})" \
+    --bind "f12:execute-silent:(code -g $PWD/{1..3})" \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
     --preview 'bat -f --highlight-line={2} {1}' | cut -d":" -f1,2,3
 )
 
-[[ -n $selected ]] && "$OPEN_COMMAND" "${COMMAND_OPTIONS}" "$PWD"/"$selected" # open multiple files in editor
+[[ -n $selected ]] && code -g "$PWD"/"$selected" # open multiple files in editor

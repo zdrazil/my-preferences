@@ -12,7 +12,7 @@ selected=$(
     --bind "ctrl-a:select-all" \
     --delimiter : \
     --preview-window 'up,60%,border-bottom' \
-    --preview 'rga --pretty --context 5 {q} {1}'\  | cut -d":" -f1
+    --preview 'rga --pretty --context 5 {q} {1}' | cut -d":" -f1
 )
 
 [[ -n $selected ]] && open "$PWD"/"$selected" # open multiple files in editor
