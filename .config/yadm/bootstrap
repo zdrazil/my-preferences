@@ -7,6 +7,8 @@ MY_CONFIG_HOME="$HOME/.config"
 MY_BIN_HOME="$HOME/.local/bin"
 
 mkdir -p "$MY_CONFIG_HOME"
+mkdir -p "$MY_BIN_HOME"
+
 
 if ! command -v brew >/dev/null 2>&1; then
 	echo "Installing homebrew"
