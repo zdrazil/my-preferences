@@ -6,13 +6,8 @@ system_type=$(uname -s)
 MY_CONFIG_HOME="$HOME/.config"
 MY_BIN_HOME="$HOME/.local/bin"
 
-if [ -d "$MY_CONFIG_HOME" ]; then
-	mkdir -p "$MY_CONFIG_HOME"
-fi
-
-if [ -d "$MY_BIN_HOME" ]; then
-	mkdir -p "$MY_BIN_HOME"
-fi
+mkdir -p "$MY_CONFIG_HOME"
+mkdir -p "$MY_BIN_HOME"
 
 if ! command -v brew >/dev/null 2>&1; then
 	echo "Installing homebrew"
@@ -26,7 +21,6 @@ if [ "$system_type" = "Darwin" ]; then
 	brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux mackup
 	# shellcheck disable=SC1091
 	source "$HOME/.config/yadm/macos-configuration"
-	mackup restore
 fi
 
 if [ "$system_type" = "Linux" ]; then
@@ -83,7 +77,6 @@ curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
 if [ "$system_type" = "Darwin" ]; then
-
 	echo "Updating homebrew bundle"
 	brew bundle --verbose --file "$MY_CONFIG_HOME/packages/Brewfile"
 fi
@@ -91,3 +84,6 @@ fi
 # chsh -s $(brew --prefix)/bin/bash
 # echo "Set zsh as default shell"
 # echo "$(brew --prefix)/bin/zsh" >>/etc/shells
+
+# Login to OneDrive then:
+# mackup restore
