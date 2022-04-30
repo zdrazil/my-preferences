@@ -77,9 +77,3 @@ defaults write com.apple.dock mru-spaces -bool false
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
-
-## iTerm2
-defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.config/iterm2"
-defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
-## Automatic saving of config changes
-defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
