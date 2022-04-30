@@ -24,6 +24,7 @@ system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
 	echo "Installing core homebrew packages"
 	brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux
+	# shellcheck disable=SC1091
 	source "$HOME/.config/yadm/macos-configuration"
 fi
 
