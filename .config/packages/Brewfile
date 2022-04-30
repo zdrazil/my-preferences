@@ -20,6 +20,8 @@ brew "tmux"
 brew "yadm"
 brew "zsh-completions"
 brew "zsh"
+brew "mas"
+mas "OneDrive", id: 823766827
 
 brew "bat"
 brew "curl"
@@ -41,7 +43,6 @@ brew "gron"
 brew "htop"
 brew "imagemagick"
 brew "jq"
-brew "mas"
 brew "moreutils"
 brew "ncdu"
 brew "node"
@@ -151,4 +152,3 @@ mas "SponsorBlock for YouTube", id: 1573461917
 mas "Steam Link", id: 1246969117
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
-mas "OneDrive", id: 823766827
