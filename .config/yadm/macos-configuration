@@ -19,7 +19,8 @@ defaults write NSGlobalDomain userMenuExtraStyle -int 2
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 
 # Enable scroll gesture (with modifier) to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+# This would need sudo to work
+# defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 
 # Allow tap to click for Apple trackpad devices
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -63,9 +64,6 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
-# Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
-
 ## Dock, Dashboard
 
 # Don’t group windows by application in Mission Control
@@ -77,3 +75,9 @@ defaults write com.apple.dock mru-spaces -bool false
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+## iTerm2
+defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/OneDrive/apps/iTerm2"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
+## Automatic saving of config changes
+defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
