@@ -25,14 +25,11 @@ defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
-# Show indicator lights for open applications in the Dock
+# Hide indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool false
 
 # Set hiding effect to scale
 defaults write com.apple.Dock mineffect scale
-
-# Set time to show date and day of the week
-defaults write com.apple.menuextra.clock "DateFormat" "EEE MMM d  h:mm"
 
 # Disable automatic capitalization as it’s annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
@@ -54,12 +51,6 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 ## Finder
 
-# Finder: disable window animations and Get Info animations
-defaults write com.apple.finder DisableAllAnimations -bool true
-
-# New Finder windows points to home
-defaults write com.apple.finder NewWindowTarget -string "PfHm"
-
 # Use previous scope as default search scope in Finder
 defaults write com.apple.finder FXDefaultSearchScope -string "SCsp"
 
@@ -77,27 +68,12 @@ chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
 ## Dock, Dashboard
 
-# Increase window resize speed for Cocoa applications
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.01
-
-# Don’t animate opening applications from the Dock
-defaults write com.apple.dock launchanim -bool false
-
-# Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
-
 # Don’t group windows by application in Mission Control
 # (i.e. use the old Exposé behavior instead)
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
-
-# Remove the auto-hiding Dock delay
-defaults write com.apple.dock autohide-delay -float 0.2
-
-# Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0.1
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
