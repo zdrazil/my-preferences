@@ -121,22 +121,18 @@ cask "keycastr"
 mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
-mas "BBEdit", id: 404009241
 mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Display Menu", id: 549083868
 mas "Focus for YouTube", id: 1514703160
-mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
 mas "hlidac shopu", id: 1488295734
 mas "Hush Nag Blocker", id: 1544743900
 mas "iFlicks", id: 408937559
-mas "iMovie", id: 408981434
 mas "Infuse", id: 1136220934
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
-mas "Logic Pro", id: 634148309
 mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
