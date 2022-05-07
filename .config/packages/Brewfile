@@ -119,7 +119,6 @@ cask "yacreader"
 cask "zotero"
 cask "keycastr"
 
-mas "1Password 7", id: 1333542190
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
 mas "Boop", id: 1518425043
@@ -141,6 +140,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
+mas "PopClip", id: 445189367
 mas "Reeder", id: 1529448980
 mas "Shazam", id: 897118787
 mas "Shut Up", id: 1015043880
