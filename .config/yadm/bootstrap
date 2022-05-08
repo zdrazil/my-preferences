@@ -81,6 +81,6 @@ if [ "$system_type" = "Darwin" ]; then
 	brew bundle --verbose --file "$MY_CONFIG_HOME/packages/Brewfile"
 fi
 # Change to the new shell
-# chsh -s $(brew --prefix)/bin/bash
 # echo "Set zsh as default shell"
-# echo "$(brew --prefix)/bin/zsh" >>/etc/shells
+# sudo sh -c "echo "$(brew --prefix)/bin/zsh" >>/etc/shells"
+# chsh -s $(brew --prefix)/bin/bash
