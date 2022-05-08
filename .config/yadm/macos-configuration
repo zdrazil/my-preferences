@@ -77,7 +77,7 @@ defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock autohide -bool true
 
 ## iTerm2
-defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/OneDrive/apps/iTerm2"
+defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/Documents/apps/iterm2"
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 ## Automatic saving of config changes
 defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
