@@ -81,3 +81,10 @@ defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/Documents/apps/ite
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 ## Automatic saving of config changes
 defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
+
+## Python support
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
+eval "$(brew shellenv)"
+brew install pyenv
+pyenv install 2.7.18
+ln -s "${HOME}/.pyenv/versions/2.7.18/bin/python2.7" "${HOMEBREW_PREFIX}/bin/python"

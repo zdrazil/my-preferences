@@ -66,6 +66,9 @@ brew "watchman"
 brew "wget"
 brew "yarn"
 
+# Alfred python support
+brew "pyenv"
+
 brew "rga"
 # rga needs these
 brew "pandoc"
@@ -98,8 +101,9 @@ cask "inkscape"
 cask "iterm2"
 cask "keka"
 # cask "kitty"
+cask "insomnia"
 cask "libreoffice"
-cask "maccy"
+# cask "maccy"
 cask "macvim"
 cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
