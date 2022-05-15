@@ -54,4 +54,6 @@ if command -v theme-sh >/dev/null; then
 	fi
 fi
 
-export BAT_THEME=base16-256
+# export BAT_THEME=base16-256
+# export BAT_THEME=base16
+export BAT_THEME=ansi
