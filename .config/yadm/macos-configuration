@@ -86,10 +86,12 @@ defaults write com.apple.dock wvous-tr-corner -int 2
 defaults write com.apple.dock wvous-tr-modifier -int 0
 
 ## iTerm2
-defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/Documents/apps/iterm2"
+defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/Library/Mobile Documents/com\~apple\~CloudDocs/Documents/apps/iterm2"
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 ## Automatic saving of config changes
 defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
+
+## Terminal
 
 ## Python support
 export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
