@@ -71,6 +71,10 @@ asdf plugin-add ruby
 asdf plugin-add haskell
 asdf install
 
+## Adding python for Alfred workflows
+asdf install python 2.7.18
+ln -s "${HOME}/.pyenv/versions/2.7.18/bin/python2.7" "${HOMEBREW_PREFIX}/bin/python"
+
 echo "Vim plug"
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

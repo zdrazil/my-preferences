@@ -64,6 +64,8 @@ brew "trash"
 brew "tree"
 brew "watchman"
 brew "wget"
+brew "python"
+brew "php"
 brew "yarn"
 
 # Alfred python support
@@ -124,6 +126,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "yacreader"
 cask "zotero"
+cask "keycastr"
 
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
