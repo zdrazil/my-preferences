@@ -93,9 +93,13 @@ defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_se
 
 ## Terminal
 
-## Python support
+echo "Adding python for Alfred workflows"
+
 export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
 eval "$(brew shellenv)"
-brew install pyenv
-pyenv install 2.7.18
-ln -s "${HOME}/.pyenv/versions/2.7.18/bin/python2.7" "${HOMEBREW_PREFIX}/bin/python"
+
+if [ ! -f "${HOMEBREW_PREFIX}/bin/python" ]; then
+    brew install pyenv
+    pyenv install 2.7.18
+    ln -s "${HOME}/.pyenv/versions/2.7.18/bin/python2.7" "${HOMEBREW_PREFIX}/bin/python"
+fi
