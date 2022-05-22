@@ -3,7 +3,7 @@
 import { array } from "https://deno.land/x/fp_ts@v2.11.4/index.ts";
 import { pipe } from "https://deno.land/x/fp_ts@v2.11.4/function.ts";
 import { writableStreamFromWriter } from "https://deno.land/std@0.140.0/streams/mod.ts";
-import { emptyDir } from "https://deno.land/std/fs/mod.ts";
+import { emptyDir } from "https://deno.land/std@0.140.0/fs/mod.ts";
 
 const homePath = Deno.env.get("HOME");
 const binHome = homePath + "/.local/bin";
@@ -12,9 +12,9 @@ const isMac = Deno.build.os === "darwin";
 
 await Promise.all([
   installHomebrew(),
-  // installScripts(),
-  // installVimPlug(),
-  // clonePackages(),
+  installScripts(),
+  installVimPlug(),
+  clonePackages(),
 ]);
 
 async function installHomebrew() {
@@ -38,11 +38,20 @@ async function installHomebrew() {
   }
 
   if (isMac) {
-    const brewPackages = "bash coreutils findutils gnu-sed tmux yadm zsh tmux";
+    const brewPackages = [
+      "bash",
+      "coreutils",
+      "findutils",
+      "gnu-sed",
+      "tmux",
+      "yadm",
+      "zsh",
+      "tmux",
+    ];
 
-    console.log(`Installing ${brewPackages}...`);
+    console.log(`Installing ${brewPackages.toString()}...`);
     await Deno.run({
-      cmd: ["brew", "install", brewPackages],
+      cmd: ["brew", "install", ...brewPackages],
     }).status();
 
     console.log(`Installing brew bundle packages...`);
@@ -107,7 +116,9 @@ async function clonePackages() {
       console.log("Cloning " + path + "...");
       const fullPath = `${homePath}${path}`;
       await emptyDir(fullPath);
-      await Deno.run({ cmd: ["git", "clone", ...args, fullPath] }).status();
+      await Deno.run({
+        cmd: ["git", "clone", ...args, fullPath],
+      }).status();
     }),
     async (p) => {
       await Promise.all(p);
@@ -136,7 +147,8 @@ async function configureAsdf() {
     async (names) => {
       for (const name of names) {
         console.log(`Configuring asdf ${name}...`);
-        await Deno.run({ cmd: [asdfBin, "plugin-add", name] }).status();
+        await Deno.run({ cmd: [asdfBin, "plugin-add", name] })
+          .status();
       }
       await Deno.run({ cmd: [asdfBin, "install"] }).status();
     },
