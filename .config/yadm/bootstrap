@@ -55,26 +55,37 @@ install_homebrew() {
 install_scripts() {
 	echo "Installing scripts..."
 
-	echo "Installing cht.sh..."
-	curl https://cht.sh/:cht.sh >"${my_bin_home}/chtsh"
-	chmod +x "${my_bin_home}/chtsh"
+	{
+		echo "Installing cht.sh..."
+		curl "https://cht.sh/:cht.sh" >"${my_bin_home}/chtsh"
+		chmod +x "${my_bin_home}/chtsh"
+	} &
 
-	echo "Installing theme.sh..."
-	curl -Lo "${my_bin_home}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "${my_bin_home}/theme-sh"
+	{
+		echo "Installing theme.sh..."
+		curl -Lo "${my_bin_home}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh'
+		chmod +x "${my_bin_home}/theme-sh"
+	} &
 
-	echo "Installing fzf..."
-	rm -rf "${HOME}/.fzf"
-	git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
-	"${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
+	{
+		echo "Installing fzf..."
+		rm -rf "${HOME}/.fzf"
+		git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
+		"${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
+	} &
 
-	echo "Installing tpm..."
-	rm -rf "${HOME}/.tmux/plugins/tpm"
-	git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-	"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+	{
+		echo "Installing tpm..."
+		rm -rf "${HOME}/.tmux/plugins/tpm"
+		git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+		"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+	} &
 
-	echo "Installing zgen..."
-	rm -rf "${HOME}/.zgen"
-	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+	{
+		echo "Installing zgen..."
+		rm -rf "${HOME}/.zgen"
+		git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+	} &
 
 	install_asdf() {
 		echo "Installing asdf..."
