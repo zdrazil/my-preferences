@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck enable=all
 
-set --errexit
-set --no-unset
+set -eu
 trap "kill 0" EXIT
 
 cd "${HOME}" || exit
