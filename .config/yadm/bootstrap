@@ -102,6 +102,8 @@ install_scripts() {
 	}
 
 	install_asdf &
+
+	wait
 }
 
 install_vimPlug() {
