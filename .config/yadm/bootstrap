@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+# shellcheck enable=all
 
-cd "$HOME" || exit
+cd "${HOME}" || exit
 
 system_type=$(uname -s)
-MY_CONFIG_HOME="$HOME/.config"
-MY_BIN_HOME="$HOME/.local/bin"
+MY_CONFIG_HOME="${HOME}/.config"
+MY_BIN_HOME="${HOME}/.local/bin"
 
-mkdir -p "$MY_CONFIG_HOME"
-mkdir -p "$MY_BIN_HOME"
+mkdir -p "${MY_CONFIG_HOME}"
+mkdir -p "${MY_BIN_HOME}"
 
 if ! command -v brew >/dev/null 2>&1; then
 	echo "Installing homebrew"
@@ -16,54 +17,54 @@ fi
 
 system_type=$(uname -s)
 
-if [ "$system_type" = "Darwin" ]; then
+if [[ "${system_type}" = "Darwin" ]]; then
 	echo "Installing core homebrew packages"
 	brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux
 	# shellcheck disable=SC1091
-	source "$HOME/.config/yadm/macos-configuration"
+	source "${HOME}/.config/yadm/macos-configuration"
 fi
 
-if [ "$system_type" = "Linux" ]; then
+if [[ "${system_type}" = "Linux" ]]; then
 	echo "Installing basic apt packages"
 	sudo apt update
 	sudo apt install build-essential procps curl file git dirmngr gpg gawk
 	echo "Updating homebrew bundle"
-	brew bundle --verbose --file "$MY_CONFIG_HOME/packages/LinuxBrewfile"
+	brew bundle --verbose --file "${MY_CONFIG_HOME}/packages/LinuxBrewfile"
 	echo "Installing apt packages"
 	sudo apt install xclip vim-gtk3 nodejs npm
-	sudo apt-get install $(cat "$MY_CONFIG_HOME/packages/ubuntu-packages" | sed '/^#/d')
+	sudo apt-get install $(cat "${MY_CONFIG_HOME}/packages/ubuntu-packages" | sed '/^#/d')
 	sudo apt-get clean
 
-	if [ -n "$XDG_SESSION_TYPE" ]; then
+	if [[ -n "${XDG_SESSION_TYPE}" ]]; then
 		echo "Installing GUI packages..."
-		sudo apt-get install $(cat "$MY_CONFIG_HOME/packages/ubuntu-gui-packages" | sed '/^#/d')
+		sudo apt-get install $(cat "${MY_CONFIG_HOME}/packages/ubuntu-gui-packages" | sed '/^#/d')
 	fi
 fi
 
 echo "packages"
-curl https://cht.sh/:cht.sh >"$MY_BIN_HOME/chtsh"
-chmod +x "$MY_BIN_HOME/chtsh"
+curl https://cht.sh/:cht.sh >"${MY_BIN_HOME}/chtsh"
+chmod +x "${MY_BIN_HOME}/chtsh"
 
-curl -Lo "$MY_BIN_HOME/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "$MY_BIN_HOME/theme-sh"
+curl -Lo "${MY_BIN_HOME}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh' && chmod +x "${MY_BIN_HOME}/theme-sh"
 
 rm -rf "${HOME}/.fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
 "${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
 
 echo "tpm"
-rm -rf "$HOME/.tmux/plugins/tpm"
-git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+rm -rf "${HOME}/.tmux/plugins/tpm"
+git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 echo "zgen"
 rm -rf "${HOME}/.zgen"
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 echo "asdf"
-rm -rf "$HOME/.asdf"
-git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.10.0
+rm -rf "${HOME}/.asdf"
+git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch v0.10.0
 # shellcheck disable=SC1091
-source "$HOME/.asdf/asdf.sh"
+source "${HOME}/.asdf/asdf.sh"
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add python
 asdf plugin-add yarn
@@ -72,13 +73,13 @@ asdf plugin-add haskell
 asdf install
 
 echo "Vim plug"
-curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
-if [ "$system_type" = "Darwin" ]; then
+if [[ "${system_type}" = "Darwin" ]]; then
 	echo "Updating homebrew bundle"
-	brew bundle --verbose --file "$MY_CONFIG_HOME/packages/Brewfile"
+	brew bundle --verbose --file "${MY_CONFIG_HOME}/packages/Brewfile"
 fi
 # Change to the new shell
 # echo "Set zsh as default shell"
