@@ -179,7 +179,8 @@ install_vim_plug &
 
 wait
 
-# Change to the new shell
-# echo "Set zsh as default shell"
-# sudo sh -c "echo "$(brew --prefix)/bin/zsh" >>/etc/shells"
-# chsh -s $(brew --prefix)/bin/bash
+# shellcheck disable=SC2016
+echo '
+Run this manually to set brew zsh as default:
+sudo sh -c "echo "$(brew --prefix)/bin/zsh" >>/etc/shells"
+chsh -s $(brew --prefix)/bin/bash'
