@@ -6,9 +6,12 @@ import child_process, { ExecException } from "child_process";
 import { promisify } from "util";
 import fetch from "node-fetch";
 import { pipe } from "fp-ts/lib/function.js";
-import { array } from "fp-ts";
+import { array, taskEither } from "fp-ts";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+
+const promise = new Promise((resolve, reject) => resolve("value"));
+promise;
 
 const exec = promisify(child_process.exec);
 
@@ -38,7 +41,7 @@ async function main() {
   ]);
 }
 
-main();
+void main();
 
 async function installHomebrew() {
   try {
