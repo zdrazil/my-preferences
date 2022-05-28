@@ -4,11 +4,40 @@
 set -eu
 trap "kill 0" EXIT
 
-cd "${HOME}" || exit
+command_help() {
+	USAGE="
+USAGE:
+bootstrap [OPTIONS]
+
+OPTIONS:
+-h	Show this message.
+-r	Reinstall all packages."
+	echo "${USAGE}"
+}
 
 system_type=$(uname -s)
 my_config_home="${HOME}/.config"
 my_bin_home="${HOME}/.local/bin"
+should_reinstall=false
+
+while getopts ":hr" option; do
+	case ${option} in
+	h)
+		command_help
+		exit
+		;;
+	r)
+		should_reinstall=true
+		;;
+	*)
+		echo "Invalid option: -${OPTARG}" >&2
+		command_help
+		exit 1
+		;;
+	esac
+done
+
+cd "${HOME}" || exit
 
 mkdir -p "${my_config_home}"
 mkdir -p "${my_bin_home}"
@@ -56,49 +85,76 @@ install_scripts() {
 	echo "Installing scripts..."
 
 	{
-		echo "Installing cht.sh..."
-		curl "https://cht.sh/:cht.sh" >"${my_bin_home}/chtsh"
-		chmod +x "${my_bin_home}/chtsh"
+		if [[ ! -f "${my_bin_home}/chtsh" ]] || [[ ${should_reinstall} == true ]]; then
+			echo "Installing cht.sh..."
+			curl "https://cht.sh/:cht.sh" >"${my_bin_home}/chtsh"
+			chmod +x "${my_bin_home}/chtsh"
+		else
+			echo "cht.sh already installed. Skipping installation..."
+		fi
 	} &
 
 	{
-		echo "Installing theme.sh..."
-		curl -Lo "${my_bin_home}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh'
-		chmod +x "${my_bin_home}/theme-sh"
+		if [[ -f "${my_bin_home}/theme.sh" ]] || [[ ${should_reinstall} == true ]]; then
+			echo "Installing theme.sh..."
+			curl -Lo "${my_bin_home}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh'
+			chmod +x "${my_bin_home}/theme-sh"
+		else
+			echo "theme.sh already installed. Skipping installation..."
+		fi
 	} &
 
 	{
-		echo "Installing fzf..."
-		rm -rf "${HOME}/.fzf"
-		git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
-		"${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
+		if ! command -v fzf >/dev/null 2>&1; then
+			echo "Installing fzf..."
+			rm -rf "${HOME}/.fzf"
+			git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
+			"${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
+		else
+			echo "fzf already installed. Skipping installation..."
+		fi
 	} &
 
 	{
-		echo "Installing tpm..."
-		rm -rf "${HOME}/.tmux/plugins/tpm"
-		git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-		"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+		if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]] || [[ ${should_reinstall} == true ]]; then
+			echo "Installing tpm..."
+			rm -rf "${HOME}/.tmux/plugins/tpm"
+			git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+			"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+		else
+			echo "tpm already installed. Skipping installation..."
+		fi
 	} &
 
 	{
-		echo "Installing zgen..."
-		rm -rf "${HOME}/.zgen"
-		git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+		if [[ ! -d "${HOME}/.zgen" ]] || [[ ${should_reinstall} == true ]]; then
+			echo "Installing zgen..."
+			rm -rf "${HOME}/.zgen"
+			git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+		else
+			echo "zgen already installed. Skipping installation..."
+		fi
 	} &
 
 	install_asdf() {
-		echo "Installing asdf..."
-		rm -rf "${HOME}/.asdf"
-		git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch v0.10.0
-		# shellcheck disable=SC1091
-		source "${HOME}/.asdf/asdf.sh"
-		asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-		asdf plugin-add python
-		asdf plugin-add yarn
-		asdf plugin-add ruby
-		asdf plugin-add haskell
-		asdf install
+
+		if [[ ! -d "${HOME}/.asdf" ]] || [[ ${should_reinstall} == true ]]; then
+			echo "Installing asdf..."
+			rm -rf "${HOME}/.asdf"
+			git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch v0.10.0
+			# shellcheck disable=SC1091
+			source "${HOME}/.asdf/asdf.sh"
+			{
+				asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+				asdf plugin-add python
+				asdf plugin-add yarn
+				asdf plugin-add ruby
+				asdf plugin-add haskell
+			} 2>/dev/null
+			asdf install
+		else
+			echo "asdf already installed. Skipping installation..."
+		fi
 	}
 
 	install_asdf &
@@ -107,19 +163,23 @@ install_scripts() {
 }
 
 install_vim_plug() {
-	echo "Installing vim-plug..."
-	curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
+	if [[ ! -f "${HOME}/.vim/autoload/plug.vim" ]] || [[ ${should_reinstall} == true ]]; then
+		echo "Installing vim-plug..."
+		curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
+	else
+		echo "vim-plug already installed. Skipping installation..."
+	fi
 }
 
 install_homebrew &
 install_scripts &
 install_vim_plug &
 
+wait
+
 # Change to the new shell
 # echo "Set zsh as default shell"
 # sudo sh -c "echo "$(brew --prefix)/bin/zsh" >>/etc/shells"
 # chsh -s $(brew --prefix)/bin/bash
-
-wait
