@@ -8,6 +8,9 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:functional/external-recommended",
+    "plugin:functional/recommended",
+    "plugin:functional/stylistic",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -16,6 +19,13 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "plugins": ["@typescript-eslint", "functional"],
+  "rules": {
+    "@typescript-eslint/prefer-readonly-parameter-types": "off",
+    "functional/functional-parameters": "off"
+    // "functional/no-conditional-statement": [
+    //   "error",
+    //   { "allowReturningBranches": true }
+    // ]
+  }
 }

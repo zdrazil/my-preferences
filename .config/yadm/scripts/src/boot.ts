@@ -1,27 +1,30 @@
 #!/usr/bin/env ts-node
 import os from "os";
-import fsPromise from "fs/promises";
-import fs from "fs";
+import fsPromise, { access, mkdir, rm, writeFile } from "fs/promises";
+import fs, { mkdirSync } from "fs";
 import child_process, { ExecException } from "child_process";
 import { promisify } from "util";
 import fetch from "node-fetch";
-import { pipe } from "fp-ts/lib/function.js";
-import { array, taskEither } from "fp-ts";
-import yargs from "yargs";
+import { constVoid, identity, pipe } from "fp-ts/lib/function";
+import { array, io, ioEither, task, taskEither, taskOption } from "fp-ts";
+import yargs, { config } from "yargs";
 import { hideBin } from "yargs/helpers";
-
-const promise = new Promise((resolve, reject) => resolve("value"));
-promise;
 
 const exec = promisify(child_process.exec);
 
-const isMac = process.platform === "darwin";
 const homePath = os.homedir();
 const configPath = `${homePath}/.config/`;
 const binHomePath = `${homePath}/.local/bin`;
 
-if (!fs.existsSync(configPath)) fs.mkdirSync(configPath);
-if (!fs.existsSync(binHomePath)) fs.mkdirSync(binHomePath);
+const createDirs = pipe(
+  [configPath, binHomePath],
+  array.map((dirPath: string) =>
+    taskEither.tryCatch(
+      () => access(dirPath).catch(() => mkdir(dirPath)),
+      (e) => e as NodeJS.ErrnoException
+    )
+  )
+);
 
 async function main() {
   const args = await yargs(hideBin(process.argv)).options({
@@ -43,69 +46,70 @@ async function main() {
 
 void main();
 
-async function installHomebrew() {
-  try {
-    await exec("command -v brew");
-    console.log("Homebrew already installed. Skipping installation...");
-  } catch (e) {
-    try {
-      console.log("Installing Homebrew...");
-      const brewScript = await fetch(
-        "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-      ).then((res) => res.text());
-      await exec(`sudo bash ${brewScript}`);
-    } catch (e) {
-      console.log(e.stderr);
-      return;
-    }
-  }
+const installHomebrew = pipe(
+  taskOption.tryCatch(() => exec("command -v brew")),
+  taskOption.fold(
+    () =>
+      taskEither.tryCatch(
+        () =>
+          fetch(
+            "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+          )
+            .then((res) => res.text())
+            .then((brewScript) => exec(`sudo bash ${brewScript}`))
+            .then(() => null),
+        (e) => e as Error | ExecException
+      ),
+    () => taskEither.right(null)
+  ),
+  taskEither.map(() =>
+    process.platform === "darwin"
+      ? taskEither.tryCatch(
+          () =>
+            exec(
+              "brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux"
+            ).then(() =>
+              exec(
+                `brew bundle --verbose --file "${configPath}/packages/Brewfile"`
+              ).then(() => null)
+            ),
+          (e) => e as ExecException
+        )
+      : taskEither.right(null)
+  ),
+  taskEither.flatten
+);
 
-  try {
-    if (isMac) {
-      console.log("Installing core Homebrew packages...");
-      await exec(
-        "brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux"
-      );
-      console.log("Installing and updating rest of the homebrew packages...");
-      await exec(
-        `brew bundle --verbose --file "${configPath}/packages/Brewfile"`
-      );
-    }
-  } catch (e) {
-    console.log("Homebrew installation failed.");
-    console.log(e.stderr);
-    return;
-  }
-}
-
-async function installScripts() {
-  return pipe(
-    [
-      { name: "chtsh", url: "https://cht.sh/:cht.sh" },
-      {
-        name: "theme-sh",
-        url: "https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh",
-      },
-    ],
-    array.map(async ({ name, url }) => {
-      const filePath = `${binHomePath}/${name}`;
-      if (fs.existsSync(filePath) || !shouldReinstall) {
-        console.log(`${name} already installed. Skipping installation...`);
-        return;
-      }
-      try {
-        console.log(`Installing ${name}...`);
-        const file = await fetch(url).then((res) => res.text());
-        fs.rmSync(filePath, { recursive: true, force: true });
-        fs.writeFileSync(filePath, file);
-        await fsPromise.chmod(filePath, 0o755);
-      } catch (e) {
-        console.log(e.stderr);
-      }
-    }),
-    (p) => Promise.all(p)
-  );
-}
+const installScripts = pipe(
+  [
+    { name: "chtsh", url: "https://cht.sh/:cht.sh" },
+    {
+      name: "theme-sh",
+      url: "https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh",
+    },
+  ],
+  array.map(({ name, url }) => {
+    const filePath = `${binHomePath}/${name}`;
+    return pipe(
+      taskOption.tryCatch(() => access(filePath)),
+      taskOption.fold(
+        () => taskEither.right(null),
+        () => taskEither.left(null)
+      ),
+      taskEither.map(() =>
+        taskEither.tryCatch(
+          () =>
+            Promise.all([
+              fetch(url).then((res) => res.text()),
+              rm(filePath, { recursive: true, force: true }),
+            ]).then(([script]) => writeFile(filePath, script, { mode: 0o755 })),
+          (e) => e as Error | ExecException | NodeJS.ErrnoException
+        )
+      ),
+      taskEither.flatten
+    );
+  })
+);
 
 function clonePackages() {
   return pipe(
