@@ -22,7 +22,8 @@
   "plugins": ["@typescript-eslint", "functional"],
   "rules": {
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
-    "functional/functional-parameters": "off"
+    "functional/functional-parameters": "off",
+    "functional/prefer-readonly-type": "off"
     // "functional/no-conditional-statement": [
     //   "error",
     //   { "allowReturningBranches": true }
