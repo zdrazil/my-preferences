@@ -1,20 +1,23 @@
 #!/usr/bin/env ts-node
-import os from "os";
-import { access, rm, writeFile } from "fs/promises";
 import child_process, { ExecException } from "child_process";
+import { apply, array, option, taskEither } from "fp-ts";
+import { identity, Lazy, pipe } from "fp-ts/lib/function";
+import { accessSync } from "fs";
+import { rm, writeFile } from "fs/promises";
+import fetch from "node-fetch";
+import os from "os";
 import { promisify } from "util";
-import fetch, { FetchError } from "node-fetch";
-
-import { Lazy, pipe } from "fp-ts/lib/function";
-import { taskEither, taskOption, apply, array } from "fp-ts";
-import yargs, { option } from "yargs";
+import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { taskify } from "fp-ts/lib/TaskEither";
-import got from "got";
 
 // https://grossbart.github.io/fp-ts-recipes/#/async?a=work-with-a-list-of-tasks-in-parallel&id=tasks-that-may-fail
 
+/**
+ * HELPERS, TYPES AND CONSTANTS
+ **/
+
 const exec = promisify(child_process.exec);
+const execSync = promisify(child_process.execSync);
 
 interface OutputStreams {
   stderr: string;
@@ -35,7 +38,26 @@ const taskExec = (cmd: string) =>
 const TETryCatch = <A>(f: Lazy<Promise<A>>) =>
   taskEither.tryCatch(f, (e) => e as Error);
 
-const emptyOutput = { stderr: "", stdout: "" };
+const isAccessible = (...args: Parameters<typeof accessSync>): boolean =>
+  pipe(
+    // eslint-disable-next-line functional/no-return-void
+    option.tryCatch(() => accessSync(...args)),
+    option.isSome
+  );
+
+const commandExists = (command: string): boolean =>
+  pipe(
+    option.tryCatch(() => execSync(`command -v brew ${command}`)),
+    option.isSome
+  );
+
+const filterExisting = <T extends { fullPath: string }>(o: T[]) =>
+  pipe(
+    o,
+    array.filterMap((a) =>
+      isAccessible(a.fullPath) ? option.some(a) : option.none
+    )
+  );
 
 const homePath = os.homedir();
 const configPath = `${homePath}/.config/`;
@@ -45,21 +67,12 @@ function installHomebrew() {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
-  const installBrew = pipe(
-    taskExec("command -v brew"),
-    taskEither.foldW(
-      () =>
-        pipe(
-          TETryCatch(() => fetch(brewScriptUrl).then((res) => res.text())),
-          taskEither.chainW((brewScript) => taskExec(`sudo bash ${brewScript}`))
-        ),
-      () =>
-        taskEither.right({
-          stdout: "Command brew already exists. Skipping installation.",
-          stderr: "",
-        })
-    )
-  );
+  const installBrew = commandExists("brew")
+    ? pipe(
+        TETryCatch(() => fetch(brewScriptUrl).then((res) => res.text())),
+        taskEither.chainW((brewScript) => taskExec(`sudo bash ${brewScript}`))
+      )
+    : taskEither.right({ stdout: "", stderr: "" });
 
   const installBrewPackages =
     process.platform === "darwin"
@@ -90,33 +103,24 @@ function installScripts({ forceReinstall }: Options) {
       url: "https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh",
     },
   ];
+
   return pipe(
     scripts,
     array.map((script) => ({
       ...script,
-      filePath: `${binHomePath}/${script.name}`,
+      fullPath: `${binHomePath}/${script.name}`,
     })),
-    taskEither.traverseArray(({ filePath, url }) => {
-      const installScript = TETryCatch(() =>
+    forceReinstall ? identity : filterExisting,
+    taskEither.traverseArray(({ fullPath, url }) =>
+      TETryCatch(() =>
         fetch(url)
           .then((res) => res.text())
-          .then((script) => writeFile(filePath, script, { mode: 0o755 }))
-      );
-
-      return pipe(
-        [
-          taskOption.tryCatch(() => access(filePath)),
-          taskOption.guard(!forceReinstall),
-        ],
-        taskOption.sequenceArray,
-        taskOption.foldW(
-          () => installScript,
-          () => taskEither.right(null)
-        )
-      );
-    })
+          .then((script) => writeFile(fullPath, script, { mode: 0o755 }))
+      )
+    )
   );
 }
+
 function clonePackages({ forceReinstall }: Options) {
   const packages = [
     {
@@ -136,30 +140,20 @@ function clonePackages({ forceReinstall }: Options) {
       args: ["--branch", "v0.10.0", "https://github.com/asdf-vm/asdf.git"],
     },
   ];
+
   const cloneAll = pipe(
     packages,
     array.map((appPackage) => ({
       ...appPackage,
       fullPath: `${homePath}${appPackage.path}`,
     })),
-    taskEither.traverseSeqArray(({ fullPath, args }) => {
-      const installScript = apply.sequenceT(taskEither.ApplySeq)(
+    forceReinstall ? identity : filterExisting,
+    taskEither.traverseSeqArray(({ fullPath, args }) =>
+      apply.sequenceT(taskEither.ApplySeq)(
         TETryCatch(() => rm(fullPath, { recursive: true, force: true })),
         taskExec(`git clone ${args.join(" ")} ${fullPath}`)
-      );
-
-      return pipe(
-        [
-          taskOption.tryCatch(() => access(fullPath)),
-          taskOption.guard(!forceReinstall),
-        ],
-        taskOption.sequenceArray,
-        taskOption.foldW(
-          () => installScript,
-          () => taskEither.right(null)
-        )
-      );
-    })
+      )
+    )
   );
   const afterClone = apply.sequenceT(taskEither.ApplyPar)(
     taskExec(
@@ -199,28 +193,18 @@ function installVimPlug({ forceReinstall }: Options) {
   const installPlugPlugins = taskExec(
     'vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"'
   );
-  const check = pipe(
-    [
-      taskOption.tryCatch(() => access(filePath)),
-      taskOption.guard(!forceReinstall),
-    ],
-    taskOption.sequenceArray,
-    taskEither.fromTaskOption(() => new Error("Skip"))
-  );
-  return apply.sequenceT(taskEither.ApplySeq)(
-    check,
-    downloadPlug,
-    installPlugPlugins
-  );
+
+  return !isAccessible(filePath) || forceReinstall
+    ? apply.sequenceT(taskEither.ApplySeq)(downloadPlug, installPlugPlugins)
+    : taskEither.right({
+        stdout: "Plug already exists. Skipped installation.",
+        stderr: "",
+      });
 }
 
-const tasks = apply.sequenceT(taskEither.ApplyPar)(
-  // installHomebrew(),
-  installScripts()
-  // installVimPlug(),
-  // clonePackages()
-);
-
+/**
+ * MAIN
+ **/
 async function main() {
   const args = await yargs(hideBin(process.argv)).options({
     reinstall: {
@@ -231,6 +215,13 @@ async function main() {
     },
   }).argv;
   const forceReinstall = args.reinstall;
+  const tasks = apply.sequenceT(taskEither.ApplyPar)(
+    installHomebrew(),
+    installScripts({ forceReinstall }),
+    installVimPlug({ forceReinstall }),
+    clonePackages({ forceReinstall })
+  );
+
   const result = await tasks();
   console.log(result);
 }
