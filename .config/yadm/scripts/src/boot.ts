@@ -1,17 +1,13 @@
 #!/usr/bin/env ts-node
 import os from "os";
-import fsPromise, { access, mkdir, rm, writeFile } from "fs/promises";
-import fs, { mkdirSync } from "fs";
+import { access, rm, writeFile } from "fs/promises";
 import child_process, { ExecException } from "child_process";
 import { promisify } from "util";
 import fetch from "node-fetch";
-import { constVoid, identity, pipe } from "fp-ts/lib/function";
-import { array, io, ioEither, task, taskEither, taskOption } from "fp-ts";
-import yargs, { config } from "yargs";
+import { pipe } from "fp-ts/lib/function";
+import { taskEither, taskOption, apply } from "fp-ts";
+import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { mainModule } from "process";
-import { sequenceArray, sequenceSeqArray } from "fp-ts/lib/TaskEither";
-import { sequence } from "fp-ts/lib/Traversable";
 
 // https://grossbart.github.io/fp-ts-recipes/#/async?a=work-with-a-list-of-tasks-in-parallel&id=tasks-that-may-fail
 
@@ -21,33 +17,10 @@ const homePath = os.homedir();
 const configPath = `${homePath}/.config/`;
 const binHomePath = `${homePath}/.local/bin`;
 
-async function main() {
-  const args = await yargs(hideBin(process.argv)).options({
-    reinstall: {
-      type: "boolean",
-      default: true,
-      alias: "r",
-      describe: "Reinstall all packages",
-    },
-  }).argv;
-  const shouldReinstall = args.reinstall;
-
-  const tasks = [
-    installHomebrew(),
-    installScripts(),
-    installVimPlug(),
-    clonePackages(),
-  ];
-
-  const result = await Promise.all(tasks);
-}
-
-// void main();
-
-const installHomebrew = () =>
-  pipe(
+const installHomebrew = () => {
+  const downloadBrew = pipe(
     taskOption.tryCatch(() => exec("command -v brew")),
-    taskOption.fold(
+    taskOption.foldW(
       () =>
         taskEither.tryCatch(
           () =>
@@ -55,29 +28,34 @@ const installHomebrew = () =>
               "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
             )
               .then((res) => res.text())
-              .then((brewScript) => exec(`sudo bash ${brewScript}`))
-              .then(() => null),
+              .then((brewScript) => exec(`sudo bash ${brewScript}`)),
           (e) => e as Error | ExecException
         ),
       () => taskEither.right(null)
-    ),
-    taskEither.map(() =>
-      process.platform === "darwin"
-        ? taskEither.tryCatch(
-            () =>
-              exec(
-                "brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux"
-              ).then(() =>
-                exec(
-                  `brew bundle --verbose --file "${configPath}/packages/Brewfile"`
-                ).then(() => null)
-              ),
-            (e) => e as ExecException
-          )
-        : taskEither.right(null)
-    ),
-    taskEither.flatten
+    )
   );
+  const installBrewPackages =
+    process.platform === "darwin"
+      ? taskEither.tryCatch(
+          () =>
+            exec(
+              "brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux"
+            ).then(() =>
+              exec(
+                `brew bundle --verbose --file "${configPath}/packages/Brewfile"`
+              )
+            ),
+          (e) => e as ExecException
+        )
+      : taskEither.right(null);
+
+  return apply.sequenceT(taskEither.ApplySeq)(
+    downloadBrew,
+    installBrewPackages
+  );
+
+  // taskEither.sequenceSeqArray([downloadBrew, installBrewPackages]);
+};
 
 const installScripts = () =>
   pipe(
@@ -88,33 +66,30 @@ const installScripts = () =>
         url: "https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh",
       },
     ],
-    array.map(({ name, url }) => {
+    taskEither.traverseArray(({ name, url }) => {
       const filePath = `${binHomePath}/${name}`;
       return pipe(
         taskOption.tryCatch(() => access(filePath)),
-        taskOption.fold(
-          () => taskEither.right(null),
-          () => taskEither.left(null)
-        ),
-        taskEither.map(() =>
-          taskEither.tryCatch(
-            () =>
-              Promise.all([
-                fetch(url).then((res) => res.text()),
-                rm(filePath, { recursive: true, force: true }),
-              ]).then(([script]) =>
-                writeFile(filePath, script, { mode: 0o755 })
-              ),
-            (e) => e as Error | ExecException | NodeJS.ErrnoException
-          )
-        ),
-        taskEither.flatten
+        taskOption.foldW(
+          () =>
+            taskEither.tryCatch(
+              () =>
+                Promise.all([
+                  fetch(url).then((res) => res.text()),
+                  rm(filePath, { recursive: true, force: true }),
+                ]).then(([script]) =>
+                  writeFile(filePath, script, { mode: 0o755 })
+                ),
+              (e) => e as Error | ExecException | NodeJS.ErrnoException
+            ),
+          () => taskEither.right(null)
+        )
       );
     })
   );
 
 const clonePackages = () => {
-  return pipe(
+  const cloneAll = pipe(
     [
       {
         path: "/.fzf",
@@ -133,7 +108,7 @@ const clonePackages = () => {
         args: ["--branch", "v0.10.0", "https://github.com/asdf-vm/asdf.git"],
       },
     ],
-    array.map(({ path, args }) => {
+    taskEither.traverseArray(({ path, args }) => {
       const fullPath = `${homePath}${path}`;
       return pipe(
         taskEither.tryCatch(
@@ -141,66 +116,84 @@ const clonePackages = () => {
             rm(fullPath, { recursive: true, force: true }).then(() =>
               exec(`git clone ${args.join(" ")} ${fullPath}`)
             ),
-          (e) => e as NodeJS.ErrnoException
+          (e) => e as Error
         )
       );
-    }),
-    taskEither.sequenceArray,
-    taskEither.map(() => {
-      return [
-        taskEither.tryCatch(
-          () =>
-            exec(
-              `${homePath}/.fzf/install --key-bindings --completion --no-update-rc`
-            ),
-          (e) => e as ExecException
-        ),
-        configureAsdf,
-      ];
-    }),
-    (a) => a
+    })
   );
+  const afterClone = apply.sequenceT(taskEither.ApplyPar)(
+    configureFzf,
+    configureAsdf()
+  );
+
+  return apply.sequenceT(taskEither.ApplySeq)(cloneAll, afterClone);
 };
+
+const configureFzf = taskEither.tryCatch(
+  () =>
+    exec(`${homePath}/.fzf/install --key-bindings --completion --no-update-rc`),
+  (e) => e as ExecException
+);
 
 const configureAsdf = () => {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
-  return pipe(
+  const addPlugins = pipe(
     ["nodejs", "python", "yarn", "ruby", "haskell"],
-    array.map((name) => {
-      return taskEither.tryCatch(
-        () => exec(`${asdfBin} plugin-add ${name}`),
-        (e) => e as ExecException
-      );
-    }),
-    taskEither.sequenceArray,
-    taskEither.chain(() =>
+    taskEither.traverseSeqArray((name) =>
       taskEither.tryCatch(
-        () => exec(`${asdfBin} install}`),
+        () => exec(`${asdfBin} plugin-add ${name}`),
         (e) => e as ExecException
       )
     )
   );
+
+  const installPlugins = taskEither.tryCatch(
+    () => exec(`${asdfBin} install}`),
+    (e) => e as ExecException
+  );
+
+  return apply.sequenceT(taskEither.ApplySeq)(addPlugins, installPlugins);
 };
 
 const installVimPlug = () => {
   const filePath = `${homePath}/.vim/autoload/plug.vim`;
-  return pipe(
-    taskEither.tryCatch(
-      () =>
-        fetch(
-          "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-        )
-          .then((res) => res.text())
-          .then((file) =>
-            rm(filePath, { force: true }).then(() => writeFile(filePath, file))
-          ),
-      (e) => e as Error | ExecException
-    ),
-    taskEither.map(() => {
-      return taskEither.tryCatch(
-        () => exec('vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"'),
-        (e) => e as ExecException
-      );
-    })
+  const downloadPlug = taskEither.tryCatch(
+    () =>
+      fetch(
+        "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+      )
+        .then((res) => res.text())
+        .then((file) =>
+          rm(filePath, { force: true }).then(() => writeFile(filePath, file))
+        ),
+    (e) => e as Error | ExecException
   );
+  const installPlug = taskEither.tryCatch(
+    () => exec('vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"'),
+    (e) => e as Error | ExecException
+  );
+  return apply.sequenceT(taskEither.ApplySeq)(downloadPlug, installPlug);
 };
+
+const tasks = apply.sequenceT(taskEither.ApplyPar)(
+  // installHomebrew(),
+  installScripts()
+  // installVimPlug(),
+  // clonePackages()
+);
+
+async function main() {
+  const args = await yargs(hideBin(process.argv)).options({
+    reinstall: {
+      type: "boolean",
+      default: true,
+      alias: "r",
+      describe: "Reinstall all packages",
+    },
+  }).argv;
+  const shouldReinstall = args.reinstall;
+  const result = await tasks();
+  console.log(result);
+}
+// eslint-disable-next-line functional/no-expression-statement
+void main();
