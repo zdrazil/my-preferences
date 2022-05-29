@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 import child_process, { ExecException } from "child_process";
-import { apply, array, option, taskEither } from "fp-ts";
+import { apply, array, either, option, taskEither } from "fp-ts";
 import { identity, Lazy, pipe } from "fp-ts/lib/function";
 import { accessSync } from "fs";
 import { rm, writeFile } from "fs/promises";
@@ -40,7 +40,6 @@ const TETryCatch = <A>(f: Lazy<Promise<A>>) =>
 
 const isAccessible = (...args: Parameters<typeof accessSync>): boolean =>
   pipe(
-    // eslint-disable-next-line functional/no-return-void
     option.tryCatch(() => accessSync(...args)),
     option.isSome
   );
@@ -63,7 +62,11 @@ const homePath = os.homedir();
 const configPath = `${homePath}/.config/`;
 const binHomePath = `${homePath}/.local/bin`;
 
-function installHomebrew() {
+/**
+ * PACKAGERS
+ */
+
+function installHomebrew():  {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
@@ -155,12 +158,12 @@ function clonePackages({ forceReinstall }: Options) {
       )
     )
   );
-  const afterClone = apply.sequenceT(taskEither.ApplyPar)(
-    taskExec(
+  const afterClone = apply.sequenceS(taskEither.ApplyPar)({
+    fzf: taskExec(
       `${homePath}/.fzf/install --key-bindings --completion --no-update-rc`
     ),
-    configureAsdf()
-  );
+    asdf: configureAsdf(),
+  });
 
   return apply.sequenceT(taskEither.ApplySeq)(cloneAll, afterClone);
 }
@@ -215,15 +218,21 @@ async function main() {
     },
   }).argv;
   const forceReinstall = args.reinstall;
-  const tasks = apply.sequenceT(taskEither.ApplyPar)(
-    installHomebrew(),
-    installScripts({ forceReinstall }),
-    installVimPlug({ forceReinstall }),
-    clonePackages({ forceReinstall })
-  );
+  const tasks = apply.sequenceS(taskEither.ApplyPar)({
+    homebrew: installHomebrew(),
+    scripts: installScripts({ forceReinstall }),
+    vimPlug: installVimPlug({ forceReinstall }),
+    packages: clonePackages({ forceReinstall }),
+  });
+  const results = await tasks();
 
-  const result = await tasks();
+  const b = pipe(
+    results,
+    either.matchW(
+      (e) => console.log(e),
+      ({ homebrew, scripts, vimPlug, packages }) => "a"
+    )
+  );
   console.log(result);
 }
-// eslint-disable-next-line functional/no-expression-statement
 void main();
