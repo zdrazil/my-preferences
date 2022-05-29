@@ -7,7 +7,7 @@ import fetch, { FetchError } from "node-fetch";
 
 import { Lazy, pipe } from "fp-ts/lib/function";
 import { taskEither, taskOption, apply, array } from "fp-ts";
-import yargs from "yargs";
+import yargs, { option } from "yargs";
 import { hideBin } from "yargs/helpers";
 import { taskify } from "fp-ts/lib/TaskEither";
 import got from "got";
@@ -21,6 +21,10 @@ interface OutputStreams {
   stdout: string;
 }
 type ExecPromiseError = ExecException & OutputStreams;
+
+interface Options {
+  forceReinstall: boolean;
+}
 
 const taskExec = (cmd: string) =>
   taskEither.tryCatch(
@@ -78,7 +82,7 @@ function installHomebrew() {
   return apply.sequenceT(taskEither.ApplySeq)(installBrew, installBrewPackages);
 }
 
-function installScripts() {
+function installScripts({ forceReinstall }: Options) {
   const scripts = [
     { name: "chtsh", url: "https://cht.sh/:cht.sh" },
     {
@@ -100,7 +104,11 @@ function installScripts() {
       );
 
       return pipe(
-        taskOption.tryCatch(() => access(filePath)),
+        [
+          taskOption.tryCatch(() => access(filePath)),
+          taskOption.guard(!forceReinstall),
+        ],
+        taskOption.sequenceArray,
         taskOption.foldW(
           () => installScript,
           () => taskEither.right(null)
@@ -109,7 +117,7 @@ function installScripts() {
     })
   );
 }
-function clonePackages() {
+function clonePackages({ forceReinstall }: Options) {
   const packages = [
     {
       path: "/.fzf",
@@ -134,12 +142,24 @@ function clonePackages() {
       ...appPackage,
       fullPath: `${homePath}${appPackage.path}`,
     })),
-    taskEither.traverseSeqArray(({ fullPath, args }) =>
-      apply.sequenceT(taskEither.ApplySeq)(
+    taskEither.traverseSeqArray(({ fullPath, args }) => {
+      const installScript = apply.sequenceT(taskEither.ApplySeq)(
         TETryCatch(() => rm(fullPath, { recursive: true, force: true })),
         taskExec(`git clone ${args.join(" ")} ${fullPath}`)
-      )
-    )
+      );
+
+      return pipe(
+        [
+          taskOption.tryCatch(() => access(fullPath)),
+          taskOption.guard(!forceReinstall),
+        ],
+        taskOption.sequenceArray,
+        taskOption.foldW(
+          () => installScript,
+          () => taskEither.right(null)
+        )
+      );
+    })
   );
   const afterClone = apply.sequenceT(taskEither.ApplyPar)(
     taskExec(
@@ -166,7 +186,7 @@ function configureAsdf() {
   );
 }
 
-function installVimPlug() {
+function installVimPlug({ forceReinstall }: Options) {
   const filePath = `${homePath}/.vim/autoload/plug.vim`;
   const downloadPlug = TETryCatch(() =>
     fetch("https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
@@ -179,7 +199,19 @@ function installVimPlug() {
   const installPlugPlugins = taskExec(
     'vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"'
   );
-  return apply.sequenceT(taskEither.ApplySeq)(downloadPlug, installPlugPlugins);
+  const check = pipe(
+    [
+      taskOption.tryCatch(() => access(filePath)),
+      taskOption.guard(!forceReinstall),
+    ],
+    taskOption.sequenceArray,
+    taskEither.fromTaskOption(() => new Error("Skip"))
+  );
+  return apply.sequenceT(taskEither.ApplySeq)(
+    check,
+    downloadPlug,
+    installPlugPlugins
+  );
 }
 
 const tasks = apply.sequenceT(taskEither.ApplyPar)(
@@ -198,7 +230,7 @@ async function main() {
       describe: "Reinstall all packages",
     },
   }).argv;
-  const shouldReinstall = args.reinstall;
+  const forceReinstall = args.reinstall;
   const result = await tasks();
   console.log(result);
 }
