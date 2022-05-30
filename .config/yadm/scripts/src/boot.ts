@@ -1,8 +1,8 @@
 #!/usr/bin/env ts-node
 import child_process, { ExecException } from "child_process";
 import { apply, array, either, option, taskEither } from "fp-ts";
-import { identity, Lazy, pipe } from "fp-ts/lib/function";
-import { TaskEither } from "fp-ts/lib/TaskEither";
+import { identity, Lazy, pipe } from "fp-ts/function";
+import { TaskEither } from "fp-ts/TaskEither";
 import { accessSync } from "fs";
 import { mkdir, rm, writeFile } from "fs/promises";
 import fetch from "node-fetch";
