@@ -18,14 +18,7 @@
   },
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "rules": {
-    "@typescript-eslint/prefer-readonly-parameter-types": "off",
-    "functional/functional-parameters": "off",
-    "functional/prefer-readonly-type": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn"
-    // "functional/no-conditional-statement": [
-    //   "error",
-    //   { "allowReturningBranches": true }
-    // ]
   }
 }
