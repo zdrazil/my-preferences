@@ -72,8 +72,8 @@ const binHomePath = `${homePath}/.local/bin`;
  */
 
 const createExecError = (e: Error): ExecPromiseError => {
-  (e as ExecPromiseError).stderr = e.name + e.message;
-  (e as ExecPromiseError).stderr = "";
+  (e as ExecPromiseError).stderr = `${e.name}: ${e.message}`;
+  (e as ExecPromiseError).stdout = "";
 
   return e as ExecPromiseError;
 };
@@ -134,7 +134,7 @@ function installHomebrew(): FinalType {
         )
       : taskEither.right({
           stderr: "",
-          stdout: "No homebrew packages to install\n",
+          stdout: "No homebrew packages to install",
         });
 
   const result = pipe(
@@ -300,6 +300,12 @@ function installVimPlug({ forceReinstall }: Options): FinalType {
 /**
  * MAIN
  **/
+
+const logOutputStreams = ({ stdout, stderr }: OutputStreams) => {
+  stdout !== "" ? console.log(stdout) : null;
+  stderr !== "" ? console.log(stderr) : null;
+};
+
 async function main() {
   const args = await yargs(hideBin(process.argv)).options({
     reinstall: {
@@ -322,10 +328,11 @@ async function main() {
   pipe(
     results,
     either.matchW(
-      (e) => console.log(e.stderr),
-      (tasks) => {
-        tasks.forEach((task) => console.log(task.stdout));
-      }
+      ({ stdout, stderr }) => {
+        stdout !== "" ? console.log(stdout) : null;
+        stderr !== "" ? console.log(stderr) : null;
+      },
+      (tasks) => tasks.forEach(logOutputStreams)
     )
   );
 }
