@@ -17,22 +17,6 @@ import { hideBin } from "yargs/helpers";
  * PROCESS CLEANUP
  **/
 
-const createCleanupProcess = () => {
-  const childProcesses: ChildProcess[] = [];
-  const killChildProcesses = () =>
-    childProcesses.forEach((worker) =>
-      worker.pid ? process.kill(worker.pid) : null
-    );
-
-  process.on("uncaughtException", killChildProcesses);
-  process.on("SIGINT", killChildProcesses);
-  process.on("SIGTERM", killChildProcesses);
-
-  return {
-    add: (childProcess: ChildProcess) => childProcesses.push(childProcess),
-  };
-};
-
 /**
  * HELPERS, TYPES AND CONSTANTS
  **/
@@ -54,13 +38,30 @@ function fromThunk<A>(thunk: Lazy<Promise<A>>): TaskEither<Error, A> {
 const TEfetchText = (...args: Parameters<typeof fetch>) =>
   fromThunk(() => fetch(...args).then((res) => res.text()));
 
+const createCleanupProcess = () => {
+  const childProcesses: Set<ChildProcess> = new Set();
+  const killChildProcesses = () =>
+    childProcesses.forEach((worker) =>
+      worker.pid ? process.kill(worker.pid) : null
+    );
+
+  process.on("uncaughtException", killChildProcesses);
+  process.on("SIGINT", killChildProcesses);
+  process.on("SIGTERM", killChildProcesses);
+
+  return {
+    add: (childProcess: ChildProcess) => childProcesses.add(childProcess),
+    delete: (childProcess: ChildProcess) => childProcesses.delete(childProcess),
+  };
+};
+
 interface SpawnOptions {
   ignoredErrors?: number[];
 }
 
-const createSpawn =
-  (watchForCleanup: (childProcess: ChildProcess) => void) =>
-  (cmd: string, args?: string, options?: SpawnOptions) =>
+const createSpawn = () => {
+  const cleanupProcess = createCleanupProcess();
+  return (cmd: string, args?: string, options?: SpawnOptions) =>
     pipe(
       () =>
         new Promise<void>((resolve, reject) => {
@@ -71,7 +72,7 @@ const createSpawn =
               shell: true,
             }
           );
-          watchForCleanup(command);
+          cleanupProcess.add(command);
 
           command.stdout.on("data", (data: Buffer) => {
             console.log(cmd);
@@ -86,6 +87,7 @@ const createSpawn =
           const ignoredErrors: Array<number | null> =
             options?.ignoredErrors || [];
           command.on("close", (code = 0) => {
+            cleanupProcess.delete(command);
             if (code !== 0 && !ignoredErrors.includes(code)) {
               console.error(
                 `${cmd} process exited with code ${code ?? "undefined"}`
@@ -97,6 +99,7 @@ const createSpawn =
         }),
       fromThunk
     );
+};
 
 const commandExists = (command: string): boolean =>
   pipe(
@@ -343,8 +346,8 @@ async function main() {
       describe: "Reinstall all packages",
     },
   }).argv;
-  const { add } = createCleanupProcess();
-  const spawn = createSpawn(add);
+
+  const spawn = createSpawn();
   const forceReinstall = args.reinstall;
   const homePath = os.homedir();
   const binHomePath = `${homePath}/.local/bin`;
