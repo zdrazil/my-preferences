@@ -1,5 +1,5 @@
 #!/usr/bin/env ts-node
-import child_process from "child_process";
+import child_process, { ChildProcess } from "child_process";
 import { apply, array, either, option, task, taskEither } from "fp-ts";
 import { constVoid, flow, identity, Lazy, pipe } from "fp-ts/function";
 import { accessSync } from "fs";
@@ -22,11 +22,24 @@ interface Options {
   forceReinstall: boolean;
 }
 
-const spawn = (cmd: string, args?: string) =>
+const workers: ChildProcess[] = [];
+const killWorkers = () =>
+  workers.forEach((worker) => (worker.pid ? process.kill(worker.pid) : null));
+
+process.on("uncaughtException", killWorkers);
+process.on("SIGINT", killWorkers);
+process.on("SIGTERM", killWorkers);
+
+interface SpawnOptions {
+  ignoredErrors?: number[];
+}
+
+const spawn = (cmd: string, args?: string, options?: SpawnOptions) =>
   new Promise<void>((resolve, reject) => {
     const command = child_process.spawn(cmd + (args ? ` ${args}` : ""), [], {
       shell: true,
     });
+    workers.push(command);
 
     command.stdout.on("data", (data: Buffer) => {
       console.log(cmd);
@@ -38,8 +51,9 @@ const spawn = (cmd: string, args?: string) =>
       console.error(data.toString());
     });
 
-    command.on("close", (code) => {
-      if (code !== 0) {
+    const ignoredErrors: Array<number | null> = options?.ignoredErrors || [];
+    command.on("close", (code = 0) => {
+      if (code !== 0 && !ignoredErrors.includes(code)) {
         console.error(`${cmd} process exited with code ${code ?? "undefined"}`);
         reject(`${cmd} process exited with code ${code ?? "undefined"}`);
       }
@@ -205,7 +219,9 @@ function clonePackages({ forceReinstall }: Options) {
 function configureAsdf() {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
   const addPlugin = (name: string) =>
-    TETryCatch(() => spawn(`${asdfBin} plugin-add`, `${name}`));
+    TETryCatch(() =>
+      spawn(`${asdfBin} plugin-add`, `${name}`, { ignoredErrors: [2] })
+    );
 
   const addPlugins = pipe(
     ["nodejs", "python", "yarn", "ruby", "haskell"],
@@ -226,7 +242,7 @@ function installVimPlug({ forceReinstall }: Options) {
     fetch("https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
       .then((res) => res.text())
       .then((file) =>
-        rm(filePath, { force: true })
+        rm(filePath, { recursive: true, force: true })
           .then(() => mkdir(filePath, { recursive: true }))
           .then(() => writeFile(filePath, file))
       )
@@ -268,7 +284,7 @@ async function main() {
   const results = await tasks();
 
   const logError = (name: string) => (error: Error) => {
-    console.error`${name} installation failed: ${error.toString()}`;
+    console.error(`${name} installation failed: ${error.toString()}`);
   };
 
   pipe(results, ({ homeBrew, scripts, vimPlug, cloned }) => {
