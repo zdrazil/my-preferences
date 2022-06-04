@@ -1,7 +1,8 @@
 #!/usr/bin/env ts-node
 import child_process, { ChildProcess } from "child_process";
-import { apply, array, either, option, task, taskEither } from "fp-ts";
-import { constVoid, flow, identity, Lazy, pipe } from "fp-ts/function";
+import { apply, array, either, option, record, task, taskEither } from "fp-ts";
+import { constVoid, identity, Lazy, pipe } from "fp-ts/function";
+import { TaskEither } from "fp-ts/lib/TaskEither";
 import { accessSync } from "fs";
 import { mkdir, rm, writeFile } from "fs/promises";
 import fetch from "node-fetch";
@@ -13,58 +14,85 @@ import { hideBin } from "yargs/helpers";
 // https://grossbart.github.io/fp-ts-recipes/#/async?a=work-with-a-list-of-tasks-in-parallel&id=tasks-that-may-fail
 
 /**
+ * PROCESS CLEANUP
+ **/
+
+const createCleanupProcess = () => {
+  const childProcesses: ChildProcess[] = [];
+  const killChildProcesses = () =>
+    childProcesses.forEach((worker) =>
+      worker.pid ? process.kill(worker.pid) : null
+    );
+
+  process.on("uncaughtException", killChildProcesses);
+  process.on("SIGINT", killChildProcesses);
+  process.on("SIGTERM", killChildProcesses);
+
+  return {
+    add: (childProcess: ChildProcess) => childProcesses.push(childProcess),
+  };
+};
+
+/**
  * HELPERS, TYPES AND CONSTANTS
  **/
 
 const execSync = promisify(child_process.execSync);
 
 interface Options {
+  binHomePath: string;
+  configPath: string;
   forceReinstall: boolean;
+  homePath: string;
 }
 
-const workers: ChildProcess[] = [];
-const killWorkers = () =>
-  workers.forEach((worker) => (worker.pid ? process.kill(worker.pid) : null));
+function fromThunk<A>(thunk: Lazy<Promise<A>>): TaskEither<Error, A> {
+  return taskEither.tryCatch(thunk, either.toError);
+}
 
-process.on("uncaughtException", killWorkers);
-process.on("SIGINT", killWorkers);
-process.on("SIGTERM", killWorkers);
+const TEfetchText = (...args: Parameters<typeof fetch>) =>
+  fromThunk(() => fetch(...args).then((res) => res.text()));
 
 interface SpawnOptions {
   ignoredErrors?: number[];
 }
 
 const spawn = (cmd: string, args?: string, options?: SpawnOptions) =>
-  new Promise<void>((resolve, reject) => {
-    const command = child_process.spawn(cmd + (args ? ` ${args}` : ""), [], {
-      shell: true,
-    });
-    workers.push(command);
+  pipe(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const command = child_process.spawn(
+          cmd + (args ? ` ${args}` : ""),
+          [],
+          {
+            shell: true,
+          }
+        );
+        childProcesses.push(command);
 
-    command.stdout.on("data", (data: Buffer) => {
-      console.log(cmd);
-      console.log(data.toString());
-    });
+        command.stdout.on("data", (data: Buffer) => {
+          console.log(cmd);
+          console.log(data.toString());
+        });
 
-    command.stderr.on("data", (data: Buffer) => {
-      console.error(cmd);
-      console.error(data.toString());
-    });
+        command.stderr.on("data", (data: Buffer) => {
+          console.error(cmd);
+          console.error(data.toString());
+        });
 
-    const ignoredErrors: Array<number | null> = options?.ignoredErrors || [];
-    command.on("close", (code = 0) => {
-      if (code !== 0 && !ignoredErrors.includes(code)) {
-        console.error(`${cmd} process exited with code ${code ?? "undefined"}`);
-        reject(`${cmd} process exited with code ${code ?? "undefined"}`);
-      }
-      resolve();
-    });
-  });
-
-const TETryCatch = <A, B extends Lazy<Promise<A>>>(f: B) =>
-  taskEither.tryCatch(
-    () => f().then(constVoid),
-    (e) => e as Error
+        const ignoredErrors: Array<number | null> =
+          options?.ignoredErrors || [];
+        command.on("close", (code = 0) => {
+          if (code !== 0 && !ignoredErrors.includes(code)) {
+            console.error(
+              `${cmd} process exited with code ${code ?? "undefined"}`
+            );
+            reject(`${cmd} process exited with code ${code ?? "undefined"}`);
+          }
+          resolve();
+        });
+      }),
+    fromThunk
   );
 
 const commandExists = (command: string): boolean =>
@@ -93,37 +121,39 @@ const tapLog = <T>(value: T): T => {
   return value;
 };
 
-const homePath = os.homedir();
-const configPath = `${homePath}/.config/`;
-const binHomePath = `${homePath}/.local/bin`;
-
 /**
  * PACKAGERS
  */
 
-function installHomebrew() {
+function installHomebrew({ configPath }: Options) {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
-  const install = async () => {
-    if (!commandExists("brew")) {
-      const brewScript = await fetch(brewScriptUrl).then((res) => res.text());
-      await spawn("sudo bash", `${brewScript}`);
-    }
+  const installBrew = commandExists("brew")
+    ? pipe(
+        TEfetchText(brewScriptUrl),
+        taskEither.chain((brewScript) => spawn("sudo bash", `${brewScript}`))
+      )
+    : taskEither.of(constVoid());
 
-    if (process.platform === "darwin") {
-      await spawn(
+  const darwinBrew = pipe(
+    taskEither.of(constVoid()),
+    taskEither.apFirst(
+      spawn(
         "brew install",
         "bash coreutils findutils gnu-sed tmux yadm zsh tmux"
-      );
-      await spawn(
-        "brew bundle",
-        `--verbose --file "${configPath}/packages/Brewfile"`
-      );
-    }
-  };
+      )
+    ),
+    taskEither.apFirst(
+      spawn("brew bundle", `--verbose --file "${configPath}/packages/Brewfile"`)
+    )
+  );
 
-  return TETryCatch(install);
+  return pipe(
+    [installBrew, darwinBrew],
+    taskEither.sequenceArray,
+    taskEither.map(constVoid)
+  );
 }
 
 interface Script {
@@ -131,7 +161,7 @@ interface Script {
   fullPath: string;
 }
 
-function installScripts({ forceReinstall }: Options) {
+function installScripts({ binHomePath, forceReinstall }: Options) {
   const scripts = [
     { name: "chtsh", url: "https://cht.sh/:cht.sh" },
     {
@@ -141,10 +171,13 @@ function installScripts({ forceReinstall }: Options) {
   ];
 
   const installScript = ({ url, fullPath }: Script) =>
-    TETryCatch(() =>
-      fetch(url)
-        .then((res) => res.text())
-        .then((script) => writeFile(fullPath, script, { mode: 0o755 }))
+    pipe(
+      { url, fullPath },
+      taskEither.of,
+      taskEither.apS("scriptFile", TEfetchText(url)),
+      taskEither.chain(({ scriptFile }) =>
+        fromThunk(() => writeFile(fullPath, scriptFile, { mode: 0o755 }))
+      )
     );
 
   const tasks = pipe(
@@ -154,13 +187,14 @@ function installScripts({ forceReinstall }: Options) {
       fullPath: `${binHomePath}/${script.name}`,
     })),
     forceReinstall ? identity : filterNonExisting,
-    taskEither.traverseArray(installScript)
+    taskEither.traverseArray(installScript),
+    taskEither.map(constVoid)
   );
 
   return tasks;
 }
 
-function clonePackages({ forceReinstall }: Options) {
+function clonePackages({ homePath, forceReinstall }: Options) {
   const packages = [
     {
       path: "/.fzf",
@@ -186,10 +220,14 @@ function clonePackages({ forceReinstall }: Options) {
   }
 
   const clonePackage = ({ fullPath, args }: Package) =>
-    TETryCatch(async () => {
-      await rm(fullPath, { recursive: true, force: true });
-      await spawn(`git clone`, `${args.join(" ")} ${fullPath}`);
-    });
+    pipe(
+      [
+        fromThunk(() => rm(fullPath, { recursive: true, force: true })),
+        spawn(`git clone`, `${args.join(" ")} ${fullPath}`),
+      ],
+      taskEither.sequenceSeqArray,
+      taskEither.map(constVoid)
+    );
 
   const cloneAll = pipe(
     packages,
@@ -198,71 +236,97 @@ function clonePackages({ forceReinstall }: Options) {
       fullPath: `${homePath}${appPackage.path}`,
     })),
     forceReinstall ? identity : filterNonExisting,
-    taskEither.traverseArray(flow(clonePackage, TETryCatch))
+    taskEither.traverseArray(clonePackage),
+    taskEither.map(constVoid)
   );
 
-  const installFzf = TETryCatch(() =>
-    spawn(
-      `${homePath}/.fzf/install`,
-      "--key-bindings --completion --no-update-rc"
-    )
+  const installFzf = spawn(
+    `${homePath}/.fzf/install`,
+    "--key-bindings --completion --no-update-rc"
   );
 
-  const afterClone = apply.sequenceS(taskEither.ApplicativePar)({
-    installFzf,
-    configureAsdf: configureAsdf(),
-  });
+  const afterClone = pipe(
+    [installFzf, configureAsdf({ homePath })],
+    taskEither.sequenceArray,
+    taskEither.map(constVoid)
+  );
 
-  return apply.sequenceS(taskEither.ApplicativeSeq)({ cloneAll, afterClone });
+  return pipe(
+    [cloneAll, afterClone],
+    taskEither.sequenceSeqArray,
+    taskEither.map(constVoid)
+  );
 }
 
-function configureAsdf() {
+function configureAsdf({ homePath }: { homePath: string }) {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
   const addPlugin = (name: string) =>
-    TETryCatch(() =>
-      spawn(`${asdfBin} plugin-add`, name, { ignoredErrors: [2] })
-    );
+    spawn(`${asdfBin} plugin-add`, name, { ignoredErrors: [2] });
 
   const addPlugins = pipe(
     ["nodejs", "python", "yarn", "ruby", "haskell"],
-    taskEither.traverseSeqArray(addPlugin)
+    taskEither.traverseSeqArray(addPlugin),
+    taskEither.map(constVoid)
   );
 
-  const asdfInstall = TETryCatch(() => spawn(`${asdfBin} install`));
+  const asdfInstall = spawn(`${asdfBin} install`);
 
-  return apply.sequenceS(taskEither.ApplicativeSeq)({
-    addPlugins,
-    asdfInstall,
-  });
+  return pipe(
+    [addPlugins, asdfInstall],
+    taskEither.sequenceSeqArray,
+    taskEither.map(constVoid)
+  );
 }
 
-function installVimPlug({ forceReinstall }: Options) {
+function installVimPlug({ forceReinstall, homePath }: Options) {
   const filePath = `${homePath}/.vim/autoload/plug.vim`;
-  const downloadPlug = TETryCatch(() =>
-    fetch("https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
-      .then((res) => res.text())
-      .then((file) =>
+  const downloadPlug = pipe(
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+    TEfetchText,
+    taskEither.chainFirst((file) =>
+      fromThunk(() =>
         rm(filePath, { recursive: true, force: true })
           .then(() => mkdir(filePath, { recursive: true }))
           .then(() => writeFile(filePath, file))
       )
+    ),
+    taskEither.map(constVoid)
   );
-  const installPlugPlugins = TETryCatch(() =>
-    spawn("vim", "+'PlugInstall --sync' +qa")
-  );
+
+  const installPlugPlugins = spawn("vim", "+'PlugInstall --sync' +qa");
 
   if (!isAccessible(filePath) || forceReinstall) {
     return taskEither.right<Error, void>(undefined);
   }
-  return apply.sequenceS(taskEither.ApplicativeSeq)({
-    downloadPlug,
-    installPlugPlugins,
-  });
+  return pipe(
+    [downloadPlug, installPlugPlugins],
+    taskEither.sequenceArray,
+    taskEither.map(constVoid)
+  );
 }
 
 /**
  * MAIN
  **/
+
+const logError = (name: string) => (error: Error) => {
+  console.error(`${name} installation failed: ${error.toString()}`);
+};
+
+const runTasks = async (options: Options) => {
+  const tasks = apply.sequenceS(task.ApplicativePar)({
+    homeBrew: installHomebrew(options),
+    scripts: installScripts(options),
+    vimPlug: installVimPlug(options),
+    cloned: clonePackages(options),
+  });
+
+  pipe(
+    await tasks(),
+    record.toEntries,
+    array.map(([name]) => either.getOrElse(logError(name)))
+  );
+};
 
 async function main() {
   const args = await yargs(hideBin(process.argv)).options({
@@ -273,46 +337,17 @@ async function main() {
       describe: "Reinstall all packages",
     },
   }).argv;
+  const cleanupProcess = createCleanupProcess();
   const forceReinstall = args.reinstall;
+  const homePath = os.homedir();
+  const binHomePath = `${homePath}/.local/bin`;
+  const configPath = `${homePath}/.config/`;
 
-  const tasks = apply.sequenceS(task.ApplicativePar)({
-    homeBrew: installHomebrew(),
-    scripts: installScripts({ forceReinstall }),
-    vimPlug: installVimPlug({ forceReinstall }),
-    cloned: clonePackages({ forceReinstall }),
-  });
-  const results = await tasks();
-
-  const logError = (name: string) => (error: Error) => {
-    console.error(`${name} installation failed: ${error.toString()}`);
-  };
-
-  pipe(results, ({ homeBrew, scripts, vimPlug, cloned }) => {
-    pipe(homeBrew, either.getOrElse(logError("Homebrew")));
-    pipe(
-      vimPlug,
-      either.getOrElse<
-        Error,
-        { downloadPlug: void; installPlugPlugins: void } | void
-      >(logError("vimPlug"))
-    );
-    pipe(
-      scripts,
-      either.getOrElse<Error, void | readonly void[]>(logError("scripts"))
-    );
-    pipe(
-      cloned,
-      either.getOrElse<
-        Error,
-        {
-          cloneAll: readonly void[];
-          afterClone: {
-            installFzf: void;
-            configureAsdf: { addPlugins: readonly void[]; asdfInstall: void };
-          };
-        } | void
-      >(logError("cloned"))
-    );
+  await runTasks({
+    forceReinstall,
+    configPath,
+    homePath,
+    binHomePath,
   });
 }
 void main();
