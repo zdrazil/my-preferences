@@ -108,7 +108,7 @@ function installHomebrew() {
   const install = async () => {
     if (!commandExists("brew")) {
       const brewScript = await fetch(brewScriptUrl).then((res) => res.text());
-      await spawn(`sudo bash`, `${brewScript}`);
+      await spawn("sudo bash", `${brewScript}`);
     }
 
     if (process.platform === "darwin") {
@@ -117,7 +117,7 @@ function installHomebrew() {
         "bash coreutils findutils gnu-sed tmux yadm zsh tmux"
       );
       await spawn(
-        `brew bundle`,
+        "brew bundle",
         `--verbose --file "${configPath}/packages/Brewfile"`
       );
     }
@@ -204,7 +204,7 @@ function clonePackages({ forceReinstall }: Options) {
   const installFzf = TETryCatch(() =>
     spawn(
       `${homePath}/.fzf/install`,
-      `--key-bindings --completion --no-update-rc`
+      "--key-bindings --completion --no-update-rc"
     )
   );
 
@@ -220,7 +220,7 @@ function configureAsdf() {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
   const addPlugin = (name: string) =>
     TETryCatch(() =>
-      spawn(`${asdfBin} plugin-add`, `${name}`, { ignoredErrors: [2] })
+      spawn(`${asdfBin} plugin-add`, name, { ignoredErrors: [2] })
     );
 
   const addPlugins = pipe(
