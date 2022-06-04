@@ -52,6 +52,7 @@ const createCleanupProcess = () => {
   return {
     add: (childProcess: ChildProcess) => childProcesses.add(childProcess),
     delete: (childProcess: ChildProcess) => childProcesses.delete(childProcess),
+    has: (childProcess: ChildProcess) => childProcesses.has(childProcess),
   };
 };
 
@@ -87,7 +88,11 @@ const createSpawn = () => {
           const ignoredErrors: Array<number | null> =
             options?.ignoredErrors || [];
           command.on("close", (code = 0) => {
-            cleanupProcess.delete(command);
+            if (cleanupProcess.has(command)) {
+              cleanupProcess.delete(command);
+              console.log(`killing ${cmd}`);
+            }
+
             if (code !== 0 && !ignoredErrors.includes(code)) {
               console.error(
                 `${cmd} process exited with code ${code ?? "undefined"}`
