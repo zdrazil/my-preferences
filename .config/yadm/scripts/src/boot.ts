@@ -14,10 +14,6 @@ import { hideBin } from "yargs/helpers";
 // https://grossbart.github.io/fp-ts-recipes/#/async?a=work-with-a-list-of-tasks-in-parallel&id=tasks-that-may-fail
 
 /**
- * PROCESS CLEANUP
- **/
-
-/**
  * HELPERS, TYPES AND CONSTANTS
  **/
 
@@ -41,9 +37,10 @@ const TEfetchText = (...args: Parameters<typeof fetch>) =>
 const createCleanupProcess = () => {
   const childProcesses: Set<ChildProcess> = new Set();
   const killChildProcesses = () =>
-    childProcesses.forEach((worker) =>
-      worker.pid ? process.kill(worker.pid) : null
-    );
+    childProcesses.forEach((worker) => {
+      console.log(`killing ${worker.pid ?? worker.spawnfile}`);
+      worker.kill();
+    });
 
   process.on("uncaughtException", killChildProcesses);
   process.on("SIGINT", killChildProcesses);
@@ -90,7 +87,6 @@ const createSpawn = () => {
           command.on("close", (code = 0) => {
             if (cleanupProcess.has(command)) {
               cleanupProcess.delete(command);
-              console.log(`killing ${cmd}`);
             }
 
             if (code !== 0 && !ignoredErrors.includes(code)) {
