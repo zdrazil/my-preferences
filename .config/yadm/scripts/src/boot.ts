@@ -44,6 +44,7 @@ interface Options {
   configPath: string;
   forceReinstall: boolean;
   homePath: string;
+  spawn: ReturnType<typeof createSpawn>;
 }
 
 function fromThunk<A>(thunk: Lazy<Promise<A>>): TaskEither<Error, A> {
@@ -57,43 +58,45 @@ interface SpawnOptions {
   ignoredErrors?: number[];
 }
 
-const spawn = (cmd: string, args?: string, options?: SpawnOptions) =>
-  pipe(
-    () =>
-      new Promise<void>((resolve, reject) => {
-        const command = child_process.spawn(
-          cmd + (args ? ` ${args}` : ""),
-          [],
-          {
-            shell: true,
-          }
-        );
-        childProcesses.push(command);
+const createSpawn =
+  (watchForCleanup: (childProcess: ChildProcess) => void) =>
+  (cmd: string, args?: string, options?: SpawnOptions) =>
+    pipe(
+      () =>
+        new Promise<void>((resolve, reject) => {
+          const command = child_process.spawn(
+            cmd + (args ? ` ${args}` : ""),
+            [],
+            {
+              shell: true,
+            }
+          );
+          watchForCleanup(command);
 
-        command.stdout.on("data", (data: Buffer) => {
-          console.log(cmd);
-          console.log(data.toString());
-        });
+          command.stdout.on("data", (data: Buffer) => {
+            console.log(cmd);
+            console.log(data.toString());
+          });
 
-        command.stderr.on("data", (data: Buffer) => {
-          console.error(cmd);
-          console.error(data.toString());
-        });
+          command.stderr.on("data", (data: Buffer) => {
+            console.error(cmd);
+            console.error(data.toString());
+          });
 
-        const ignoredErrors: Array<number | null> =
-          options?.ignoredErrors || [];
-        command.on("close", (code = 0) => {
-          if (code !== 0 && !ignoredErrors.includes(code)) {
-            console.error(
-              `${cmd} process exited with code ${code ?? "undefined"}`
-            );
-            reject(`${cmd} process exited with code ${code ?? "undefined"}`);
-          }
-          resolve();
-        });
-      }),
-    fromThunk
-  );
+          const ignoredErrors: Array<number | null> =
+            options?.ignoredErrors || [];
+          command.on("close", (code = 0) => {
+            if (code !== 0 && !ignoredErrors.includes(code)) {
+              console.error(
+                `${cmd} process exited with code ${code ?? "undefined"}`
+              );
+              reject(`${cmd} process exited with code ${code ?? "undefined"}`);
+            }
+            resolve();
+          });
+        }),
+      fromThunk
+    );
 
 const commandExists = (command: string): boolean =>
   pipe(
@@ -125,7 +128,7 @@ const tapLog = <T>(value: T): T => {
  * PACKAGERS
  */
 
-function installHomebrew({ configPath }: Options) {
+function installHomebrew({ configPath, spawn }: Options) {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
@@ -194,7 +197,7 @@ function installScripts({ binHomePath, forceReinstall }: Options) {
   return tasks;
 }
 
-function clonePackages({ homePath, forceReinstall }: Options) {
+function clonePackages({ homePath, forceReinstall, spawn }: Options) {
   const packages = [
     {
       path: "/.fzf",
@@ -246,7 +249,7 @@ function clonePackages({ homePath, forceReinstall }: Options) {
   );
 
   const afterClone = pipe(
-    [installFzf, configureAsdf({ homePath })],
+    [installFzf, configureAsdf({ homePath, spawn })],
     taskEither.sequenceArray,
     taskEither.map(constVoid)
   );
@@ -258,7 +261,10 @@ function clonePackages({ homePath, forceReinstall }: Options) {
   );
 }
 
-function configureAsdf({ homePath }: { homePath: string }) {
+function configureAsdf({
+  homePath,
+  spawn,
+}: Pick<Options, "spawn" | "homePath">) {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
   const addPlugin = (name: string) =>
     spawn(`${asdfBin} plugin-add`, name, { ignoredErrors: [2] });
@@ -278,7 +284,7 @@ function configureAsdf({ homePath }: { homePath: string }) {
   );
 }
 
-function installVimPlug({ forceReinstall, homePath }: Options) {
+function installVimPlug({ forceReinstall, homePath, spawn }: Options) {
   const filePath = `${homePath}/.vim/autoload/plug.vim`;
   const downloadPlug = pipe(
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
@@ -337,7 +343,8 @@ async function main() {
       describe: "Reinstall all packages",
     },
   }).argv;
-  const cleanupProcess = createCleanupProcess();
+  const { add } = createCleanupProcess();
+  const spawn = createSpawn(add);
   const forceReinstall = args.reinstall;
   const homePath = os.homedir();
   const binHomePath = `${homePath}/.local/bin`;
@@ -348,6 +355,7 @@ async function main() {
     configPath,
     homePath,
     binHomePath,
+    spawn,
   });
 }
 void main();
