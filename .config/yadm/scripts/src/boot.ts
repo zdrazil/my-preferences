@@ -3,15 +3,16 @@ import {
   apply,
   array,
   either,
-  io,
   option,
   record,
+  string,
   task,
   taskEither,
 } from "fp-ts";
+import { Either } from "fp-ts/Either";
 import { constVoid, identity, Lazy, pipe } from "fp-ts/function";
 import { TaskEither } from "fp-ts/TaskEither";
-import child_process, { ChildProcess } from "node:child_process";
+import child_process from "node:child_process";
 import { accessSync } from "node:fs";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
@@ -43,31 +44,16 @@ function fromThunk<A>(thunk: Lazy<Promise<A>>): TaskEither<Error, A> {
 const TEfetchText = (...args: Parameters<typeof fetch>) =>
   fromThunk(() => fetch(...args).then((res) => res.text()));
 
-const createCleanupProcess = () => {
-  const childProcesses: Set<ChildProcess> = new Set();
-  const killChildProcesses = () =>
-    childProcesses.forEach((worker) => {
-      console.error(`killing ${worker.pid ?? worker.spawnfile}`);
-      worker.kill();
-    });
-
-  process.on("uncaughtException", killChildProcesses);
-  process.on("SIGINT", killChildProcesses);
-  process.on("SIGTERM", killChildProcesses);
-
-  return {
-    add: (childProcess: ChildProcess) => childProcesses.add(childProcess),
-    delete: (childProcess: ChildProcess) => childProcesses.delete(childProcess),
-    has: (childProcess: ChildProcess) => childProcesses.has(childProcess),
-  };
-};
-
 interface SpawnOptions {
   ignoredErrors?: number[];
 }
 
 const createSpawn = () => {
-  const cleanupProcess = createCleanupProcess();
+  const abortController = new AbortController();
+  process.on("uncaughtException", () => abortController.abort());
+  process.on("SIGINT", () => abortController.abort());
+  process.on("SIGTERM", () => abortController.abort());
+
   return (
       cmd: string,
       args?: string,
@@ -80,9 +66,9 @@ const createSpawn = () => {
           [],
           {
             shell: true,
+            signal: abortController.signal,
           }
         );
-        cleanupProcess.add(command);
 
         command.stdout.on("data", (data: Buffer) => {
           console.log(cmd);
@@ -96,24 +82,18 @@ const createSpawn = () => {
 
         const ignoredErrors: Array<number | null> =
           options?.ignoredErrors || [];
-        command.on("close", (code = 0) => {
-          if (cleanupProcess.has(command)) {
-            cleanupProcess.delete(command);
+        command.on("close", (code, signal) => {
+          if (code === 0 || ignoredErrors.includes(code)) {
+            resolve(either.right(undefined));
+            return;
           }
 
-          if (code !== 0 && !ignoredErrors.includes(code)) {
-            console.error(
-              `${cmd} process exited with code ${code ?? "undefined"}`
-            );
-            resolve(
-              either.left(
-                new Error(
-                  `${cmd} process exited with code ${code ?? "undefined"}`
-                )
-              )
-            );
-          }
-          resolve(either.right(undefined));
+          const error = new Error(
+            `${cmd} process exited with ${JSON.stringify({ code, signal })}`
+          );
+
+          console.error(error.message);
+          resolve(either.left(error));
         });
       });
 };
@@ -152,7 +132,7 @@ function installHomebrew({ configPath, spawn }: Dependencies) {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
-  const installBrew = commandExists("brew")
+  const installBrew = !commandExists("brew")
     ? pipe(
         TEfetchText(brewScriptUrl),
         taskEither.chain((brewScript) => spawn("sudo bash", `${brewScript}`))
@@ -335,9 +315,14 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
  * MAIN
  **/
 
-const logError = (name: string) => (error: Error) => {
-  console.error(`${name} installation failed: ${error.toString()}`);
-};
+const logError = (name: string, error: Either<Error, void>) =>
+  pipe(
+    error,
+    either.orElse((e) => {
+      console.error(`${name} installation failed: ${e.toString()}`);
+      return either.left(e);
+    })
+  );
 
 const runTasks = async (dependencies: Dependencies) => {
   const tasks = apply.sequenceS(task.ApplicativePar)({
@@ -347,10 +332,15 @@ const runTasks = async (dependencies: Dependencies) => {
     cloned: clonePackages(dependencies),
   });
 
-  pipe(
+  return pipe(
     await tasks(),
-    record.toEntries,
-    array.map(([name]) => either.getOrElse(logError(name)))
+    record.mapWithIndex(logError),
+    record.collect(string.Ord)((k, v) => v),
+    either.sequenceArray,
+    either.getOrElseW((error) => {
+      console.error(`${error.message}`);
+      process.exit(1);
+    })
   );
 };
 
