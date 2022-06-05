@@ -61,7 +61,7 @@ const createSpawn = () => {
     ): taskEither.TaskEither<Error, void> =>
     () =>
       new Promise((resolve) => {
-        const command = child_process.spawn(
+        const childProc = child_process.spawn(
           cmd + (args ? ` ${args}` : ""),
           [],
           {
@@ -70,19 +70,19 @@ const createSpawn = () => {
           }
         );
 
-        command.stdout.on("data", (data: Buffer) => {
+        childProc.stdout.on("data", (data: Buffer) => {
           console.log(cmd);
           console.log(data.toString());
         });
 
-        command.stderr.on("data", (data: Buffer) => {
+        childProc.stderr.on("data", (data: Buffer) => {
           console.error(cmd);
           console.error(data.toString());
         });
 
         const ignoredErrors: Array<number | null> =
           options?.ignoredErrors || [];
-        command.on("close", (code, signal) => {
+        childProc.on("close", (code, signal) => {
           if (code === 0 || ignoredErrors.includes(code)) {
             resolve(either.right(undefined));
             return;
@@ -301,12 +301,11 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
 
   const installPlugPlugins = spawn("vim", "+'PlugInstall --sync' +qa");
 
-  if (!isAccessible(filePath) || forceReinstall) {
-    return taskEither.right<Error, void>(undefined);
-  }
   return pipe(
-    [downloadPlug, installPlugPlugins],
-    taskEither.sequenceArray,
+    !isAccessible(filePath) || forceReinstall
+      ? [downloadPlug, installPlugPlugins]
+      : [],
+    taskEither.sequenceSeqArray,
     taskEither.map(constVoid)
   );
 }
