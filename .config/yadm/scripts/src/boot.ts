@@ -57,7 +57,7 @@ const createSpawn = () => {
   return (
       cmd: string,
       args?: string,
-      options?: SpawnOptions
+      options?: SpawnOptions,
     ): taskEither.TaskEither<Error, void> =>
     () =>
       new Promise((resolve) => {
@@ -67,7 +67,7 @@ const createSpawn = () => {
           {
             shell: true,
             signal: abortController.signal,
-          }
+          },
         );
 
         childProc.stdout.on("data", (data: Buffer) => {
@@ -89,7 +89,7 @@ const createSpawn = () => {
           }
 
           const error = new Error(
-            `${cmd} process exited with ${JSON.stringify({ code, signal })}`
+            `${cmd} process exited with ${JSON.stringify({ code, signal })}`,
           );
 
           console.error(error.message);
@@ -101,21 +101,21 @@ const createSpawn = () => {
 const commandExists = (command: string): boolean =>
   pipe(
     option.tryCatch(() => execSync(`command -v ${command}`)),
-    option.isSome
+    option.isSome,
   );
 
 const isAccessible = (...args: Parameters<typeof accessSync>): boolean =>
   pipe(
     option.tryCatch(() => accessSync(...args)),
-    option.isSome
+    option.isSome,
   );
 
 const filterNonExisting = <T extends { fullPath: string }>(o: T[]) =>
   pipe(
     o,
     array.filterMap((a) =>
-      isAccessible(a.fullPath) ? option.none : option.some(a)
-    )
+      isAccessible(a.fullPath) ? option.none : option.some(a),
+    ),
   );
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -135,7 +135,7 @@ function installHomebrew({ configPath, spawn }: Dependencies) {
   const installBrew = !commandExists("brew")
     ? pipe(
         TEfetchText(brewScriptUrl),
-        taskEither.chain((brewScript) => spawn("sudo bash", `${brewScript}`))
+        taskEither.chain((brewScript) => spawn("sudo bash", `${brewScript}`)),
       )
     : taskEither.of(constVoid());
 
@@ -144,18 +144,21 @@ function installHomebrew({ configPath, spawn }: Dependencies) {
     taskEither.apFirst(
       spawn(
         "brew install",
-        "bash coreutils findutils gnu-sed tmux yadm zsh tmux"
-      )
+        "bash coreutils findutils gnu-sed tmux yadm zsh tmux",
+      ),
     ),
     taskEither.apFirst(
-      spawn("brew bundle", `--verbose --file "${configPath}/packages/Brewfile"`)
-    )
+      spawn(
+        "brew bundle",
+        `--verbose --file "${configPath}/packages/Brewfile"`,
+      ),
+    ),
   );
 
   return pipe(
     [installBrew, darwinBrew],
     taskEither.sequenceArray,
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 }
 
@@ -179,8 +182,8 @@ function installScripts({ binHomePath, forceReinstall }: Dependencies) {
       taskEither.of,
       taskEither.apS("scriptFile", TEfetchText(url)),
       taskEither.chain(({ scriptFile }) =>
-        fromThunk(() => writeFile(fullPath, scriptFile, { mode: 0o755 }))
-      )
+        fromThunk(() => writeFile(fullPath, scriptFile, { mode: 0o755 })),
+      ),
     );
 
   const tasks = pipe(
@@ -191,7 +194,7 @@ function installScripts({ binHomePath, forceReinstall }: Dependencies) {
     })),
     forceReinstall ? identity : filterNonExisting,
     taskEither.traverseArray(installScript),
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 
   return tasks;
@@ -229,7 +232,7 @@ function clonePackages({ homePath, forceReinstall, spawn }: Dependencies) {
         spawn(`git clone`, `${args.join(" ")} ${fullPath}`),
       ],
       taskEither.sequenceSeqArray,
-      taskEither.map(constVoid)
+      taskEither.map(constVoid),
     );
 
   const cloneAll = pipe(
@@ -240,24 +243,24 @@ function clonePackages({ homePath, forceReinstall, spawn }: Dependencies) {
     })),
     forceReinstall ? identity : filterNonExisting,
     taskEither.traverseArray(clonePackage),
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 
   const installFzf = spawn(
     `${homePath}/.fzf/install`,
-    "--key-bindings --completion --no-update-rc"
+    "--key-bindings --completion --no-update-rc",
   );
 
   const afterClone = pipe(
     [installFzf, configureAsdf({ homePath, spawn })],
     taskEither.sequenceArray,
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 
   return pipe(
     [cloneAll, afterClone],
     taskEither.sequenceSeqArray,
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 }
 
@@ -272,7 +275,7 @@ function configureAsdf({
   const addPlugins = pipe(
     ["nodejs", "python", "yarn", "ruby", "haskell"],
     taskEither.traverseSeqArray(addPlugin),
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 
   const asdfInstall = spawn(`${asdfBin} install`);
@@ -280,7 +283,7 @@ function configureAsdf({
   return pipe(
     [addPlugins, asdfInstall],
     taskEither.sequenceSeqArray,
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 }
 
@@ -293,10 +296,10 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
       fromThunk(() =>
         rm(filePath, { recursive: true, force: true })
           .then(() => mkdir(filePath, { recursive: true }))
-          .then(() => writeFile(filePath, file))
-      )
+          .then(() => writeFile(filePath, file)),
+      ),
     ),
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 
   const installPlugPlugins = spawn("vim", "+'PlugInstall --sync' +qa");
@@ -306,7 +309,7 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
       ? [downloadPlug, installPlugPlugins]
       : [],
     taskEither.sequenceSeqArray,
-    taskEither.map(constVoid)
+    taskEither.map(constVoid),
   );
 }
 
@@ -320,7 +323,7 @@ const logError = (name: string, error: Either<Error, void>) =>
     either.orElse((e) => {
       console.error(`${name} installation failed: ${e.toString()}`);
       return either.left(e);
-    })
+    }),
   );
 
 const runTasks = async (dependencies: Dependencies) => {
@@ -336,7 +339,7 @@ const runTasks = async (dependencies: Dependencies) => {
     record.mapWithIndex(logError),
     record.collect(string.Ord)((k, v) => v),
     either.sequenceArray,
-    either.getOrElseW(() => process.exit(1))
+    either.getOrElseW(() => process.exit(1)),
   );
 };
 
