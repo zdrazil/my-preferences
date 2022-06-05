@@ -337,10 +337,7 @@ const runTasks = async (dependencies: Dependencies) => {
     record.mapWithIndex(logError),
     record.collect(string.Ord)((k, v) => v),
     either.sequenceArray,
-    either.getOrElseW((error) => {
-      console.error(`${error.message}`);
-      process.exit(1);
-    })
+    either.getOrElseW(() => process.exit(1))
   );
 };
 
