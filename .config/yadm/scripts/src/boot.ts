@@ -1,6 +1,14 @@
 #!/usr/bin/env ts-node
-import { apply, array, either, option, record, task, taskEither } from "fp-ts";
-import { Left } from "fp-ts/Either";
+import {
+  apply,
+  array,
+  either,
+  io,
+  option,
+  record,
+  task,
+  taskEither,
+} from "fp-ts";
 import { constVoid, identity, Lazy, pipe } from "fp-ts/function";
 import { TaskEither } from "fp-ts/TaskEither";
 import child_process, { ChildProcess } from "node:child_process";
@@ -20,7 +28,7 @@ import { hideBin } from "yargs/helpers";
 
 const execSync = promisify(child_process.execSync);
 
-interface Options {
+interface Dependencies {
   binHomePath: string;
   configPath: string;
   forceReinstall: boolean;
@@ -140,7 +148,7 @@ const tapLog = <T>(value: T): T => {
  * PACKAGERS
  */
 
-function installHomebrew({ configPath, spawn }: Options) {
+function installHomebrew({ configPath, spawn }: Dependencies) {
   const brewScriptUrl =
     "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh";
 
@@ -176,7 +184,7 @@ interface Script {
   fullPath: string;
 }
 
-function installScripts({ binHomePath, forceReinstall }: Options) {
+function installScripts({ binHomePath, forceReinstall }: Dependencies) {
   const scripts = [
     { name: "chtsh", url: "https://cht.sh/:cht.sh" },
     {
@@ -209,7 +217,7 @@ function installScripts({ binHomePath, forceReinstall }: Options) {
   return tasks;
 }
 
-function clonePackages({ homePath, forceReinstall, spawn }: Options) {
+function clonePackages({ homePath, forceReinstall, spawn }: Dependencies) {
   const packages = [
     {
       path: "/.fzf",
@@ -276,7 +284,7 @@ function clonePackages({ homePath, forceReinstall, spawn }: Options) {
 function configureAsdf({
   homePath,
   spawn,
-}: Pick<Options, "spawn" | "homePath">) {
+}: Pick<Dependencies, "spawn" | "homePath">) {
   const asdfBin = `${homePath}/.asdf/bin/asdf`;
   const addPlugin = (name: string) =>
     spawn(`${asdfBin} plugin-add`, name, { ignoredErrors: [2] });
@@ -296,7 +304,7 @@ function configureAsdf({
   );
 }
 
-function installVimPlug({ forceReinstall, homePath, spawn }: Options) {
+function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
   const filePath = `${homePath}/.vim/autoload/plug.vim`;
   const downloadPlug = pipe(
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
@@ -331,12 +339,12 @@ const logError = (name: string) => (error: Error) => {
   console.error(`${name} installation failed: ${error.toString()}`);
 };
 
-const runTasks = async (options: Options) => {
+const runTasks = async (dependencies: Dependencies) => {
   const tasks = apply.sequenceS(task.ApplicativePar)({
-    homeBrew: installHomebrew(options),
-    scripts: installScripts(options),
-    vimPlug: installVimPlug(options),
-    cloned: clonePackages(options),
+    homeBrew: installHomebrew(dependencies),
+    scripts: installScripts(dependencies),
+    vimPlug: installVimPlug(dependencies),
+    cloned: clonePackages(dependencies),
   });
 
   pipe(
