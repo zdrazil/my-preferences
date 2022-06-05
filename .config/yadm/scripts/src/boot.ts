@@ -1,13 +1,14 @@
 #!/usr/bin/env ts-node
-import child_process, { ChildProcess } from "child_process";
 import { apply, array, either, option, record, task, taskEither } from "fp-ts";
+import { Left } from "fp-ts/Either";
 import { constVoid, identity, Lazy, pipe } from "fp-ts/function";
-import { TaskEither } from "fp-ts/lib/TaskEither";
-import { accessSync } from "fs";
-import { mkdir, rm, writeFile } from "fs/promises";
+import { TaskEither } from "fp-ts/TaskEither";
+import child_process, { ChildProcess } from "node:child_process";
+import { accessSync } from "node:fs";
+import { mkdir, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import { promisify } from "node:util";
 import fetch from "node-fetch";
-import os from "os";
-import { promisify } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -38,7 +39,7 @@ const createCleanupProcess = () => {
   const childProcesses: Set<ChildProcess> = new Set();
   const killChildProcesses = () =>
     childProcesses.forEach((worker) => {
-      console.log(`killing ${worker.pid ?? worker.spawnfile}`);
+      console.error(`killing ${worker.pid ?? worker.spawnfile}`);
       worker.kill();
     });
 
@@ -59,47 +60,54 @@ interface SpawnOptions {
 
 const createSpawn = () => {
   const cleanupProcess = createCleanupProcess();
-  return (cmd: string, args?: string, options?: SpawnOptions) =>
-    pipe(
-      () =>
-        new Promise<void>((resolve, reject) => {
-          const command = child_process.spawn(
-            cmd + (args ? ` ${args}` : ""),
-            [],
-            {
-              shell: true,
-            }
-          );
-          cleanupProcess.add(command);
+  return (
+      cmd: string,
+      args?: string,
+      options?: SpawnOptions
+    ): taskEither.TaskEither<Error, void> =>
+    () =>
+      new Promise((resolve) => {
+        const command = child_process.spawn(
+          cmd + (args ? ` ${args}` : ""),
+          [],
+          {
+            shell: true,
+          }
+        );
+        cleanupProcess.add(command);
 
-          command.stdout.on("data", (data: Buffer) => {
-            console.log(cmd);
-            console.log(data.toString());
-          });
+        command.stdout.on("data", (data: Buffer) => {
+          console.log(cmd);
+          console.log(data.toString());
+        });
 
-          command.stderr.on("data", (data: Buffer) => {
-            console.error(cmd);
-            console.error(data.toString());
-          });
+        command.stderr.on("data", (data: Buffer) => {
+          console.error(cmd);
+          console.error(data.toString());
+        });
 
-          const ignoredErrors: Array<number | null> =
-            options?.ignoredErrors || [];
-          command.on("close", (code = 0) => {
-            if (cleanupProcess.has(command)) {
-              cleanupProcess.delete(command);
-            }
+        const ignoredErrors: Array<number | null> =
+          options?.ignoredErrors || [];
+        command.on("close", (code = 0) => {
+          if (cleanupProcess.has(command)) {
+            cleanupProcess.delete(command);
+          }
 
-            if (code !== 0 && !ignoredErrors.includes(code)) {
-              console.error(
-                `${cmd} process exited with code ${code ?? "undefined"}`
-              );
-              reject(`${cmd} process exited with code ${code ?? "undefined"}`);
-            }
-            resolve();
-          });
-        }),
-      fromThunk
-    );
+          if (code !== 0 && !ignoredErrors.includes(code)) {
+            console.error(
+              `${cmd} process exited with code ${code ?? "undefined"}`
+            );
+            resolve(
+              either.left(
+                new Error(
+                  `${cmd} process exited with code ${code ?? "undefined"}`
+                )
+              )
+            );
+          }
+          resolve(either.right(undefined));
+        });
+      });
 };
 
 const commandExists = (command: string): boolean =>
