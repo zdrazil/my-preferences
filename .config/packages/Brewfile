@@ -9,6 +9,8 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 # brew "mackup"
+brew "asdf"
+brew "fzf"
 brew "bash-completion"
 brew "bash"
 brew "coreutils"

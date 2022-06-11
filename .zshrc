@@ -3,6 +3,8 @@
 autoload -U select-word-style
 select-word-style bash
 
+HOMEBREW_PREFIX=$(brew --prefix)
+
 if [ -f "$HOME/.config/bash-like/commonrc" ]; then
     . "$HOME/.config/bash-like/commonrc"
 fi
@@ -12,10 +14,11 @@ if [ -f "$MY_CONFIG_HOME/bash-like/append_paths" ]; then
 fi
 
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH="$HOMEBREW_PREFIX"/share/zsh-completions:$FPATH
 fi
 
-. $HOME/.asdf/asdf.sh
+. "$HOMEBREW_PREFIX"/opt/asdf/libexec/asdf.sh
+# . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # ---------------------------------------------------
@@ -109,3 +112,5 @@ if ! zgen saved; then
     # generate the init script from plugins above
     zgen save
 fi
+
+

@@ -80,6 +80,8 @@ install_homebrew() {
 }
 
 install_scripts() {
+	homebrew_prefix=$(brew --prefix)
+
 	echo "Installing scripts..."
 
 	{
@@ -105,9 +107,7 @@ install_scripts() {
 	{
 		if ! command -v fzf >/dev/null 2>&1; then
 			echo "Installing fzf..."
-			rm -rf "${HOME}/.fzf"
-			git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
-			"${HOME}/.fzf/install" --key-bindings --completion --no-update-rc
+			"${homebrew_prefix}/opt/fzf/install" --key-bindings --completion --no-update-rc
 		else
 			echo "fzf already installed. Skipping installation..."
 		fi
@@ -139,9 +139,6 @@ install_scripts() {
 		if [[ ! -d "${HOME}/.asdf" ]] || [[ ${should_reinstall} == true ]]; then
 			echo "Installing asdf..."
 			rm -rf "${HOME}/.asdf"
-			git clone https://github.com/asdf-vm/asdf.git "${HOME}/.asdf" --branch v0.10.0
-			# shellcheck disable=SC1091
-			source "${HOME}/.asdf/asdf.sh"
 			{
 				asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 				asdf plugin-add python
@@ -171,8 +168,8 @@ install_vim_plug() {
 	fi
 }
 
-install_homebrew &
-install_scripts &
+install_homebrew
+install_scripts
 install_vim_plug &
 
 wait
