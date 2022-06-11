@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "dependencies": {
     "fp-ts": "2.12.1",
-    "node-fetch": "2.6.6",
+    "node-fetch": "2.6.7",
     "yargs": "17.5.1"
   },
   "devDependencies": {
