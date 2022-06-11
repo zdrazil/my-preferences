@@ -25,7 +25,7 @@ import { hideBin } from "yargs/helpers";
 
 /**
  * HELPERS, TYPES AND CONSTANTS
- **/
+ */
 
 const execSync = promisify(child_process.execSync);
 
@@ -80,8 +80,7 @@ const createSpawn = () => {
           console.error(data.toString());
         });
 
-        const ignoredErrors: Array<number | null> =
-          options?.ignoredErrors || [];
+        const ignoredErrors: (number | null)[] = options?.ignoredErrors ?? [];
         childProc.on("close", (code, signal) => {
           if (code === 0 || ignoredErrors.includes(code)) {
             resolve(either.right(undefined));
@@ -163,8 +162,8 @@ function installHomebrew({ configPath, spawn }: Dependencies) {
 }
 
 interface Script {
-  url: string;
   fullPath: string;
+  url: string;
 }
 
 function installScripts({ binHomePath, forceReinstall }: Dependencies) {
@@ -178,7 +177,7 @@ function installScripts({ binHomePath, forceReinstall }: Dependencies) {
 
   const installScript = ({ url, fullPath }: Script) =>
     pipe(
-      { url, fullPath },
+      { fullPath, url },
       taskEither.of,
       taskEither.apS("scriptFile", TEfetchText(url)),
       taskEither.chain(({ scriptFile }) =>
@@ -203,32 +202,32 @@ function installScripts({ binHomePath, forceReinstall }: Dependencies) {
 function clonePackages({ homePath, forceReinstall, spawn }: Dependencies) {
   const packages = [
     {
-      path: "/.fzf",
       args: ["--depth", "1", "https://github.com/junegunn/fzf.git"],
+      path: "/.fzf",
     },
     {
-      path: "/.tmux/plugins/tpm",
       args: ["https://github.com/tmux-plugins/tpm"],
+      path: "/.tmux/plugins/tpm",
     },
     {
-      path: "/.zgen",
       args: ["https://github.com/tarjoilija/zgen.git"],
+      path: "/.zgen",
     },
     {
-      path: "/.asdf",
       args: ["--branch", "v0.10.0", "https://github.com/asdf-vm/asdf.git"],
+      path: "/.asdf",
     },
   ];
 
   interface Package {
-    fullPath: string;
     args: string[];
+    fullPath: string;
   }
 
   const clonePackage = ({ fullPath, args }: Package) =>
     pipe(
       [
-        fromThunk(() => rm(fullPath, { recursive: true, force: true })),
+        fromThunk(() => rm(fullPath, { force: true, recursive: true })),
         spawn(`git clone`, `${args.join(" ")} ${fullPath}`),
       ],
       taskEither.sequenceSeqArray,
@@ -263,7 +262,6 @@ function clonePackages({ homePath, forceReinstall, spawn }: Dependencies) {
     taskEither.map(constVoid),
   );
 }
-
 function configureAsdf({
   homePath,
   spawn,
@@ -294,7 +292,7 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
     TEfetchText,
     taskEither.chainFirst((file) =>
       fromThunk(() =>
-        rm(filePath, { recursive: true, force: true })
+        rm(filePath, { force: true, recursive: true })
           .then(() => mkdir(filePath, { recursive: true }))
           .then(() => writeFile(filePath, file)),
       ),
@@ -315,7 +313,7 @@ function installVimPlug({ forceReinstall, homePath, spawn }: Dependencies) {
 
 /**
  * MAIN
- **/
+ */
 
 const logError = (name: string, error: Either<Error, void>) =>
   pipe(
@@ -328,10 +326,10 @@ const logError = (name: string, error: Either<Error, void>) =>
 
 const runTasks = async (dependencies: Dependencies) => {
   const tasks = apply.sequenceS(task.ApplicativePar)({
+    cloned: clonePackages(dependencies),
     homeBrew: installHomebrew(dependencies),
     scripts: installScripts(dependencies),
     vimPlug: installVimPlug(dependencies),
-    cloned: clonePackages(dependencies),
   });
 
   return pipe(
@@ -346,10 +344,10 @@ const runTasks = async (dependencies: Dependencies) => {
 async function main() {
   const args = await yargs(hideBin(process.argv)).options({
     reinstall: {
-      type: "boolean",
-      default: false,
       alias: "r",
+      default: false,
       describe: "Reinstall all packages",
+      type: "boolean",
     },
   }).argv;
 
@@ -360,10 +358,10 @@ async function main() {
   const configPath = `${homePath}/.config/`;
 
   await runTasks({
-    forceReinstall,
-    configPath,
-    homePath,
     binHomePath,
+    configPath,
+    forceReinstall,
+    homePath,
     spawn,
   });
 }
