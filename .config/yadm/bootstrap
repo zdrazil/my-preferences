@@ -4,38 +4,10 @@
 set -eu
 trap "kill 0" EXIT
 
-command_help() {
-	USAGE="
-USAGE:
-bootstrap [OPTIONS]
-
-OPTIONS:
--h	Show this message.
--r	Reinstall all packages."
-	echo "${USAGE}"
-}
-
 system_type=$(uname -s)
 my_config_home="${HOME}/.config"
 my_bin_home="${HOME}/.local/bin"
 should_reinstall=false
-
-while getopts ":hr" option; do
-	case ${option} in
-	h)
-		command_help
-		exit
-		;;
-	r)
-		should_reinstall=true
-		;;
-	*)
-		echo "Invalid option: -${OPTARG}" >&2
-		command_help
-		exit 1
-		;;
-	esac
-done
 
 cd "${HOME}" || exit
 
@@ -53,7 +25,7 @@ install_homebrew() {
 
 	if [[ "${system_type}" = "Darwin" ]]; then
 		echo "Installing core homebrew packages..."
-		brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux
+		brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux asdf fzf
 		# shellcheck disable=SC1091
 		source "${HOME}/.config/yadm/macos-configuration"
 
@@ -77,6 +49,11 @@ install_homebrew() {
 			sudo apt-get install $(cat "${my_config_home}/packages/ubuntu-gui-packages" | sed '/^#/d')
 		fi
 	fi
+}
+
+install_homebrew_packages() {
+	echo "Installing rest of the homebrew packages..."
+	brew bundle --verbose --file "${my_config_home}/packages/Brewfile"
 }
 
 install_scripts() {
@@ -105,33 +82,8 @@ install_scripts() {
 	} &
 
 	{
-		if ! command -v fzf >/dev/null 2>&1; then
-			echo "Installing fzf..."
-			"${homebrew_prefix}/opt/fzf/install" --key-bindings --completion --no-update-rc
-		else
-			echo "fzf already installed. Skipping installation..."
-		fi
-	} &
-
-	{
-		if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]] || [[ ${should_reinstall} == true ]]; then
-			echo "Installing tpm..."
-			rm -rf "${HOME}/.tmux/plugins/tpm"
-			git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-			"${HOME}/.tmux/plugins/tpm/scripts/install_plugins.sh"
-		else
-			echo "tpm already installed. Skipping installation..."
-		fi
-	} &
-
-	{
-		if [[ ! -d "${HOME}/.zgen" ]] || [[ ${should_reinstall} == true ]]; then
-			echo "Installing zgen..."
-			rm -rf "${HOME}/.zgen"
-			git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-		else
-			echo "zgen already installed. Skipping installation..."
-		fi
+		echo "Installing fzf..."
+		"${homebrew_prefix}/opt/fzf/install" --key-bindings --completion --no-update-rc
 	} &
 
 	install_asdf() {
@@ -157,20 +109,9 @@ install_scripts() {
 	wait
 }
 
-install_vim_plug() {
-	if [[ ! -f "${HOME}/.vim/autoload/plug.vim" ]] || [[ ${should_reinstall} == true ]]; then
-		echo "Installing vim-plug..."
-		curl -fLo "${HOME}/.vim/autoload/plug.vim" --create-dirs \
-			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
-	else
-		echo "vim-plug already installed. Skipping installation..."
-	fi
-}
-
 install_homebrew
-install_scripts
-install_vim_plug &
+install_homebrew_packages &
+install_scripts &
 
 wait
 

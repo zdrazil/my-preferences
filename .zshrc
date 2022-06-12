@@ -3,6 +3,9 @@
 autoload -U select-word-style
 select-word-style bash
 
+autoload -Uz compinit
+compinit
+
 HOMEBREW_PREFIX=$(brew --prefix)
 
 if [ -f "$HOME/.config/bash-like/commonrc" ]; then
@@ -96,21 +99,20 @@ eval "$(direnv hook zsh)"
 
 # ------------------ PLUGINS ----------------------
 
-source "${HOME}/.zgen/zgen.zsh"
+ZPLUGINDIR="$HOME/.config/zsh/plugins"
 
-# Run `zgen reset` after changing the plugins. You must run this every time you add or remove plugins to trigger the changes.
-# if the init script doesn't exist
-if ! zgen saved; then
-
-    zgen load agkozak/zsh-z
-    zgen load zsh-users/zsh-completions src
-    zgen load Aloxaf/fzf-tab
-    zgen load zsh-users/zsh-autosuggestions
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-history-substring-search
-
-    # generate the init script from plugins above
-    zgen save
+if [[ ! -d "$ZPLUGINDIR/zsh_unplugged" ]]; then
+  git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR/zsh_unplugged"
 fi
+source "$ZPLUGINDIR/zsh_unplugged/zsh_unplugged.plugin.zsh"
 
+repos=(    
+    agkozak/zsh-z
+    Aloxaf/fzf-tab
+    zsh-users/zsh-completions
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+)
 
+plugin-load $repos
