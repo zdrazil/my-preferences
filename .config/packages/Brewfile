@@ -8,6 +8,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "1password/tap"
+tap "zdrazil/homebrew-tap"
 
 # brew "mackup"
 brew "asdf"
@@ -25,6 +26,9 @@ brew "yadm"
 brew "zsh-completions"
 brew "zsh"
 mas "OneDrive", id: 823766827
+
+brew "chtsh"
+brew "theme-sh"
 
 brew "bat"
 brew "curl"

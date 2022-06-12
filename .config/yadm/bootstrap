@@ -65,26 +65,6 @@ install_scripts() {
 	echo "Installing scripts..."
 
 	{
-		if [[ ! -f "${my_bin_home}/chtsh" ]] || [[ ${should_reinstall} == true ]]; then
-			echo "Installing cht.sh..."
-			curl "https://cht.sh/:cht.sh" >"${my_bin_home}/chtsh"
-			chmod +x "${my_bin_home}/chtsh"
-		else
-			echo "cht.sh already installed. Skipping installation..."
-		fi
-	} &
-
-	{
-		if [[ -f "${my_bin_home}/theme-sh" ]] || [[ ${should_reinstall} == true ]]; then
-			echo "Installing theme-sh..."
-			curl -Lo "${my_bin_home}/theme-sh" 'https://raw.githubusercontent.com/lemnos/theme.sh/master/bin/theme.sh'
-			chmod +x "${my_bin_home}/theme-sh"
-		else
-			echo "theme-sh already installed. Skipping installation..."
-		fi
-	} &
-
-	{
 		echo "Installing fzf..."
 		"${homebrew_prefix}/opt/fzf/install" --key-bindings --completion --no-update-rc
 	} &
