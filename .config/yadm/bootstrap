@@ -31,7 +31,12 @@ install_homebrew() {
 
 		echo "Installing rest of the homebrew packages..."
 		echo "Updating homebrew bundle"
-		brew bundle --verbose --file "${my_config_home}/packages/Brewfile"
+		mkdir -p tmp
+		split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
+		for file in "${HOME}"/tmp/Brewfile*; do
+			brew bundle --file "${file}"
+		done
+		rm -r "${HOME}/tmp"
 	fi
 	if [[ "${system_type}" = "Linux" ]]; then
 		echo "Installing basic apt packages..."

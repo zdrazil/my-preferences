@@ -71,8 +71,6 @@ brew "python"
 brew "php"
 brew "yarn"
 
-# Alfred python support
-
 # rga needs these
 brew "ffmpeg"
 brew "pandoc"
@@ -124,6 +122,7 @@ cask "spotify"
 cask "steam"
 cask "sublime-merge"
 cask "transmission"
+cask "toinane-colorpicker"
 cask "utm"
 cask "visual-studio-code"
 cask "vlc"
@@ -162,4 +161,3 @@ mas "SponsorBlock for YouTube", id: 1573461917
 mas "Steam Link", id: 1246969117
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
-cask "toinane-colorpicker"
