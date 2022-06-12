@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-browsh "https://www.google.ch/search?q=$1"

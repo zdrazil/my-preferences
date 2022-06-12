@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-ENCODED=$(printf "%s " "$@")
-open dash://"$(urlencode "$ENCODED")"

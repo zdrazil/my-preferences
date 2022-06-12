@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-vim -c ':copen' -q <(rg --vimgrep -S "$@" "$HOME/OneDrive/wiki")
