@@ -29,15 +29,8 @@ install_homebrew() {
 		# shellcheck disable=SC1091
 		source "${HOME}/.config/yadm/macos-configuration"
 
-		echo "Installing rest of the homebrew packages..."
-		echo "Updating homebrew bundle"
-		mkdir -p tmp
-		split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
-		for file in "${HOME}"/tmp/Brewfile*; do
-			brew bundle --file "${file}"
-		done
-		rm -r "${HOME}/tmp"
 	fi
+
 	if [[ "${system_type}" = "Linux" ]]; then
 		echo "Installing basic apt packages..."
 		sudo apt update
@@ -58,7 +51,12 @@ install_homebrew() {
 
 install_homebrew_packages() {
 	echo "Installing rest of the homebrew packages..."
-	brew bundle --verbose --file "${my_config_home}/packages/Brewfile"
+	mkdir -p tmp
+	split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
+	for file in "${HOME}"/tmp/Brewfile*; do
+		brew bundle --verbose --file "${file}"
+	done
+	rm -r "${HOME}/tmp"
 }
 
 install_scripts() {
