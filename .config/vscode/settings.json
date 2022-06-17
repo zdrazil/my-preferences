@@ -1,0 +1,234 @@
+{
+    "workbench.editor.navigationScope": "editorGroup",
+    "csharp.suppressHiddenDiagnostics": true,
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript][typescript][javascriptreact][typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "haskell.formattingProvider": "ormolu",
+    "[json][jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[shellscript]": {
+      "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "command-runner.commands": {
+      "cd fwd": "cd '${fileDirname}'",
+      "nvim-config": "code ~/.config/nvim/init-vsc.vim",
+      "rgf": "rgf; exit",
+      "tig blame": "tig blame '${file}'"
+    },
+    "htmlhint.enable": false,
+    "markdownlint.config": { "default": false },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.prettier": true,
+      "source.fixAll.eslint": true
+    },
+    "markdown-preview-enhanced.usePandocParser": true,
+    "editor.cursorBlinking": "solid",
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.wordWrap": "on",
+    "files.autoSave": "onWindowChange",
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "prettier.requireConfig": true,
+    "settingsSync.ignoredSettings": ["workbench.colorCustomizations"],
+    "settingsSync.keybindingsPerPlatform": false,
+    "telemetry.telemetryLevel": "off",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.macOptionIsMeta": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.disableExtension": true,
+    // vim
+    "vim.insertModeKeyBindings": [
+      {
+        "after": ["<esc>"],
+        "before": ["j", "j"]
+      }
+    ],
+    "vim.smartcase": true,
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "vim.visualstar": true,
+    // light vim
+    "vim.startInInsertMode": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": false,
+    "vim.mouseSelectionGoesIntoVisualMode": false,
+    // full on vim
+    // "vim.visualModeKeyBindingsNonRecursive": [
+    //   {
+    //     "before": ["<space>"],
+    //     "commands": ["vspacecode.space"]
+    //   },
+    //   {
+    //     "before": [","],
+    //     "commands": [
+    //       "vspacecode.space",
+    //       {
+    //         "args": "m",
+    //         "command": "whichkey.triggerKey"
+    //       }
+    //     ]
+    //   }
+    // ],
+    // "vim.normalModeKeyBindingsNonRecursive": [
+    //   {
+    //     "before": ["-"],
+    //     "commands": ["workbench.files.action.focusFilesExplorer"]
+    //   },
+    //   {
+    //     "before": ["[", "b"],
+    //     "commands": ["workbench.action.previousEditor"]
+    //   },
+    //   {
+    //     "before": ["]", "b"],
+    //     "commands": ["workbench.action.nextEditor"]
+    //   },
+    //   {
+    //     "before": ["[", "f"],
+    //     "commands": [
+    //       "workbench.view.explorer",
+    //       "list.focusUp",
+    //       "explorer.openAndPassFocus"
+    //     ]
+    //   },
+    //   {
+    //     "before": ["]", "f"],
+    //     "commands": [
+    //       "workbench.view.explorer",
+    //       "list.focusDown",
+    //       "explorer.openAndPassFocus"
+    //     ]
+    //   },
+    //   {
+    //     "before": ["[", "r"],
+    //     "commands": ["references-view.prev"],
+    //     "when": "reference-list.hasResult"
+    //   },
+    //   {
+    //     "before": ["]", "r"],
+    //     "commands": ["references-view.next"],
+    //     "when": "reference-list.hasResult"
+    //   },
+    //   {
+    //     "before": ["[", "g"],
+    //     "commands": ["workbench.action.editor.previousChange"],
+    //     "when": "editorTextFocus"
+    //   },
+    //   {
+    //     "before": ["]", "g"],
+    //     "commands": ["workbench.action.editor.nextChange"],
+    //     "when": "editorTextFocus"
+    //   },
+    //   {
+    //     "before": ["[", "c"],
+    //     "commands": ["editor.action.marker.prev"],
+    //     "when": "editortextfocus && !isinembeddededitor"
+    //   },
+    //   {
+    //     "before": ["]", "c"],
+    //     "commands": ["editor.action.marker.next"],
+    //     "when": "editorTextFocus && !isInEmbeddedEditor"
+    //   },
+    //   {
+    //     "before": ["<leader>", "g", "t", "o"],
+    //     "commands": ["terminalHere.create"],
+    //     "when": "editorTextFocus && !isInEmbeddedEditor"
+    //   },
+    //   {
+    //     "before": ["<C-l>"],
+    //     "commands": [":nohl"]
+    //   },
+    //   {
+    //     "before": ["<space>"],
+    //     "commands": ["vspacecode.space"]
+    //   },
+    //   {
+    //     "before": [","],
+    //     "commands": [
+    //       "vspacecode.space",
+    //       {
+    //         "args": "m",
+    //         "command": "whichkey.triggerKey"
+    //       }
+    //     ]
+    //   }
+    // ],
+  
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.linux": "/home/linuxbrew/.linuxbrew/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init-vsc.vim",
+    "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init-vsc.vim",
+    "vspacecode.bindingOverrides": [
+      {
+        "keys": "x.s",
+        "name": "Shift...",
+        "type": "bindings",
+        "bindings": [
+          {
+            "command": "shiftArgumentRight",
+            "key": ">",
+            "name": "Argument right",
+            "type": "command"
+          },
+          {
+            "command": "shiftArgumentLeft",
+            "key": "<",
+            "name": "Shift argument left",
+            "type": "command"
+          }
+        ]
+      },
+      {
+        "keys": "s.f",
+        "name": "fuzzy ripgrep",
+        "type": "command",
+        "command": "command-runner.run",
+        "args": { "command": "rgf" }
+      }
+    ],
+    "workbench.colorCustomizations": {
+      "[Default Dark+]": { "editor.background": "#141A21" }
+    },
+    "workbench.editor.showTabs": false,
+    "workbench.list.automaticKeyboardNavigation": false,
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "workbench.preferredLightColorTheme": "Default Light+",
+    "zenMode.centerLayout": false,
+    "zenMode.fullScreen": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+    "zenMode.hideTabs": true,
+    "zenMode.restore": true,
+    "[markdown]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.wordWrap": "bounded"
+    },
+    "github.copilot.enable": {
+      "*": true,
+      "yaml": false,
+      "plaintext": true,
+      "markdown": false,
+      "jsonc": false,
+      "typescript": true
+    },
+    "workbench.settings.editor": "json",
+    "editor.inlineSuggest.enabled": true,
+    "editor.renderWhitespace": "none",
+    "FSharp.suggestGitignore": false,
+    "workbench.editor.revealIfOpen": true,
+    "window.autoDetectColorScheme": true,
+    "redhat.telemetry.enabled": false,
+    "liveshare.presence": true,
+    "editor.accessibilitySupport": "off",
+    "eslint.enable": true
+  }
