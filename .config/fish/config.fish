@@ -30,11 +30,12 @@ set fish_greeting
 # FZF
 set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_CTRL_T_OPTS '--preview "bat --style=numbers --color=always --line-range :500 {}" --bind "?:toggle-preview"'
 set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
+set -gx FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 set -gx HOMEBREW_NO_ANALYTICS 1
 set -gx BACKGROUND_THEME dark
-
 
 # #-------------------- THEMING ------------------------
 
