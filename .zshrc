@@ -6,7 +6,6 @@ select-word-style bash
 autoload -Uz compinit
 compinit
 
-HOMEBREW_PREFIX=$(brew --prefix)
 
 if [ -f "$HOME/.config/bash-like/commonrc" ]; then
     . "$HOME/.config/bash-like/commonrc"
@@ -15,6 +14,9 @@ fi
 if [ -f "$MY_CONFIG_HOME/bash-like/append_paths" ]; then
     . "$MY_CONFIG_HOME/bash-like/append_paths"
 fi
+
+HOMEBREW_PREFIX=$(brew --prefix)
+
 
 if type brew &>/dev/null; then
     FPATH="$HOMEBREW_PREFIX"/share/zsh-completions:$FPATH
@@ -108,9 +110,9 @@ source "$ZPLUGINDIR/zsh_unplugged/zsh_unplugged.plugin.zsh"
 
 repos=(    
     agkozak/zsh-z
-    Aloxaf/fzf-tab
     zsh-users/zsh-completions
     zsh-users/zsh-autosuggestions
+    Aloxaf/fzf-tab
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
 )
@@ -118,4 +120,3 @@ repos=(
 plugin-load $repos
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

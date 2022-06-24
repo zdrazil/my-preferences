@@ -1,75 +1,78 @@
-if test -d "$HOME/bin" 
-    set PATH $HOME/bin $PATH
-end
 
-if test -d "/usr/local/bin" 
-    set PATH /usr/local/bin $PATH
-end
+fish_add_path "$HOME/bin" \
+    /opt/homebrew/bin \
+    /opt/homebrew/sbin \
+    /usr/local/bin \
+    "/home/linuxbrew/.linuxbrew/bin" \
+    "$HOME/.local/bin" \
+    "$HOME/.emacs.d/bin" \
+    "$HOME/.local/homebrew/bin" \
+    "/Applications/MacVim.app/Contents/bin" \
+    "$HOME/.fzf/bin" \
+    "$HOME/.local/npm-tools/node_modules/.bin" \
+    /opt/local/bin \
+    /opt/local/sbin
 
-if test -d "/opt/local/bin" 
-    set PATH /opt/local/bin /opt/local/sbin $PATH
-end
-
-if test -d "$HOME/.local/bin" 
-    set PATH $HOME/.local/bin $PATH
-end
-
-if test -d "$HOME/.local/homebrew/bin" 
-    set PATH $HOME/.local/homebrew/bin $PATH
-end
-
-if test -d "$HOME/.fzf/bin" 
-    set PATH ~/.fzf/bin $PATH 
-end
-
-if test -d "$HOME/.local/npm-tools/node_modules/.bin"
-    set PATH "$HOME/.local/npm-tools/node_modules/.bin" $PATH
-end
-
-if test -d "/Applications/MacVim.app/Contents/bin"
-    set PATH "/Applications/MacVim.app/Contents/bin" $PATH
-end
-
-if test -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-end
-
-if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fenv source ~/.nix-profile/etc/profile.d/nix.sh
-end
-
-if test -e "$HOME/.shell-colors"
-     sh ~/.shell-colors
-end
+set homebrew_prefix (brew --prefix)
 
 switch (uname)
     case Darwin
-        export LC_ALL=en_US.UTF-8  
+        export LC_ALL=en_US.UTF-8
         export LANG=en_US.UTF-8
     case '*'
 end
 
 set -gx EDITOR vim
-
 set fish_greeting
 
-if status --is-interactive
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
-end
-
-#-------------------- ALIASES ------------------------
+# #-------------------- ALIASES ------------------------
 
 # FZF
 set -gx FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 
-set -gx HOMEBREW_NO_ANALYTICS "1"
+set -gx HOMEBREW_NO_ANALYTICS 1
+set -gx BACKGROUND_THEME dark
 
-# starship init fish | source
-source ~/.asdf/asdf.fish
+
+# #-------------------- THEMING ------------------------
+
+if test -e "$HOME/.config/fish/not-public.fish"
+    source "$HOME/.config/fish/not-public.fish"
+end
+
+# save computer specific themes to .not-public
+if test -z $MY_THEME
+    set -gx MY_THEME oceanic-next
+end
+
+if test -z $MY_LIGHT_THEME
+    set -gx MY_LIGHT_THEME cupertino
+end
+
+switch (uname)
+    case Darwin
+        set color_theme (defaults read -g AppleInterfaceStyle 2>/dev/null)
+        if [ "$color_theme" != Dark ]
+            set -gx BACKGROUND_THEME light
+        end
+    case '*'
+end
+
+if command -v theme-sh >/dev/null
+    if [ "$BACKGROUND_THEME" = light ]
+        theme-sh $MY_LIGHT_THEME
+    else
+        theme-sh $MY_THEME
+    end
+end
+
+set -gx BAT_THEME ansi
+
+# # starship init fish | source
+source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+
 direnv hook fish | source
-# asdf direnv hook fish | source
 
-
+test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
