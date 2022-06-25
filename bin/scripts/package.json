@@ -1,0 +1,56 @@
+{
+  "name": "epub-rss",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "engines": {
+    "node": ">=16.13.1"
+  },
+  "private": true,
+  "dependencies": {
+    "cheerio": "1.0.0-rc.11",
+    "fp-ts": "2.12.1",
+    "jsonfeed-to-rss": "3.0.5",
+    "yargs": "17.5.1"
+  },
+  "files": [],
+  "devDependencies": {
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "5.28.0",
+    "eslint": "8.18.0",
+    "eslint-plugin-node": "11.1.0",
+    "typescript": "4.7.4",
+    "yargs": "17.5.1"
+  },
+  "scripts": {
+    "lint": "eslint \"**/*.{js,ts}\" --quiet --fix && prettier --write \"**/*.{js,ts}\""
+  },
+  "author": "Vladimir Zdrazil",
+  "license": "MIT",
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2022": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:node/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "promise"
+    ],
+    "root": true,
+    "ignorePatterns": [
+      "dist"
+    ],
+    "rules": {
+      "node/shebang": "off",
+      "node/no-missing-import": "off"
+    }
+  }
+}
