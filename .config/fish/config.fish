@@ -35,7 +35,6 @@ set -gx FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history"
 set -gx FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 set -gx HOMEBREW_NO_ANALYTICS 1
-set -gx BACKGROUND_THEME dark
 
 # #-------------------- THEMING ------------------------
 
@@ -43,32 +42,7 @@ if test -e "$HOME/.config/fish/not-public.fish"
     source "$HOME/.config/fish/not-public.fish"
 end
 
-# save computer specific themes to .not-public
-if test -z $MY_THEME
-    set -gx MY_THEME oceanic-next
-end
-
-if test -z $MY_LIGHT_THEME
-    set -gx MY_LIGHT_THEME cupertino
-end
-
-switch (uname)
-    case Darwin
-        set color_theme (defaults read -g AppleInterfaceStyle 2>/dev/null)
-        if [ "$color_theme" != Dark ]
-            set -gx BACKGROUND_THEME light
-        end
-    case '*'
-end
-
-if command -v theme-sh >/dev/null
-    if [ "$BACKGROUND_THEME" = light ]
-        theme-sh $MY_LIGHT_THEME
-    else
-        theme-sh $MY_THEME
-    end
-end
-
+set -gx BACKGROUND_THEME (change-theme)
 set -gx BAT_THEME ansi
 
 # # starship init fish | source

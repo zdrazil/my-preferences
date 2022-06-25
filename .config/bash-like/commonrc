@@ -26,33 +26,9 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf-history"
 
 export HOMEBREW_NO_ANALYTICS=1
 
-export BACKGROUND_THEME="dark"
-
 # save computer specific themes to .not-public
-if [[ -z $MY_THEME ]]; then
-	export MY_THEME="oceanic-next"
-fi
-
-if [[ -z $MY_LIGHT_THEME ]]; then
-	export MY_LIGHT_THEME="cupertino"
-fi
-
-case $(uname) in
-Darwin)
-	color_theme=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-	if [ "$color_theme" != 'Dark' ]; then
-		BACKGROUND_THEME="light"
-	fi
-	;;
-esac
-
-if command -v theme-sh >/dev/null; then
-	if [ "$BACKGROUND_THEME" = 'light' ]; then
-		theme-sh $MY_LIGHT_THEME
-	else
-		theme-sh $MY_THEME
-	fi
-fi
+background_theme=$(change-theme)
+export BACKGROUND_THEME=$background_theme
 
 # export BAT_THEME=base16-256
 # export BAT_THEME=base16
