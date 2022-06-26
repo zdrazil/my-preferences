@@ -4,6 +4,8 @@ These are dotfiles that I use every day. They're managed with [yadm](https://yad
 
 ## Install
 
+These commands will install dotfiles to your home directory. Be sure that's what you want. If a file already exists locally and has content that differs from the one in this repository, the local file will be left unmodified, and you’ll have to review and resolve the differences.
+
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install yadm
@@ -12,7 +14,7 @@ yadm clone https://github.com/zdrazil/system-bootstrap.git
 
 ## Setup git
 
-Use instructions from [GitHub guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup SSH keys.
+Use instructions from [GitHub guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup SSH keys or use the quick setup in next section.
 
 ### Quick setup
 
