@@ -4,7 +4,11 @@ These are dotfiles that I use every day. They're managed with [yadm](https://yad
 
 ## Install
 
-These commands will install dotfiles to your home directory and they will also run a [boostrap script](../.config/yadm/bootstrap).
+These commands will:
+
+- Install [Homebrew](https://brew.sh/) and [yadm](https://yadm.io/).
+- Install dotfiles to your home directory.
+- Run a [boostrap script](../.config/yadm/bootstrap).
 
 For dotfiles, if a file already exists locally and has content that differs from the one in this repository, the local file will be left unmodified, and you’ll have to review and resolve the differences.
 
