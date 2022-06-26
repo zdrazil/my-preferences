@@ -59,6 +59,11 @@ install_homebrew_packages() {
 	rm -r "${HOME}/tmp"
 }
 
+setup_git() {
+	echo "Updating the yadm repo origin URL"
+	yadm remote set-url origin "git@github.com:zdrazil/my-preferences.git"
+}
+
 install_scripts() {
 	homebrew_prefix=$(brew --prefix)
 
@@ -95,6 +100,7 @@ install_scripts() {
 install_homebrew
 install_homebrew_packages &
 install_scripts &
+setup_git &
 
 wait
 
