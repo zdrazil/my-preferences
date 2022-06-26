@@ -4,7 +4,11 @@ These are dotfiles that I use every day. They're managed with [yadm](https://yad
 
 ## Install
 
-These commands will install dotfiles to your home directory. Be sure that's what you want. If a file already exists locally and has content that differs from the one in this repository, the local file will be left unmodified, and you’ll have to review and resolve the differences.
+These commands will install dotfiles to your home directory and they will also run a [boostrap script](../.config/yadm/bootstrap). Be sure that's what you want.
+
+For dotfiles, if a file already exists locally and has content that differs from the one in this repository, the local file will be left unmodified, and you’ll have to review and resolve the differences.
+
+This does not apply for the bootstrap script. It's written for my specific use case. Please read through it to understand what it does.
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
