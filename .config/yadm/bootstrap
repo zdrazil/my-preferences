@@ -54,7 +54,7 @@ install_homebrew_packages() {
 	mkdir -p "${HOME}/tmp"
 	split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
 	for file in "${HOME}"/tmp/Brewfile*; do
-		brew bundle --verbose --file "${file}"
+		brew bundle --file "${file}"
 	done
 	rm -r "${HOME}/tmp"
 }
