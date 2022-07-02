@@ -12,7 +12,7 @@ These commands will:
 
 For dotfiles, if a file already exists locally and has content that differs from the one in this repository, the local file will be left unmodified, and you’ll have to review and resolve the differences.
 
-This does not apply for the bootstrap script. Please read through it to understand what it does.
+This does not apply for the [boostrap script](../.config/yadm/bootstrap). Please read through it to understand what it does.
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
