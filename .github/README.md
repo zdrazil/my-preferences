@@ -1,6 +1,6 @@
 # @zdrazil dotfiles
 
-These are dotfiles that I use every day. They're managed with [yadm](https://yadm.io/), a dotfile manager.
+These are dotfiles that I use every day. They're managed with [yadm](https://yadm.io/).
 
 ## Install
 
