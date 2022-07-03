@@ -22,7 +22,7 @@ yadm clone https://github.com/zdrazil/system-bootstrap.git
 
 ## Setup git
 
-Use instructions from [GitHub guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to setup SSH keys or use the quick setup in next section.
+Use instructions from [GitHub guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and in [Proper use of SSH client in Mac OS X](https://www.getpagespeed.com/work/proper-use-of-ssh-client-in-mac-os-x) to setup SSH keys or use the quick setup in next section.
 
 ### Quick setup
 
@@ -31,7 +31,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 eval "$(ssh-agent -s)"
 
 # Mac
-ssh-add -K ~/.ssh/id_ed25519
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 pbcopy < ~/.ssh/id_ed25519.pub
 
 # Linux
