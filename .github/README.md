@@ -29,15 +29,34 @@ Use instructions from [GitHub guide](https://docs.github.com/en/github/authentic
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 eval "$(ssh-agent -s)"
+```
 
-# Mac
+#### Mac
+
+Add this to `~/.ssh/config`:
+
+```ssh
+Host *
+   UseKeychain yes
+   AddKeysToAgent yes
+   IdentityFile ~/.ssh/id_ed25519
+```
+
+```bash
+chmod 600 ~/.ssh/config
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 pbcopy < ~/.ssh/id_ed25519.pub
+```
 
-# Linux
+#### Linux
+
+```bash
 ssh-add ~/.ssh/id_ed25519
 xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+```
 
-# Windows
+#### Windows
+
+```bash
 clip < ~/.ssh/id_ed25519.pub
 ```
