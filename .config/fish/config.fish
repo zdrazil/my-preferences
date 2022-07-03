@@ -38,10 +38,13 @@ set -gx HOMEBREW_NO_ANALYTICS 1
 
 # #-------------------- THEMING ------------------------
 
-if test -e "$HOME/.config/fish/not-public.fish"
-    source "$HOME/.config/fish/not-public.fish"
+switch (hostname)
+    case VladimisMewsMBP
+        set -gx MY_THEME solarized-dark
+    case '*'
+        set -gx MY_THEME oceanic-next
 end
-
+set -gx MY_LIGHT_THEME cupertino
 set -gx BACKGROUND_THEME (change-theme)
 set -gx BAT_THEME ansi
 
