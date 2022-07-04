@@ -43,6 +43,7 @@ Host *
 ```
 
 ```bash
+pbpaste >> ~/.ssh/config
 chmod 600 ~/.ssh/config
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 pbcopy < ~/.ssh/id_ed25519.pub
