@@ -19,6 +19,7 @@ This does not apply for the [boostrap script](../.config/yadm/bootstrap). Please
 brew install yadm
 yadm config local.class work ## OR yadm config local.class home
 yadm clone https://github.com/zdrazil/system-bootstrap.git
+yadm decrypt
 ```
 
 ## Setup git
