@@ -10,7 +10,6 @@ tap "homebrew/core"
 tap "1password/tap"
 tap "zdrazil/homebrew-tap"
 
-# brew "mackup"
 brew "asdf"
 brew "fzf"
 brew "fish"
@@ -30,6 +29,7 @@ brew "zsh"
 mas "OneDrive", id: 823766827
 
 brew "chtsh"
+brew "tldr"
 brew "theme-sh"
 
 brew "bat"
@@ -85,12 +85,6 @@ brew "pyenv"
 brew "rga"
 brew "tesseract"
 
-# cask "crossover"
-# cask "google-chrome"
-# cask "kitty"
-# cask "maccy"
-# cask "parsec"
-cask "1password/tap/1password-cli"
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "appcleaner"
@@ -98,43 +92,28 @@ cask "azure-data-studio"
 cask "bartender"
 cask "bettertouchtool"
 cask "beyond-compare"
-cask "browserstacklocal"
-cask "calibre"
-cask "cleanshot"
-cask "cryptomator"
 cask "firefox-developer-edition"
 cask "firefox"
-cask "gog-galaxy"
 cask "handbrake"
-cask "homebrew/cask-drivers/sony-ps-remote-play"
-cask "homebrew/cask/scummvm"
 cask "imageoptim"
 cask "inkscape"
-cask "insomnia"
 cask "iterm2"
 cask "iina"
 cask "keka"
 cask "keycastr"
 cask "libreoffice"
-cask "macvim"
 cask "microsoft-azure-storage-explorer"
-cask "microsoft-teams"
 cask "monitorcontrol"
 cask "postman"
 cask "qlvideo"
 cask "rectangle-pro"
 cask "rectangle"
 cask "spotify"
-cask "steam"
 cask "sublime-merge"
-cask "transmission"
-cask "toinane-colorpicker"
-cask "utm"
 cask "visual-studio-code"
 cask "vlc"
 cask "yacreader"
 cask "zotero"
-cask "keycastr"
 
 mas "AdGuard for Safari", id: 1440147259
 mas "Amphetamine", id: 937984704
@@ -143,10 +122,7 @@ mas "DaisyDisk", id: 411643860
 mas "Display Menu", id: 549083868
 mas "Focus for YouTube", id: 1514703160
 mas "Gifski", id: 1351639930
-mas "hlidac shopu", id: 1488295734
 mas "Hush Nag Blocker", id: 1544743900
-mas "iFlicks", id: 408937559
-mas "Infuse", id: 1136220934
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "Keyword Search", id: 1558453954
@@ -157,13 +133,32 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
-mas "PopClip", id: 445189367
-mas "Reeder", id: 1529448980
 mas "Shazam", id: 897118787
-mas "Shut Up", id: 1015043880
-mas "Slack", id: 803453959
 mas "Soulver 2", id: 413965349
 mas "SponsorBlock for YouTube", id: 1573461917
-mas "Steam Link", id: 1246969117
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
+
+{% if yadm.os == "Darwin" %}
+cask "calibre"
+cask "cryptomator"
+cask "gog-galaxy"
+cask "handbrake"
+cask "homebrew/cask-drivers/sony-ps-remote-play"
+cask "homebrew/cask/scummvm"
+cask "steam"
+cask "transmission"
+
+mas "hlidac shopu", id: 1488295734
+mas "Reeder", id: 1529448980
+mas "Steam Link", id: 1246969117
+{% endif %}
+
+{% if yadm.os == "Darwin" %}
+cask "browserstacklocal"
+cask "cleanshot"
+cask "microsoft-teams"
+cask "monitorcontrol"
+
+mas "Slack", id: 803453959
+{% endif %}
