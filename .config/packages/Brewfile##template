@@ -147,6 +147,7 @@ cask "gog-galaxy"
 cask "handbrake"
 cask "homebrew/cask-drivers/sony-ps-remote-play"
 cask "homebrew/cask/scummvm"
+cask "kindle"
 cask "steam"
 cask "transmission"
 
