@@ -57,6 +57,7 @@ brew "ncdu"
 brew "node"
 brew "pandoc"
 brew "perl"
+brew "pinentry-mac"
 brew "prettier"
 brew "pwgen"
 brew "ranger"
@@ -139,7 +140,7 @@ mas "SponsorBlock for YouTube", id: 1573461917
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
 
-{% if yadm.os == "home" %}
+{% if yadm.class == "home" %}
 cask "calibre"
 cask "cryptomator"
 cask "gog-galaxy"
