@@ -139,7 +139,7 @@ mas "SponsorBlock for YouTube", id: 1573461917
 mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
 
-{% if yadm.os == "Darwin" %}
+{% if yadm.os == "home" %}
 cask "calibre"
 cask "cryptomator"
 cask "gog-galaxy"
@@ -154,7 +154,7 @@ mas "Reeder", id: 1529448980
 mas "Steam Link", id: 1246969117
 {% endif %}
 
-{% if yadm.os == "Darwin" %}
+{% if yadm.class == "work" %}
 cask "browserstacklocal"
 cask "cleanshot"
 cask "microsoft-teams"

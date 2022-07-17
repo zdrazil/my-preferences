@@ -17,6 +17,7 @@ This does not apply for the [boostrap script](../.config/yadm/bootstrap). Please
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install yadm
+yadm config local.class work ## OR yadm config local.class home
 yadm clone https://github.com/zdrazil/system-bootstrap.git
 ```
 
