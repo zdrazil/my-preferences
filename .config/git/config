@@ -38,4 +38,4 @@
 [mergetool]
 	keepBackup = false
 [include]
-    path = .gitconfig.local
+    path = config.local
