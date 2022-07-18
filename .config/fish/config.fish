@@ -39,7 +39,7 @@ set -gx HOMEBREW_NO_ANALYTICS 1
 # #-------------------- THEMING ------------------------
 
 switch (hostname)
-    case VladimisMewsMBP
+    case Vladimirs-Mews-MacBook-Pro.local
         set -gx MY_THEME solarized-dark
     case '*'
         set -gx MY_THEME oceanic-next
