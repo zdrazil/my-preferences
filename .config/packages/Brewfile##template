@@ -116,28 +116,33 @@ cask "vlc"
 cask "yacreader"
 cask "zotero"
 
+# Safari extensions
+mas "1Password for Safari", id: 1569813296
 mas "AdGuard for Safari", id: 1440147259
+mas "Focus for YouTube", id: 1514703160
+mas "Keyword Search", id: 1558453954
+mas "PiPifier", id: 1160374471
+mas "SponsorBlock for YouTube", id: 1573461917
+mas "uBlacklist for Safari", id: 1547912640
+mas "Hush Nag Blocker", id: 1544743900
+mas "Hlídač Shopů", id: 1488295734
+mas "Dark Reader for Safari", id: 1438243180
+
 mas "Amphetamine", id: 937984704
 mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Display Menu", id: 549083868
-mas "Focus for YouTube", id: 1514703160
 mas "Gifski", id: 1351639930
-mas "Hush Nag Blocker", id: 1544743900
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
-mas "Keyword Search", id: 1558453954
 mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "PiPifier", id: 1160374471
 mas "Pixelmator Pro", id: 1289583905
 mas "Shazam", id: 897118787
 mas "Soulver 2", id: 413965349
-mas "SponsorBlock for YouTube", id: 1573461917
-mas "uBlacklist for Safari", id: 1547912640
 mas "Xcode", id: 497799835
 
 {% if yadm.class == "home" %}
