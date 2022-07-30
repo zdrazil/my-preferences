@@ -154,6 +154,7 @@ cask "homebrew/cask/scummvm"
 cask "kindle"
 cask "steam"
 cask "transmission"
+cask "vmware-fusion-tech-preview"
 
 mas "hlidac shopu", id: 1488295734
 mas "Reeder", id: 1529448980
