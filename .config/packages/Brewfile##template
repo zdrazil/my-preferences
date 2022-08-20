@@ -1,23 +1,22 @@
 # Install with brew bundle --file '[path]' --verbose --force
 # cask_args force: true
 
+tap "homebrew/core"
 tap "homebrew/bundle"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/cask"
-tap "homebrew/core"
-tap "1password/tap"
 tap "zdrazil/homebrew-tap"
 
 brew "asdf"
-brew "fzf"
-brew "fish"
-brew "fisher"
 brew "bash-completion"
 brew "bash"
 brew "coreutils"
 brew "findutils"
+brew "fish"
+brew "fisher"
+brew "fzf"
 brew "git"
 brew "grep"
 brew "mas"
@@ -28,11 +27,9 @@ brew "zsh-completions"
 brew "zsh"
 mas "OneDrive", id: 823766827
 
-brew "chtsh"
-brew "tldr"
-brew "theme-sh"
 
 brew "bat"
+brew "chtsh"
 brew "curl"
 brew "direnv"
 brew "dos2unix"
@@ -57,9 +54,11 @@ brew "ncdu"
 brew "node"
 brew "pandoc"
 brew "perl"
+brew "php"
 brew "pinentry-mac"
 brew "prettier"
 brew "pwgen"
+brew "python"
 brew "ranger"
 brew "readline"
 brew "ripgrep"
@@ -68,14 +67,14 @@ brew "shellcheck"
 brew "shfmt"
 brew "speedtest-cli"
 brew "the_silver_searcher"
+brew "theme-sh"
 brew "tig"
+brew "tldr"
 brew "tmux"
 brew "trash"
 brew "tree"
 brew "watchman"
 brew "wget"
-brew "python"
-brew "php"
 brew "yarn"
 
 # rga needs these
@@ -97,10 +96,10 @@ cask "firefox-developer-edition"
 cask "firefox"
 cask "fluor"
 cask "handbrake"
+cask "iina"
 cask "imageoptim"
 cask "inkscape"
 cask "iterm2"
-cask "iina"
 cask "keka"
 cask "keycastr"
 cask "libreoffice"
@@ -119,14 +118,14 @@ cask "zotero"
 
 # Safari extensions
 mas "1Password for Safari", id: 1569813296
-mas "AdGuard for Safari", id: 1440147259
+mas "Dark Reader for Safari", id: 1438243180
 mas "Focus for YouTube", id: 1514703160
+mas "Hlídač Shopů", id: 1488295734
 mas "Keyword Search", id: 1558453954
 mas "PiPifier", id: 1160374471
 mas "SponsorBlock for YouTube", id: 1573461917
 mas "uBlacklist for Safari", id: 1547912640
-mas "Hlídač Shopů", id: 1488295734
-mas "Dark Reader for Safari", id: 1438243180
+mas "Wipr", id:  1320666476
 
 mas "Amphetamine", id: 937984704
 mas "Boop", id: 1518425043
