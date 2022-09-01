@@ -54,3 +54,6 @@ source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
 direnv hook fish | source
 
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
+
+string match -q "$TERM_PROGRAM" vscode
+and . (code --locate-shell-integration-path fish)
