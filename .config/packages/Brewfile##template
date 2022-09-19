@@ -104,7 +104,7 @@ cask "keka"
 cask "keycastr"
 cask "libreoffice"
 cask "microsoft-azure-storage-explorer"
-cask "monitorcontrol"
+cask "lunar"
 cask "nvalt"
 cask "postman"
 cask "qlvideo"
@@ -168,7 +168,6 @@ mas "Steam Link", id: 1246969117
 cask "browserstacklocal"
 cask "cleanshot"
 cask "microsoft-teams"
-cask "monitorcontrol"
 
 mas "Slack", id: 803453959
 {% endif %}
