@@ -27,7 +27,6 @@ brew "zsh-completions"
 brew "zsh"
 mas "OneDrive", id: 823766827
 
-
 brew "bat"
 brew "chtsh"
 brew "curl"
@@ -147,6 +146,8 @@ mas "Soulver 2", id: 413965349
 mas "Xcode", id: 497799835
 
 {% if yadm.class == "home" %}
+brew "yt-dlp"
+
 cask "calibre"
 cask "cryptomator"
 cask "gog-galaxy"
