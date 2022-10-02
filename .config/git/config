@@ -10,6 +10,7 @@
 [commit]
 	template = ~/.config/git/git_commit_msg.txt
 	cleanup = strip
+	gpgsign = true
 [merge]
 	tool = bc3
 [diff]
@@ -39,3 +40,6 @@
 	keepBackup = false
 [include]
     path = config.local
+	path = config.ssh
+[gpg]
+	format = ssh
