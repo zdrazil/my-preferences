@@ -52,7 +52,7 @@ touch ~/config/git/config.ssh
 pbcopy < ~/.ssh/id_ed25519.pub
 ```
 
-To ~/config/git/config.ssh, add:
+To `~/.config/git/config.ssh`, add:
 
 ```text
 [user]
