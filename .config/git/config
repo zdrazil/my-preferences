@@ -43,3 +43,5 @@
 	path = config.ssh
 [gpg]
 	format = ssh
+[push]
+	autoSetupRemote = true
