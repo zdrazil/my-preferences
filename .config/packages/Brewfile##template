@@ -171,6 +171,7 @@ mas "Steam Link", id: 1246969117
 cask "browserstacklocal"
 cask "cleanshot"
 cask "microsoft-teams"
+cask "insync"
 
 mas "Slack", id: 803453959
 {% endif %}
