@@ -147,6 +147,7 @@ mas "Xcode", id: 497799835
 
 {% if yadm.class == "home" %}
 brew "yt-dlp"
+brew "hugo"
 
 cask "calibre"
 cask "cryptomator"
