@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+# https://crontab.guru/#0_8_*_*_0-6
+# https://betterprogramming.pub/https-medium-com-ratik96-scheduling-jobs-with-crontab-on-macos-add5a8b26c30
+# crontab -e
+# 0 8 * * * cd ~/bin && ./calibre-sync
+# crontab -l
+
+rsync -avhP --delete --exclude 'full-text-search.db' ~/calibre ~/OneDrive/apps/calibre
