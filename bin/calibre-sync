@@ -7,4 +7,4 @@
 # 0 8 * * * cd ~/bin && ./calibre-sync
 # crontab -l
 
-rsync -avhP --delete --exclude 'full-text-search.db' ~/calibre ~/OneDrive/apps/calibre
+rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ ~/OneDrive/apps/calibre
