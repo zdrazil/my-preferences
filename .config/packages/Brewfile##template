@@ -172,6 +172,7 @@ cask "browserstacklocal"
 cask "cleanshot"
 cask "microsoft-teams"
 cask "insync"
+cask "zoom"
 
 mas "Slack", id: 803453959
 {% endif %}
