@@ -25,7 +25,6 @@ brew "tmux"
 brew "yadm"
 brew "zsh-completions"
 brew "zsh"
-mas "OneDrive", id: 823766827
 
 brew "bat"
 brew "chtsh"
@@ -84,39 +83,28 @@ brew "pyenv"
 brew "rga"
 brew "tesseract"
 
-cask "adobe-acrobat-reader"
 cask "alfred"
 cask "appcleaner"
-cask "azure-data-studio"
 cask "bartender"
 cask "bettertouchtool"
-cask "beyond-compare"
-cask "diffusionbee"
-cask "firefox-developer-edition"
+cask "cyberduck"
 cask "firefox"
 cask "fluor"
 cask "handbrake"
 cask "iina"
 cask "imageoptim"
-cask "inkscape"
 cask "iterm2"
 cask "keka"
 cask "keycastr"
-cask "libreoffice"
-cask "masscode"
-cask "microsoft-azure-storage-explorer"
 cask "monitorcontrol"
+cask "microsoft-edge"
 cask "nvalt"
-cask "postman"
-cask "qlvideo"
 cask "rectangle-pro"
 cask "rectangle"
 cask "simplenote"
-cask "spotify"
 cask "sublime-merge"
 cask "visual-studio-code"
 cask "vlc"
-cask "yacreader"
 cask "zotero"
 
 # Safari extensions
@@ -131,13 +119,9 @@ mas "uBlacklist for Safari", id: 1547912640
 mas "Wipr", id:  1320666476
 
 mas "Amphetamine", id: 937984704
-mas "Boop", id: 1518425043
 mas "DaisyDisk", id: 411643860
 mas "Display Menu", id: 549083868
-mas "Gifski", id: 1351639930
-mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
-mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
 mas "Numbers", id: 409203825
@@ -153,8 +137,7 @@ brew "hugo"
 
 cask "calibre"
 cask "cryptomator"
-cask "gog-galaxy"
-cask "handbrake"
+cask "firefox-developer-edition"
 cask "homebrew/cask-drivers/sony-ps-remote-play"
 cask "homebrew/cask/scummvm"
 cask "kindle"
@@ -162,6 +145,7 @@ cask "knockknock"
 cask "steam"
 cask "transmission"
 cask "vmware-fusion-tech-preview"
+cask "yacreader"
 
 mas "hlidac shopu", id: 1488295734
 mas "Reeder", id: 1529448980
@@ -169,11 +153,16 @@ mas "Steam Link", id: 1246969117
 {% endif %}
 
 {% if yadm.class == "work" %}
+cask "azure-data-studio"
 cask "browserstacklocal"
 cask "cleanshot"
+cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
 cask "insync"
+cask "postman"
 cask "zoom"
 
+mas "Microsoft OneNote", id: 784801555
+mas "OneDrive", id: 823766827
 mas "Slack", id: 803453959
 {% endif %}
