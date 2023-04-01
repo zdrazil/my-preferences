@@ -136,6 +136,8 @@ mas "Xcode", id: 497799835
 brew "yt-dlp"
 brew "hugo"
 
+cask "anydesk"
+cask "coconutbattery"
 cask "calibre"
 cask "cryptomator"
 cask "firefox-developer-edition"
