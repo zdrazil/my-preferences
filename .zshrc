@@ -22,7 +22,14 @@ if type brew &>/dev/null; then
     FPATH="$HOMEBREW_PREFIX"/share/zsh-completions:$FPATH
 fi
 
-. "$HOMEBREW_PREFIX"/opt/asdf/libexec/asdf.sh
+if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+    . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+fi
+
+if [ -f "/opt/local/share/asdf/asdf.sh" ]; then
+    . /opt/local/share/asdf/asdf.sh
+fi
+
 # . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 

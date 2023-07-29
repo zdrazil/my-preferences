@@ -50,8 +50,17 @@ set -gx MY_LIGHT_THEME cupertino
 set -gx BACKGROUND_THEME (change-theme)
 set -gx BAT_THEME ansi
 
-# # starship init fish | source
-source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+if test -f "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+    source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+end
+
+if test -f "/opt/local/share/fzf/shell/key-bindings.fish"
+    source "/opt/local/share/fzf/shell/key-bindings.fish"
+end
+
+if test -f "/opt/local/share/asdf/asdf.fish"
+    source "/opt/local/share/asdf/asdf.fish"
+end
 
 direnv hook fish | source
 
