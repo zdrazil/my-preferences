@@ -1,4 +1,4 @@
-# cat macports | xargs -n 1 sudo port install
+# cat ~/.config/packages/macports | tail -n +2 | xargs -n 1 sudo port install
 asdf
 bash
 bash-completion
