@@ -59,7 +59,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-sensible'
 Plug 'jeffkreeftmeijer/vim-dim'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'

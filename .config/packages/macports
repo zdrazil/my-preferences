@@ -42,3 +42,4 @@ wget
 yarn
 hugo
 yt-dlp
+vim +huge +python39 +ruby30
