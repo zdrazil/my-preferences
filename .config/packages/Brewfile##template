@@ -159,7 +159,6 @@ cask "browserstacklocal"
 cask "cleanshot"
 cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
-cask "insync"
 cask "postman"
 cask "zoom"
 
