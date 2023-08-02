@@ -9,6 +9,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "zdrazil/homebrew-tap"
 
+brew "azure-cli"
 # brew "asdf"
 # brew "bash-completion"
 # brew "bash"
@@ -161,6 +162,9 @@ cask "microsoft-azure-storage-explorer"
 cask "microsoft-teams"
 cask "postman"
 cask "zoom"
+cask "docker"
+cask "powershell"
+cask "toggl-track"
 
 mas "Microsoft OneNote", id: 784801555
 mas "OneDrive", id: 823766827
