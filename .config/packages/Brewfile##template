@@ -82,11 +82,11 @@ brew "tesseract"
 
 cask "alfred"
 cask "appcleaner"
-cask "banana-cake-pop"
+# cask "banana-cake-pop"
 cask "bartender"
 cask "bettertouchtool"
-cask "cyberduck"
-cask "docker"
+# cask "cyberduck"
+# cask "docker"
 cask "firefox"
 cask "fluor"
 cask "font-cousine"
@@ -133,8 +133,8 @@ mas "Soulver 2", id: 413965349
 mas "Xcode", id: 497799835
 
 {% if yadm.class == "home" %}
-# brew "yt-dlp"
-# brew "hugo"
+brew "yt-dlp"
+brew "hugo"
 
 cask "anydesk"
 cask "coconutbattery"
