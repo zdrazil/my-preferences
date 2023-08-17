@@ -5,7 +5,7 @@ git branch -d temp
 
 feature=$(git branch --show-current)
 
-git checkout -b temp master
+git checkout -b temp origin/master
 
 git merge --squash "${feature}"
 
