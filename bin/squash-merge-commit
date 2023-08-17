@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+git branch -d temp
+
+feature=$(git branch --show-current)
+
+git checkout -b temp master
+
+git merge --squash "${feature}"
+
+git commit -n
+
+git checkout "${feature}"
+git reset --hard temp
+
+git branch -d temp
+
+git push -f
