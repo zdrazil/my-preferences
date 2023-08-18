@@ -50,13 +50,15 @@ install_homebrew() {
 }
 
 install_homebrew_packages() {
-	echo "Installing rest of the homebrew packages..."
-	mkdir -p "${HOME}/tmp"
-	split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
-	for file in "${HOME}"/tmp/Brewfile*; do
-		brew bundle --file "${file}"
-	done
-	rm -r "${HOME}/tmp"
+	if [[ "${system_type}" = "Darwin" ]]; then
+		echo "Installing rest of the homebrew packages..."
+		mkdir -p "${HOME}/tmp"
+		split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
+		for file in "${HOME}"/tmp/Brewfile*; do
+			brew bundle --file "${file}"
+		done
+		rm -r "${HOME}/tmp"
+	fi
 }
 
 setup_git() {
