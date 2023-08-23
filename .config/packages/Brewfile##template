@@ -147,6 +147,7 @@ cask "kindle"
 cask "knockknock"
 cask "steam"
 cask "transmission"
+cask "syncthing"
 cask "vmware-fusion-tech-preview"
 cask "yacreader"
 
