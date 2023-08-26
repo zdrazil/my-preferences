@@ -1,3 +1,10 @@
+" python3 -m venv ~/.config/venvs/nvim-venv && source ~/.config/venvs/nvim-venv/bin/activate && python3 -m pip install pynvim && which python
+
+let g:python3_host_prog="~/.config/venvs/nvim-venv/bin/python"
+let g:python_host_prog="~/.config/venvs/nvim-venv/bin/python"
+
+set clipboard+=unnamedplus
+
 set guicursor=
 set mouse=a
 set wildignorecase
@@ -28,15 +35,8 @@ set signcolumn=yes
 call plug#begin(stdpath('data') . '/plugged')
 
 " Themes
-Plug 'vim-scripts/CycleColor', { 'on': ['CycleColorNext', 'CycleColorPrev'] }
-
 Plug 'lifepillar/vim-solarized8'
 Plug 'chriskempson/base16-vim'
-Plug 'pbrisbin/vim-colors-off'
-Plug 'romainl/Apprentice'
-Plug 'fxn/vim-monochrome'
-Plug 'VonHeikemen/rubber-themes.vim'
-
 Plug 'noahfrederick/vim-noctu'
 Plug 'jeffkreeftmeijer/vim-dim'
 
@@ -45,15 +45,10 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'mhinz/vim-grepper'
 
-Plug 'vimwiki/vimwiki'
-
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-Plug 'joaohkfaria/vim-jest-snippets'
 
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
@@ -63,8 +58,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
-Plug 'ojroques/vim-oscyank'
-
 Plug 'iberianpig/tig-explorer.vim'
 
 Plug 'editorconfig/editorconfig-vim'
@@ -73,15 +66,12 @@ Plug 'markonm/traces.vim'
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 
-Plug 'jpalardy/vim-slime'
 Plug 'justinmk/vim-gtfo'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
-Plug 'wellle/targets.vim'
-Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'do': ':TSUpdate'}
@@ -89,50 +79,41 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'do': ':TSUpdate'}
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
 
-" Clojure
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-sexp', { 'for': ['clojure', 'scheme'] }
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'guns/vim-clojure-static'
-
-" C#
-Plug 'OmniSharp/omnisharp-vim', { 'for': ['csharp', 'fsharp'] }
-
 Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 
 call plug#end()
 
-colorscheme dim
 " Dim and noctu colorscheme can't use following settings, they'd get broken.
 " They're only needed for 24bit themes
 " if has('termguicolors') && ($COLORTERM ==# 'truecolor' || $COLORTERM ==# '24bit')
-"   " Enable true color in Vim on tmux (not necessary for NeoVim)
-"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "   " Enable true color in supported terminals
 "   " When 16bit colors scheme is used, we don't want to set this
 "   set termguicolors
-"   if $USER ==# 'mews'
-"     colorscheme solarized8
+"   if $BACKGROUND_THEME ==# 'dark'
+"     if $USER ==# 'mews'
+"       colorscheme solarized8
+"     else
+"       colorscheme base16-oceanicnext
+"     endif
+"     set background=dark
 "   else
-"     colorscheme base16-oceanicnext
+"     set background=light
 "   endif
-" set background=dark
+" else
+"   colorscheme dim
+"   if $BACKGROUND_THEME ==# 'dark'
+"     set background=dark
+"   else
+"     set background=light
+"   endif
 " endif
 
+colorscheme dim
 if $BACKGROUND_THEME ==# 'dark'
   set background=dark
 else
   set background=light
 endif
-
-
-" Make mouse work in tmux
-if &term =~# '^screen' || &term =~# '^xterm-kitty'
-  " tmux knows the extended mouse mode
-  set ttymouse=sgr
-endif
-
 
 runtime plugin/grepper.vim
 let g:grepper.rg.grepprg .= ' -S '
@@ -144,15 +125,11 @@ let g:mapleader = "\<space>"
 inoremap jj <Esc>
 
 " Leader maps
-" nnoremap <leader>o :FZF<cr>
 nnoremap <leader><leader> :FZF<cr>
-" nnoremap <leader>p :Commands<cr>
 nnoremap <leader>; :Commands<cr>
-" map <silent>s <Plug>LineLetters
-
 
 " buffer
-" nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>bb :Buffers<cr>
 
 " code
@@ -160,6 +137,7 @@ nmap <leader>gx :ALEDetail<CR>
 
 nmap <leader>gd <Plug>(coc-definition)
 nmap <silent>gd <Plug>(coc-definition)
+nmap <A-LeftMouse> <Plug>(coc-definition)
 nmap <leader>grr <Plug>(coc-references)
 nmap <leader>gi <Plug>(coc-implementation)
 nmap <leader>gy <Plug>(coc-type-definition)
@@ -168,6 +146,7 @@ nmap <leader>ga <Plug>(coc-codeaction-selected)
 xmap <leader>ga <Plug>(coc-codeaction-selected)
 nmap <leader>gA <Plug>(coc-codeaction)
 nmap <leader>grn <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
 nnoremap <silent><nowait> <leader>gk  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <leader>gj  :<C-u>CocNext<CR>
@@ -175,7 +154,7 @@ nnoremap <silent><nowait> [c  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> ]c  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader>gl  :<C-u>CocListResume<CR>
 
-nnoremap <leader>gh :call <SID>show_documentation()<CR>
+nnoremap gh :call <SID>show_documentation()<CR>
 
 command! -nargs=0 CocFormat :call CocAction('format')
 
@@ -205,11 +184,7 @@ nmap <leader>of  :OpenCurrentFileDir<cr>
 " change to directory of current file
 nnoremap <leader>pc :cd %:p:h<CR>:pwd<CR>
 
-" register
-vnoremap <leader>ro :OSCYank<CR>
-
 " search
-" nnoremap <leader>f :Rg<cr>
 nnoremap <leader>ss :Rg<cr>
 nnoremap <leader>. :Rg<cr>
 nnoremap <leader>sl :Lines<cr>
@@ -225,34 +200,29 @@ nnoremap <leader>> :Grepper -tool rg<CR>
 " window
 
 " fzf
-" imap <c-x><c-l> <plug>(fzf-complete-line)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 
+let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_options = '--cache'
-let g:ale_javascript_eslint_use_global = 1
+" let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_prettier_executable = 'prettier'
 let g:ale_javascript_prettier_use_global = 1
 let g:ale_disable_lsp = 1
 highlight ALEError ctermbg=none cterm=underline gui=underline
 highlight ALEWarning ctermbg=none cterm=underline gui=underline
 
-let g:slime_target = 'tmux'
-
 " Coc.nvim
 let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-emmet',
-      \ 'coc-emoji',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-pyright',
       \ 'coc-react-refactor',
       \ 'coc-snippets',
-      \ 'coc-sql',
-      \ 'coc-tabnine',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
       \ ]
@@ -273,49 +243,8 @@ function! s:show_documentation()
   endif
 endfunction
 
-" augroup cocHighlight
-"   autocmd CursorHold * silent call CocActionAsync('highlight')
-" augroup END
-
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-let g:OmniSharp_highlighting = 0
-augroup omnisharp_commands
-  autocmd!
-
-  " The following commands are contextual, based on the cursor position.
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gd <Plug>(omnisharp_go_to_definition)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gy <Plug>(omnisharp_type_lookup)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gD <Plug>(omnisharp_find_usages)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gi <Plug>(omnisharp_find_implementations)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gh <Plug>(omnisharp_documentation)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>gcs <Plug>(omnisharp_find_symbol)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>ga <Plug>(omnisharp_code_actions)
-  autocmd FileType cs xmap <silent> <buffer> <Leader>ga <Plug>(omnisharp_code_actions)
-  autocmd FileType cs nmap <silent> <buffer> <Leader>grn <Plug>(omnisharp_rename)
-augroup END
-
-augroup omnisharp-autocommands
-  autocmd BufWritePre *.cs :OmniSharpCodeFormat
-augroup END
-
-let g:vimwiki_list = [{
-      \ 'path': '~/Dropbox/wiki/',
-      \ 'syntax': 'markdown', 
-      \ 'ext': '.md',
-      \ 'links_space_char': '-',
-      \}]
-
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vimwiki_conceallevel = 0
-let g:vimwiki_auto_header = 1
-let g:vimwiki_markdown_link_ext = 1
-let g:vimwiki_global_ext = 0
-
-" let g:localvimrc_name = [ ".scilvimrc"]
-" let g:localvimrc_persistent = 2
 
 hi Pmenu ctermbg=Black ctermfg=White
 
@@ -349,18 +278,7 @@ let g:ale_linters = {
 " let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 
-" vimwiki doesn't work nicely with vim vinegar `-` shortcut, so this fixes it
-nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
-
 " External commands
-:command! -nargs=+ Dash execute ':silent !dash '.<q-args> | execute ':redraw!'
-:command! -nargs=+ D execute ':silent !srd '.<q-args> | execute ':redraw!'
-:command! -nargs=+ LodashDoc execute ':silent !srd lodash '.<q-args> | execute ':redraw!'
-:command! -nargs=+ CljDoc execute ':silent !srd clj '.<q-args> | execute ':redraw!'
-
-:command! -nargs=+ DotNetDoc execute ':silent !srd dotnet '.<q-args> | execute ':redraw!'
-:command! -nargs=+ CSharpDoc execute ':silent !srd csharp '.<q-args> | execute ':redraw!'
-
 :command! VSCode execute ':silent !code -g %' . ":" . line(".") . ":" . virtcol(".") | execute ':redraw!'
 :command! WebStorm execute ':silent !webstorm' . " --line " . line(". ") . " --column " . virtcol("."). ' %' | execute ':redraw!'
 
@@ -368,28 +286,7 @@ if !exists('g:netrw_banner')
   let g:netrw_banner = 1
 endif
 
-if executable('uctags')
-  let g:gutentags_ctags_executable = 'uctags'
-end
-let g:gutentags_file_list_command = 'rg --files'
-
-command FoldIndent setlocal foldmethod=indent
-command FoldManual setlocal foldmethod=manual
-command FoldSyntax setlocal foldmethod=syntax
-
 command YankPath execute ':let @+ = expand("%")'
-
-augroup dashfiletypes
-  au filetype css
-        \clojure
-        \html
-        \haskell
-        \javascript,
-        \javascriptreact,
-        \typescript,
-        \typescriptreact,
-        \ setl keywordprg=dash
-augroup END
 
 call which_key#register('<Space>', 'g:which_key_map')
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -411,20 +308,6 @@ let g:which_key_map.r = { 'name' : '+register' }
 command OpenCurrentFileDir execute ':silent !my-open %:p:h' | execute ':redraw!'
 command TermCurrentFileDir execute ':botright vsplit | lcd %:h | terminal ++curwin'
 
-" function SlimeOverride_EscapeText_typescript(text)
-"   return system('babel --presets @babel/preset-typescript -f a.ts', a:text)
-" endfunction
-"
-" function SlimeOverride_EscapeText_typescript(text)
-"   return system('js-require', a:text)
-" endfunction
-
-function SlimeOverride_EscapeText_javascript(text)
-  return system('js-require', a:text)
-endfunction
-
-" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
 set wildcharm=<C-z>
 cnoremap <expr> <Tab>   getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
@@ -445,10 +328,11 @@ let g:oscyank_silent = v:true
 
 lua <<EOF
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
+  auto_install = true,
   highlight = { enable = true },
   indent = { enable = true },
-     incremental_selection = {
+  incremental_selection = {
     enable = true,
     keymaps = {
       init_selection = "gnn",
@@ -509,14 +393,6 @@ highlight Special        ctermfg=NONE
 highlight Statement        ctermfg=NONE
 highlight Type ctermfg=NONE
 
-" Identify highlight groups
-" function! SynStack ()
-"     for i1 in synstack(line("."), col("."))
-"         let i2 = synIDtrans(i1)
-"         let n1 = synIDattr(i1, "name")
-"         let n2 = synIDattr(i2, "name")
-"         echo n1 "->" n2
-"     endfor
-" endfunction
-" map gm :call SynStack()<CR>
-"
+map <C-S> :w<CR>
+imap <C-S> <Esc>:w<CR>
+vmap <C-S> <Esc>:w<CR>

@@ -65,6 +65,11 @@
           "addSpagoSources": true
         }
       }
+    },
+    "csharp-ls": {
+      "command": "$HOME/.dotnet/tools/csharp-ls",
+      "filetypes": ["cs"],
+      "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
     }
   }
 }

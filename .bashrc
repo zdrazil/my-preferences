@@ -18,8 +18,9 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
-. "$HOME"/.asdf/asdf.sh
-. "$HOME"/.asdf/completions/asdf.bash
+if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+    . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+fi
 
 #-------------------- SETTINGS ---------------------
 
