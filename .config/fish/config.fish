@@ -71,4 +71,4 @@ and . (code --locate-shell-integration-path fish)
 
 # #------------------------ ABBREVIATIONS --------------------
 
-abbr --a lg 'lazygit'
+abbr --add lg lazygit
