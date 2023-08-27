@@ -11,9 +11,9 @@
 	template = ~/.config/git/git_commit_msg.txt
 	gpgsign = true
 [merge]
-	tool = bc3
+	tool = vscode
 [diff]
-	tool = bc3
+	tool = vscode
 [alias]
 	co = checkout
 	ci = commit
@@ -31,6 +31,10 @@
 	side-by-side = false
 [init]
 	defaultBranch = master
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
 [difftool "bc3"]
 	trustExitCode = true
 [mergetool "bc3"]
@@ -38,7 +42,7 @@
 [mergetool]
 	keepBackup = false
 [include]
-    path = config.local
+	path = config.local
 	path = config.ssh
 [gpg]
 	format = ssh

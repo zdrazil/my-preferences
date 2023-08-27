@@ -68,3 +68,7 @@ test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell
 
 string match -q "$TERM_PROGRAM" vscode
 and . (code --locate-shell-integration-path fish)
+
+# #------------------------ ABBREVIATIONS --------------------
+
+abbr --a lg 'lazygit'
