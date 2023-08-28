@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "Error: Branch name argument must be provided."
+    exit 1
+fi
+
+CURRENT_BRANCH=$(git branch --show-current)
+BRANCH_NAME=$1
+
+git merge -m "chore: merge branch '$BRANCH_NAME' into $CURRENT_BRANCH" --edit "$@"
