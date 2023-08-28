@@ -73,3 +73,4 @@ and . (code --locate-shell-integration-path fish)
 
 abbr --add lg lazygit
 abbr --add g git
+abbr --add yw 'yarn workspace'

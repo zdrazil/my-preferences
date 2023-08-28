@@ -8,4 +8,4 @@ fi
 CURRENT_BRANCH=$(git branch --show-current)
 BRANCH_NAME=$1
 
-git merge -m "chore: merge branch '$BRANCH_NAME' into $CURRENT_BRANCH" --edit "$@"
+git merge -m "meta: merge branch '$BRANCH_NAME' into $CURRENT_BRANCH" --edit "$@"
