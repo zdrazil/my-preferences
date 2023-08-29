@@ -210,10 +210,9 @@ let g:highlightedyank_highlight_duration = 100
 let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-json',
-      \ 'coc-snippets',
-      \ 'coc-tabnine',
       \ 'coc-tsserver',
       \ ]
+      " \ 'coc-snippets',
 
 set updatetime=300
 
