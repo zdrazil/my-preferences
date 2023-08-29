@@ -1,9 +1,11 @@
 [user]
 	name = Vladimír Zdražil
 	email = git@vzdrazil.com
+	useConfigOnly = true
 [core]
 	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
 	helper = osxkeychain
 	helper = cache
@@ -14,6 +16,7 @@
 	tool = vscode
 [diff]
 	tool = vscode
+	colorMoved = true
 [alias]
 	co = checkout
 	ci = commit
@@ -53,3 +56,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[rebase]
+	autoSquash = true
+[interactive]
+	diffFilter = diff-so-fancy --patch

@@ -10,6 +10,7 @@ tap "homebrew/cask"
 tap "zdrazil/homebrew-tap"
 
 brew "azure-cli"
+brew "diff-so-fancy"
 brew "asdf"
 brew "bash-completion"
 brew "bash"
