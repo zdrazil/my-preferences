@@ -5,6 +5,7 @@
 [core]
 	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
+	pager = delta $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
 [credential]
 	helper = osxkeychain
 	helper = cache
@@ -24,6 +25,7 @@
 	show-word = show --word-diff=color --word-diff-regex='\\w+'
     diff-word = diff --color-words
 	diff-whitespace = diff -w
+	sbs = -c delta.side-by-side=true diff
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [rerere]
@@ -32,8 +34,9 @@
 	rebase = true
 [delta]
 	line-numbers = false
-	side-by-side = true
+	side-by-side = false
 	true-color = always
+	navigate = true
 [init]
 	defaultBranch = master
 [difftool "vscode"]
@@ -61,4 +64,8 @@
 [rebase]
 	autoSquash = true
 [diff]
-    colorMoved = default
+	colorMoved = default
+[interactive]
+	diffFilter = delta --color-only $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
+[merge]
+	conflictstyle = diff3
