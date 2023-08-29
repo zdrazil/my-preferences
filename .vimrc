@@ -66,7 +66,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'joaohkfaria/vim-jest-snippets'
 
