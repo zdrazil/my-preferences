@@ -5,7 +5,6 @@
 [core]
 	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
 [credential]
 	helper = osxkeychain
 	helper = cache
@@ -16,13 +15,15 @@
 	tool = vscode
 [diff]
 	tool = vscode
-	colorMoved = true
 [alias]
 	co = checkout
 	ci = commit
 	st = status
 	br = branch
 	brt = !git for-each-ref refs/heads --sort committerdate --format='%(HEAD) %(refname:short)'
+	show-word = show --word-diff=color --word-diff-regex='\\w+'
+    diff-word = diff --color-words
+	diff-whitespace = diff -w
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [rerere]
@@ -31,7 +32,8 @@
 	rebase = true
 [delta]
 	line-numbers = false
-	side-by-side = false
+	side-by-side = true
+	true-color = always
 [init]
 	defaultBranch = master
 [difftool "vscode"]
@@ -58,5 +60,5 @@
 	required = true
 [rebase]
 	autoSquash = true
-[interactive]
-	diffFilter = diff-so-fancy --patch
+[diff]
+    colorMoved = default
