@@ -26,6 +26,7 @@
     diff-word = diff --color-words
 	diff-whitespace = diff -w
 	sbs = -c delta.side-by-side=true diff
+	pushf = push --force-with-lease --force-if-includes
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [rerere]
@@ -56,6 +57,7 @@
 	format = ssh
 [push]
 	autoSetupRemote = true
+	useForceIfIncludes = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
