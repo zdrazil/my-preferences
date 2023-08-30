@@ -16,4 +16,4 @@ git reset --hard temp
 
 git branch -D temp
 
-git push -f
+git push --force-with-lease --force-if-includes
