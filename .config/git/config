@@ -5,7 +5,7 @@
 [core]
 	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
-	pager = delta $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
+	pager = delta-custom
 [credential]
 	helper = osxkeychain
 	helper = cache
@@ -66,6 +66,6 @@
 [diff]
 	colorMoved = default
 [interactive]
-	diffFilter = delta --color-only $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
+	diffFilter = delta-custom --color-only
 [merge]
 	conflictstyle = diff3

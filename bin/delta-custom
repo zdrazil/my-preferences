@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+# shellcheck disable=SC2154
+case ${BACKGROUND_THEME} in
+dark)
+    delta --dark "$@"
+    ;;
+light)
+    delta --light "$@"
+    ;;
+*)
+    echo "Invalid background_theme value. Please set it to either 'dark' or 'light'."
+    exit 1
+    ;;
+esac
