@@ -3,6 +3,7 @@
 
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "zdrazil/homebrew-tap"
 
 brew "azure-cli"
@@ -146,6 +147,7 @@ cask "homebrew/cask-drivers/sony-ps-remote-play"
 cask "homebrew/cask/scummvm"
 cask "kindle"
 cask "knockknock"
+cask "moonlight"
 cask "steam"
 cask "transmission"
 cask "syncthing"
