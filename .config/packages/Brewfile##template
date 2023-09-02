@@ -5,6 +5,7 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "zdrazil/homebrew-tap"
+tap "simonw/llm"
 
 brew "azure-cli"
 brew "diff-so-fancy"
