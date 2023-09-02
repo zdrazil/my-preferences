@@ -1,113 +1,113 @@
-#!/usr/bin/env bash
-# shellcheck enable=all
+#!/usr/bin/env fish
 
-set -eu
-trap "kill 0" EXIT
+argparse h/help r/reinstall -- $argv
+or return 0
 
-system_type=$(uname -s)
-my_config_home="${HOME}/.config"
-my_bin_home="${HOME}/.local/bin"
-should_reinstall=false
+if set -ql _flag_help
+    echo "bootsrap [-h|--help] [-r|--reinstall]"
+    return 0
+end
 
-cd "${HOME}" || exit
+if set -ql _flag_reinstall
+    set should_reinstall $_flag_reinstall
+end
 
-mkdir -p "${my_config_home}"
-mkdir -p "${my_bin_home}"
+set system_type $(uname -s)
+set my_config_home "$HOME/.config"
+set my_bin_home "$HOME/.local/bin"
 
-install_homebrew() {
-	if ! command -v brew >/dev/null 2>&1; then
-		echo "Installing homebrew"
-		brew_script="$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		/bin/bash -c "${brew_script}"
-	else
-		echo "Homebrew already installed. Skipping installation..."
-	fi
+cd $HOME || exit
 
-	if [[ "${system_type}" = "Darwin" ]]; then
-		echo "Installing core homebrew packages..."
-		brew install bash coreutils findutils gnu-sed tmux yadm zsh tmux asdf fzf
-		# shellcheck disable=SC1091
-		source "${HOME}/.config/yadm/macos-configuration"
+mkdir -p $my_config_home
+mkdir -p $my_bin_home
 
-	fi
+function install_homebrew
+    if type -q brew
+        echo "Homebrew already installed. Skipping installation..."
+    else
+        echo "Installing Homebrew"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    end
 
-	if [[ "${system_type}" = "Linux" ]]; then
-		echo "Installing basic apt packages..."
-		sudo apt update
-		sudo apt install build-essential procps curl file git dirmngr gpg gawk
-		echo "Updating homebrew bundle"
-		brew bundle --verbose --file "${my_config_home}/packages/LinuxBrewfile"
-		echo "Installing apt packages"
-		sudo apt install xclip vim-gtk3 nodejs npm
-		sudo apt-get install $(cat "${my_config_home}/packages/ubuntu-packages" | sed '/^#/d')
-		sudo apt-get clean
+    if test $system_type = Darwin
+        echo "Installing core homebrew packages..."
+        brew install \
+            asdf \
+            bash \
+            coreutils \
+            findutils \
+            fish \
+            fzf \
+            gnu-sed \
+            yadm \
+            zsh
+        source "$HOME/.config/yadm/macos-configuration"
+    end
 
-		if [[ -n "${XDG_SESSION_TYPE}" ]]; then
-			echo "Installing GUI packages..."
-			sudo apt-get install $(cat "${my_config_home}/packages/ubuntu-gui-packages" | sed '/^#/d')
-		fi
-	fi
-}
+    if test $system_type = Linux
+        echo "Installing basic apt packages..."
+        sudo apt update
+        sudo apt install build-essential procps curl file git dirmngr gpg gawk
+        echo "Updating homebrew bundle"
+        brew bundle --verbose --file "$my_config_home/packages/LinuxBrewfile"
+        echo "Installing apt packages"
+        sudo apt install xclip vim-gtk3 nodejs npm
+        sudo apt-get install $(cat "$my_config_home/packages/ubuntu-packages" | sed '/^#/d')
+        sudo apt-get clean
 
-install_homebrew_packages() {
-	if [[ "${system_type}" = "Darwin" ]]; then
-		echo "Installing rest of the homebrew packages..."
-		mkdir -p "${HOME}/tmp"
-		split -l 20 "${my_config_home}/packages/Brewfile" "${HOME}/tmp/Brewfile"
-		for file in "${HOME}"/tmp/Brewfile*; do
-			brew bundle --file "${file}"
-		done
-		rm -r "${HOME}/tmp"
-	fi
-}
+        if test -n "$XDG_SESSION_TYPE"
+            echo "Installing GUI packages..."
+            sudo apt-get install $(cat "$my_config_home/packages/ubuntu-gui-packages" | sed '/^#/d')
+        end
+    end
+end
 
-setup_git() {
-	echo "Updating the yadm repo origin URL"
-	yadm remote set-url origin "git@github.com:zdrazil/my-preferences.git"
-}
+function install_homebrew_packages
+    if test $system_type = Darwin
+        echo "Installing rest of the homebrew packages..."
+        mkdir -p "$HOME/tmp"
+        split -l 20 "$my_config_home/packages/Brewfile" "$HOME/tmp/Brewfile"
+        for file in "$HOME"/tmp/Brewfile*
+            brew bundle --verbose --file "$file"
+        end
+        rm -r "$HOME/tmp"
+    end
+end
 
-install_scripts() {
-	homebrew_prefix=$(brew --prefix)
+function setup_git
+    echo "Updating the yadm repo origin URL"
+    yadm remote set-url origin "git@github.com:zdrazil/my-preferences.git"
+end
 
-	echo "Installing scripts..."
+function install_scripts
+    set homebrew_prefix (brew --prefix)
 
-	{
-		echo "Installing fzf..."
-		"${homebrew_prefix}/opt/fzf/install" --key-bindings --completion --no-update-rc
-	} &
+    echo "Installing scripts..."
 
-	install_asdf() {
+    # begin
+    #     echo "Installing fzf..."
+    #     "$homebrew_prefix/opt/fzf/install" --key-bindings --completion --no-update-rc
+    # end
 
-		if [[ ! -d "${HOME}/.asdf" ]] || [[ ${should_reinstall} == true ]]; then
-			echo "Installing asdf..."
-			rm -rf "${HOME}/.asdf"
-			{
-				asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-				asdf plugin-add python
-				asdf plugin-add yarn
-				asdf plugin-add ruby
-				asdf plugin-add haskell
-			} 2>/dev/null
-			asdf install
-		else
-			echo "asdf already installed. Skipping installation..."
-		fi
-	}
+    function install_asdf
+        if test ! -d "$HOME/.asdf"; or set -q should_reinstall
+            echo "Installing asdf..."
+            rm -rf "$HOME/.asdf"
+            begin
+                asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+                asdf plugin-add yarn
+                asdf plugin-add python
+            end 2>/dev/null
+            asdf install
+        else
+            echo "asdf already installed. Skipping installation..."
+        end
+    end
 
-	install_asdf &
-
-	wait
-}
+    install_asdf
+end
 
 install_homebrew
-install_homebrew_packages &
-install_scripts &
-setup_git &
-
-wait
-
-# shellcheck disable=SC2016
-echo '
-Run this manually to set brew zsh as default:
-sudo sh -c "echo "$(brew --prefix)/bin/zsh" >>/etc/shells"
-chsh -s $(brew --prefix)/bin/bash'
+install_homebrew_packages
+install_scripts
+setup_git
