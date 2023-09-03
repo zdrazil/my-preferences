@@ -193,6 +193,7 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_floating_preview = 1
 let g:ale_linters_explicit = 1
 let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_completion_delay = 10
 
 let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_javascript_eslint_options = '--cache'
