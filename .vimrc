@@ -147,28 +147,23 @@ nnoremap <leader>bb :Buffers<cr>
 
 nmap <leader>gx :ALEDetail<CR>
 
-nmap <silent>gd <Plug>(coc-definition)
-nmap gd <Plug>(coc-definition)
-nmap <leader>grr <Plug>(coc-references)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>ga <Plug>(coc-codeaction-selected)
-xmap <leader>ga <Plug>(coc-codeaction-selected)
-nmap <leader>gA <Plug>(coc-codeaction)
+nmap gd :ALEGoToDefinition<CR>
+nmap <leader>grr :ALEFindReferences -quickfix<CR> :copen<CR>
+nmap <leader>gy :ALEGoToDefinition<CR>
+nmap <leader>ga :ALECodeAction<CR>
+xmap <leader>ga :ALECodeAction<CR>
+nmap <leader>gA :ALECodeAction<CR>
+nmap <leader>gfi <Plug>(ale_import)
 
-nmap <leader>grn <Plug>(coc-rename)
+nmap <leader>grn :ALERename<CR>
 
-nnoremap <silent><nowait> [c  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> ]c  :<C-u>CocNext<CR>
+nnoremap <silent> [c <Plug>(ale_previous_wrap)
+nnoremap <silent> ]c <Plug>(ale_next_wrap) 
 
-" xmap <silent>v <Plug>(coc-range-select)
 xmap <silent>v <Plug>(expand_region_expand)
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
 
-nnoremap <leader>gh :call <SID>show_documentation()<CR>
-nnoremap gh :call <SID>show_documentation()<CR>
+nnoremap <leader>gh <Plug>(ale_hover)
+nnoremap gh <Plug>(ale_hover)
 
 nmap <leader>gs< <Plug>SidewaysLeft
 nmap <leader>gs> <Plug>SidewaysRight
@@ -187,38 +182,28 @@ vnoremap <leader>ro <Plug>OSCYankVisual
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>> :Grepper -tool rg<CR>
 nnoremap <leader>. :Rg<cr>
-nnoremap <silent><nowait> <leader>scs  :<C-u>CocList snippets<cr>
 
+set omnifunc=ale#completion#OmniFunc
+set completeopt=menu,menuone,popup,noselect,noinsert
+
+let g:ale_disable_lsp = 0
 let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_floating_preview = 1
 let g:ale_linters_explicit = 1
-let g:ale_disable_lsp = 1
+let g:ale_virtualtext_cursor = 'disabled'
+
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_options = '--cache'
+let g:ale_javascript_eslint_use_global = 1
 
 let g:highlightedyank_highlight_duration = 100
 
-" Coc.nvim
-let g:coc_global_extensions = [
-      \ 'coc-emmet',
-      \ 'coc-json',
-      \ 'coc-tsserver',
-      \ ]
-
 set updatetime=300
 
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 imap <C-@> <C-Space>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
-  endif
-endfunction
-
-imap <C-l> <Plug>(coc-snippets-expand)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let g:ale_fixers = {
       \ 'haskell': ['ormolu'],
@@ -269,3 +254,5 @@ call expand_region#custom_text_objects({
       \ 'ab' :1,
       \ 'aB' :1,
       \ })
+
+      let g:ale_completion_enabled = 1
