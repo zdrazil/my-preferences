@@ -54,12 +54,12 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'jpalardy/vim-slime'
+Plug 'chriskempson/base16-vim'
+Plug 'lifepillar/vim-solarized8'
 
 Plug 'tpope/vim-sensible'
 Plug 'jeffkreeftmeijer/vim-dim'
 
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -67,8 +67,6 @@ Plug 'mhinz/vim-grepper'
 
 Plug 'w0rp/ale'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
-Plug 'joaohkfaria/vim-jest-snippets'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-apathy'
@@ -81,7 +79,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 Plug 'iberianpig/tig-explorer.vim'
 
@@ -91,14 +89,12 @@ Plug 'markonm/traces.vim'
 Plug 'rstacruz/vim-closer'
 Plug 'chiedojohn/vim-case-convert'
 Plug 'machakann/vim-highlightedyank'
-Plug 'AndrewRadev/sideways.vim'
 
 Plug 'justinmk/vim-gtfo'
 
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
-Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 
 " FrontEnd
@@ -109,7 +105,7 @@ Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 call plug#end()
 
 runtime plugin/sensible.vim
-colorscheme dim
+" colorscheme dim
 
 if !exists("g:os")
     if has("win64") || has("win32") || has("win16")
@@ -129,12 +125,6 @@ else
   if $BACKGROUND_THEME ==# 'dark'
     set background=dark
   endif
-endif
-
-" Make mouse work in tmux
-if &term =~# '^screen' || &term =~# '^xterm-kitty'
-  " tmux knows the extended mouse mode
-  set ttymouse=sgr
 endif
 
 runtime plugin/grepper.vim
@@ -188,17 +178,13 @@ nnoremap <leader>fvs :source $MYVIMRC<cr>
 nmap <leader>ov  :OpenInVSCode<cr>
 
 " register
-vnoremap <leader>ro :OSCYank<CR>
+vnoremap <leader>ro <Plug>OSCYankVisual
 
 " search
 nnoremap <leader>f :Rg<cr>
 nnoremap <leader>> :Grepper -tool rg<CR>
 nnoremap <leader>. :Rg<cr>
 nnoremap <silent><nowait> <leader>scs  :<C-u>CocList snippets<cr>
-
-let g:ale_javascript_eslint_executable = 'eslint_d'
-" let g:ale_javascript_eslint_options = '--cache'
-let g:ale_javascript_eslint_use_global = 1
 
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -212,7 +198,6 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-tsserver',
       \ ]
-      " \ 'coc-snippets',
 
 set updatetime=300
 
@@ -269,6 +254,8 @@ if exists('$EXTRA_VIM')
 endif
 
 augroup MYOSCYank
-  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
+  autocmd TextYankPost *
+    \ if v:event.operator is 'y' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
 augroup END
-
