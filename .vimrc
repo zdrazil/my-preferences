@@ -105,7 +105,7 @@ Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 call plug#end()
 
 runtime plugin/sensible.vim
-" colorscheme dim
+colorscheme dim
 
 if !exists("g:os")
     if has("win64") || has("win32") || has("win16")
