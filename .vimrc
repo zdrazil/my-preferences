@@ -96,6 +96,7 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'justinmk/vim-sneak'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'terryma/vim-expand-region'
 
 " FrontEnd
 Plug 'suy/vim-context-commentstring'
@@ -105,6 +106,7 @@ Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
 call plug#end()
 
 runtime plugin/sensible.vim
+
 colorscheme dim
 
 if !exists("g:os")
@@ -158,7 +160,8 @@ nmap <leader>grn <Plug>(coc-rename)
 nnoremap <silent><nowait> [c  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> ]c  :<C-u>CocNext<CR>
 
-xmap <silent>v <Plug>(coc-range-select)
+" xmap <silent>v <Plug>(coc-range-select)
+xmap <silent>v <Plug>(expand_region_expand)
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -259,3 +262,10 @@ augroup MYOSCYank
     \ execute 'OSCYankRegister +' |
     \ endif
 augroup END
+
+call expand_region#custom_text_objects({
+      \ 'a]' :1,
+      \ 'a<' :1,
+      \ 'ab' :1,
+      \ 'aB' :1,
+      \ })
