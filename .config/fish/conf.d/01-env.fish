@@ -1,11 +1,11 @@
 function add_homebrew_path
     for i in /usr/local /opt/homebrew "/home/linuxbrew/.linuxbrew"
         if test -d $i
-            set -f homebrew_prefix $i
+            set --function homebrew_prefix $i
         end
     end
 
-    if set -q homebrew_prefix
+    if set --query homebrew_prefix
         fish_add_path "$homebrew_prefix/bin" \
             $homebrew_prefix/sbin
     end
@@ -21,6 +21,8 @@ fish_add_path "$HOME/bin" \
     "$HOME/.local/bin" \
     /Applications/MacVim.app/Contents/bin \
     " $HOME/.local/npm-tools/node_modules/.bin"
+
+functions --erase add_homebrew_path
 
 switch (uname)
     case Darwin

@@ -6,6 +6,7 @@ switch (hostname)
     case '*'
         set -gx MY_THEME oceanic-next
 end
+
 set -gx MY_LIGHT_THEME cupertino
 set -gx BACKGROUND_THEME (change-theme)
 set -gx BAT_THEME ansi
