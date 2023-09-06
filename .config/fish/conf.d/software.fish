@@ -1,10 +1,13 @@
-# asdf
-if test -f "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
-    source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+set homebrew_prefix
+
+if command -v brew &>/dev/null
+    set homebrew_prefix (brew --prefix)
 end
 
-if test -f "/opt/local/share/asdf/asdf.fish"
-    source "/opt/local/share/asdf/asdf.fish"
+# asdf
+
+if test -f "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+    source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
 end
 
 # direnv
