@@ -69,11 +69,9 @@ brew "tldr"
 brew "tmux"
 brew "trash"
 brew "tree"
-brew "vim"
 brew "watchman"
 brew "wget"
 brew "yarn"
-brew "nvim"
 
 # rga needs these
 brew "ffmpeg"

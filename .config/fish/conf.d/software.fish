@@ -28,6 +28,7 @@ end
 
 # Homebrew
 set -gx HOMEBREW_NO_ANALYTICS 1
+set -gx HOMEBREW_AUTO_UPDATE_SECS 604800 # 7 days
 
 # iTerm 2
 test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
