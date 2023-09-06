@@ -83,6 +83,7 @@ brew "tesseract"
 
 cask "alfred"
 cask "appcleaner"
+cask "macvim"
 # cask "banana-cake-pop"
 cask "bartender"
 cask "bettertouchtool"
