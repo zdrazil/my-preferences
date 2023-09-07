@@ -1,5 +1,5 @@
 # Taken from https://github.com/fish-shell/fish-shell/issues/7432#issue-731219402
-set -l fish_config_mtime (stat -f %m $__fish_config_dir/conf.d/02-universal-variables.fish)
+set -l fish_config_mtime (stat -f %m $__fish_config_dir/conf.d/01-universal-variables.fish)
 if test "$fish_config_changed" = "$fish_config_mtime"
     exit
 else
