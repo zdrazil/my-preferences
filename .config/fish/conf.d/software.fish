@@ -1,16 +1,8 @@
-set homebrew_prefix
-
-if command --search brew &>/dev/null
-    set homebrew_prefix (brew --prefix)
-end
-
 # asdf
 
-if test -f "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
-    source "$homebrew_prefix/opt/asdf/libexec/asdf.fish"
+if test -f "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
+    source "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
 end
-
-set --erase homebrew_prefix
 
 # direnv
 

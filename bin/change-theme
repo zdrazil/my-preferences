@@ -3,14 +3,19 @@
 
 background_theme="dark"
 
-# save computer specific themes to .not-public
-if [[ -z ${MY_THEME} ]]; then
-    MY_THEME="oceanic-next"
-fi
+case $(hostname) in
+Vladimirs-Mews-MacBook-Pro.local)
+    MY_THEME=solarized-dark
+    ;;
+VladimisMewsMBP)
+    MY_THEME=solarized-dark
+    ;;
+*)
+    MY_THEME=oceanic-next
+    ;;
+esac
 
-if [[ -z ${MY_LIGHT_THEME} ]]; then
-    MY_LIGHT_THEME="cupertino"
-fi
+MY_LIGHT_THEME=cupertino
 
 case $(uname) in
 Darwin)

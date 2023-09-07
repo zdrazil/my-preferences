@@ -1,5 +1,5 @@
 # Taken from https://github.com/fish-shell/fish-shell/issues/7432#issue-731219402
-set -l fish_config_mtime (stat -f %m $__fish_config_dir/conf.d/universal-variables.fish)
+set -l fish_config_mtime (stat -f %m $__fish_config_dir/conf.d/02-universal-variables.fish)
 if test "$fish_config_changed" = "$fish_config_mtime"
     exit
 else
@@ -12,12 +12,15 @@ begin
     function add_homebrew_path
         for i in /usr/local /opt/homebrew "/home/linuxbrew/.linuxbrew"
             if test -d $i
-                set --function homebrew_prefix $i
+                # Set homebrew prefix for later use in scripts. 
+                # It's faster than `brew --prefix` by  around 10-20 ms.
+                # By evaluating it only once, we save time.
+                set -U MY_HOMEBREW_PREFIX $i
             end
         end
 
-        if set --query homebrew_prefix
-            fish_add_path "$homebrew_prefix/bin" $homebrew_prefix/sbin
+        if set --query MY_HOMEBREW_PREFIX
+            fish_add_path "$MY_HOMEBREW_PREFIX/bin" $MY_HOMEBREW_PREFIX/sbin
         end
     end
 
@@ -61,14 +64,4 @@ end
 
 # ---- Theming ----
 
-switch (hostname)
-    case Vladimirs-Mews-MacBook-Pro.local
-        set -U MY_THEME solarized-dark
-    case VladimisMewsMBP
-        set -U MY_THEME solarized-dark
-    case '*'
-        set -U MY_THEME oceanic-next
-end
-
-set -U MY_LIGHT_THEME cupertino
 set -U BAT_THEME ansi
