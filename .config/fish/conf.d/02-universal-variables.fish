@@ -49,18 +49,16 @@ end
 
 # ---- Software ----
 
-begin
-    ## FZF
-    set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
-    set -U FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-    set -U FZF_CTRL_T_OPTS '--preview "bat --style=numbers --color=always --line-range :500 {}" --bind "?:toggle-preview"'
-    set -U FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history --bind 'f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)"
-    set -U FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+## FZF
+set -U FZF_DEFAULT_COMMAND 'rg --files --hidden --follow'
+set -U FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -U FZF_CTRL_T_OPTS '--preview "bat --style=numbers --color=always --line-range :500 {}" --bind "?:toggle-preview"'
+set -U FZF_DEFAULT_OPTS "--history=$HOME/.fzf-history --bind 'f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)"
+set -U FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
-    ## Homebrew
-    set -U HOMEBREW_NO_ANALYTICS 1
-    set -U HOMEBREW_AUTO_UPDATE_SECS 604800 # 7 days
-end
+## Homebrew
+set -U HOMEBREW_NO_ANALYTICS 1
+set -U HOMEBREW_AUTO_UPDATE_SECS 604800 # 7 days
 
 # ---- Theming ----
 
