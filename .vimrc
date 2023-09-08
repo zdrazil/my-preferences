@@ -98,8 +98,9 @@ function! PackInit() abort
   " FrontEnd
   call minpac#add('suy/vim-context-commentstring')
 
-  " call minpac#add('tweekmonster/startuptime.vim')
 endfunction
+
+" call minpac#add('tweekmonster/startuptime.vim')
 
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
