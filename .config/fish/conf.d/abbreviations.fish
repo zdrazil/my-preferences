@@ -2,10 +2,10 @@ abbr --add g git
 abbr --add lg lazygit
 abbr --add yw 'yarn workspace'
 
-# perl -wnl -e 's/hello/hi/g and print'
+# perl -wnl -e 's/hello/ and print'
 abbr --add pgrep 'perl -wnl -e'
 
-# perl -wnl -e 's/hello/ and print'
+# perl -wpl -e 's/hello/hi/g'
 abbr --add psed 'perl -wpl -e'
 
 # use quotemeta
