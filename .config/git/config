@@ -27,8 +27,6 @@
 	diff-whitespace = diff -w
 	sbs = -c delta.side-by-side=true diff
 	pushf = push --force-with-lease --force-if-includes
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [rerere]
 	enabled = true
 [pull]

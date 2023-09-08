@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+# https://old.reddit.com/r/vim/comments/10m89z1/is_there_any_way_to_update_all_the_plugins/j7hmyyx/
+
+mkdir -p ~/.vim/doc
+
+pushd ~/.vim/doc || return
+
+for ppath in ../pack/*/*/*; do
+    ln -snf "${ppath}/doc" "$(basename "${ppath}")"
+done
+
+vim "+helptags ~/.vim/doc | q"
+
+popd || return

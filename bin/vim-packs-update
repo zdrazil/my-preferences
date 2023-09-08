@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+# https://old.reddit.com/r/vim/comments/10m89z1/is_there_any_way_to_update_all_the_plugins/j7hmyyx/
+
+for pack in ~/.vim/pack/*/*/*/.git/..; do
+    git --depth=1 -C "${pack}" pull
+    echo "========== Done for ${pack} =========="
+done

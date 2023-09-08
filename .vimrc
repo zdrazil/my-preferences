@@ -45,67 +45,7 @@ endif
 set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
 set undodir=~/.vim/undo//
-
-function! PackInit() abort
-  packadd minpac
-
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  call minpac#add('chriskempson/base16-vim')
-  call minpac#add('lifepillar/vim-solarized8')
-
-  call minpac#add('tpope/vim-sensible')
-  call minpac#add('jeffkreeftmeijer/vim-dim')
-
-  call minpac#add('junegunn/fzf')
-  call minpac#add('junegunn/fzf.vim')
-
-  call minpac#add('mhinz/vim-grepper')
-
-  call minpac#add('w0rp/ale')
-
-  call minpac#add('tpope/vim-abolish')
-  call minpac#add('tpope/vim-apathy')
-  call minpac#add('tpope/vim-commentary')
-  call minpac#add('tpope/vim-eunuch')
-  call minpac#add('tpope/vim-repeat')
-  call minpac#add('tpope/vim-rsi')
-  call minpac#add('tpope/vim-sleuth')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('tpope/vim-unimpaired')
-  call minpac#add('tpope/vim-vinegar')
-
-  call minpac#add('ojroques/vim-oscyank', {'branch': 'main'})
-
-  call minpac#add('iberianpig/tig-explorer.vim')
-
-  call minpac#add('editorconfig/editorconfig-vim')
-  call minpac#add('markonm/traces.vim')
-
-  call minpac#add('rstacruz/vim-closer')
-  call minpac#add('chiedojohn/vim-case-convert')
-  call minpac#add('machakann/vim-highlightedyank')
-
-  call minpac#add('justinmk/vim-gtfo')
-
-  call minpac#add('junegunn/vim-peekaboo')
-
-  call minpac#add('justinmk/vim-sneak')
-  call minpac#add('michaeljsmith/vim-indent-object')
-  call minpac#add('terryma/vim-expand-region')
-
-  " FrontEnd
-  call minpac#add('suy/vim-context-commentstring')
-
-endfunction
-
-" call minpac#add('tweekmonster/startuptime.vim')
-
-command! PackUpdate call PackInit() | call minpac#update()
-command! PackClean  call PackInit() | call minpac#clean()
-command! PackStatus packadd minpac | call minpac#status()
-
+  
 runtime plugin/sensible.vim
 
 colorscheme dim
