@@ -14,5 +14,13 @@ test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell
 
 # Visual Studio Code
 
-string match --quiet "$TERM_PROGRAM" vscode
-and . (code --locate-shell-integration-path fish)
+if string match --quiet "$TERM_PROGRAM" vscode
+    switch uname
+        case Darwin
+            . '/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/browser/media/fish_xdg_data/fish/vendor_conf.d/shellIntegration.fish'
+        case '*'
+            # This is slow
+            . (code --locate-shell-integration-path fish)
+    end
+
+end
