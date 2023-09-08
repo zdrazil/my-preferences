@@ -46,64 +46,64 @@ set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
 set undodir=~/.vim/undo//
 
-let data_dir = '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+function! PackInit() abort
+  packadd minpac
 
-call plug#begin('~/.vim/plugged')
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-Plug 'chriskempson/base16-vim'
-Plug 'lifepillar/vim-solarized8'
+  call minpac#add('chriskempson/base16-vim')
+  call minpac#add('lifepillar/vim-solarized8')
 
-Plug 'tpope/vim-sensible'
-Plug 'jeffkreeftmeijer/vim-dim'
+  call minpac#add('tpope/vim-sensible')
+  call minpac#add('jeffkreeftmeijer/vim-dim')
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+  call minpac#add('junegunn/fzf')
+  call minpac#add('junegunn/fzf.vim')
 
-Plug 'mhinz/vim-grepper'
+  call minpac#add('mhinz/vim-grepper')
 
-Plug 'w0rp/ale'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  call minpac#add('w0rp/ale')
 
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-apathy'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
+  call minpac#add('tpope/vim-abolish')
+  call minpac#add('tpope/vim-apathy')
+  call minpac#add('tpope/vim-commentary')
+  call minpac#add('tpope/vim-eunuch')
+  call minpac#add('tpope/vim-repeat')
+  call minpac#add('tpope/vim-rsi')
+  call minpac#add('tpope/vim-sleuth')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-unimpaired')
+  call minpac#add('tpope/vim-vinegar')
 
-Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+  call minpac#add('ojroques/vim-oscyank', {'branch': 'main'})
 
-Plug 'iberianpig/tig-explorer.vim'
+  call minpac#add('iberianpig/tig-explorer.vim')
 
-Plug 'editorconfig/editorconfig-vim'
-Plug 'markonm/traces.vim'
+  call minpac#add('editorconfig/editorconfig-vim')
+  call minpac#add('markonm/traces.vim')
 
-Plug 'rstacruz/vim-closer'
-Plug 'chiedojohn/vim-case-convert'
-Plug 'machakann/vim-highlightedyank'
+  call minpac#add('rstacruz/vim-closer')
+  call minpac#add('chiedojohn/vim-case-convert')
+  call minpac#add('machakann/vim-highlightedyank')
 
-Plug 'justinmk/vim-gtfo'
+  call minpac#add('justinmk/vim-gtfo')
 
-Plug 'junegunn/vim-peekaboo'
+  call minpac#add('junegunn/vim-peekaboo')
 
-Plug 'justinmk/vim-sneak'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'terryma/vim-expand-region'
+  call minpac#add('justinmk/vim-sneak')
+  call minpac#add('michaeljsmith/vim-indent-object')
+  call minpac#add('terryma/vim-expand-region')
 
-" FrontEnd
-Plug 'suy/vim-context-commentstring'
+  " FrontEnd
+  call minpac#add('suy/vim-context-commentstring')
 
-Plug 'tweekmonster/startuptime.vim' , { 'on': 'StartupTime' }
+  " call minpac#add('tweekmonster/startuptime.vim')
+endfunction
 
-call plug#end()
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackStatus packadd minpac | call minpac#status()
 
 runtime plugin/sensible.vim
 
