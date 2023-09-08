@@ -70,9 +70,6 @@ else
   endif
 endif
 
-runtime plugin/grepper.vim
-let g:grepper.rg.grepprg .= ' -S '
-let g:grepper.tools = ['rg', 'grep', 'git' ]
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 

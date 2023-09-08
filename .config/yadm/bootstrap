@@ -89,10 +89,6 @@ function install_scripts
     #     "$homebrew_prefix/opt/fzf/install" --key-bindings --completion --no-update-rc
     # end
 
-    begin
-        git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-    end
-
     function install_asdf
         if test ! -d "$HOME/.asdf"; or set -q should_reinstall
             echo "Installing asdf..."
