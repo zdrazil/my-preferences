@@ -7,3 +7,5 @@ for pack in ~/.vim/pack/*/*/*/.git/..; do
     git -C "${pack}" pull --depth=1
     echo "========== Done for ${pack} =========="
 done
+
+vim-packs-update-help-tags

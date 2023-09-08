@@ -42,3 +42,5 @@ cd $package_path || exit
 for p in $packages
     git clone --depth=1 "git@github.com:$p"
 end
+
+vim-packs-update-help-tags
