@@ -22,5 +22,4 @@ if string match --quiet "$TERM_PROGRAM" vscode
             # This is slow
             . (code --locate-shell-integration-path fish)
     end
-
 end
