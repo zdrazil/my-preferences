@@ -34,12 +34,6 @@ begin
 
     functions --erase add_homebrew_path
 
-    switch (uname)
-        case Darwin
-            set -U LC_ALL en_US.UTF-8
-            set -U LANG en_US.UTF-8
-    end
-
     if test -x mvim
         set -U EDITOR mvim
     else
