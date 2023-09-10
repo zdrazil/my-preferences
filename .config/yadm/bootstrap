@@ -28,36 +28,39 @@ function install_asdf
 end
 
 function main
-
     cd $HOME || exit
 
-    echo "Installing Homebrew…"
-    if type -q brew
-        echo "Homebrew already installed. Skipping installation…"
-    else
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
+    begin
+        echo "Installing Homebrew…"
+        if type -q brew
+            echo "Homebrew already installed. Skipping installation…"
+        else
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
+        end
     end
 
-    set -l packages_dir "$HOME/.config/packages"
-    switch (uname -s)
-        case Darwin
-            echo "Installing homebrew packages…"
-            brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
-            brew bundle --verbose --file "$packages_dir/Brewfile" || exit
+    begin
+        set -l packages_dir "$HOME/.config/packages"
+        switch (uname -s)
+            case Darwin
+                echo "Installing homebrew packages…"
+                brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
+                brew bundle --verbose --file "$packages_dir/Brewfile" || exit
 
-            echo "Setting configs…"
-            source "$HOME/.config/yadm/macos-configuration"
-        case Linux
-            echo "Installing homebrew packages…"
-            brew bundle --verbose --file "$packages_dir/LinuxBrewfile" || exit
+                echo "Setting configs…"
+                source "$HOME/.config/yadm/macos-configuration"
+            case Linux
+                echo "Installing homebrew packages…"
+                brew bundle --verbose --file "$packages_dir/LinuxBrewfile" || exit
 
-            echo "Installing apt packages…"
-            sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
-            sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-packages") || exit
+                echo "Installing apt packages…"
+                sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
+                sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-packages") || exit
 
-            if set -q $XDG_SESSION_TYPE
-                sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-gui-packages") || exit
-            end
+                if set -q $XDG_SESSION_TYPE
+                    sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-gui-packages") || exit
+                end
+        end
     end
 
     install_asdf || exit
