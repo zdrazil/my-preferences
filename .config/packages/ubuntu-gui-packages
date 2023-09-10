@@ -1,4 +1,4 @@
-# sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-gui-packages" | sed '/^#/d')
+# sudo apt-get install $(sed '/^#/d' "$HOME/.config/packages/ubuntu-gui-packages")
 calibre
 chromium-browser
 firefox

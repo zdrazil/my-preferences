@@ -1,4 +1,4 @@
-# sudo apt-get install $(cat "$HOME/.config/packages/ubuntu-packages" | sed '/^#/d')
+# sudo apt-get install $(sed '/^#/d' "$HOME/.config/packages/ubuntu-packages")
 bash
 bash-completion
 coreutils

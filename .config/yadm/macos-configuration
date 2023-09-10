@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
 echo "Configuring MacOS..."
 # https://mths.be/macos
@@ -11,9 +11,6 @@ osascript -e 'tell application "System Preferences" to quit'
 
 # Set fast key repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
-
-# Allow fast user switching (icon style, in the menu bar)
-defaults write NSGlobalDomain userMenuExtraStyle -int 2
 
 # Show the Develop menu in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -53,7 +50,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 ## Finder
 
 # Use previous scope as default search scope in Finder
-defaults write com.apple.finder FXDefaultSearchScope -string "SCsp"
+defaults write com.apple.finder FXDefaultSearchScope -string SCsp
 
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
@@ -90,16 +87,3 @@ defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/Library/Mobile Doc
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 ## Automatic saving of config changes
 defaults write com.googlecode.iterm2 NoSyncNeverRemindPrefsChangesLostForFile_selection 2
-
-## Terminal
-
-echo "Adding python for Alfred workflows"
-
-export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
-eval "$(brew shellenv)"
-
-if [ ! -f "${HOMEBREW_PREFIX}/bin/python" ]; then
-    brew install pyenv
-    pyenv install 2.7.18
-    ln -s "${HOME}/.pyenv/versions/2.7.18/bin/python2.7" "${HOMEBREW_PREFIX}/bin/python"
-fi

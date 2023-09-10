@@ -1,113 +1,73 @@
 #!/usr/bin/env fish
 
-argparse h/help r/reinstall -- $argv
-or return 0
+argparse h/help r/reinstall -- $argv || return
 
 if set -ql _flag_help
     echo "bootsrap [-h|--help] [-r|--reinstall]"
     return 0
-end
-
-if set -ql _flag_reinstall
+else if set -ql _flag_reinstall
     set should_reinstall $_flag_reinstall
 end
 
-set system_type $(uname -s)
+set system_type (uname -s)
 set my_config_home "$HOME/.config"
-set my_bin_home "$HOME/.local/bin"
 
-cd $HOME || exit
+function install_asdf
+    if test ! -d "$HOME/.asdf"; or set -q should_reinstall
+        echo "Installing asdf..."
 
-mkdir -p $my_config_home
-mkdir -p $my_bin_home
+        rm -rf "$HOME/.asdf" || exit
 
-function install_homebrew
-    if type -q brew
-        echo "Homebrew already installed. Skipping installation..."
+        begin
+            asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+            asdf plugin-add yarn
+            asdf plugin-add python
+        end 2>/dev/null || exit
+
+        asdf install || exit
     else
-        echo "Installing Homebrew"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    end
-
-    if test $system_type = Darwin
-        echo "Installing core homebrew packages..."
-        brew install \
-            asdf \
-            bash \
-            coreutils \
-            findutils \
-            fish \
-            fzf \
-            gnu-sed \
-            yadm \
-            zsh
-        source "$HOME/.config/yadm/macos-configuration"
-    end
-
-    if test $system_type = Linux
-        echo "Installing basic apt packages..."
-        sudo apt update
-        sudo apt install build-essential procps curl file git dirmngr gpg gawk
-        echo "Updating homebrew bundle"
-        brew bundle --verbose --file "$my_config_home/packages/LinuxBrewfile"
-        echo "Installing apt packages"
-        sudo apt install xclip vim-gtk3 nodejs npm
-        sudo apt-get install $(cat "$my_config_home/packages/ubuntu-packages" | sed '/^#/d')
-        sudo apt-get clean
-
-        if test -n "$XDG_SESSION_TYPE"
-            echo "Installing GUI packages..."
-            sudo apt-get install $(cat "$my_config_home/packages/ubuntu-gui-packages" | sed '/^#/d')
-        end
+        echo "asdf already installed. Skipping installation..."
     end
 end
 
-function install_homebrew_packages
-    if test $system_type = Darwin
-        echo "Installing rest of the homebrew packages..."
-        mkdir -p "$HOME/tmp"
-        split -l 20 "$my_config_home/packages/Brewfile" "$HOME/tmp/Brewfile"
-        for file in "$HOME"/tmp/Brewfile*
-            brew bundle --verbose --file "$file"
-        end
-        rm -r "$HOME/tmp"
-    end
-end
+function main
 
-function setup_git
+    cd $HOME || exit
+
+    begin
+        if type -q brew
+            echo "Homebrew already installed. Skipping installation..."
+        else
+            echo "Installing Homebrew"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
+        end
+    end
+
+    switch $system_type
+        case Darwin
+            echo "Installing homebrew packages..."
+            brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
+            brew bundle --verbose --file "$my_config_home/packages/Brewfile" || exit
+
+            echo "Setting configs..."
+            source "$HOME/.config/yadm/macos-configuration"
+        case Linux
+            echo "Installing homebrew packages..."
+            brew bundle --verbose --file "$my_config_home/packages/LinuxBrewfile" || exit
+
+            echo "Installing apt packages..."
+            sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
+            sudo apt-get install (sed '/^#/d' "$my_config_home/packages/ubuntu-packages") || exit
+
+            if set -q $XDG_SESSION_TYPE
+                sudo apt-get install (sed '/^#/d' "$my_config_home/packages/ubuntu-gui-packages") || exit
+            end
+    end
+
+    install_asdf || exit
+
     echo "Updating the yadm repo origin URL"
     yadm remote set-url origin "git@github.com:zdrazil/my-preferences.git"
 end
 
-function install_scripts
-    set homebrew_prefix (brew --prefix)
-
-    echo "Installing scripts..."
-
-    # begin
-    #     echo "Installing fzf..."
-    #     "$homebrew_prefix/opt/fzf/install" --key-bindings --completion --no-update-rc
-    # end
-
-    function install_asdf
-        if test ! -d "$HOME/.asdf"; or set -q should_reinstall
-            echo "Installing asdf..."
-            rm -rf "$HOME/.asdf"
-            begin
-                asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-                asdf plugin-add yarn
-                asdf plugin-add python
-            end 2>/dev/null
-            asdf install
-        else
-            echo "asdf already installed. Skipping installation..."
-        end
-    end
-
-    install_asdf
-end
-
-install_homebrew
-install_homebrew_packages
-install_scripts
-setup_git
+main
