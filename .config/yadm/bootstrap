@@ -9,24 +9,21 @@ else if set -ql _flag_reinstall
     set should_reinstall $_flag_reinstall
 end
 
-set system_type (uname -s)
-set my_config_home "$HOME/.config"
-
 function install_asdf
     if test ! -d "$HOME/.asdf"; or set -q should_reinstall
-        echo "Installing asdf..."
+        echo "Installing asdf…"
 
         rm -rf "$HOME/.asdf" || exit
 
         begin
-            asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+            asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
             asdf plugin-add yarn
             asdf plugin-add python
         end 2>/dev/null || exit
 
         asdf install || exit
     else
-        echo "asdf already installed. Skipping installation..."
+        echo "asdf already installed. Skipping installation…"
     end
 end
 
@@ -34,33 +31,32 @@ function main
 
     cd $HOME || exit
 
-    begin
-        if type -q brew
-            echo "Homebrew already installed. Skipping installation..."
-        else
-            echo "Installing Homebrew"
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
-        end
+    echo "Installing Homebrew…"
+    if type -q brew
+        echo "Homebrew already installed. Skipping installation…"
+    else
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
     end
 
-    switch $system_type
+    set -l packages_dir "$HOME/.config/packages"
+    switch (uname -s)
         case Darwin
-            echo "Installing homebrew packages..."
+            echo "Installing homebrew packages…"
             brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
-            brew bundle --verbose --file "$my_config_home/packages/Brewfile" || exit
+            brew bundle --verbose --file "$packages_dir/Brewfile" || exit
 
-            echo "Setting configs..."
+            echo "Setting configs…"
             source "$HOME/.config/yadm/macos-configuration"
         case Linux
-            echo "Installing homebrew packages..."
-            brew bundle --verbose --file "$my_config_home/packages/LinuxBrewfile" || exit
+            echo "Installing homebrew packages…"
+            brew bundle --verbose --file "$packages_dir/LinuxBrewfile" || exit
 
-            echo "Installing apt packages..."
+            echo "Installing apt packages…"
             sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
-            sudo apt-get install (sed '/^#/d' "$my_config_home/packages/ubuntu-packages") || exit
+            sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-packages") || exit
 
             if set -q $XDG_SESSION_TYPE
-                sudo apt-get install (sed '/^#/d' "$my_config_home/packages/ubuntu-gui-packages") || exit
+                sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-gui-packages") || exit
             end
     end
 
