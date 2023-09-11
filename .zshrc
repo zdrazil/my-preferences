@@ -6,7 +6,6 @@ select-word-style bash
 autoload -Uz compinit
 compinit
 
-
 if [ -f "$HOME/.config/bash-like/commonrc" ]; then
     . "$HOME/.config/bash-like/commonrc"
 fi
@@ -17,7 +16,6 @@ fi
 
 HOMEBREW_PREFIX=$(brew --prefix)
 
-
 if type brew &>/dev/null; then
     FPATH="$HOMEBREW_PREFIX"/share/zsh-completions:$FPATH
 fi
@@ -26,11 +24,6 @@ if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
     . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 fi
 
-if [ -f "/opt/local/share/asdf/asdf.sh" ]; then
-    . /opt/local/share/asdf/asdf.sh
-fi
-
-# . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # ---------------------------------------------------
@@ -108,18 +101,18 @@ eval "$(direnv hook zsh)"
 
 # ------------------ PLUGINS ----------------------
 
-ZPLUGINDIR="$HOME/.config/zsh/plugins"
+ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
 
-if [[ ! -d "$ZPLUGINDIR/zsh_unplugged" ]]; then
-  git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR/zsh_unplugged"
+if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
+  git clone --quiet https://github.com/mattmc3/zsh_unplugged $ZPLUGINDIR/zsh_unplugged
 fi
-source "$ZPLUGINDIR/zsh_unplugged/zsh_unplugged.plugin.zsh"
+
+source $ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh
 
 repos=(    
     agkozak/zsh-z
     zsh-users/zsh-completions
     zsh-users/zsh-autosuggestions
-    Aloxaf/fzf-tab
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
 )
