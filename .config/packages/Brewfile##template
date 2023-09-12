@@ -166,6 +166,7 @@ mas "Steam Link", id: 1246969117
 {% endif %}
 
 {% if yadm.class == "work" %}
+cask "adobe-acrobat-reader"
 cask "azure-data-studio"
 cask "browserstacklocal"
 cask "cleanshot"
