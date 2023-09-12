@@ -17,7 +17,6 @@ end
 function __my_yarn_workspace_find_scripts -d "Test if a non-switch argument has been given in the current commandline"
     set -l cmd (commandline -poc)
 
-    # Taken from $__fish_data_dir/completions/yarn.fish, fish version 3.6.1 
     $cmd run 2>/dev/null | sed '$d' | awk '{ print $3}'
 end
 
