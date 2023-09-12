@@ -2,7 +2,7 @@ source $__fish_data_dir/completions/yarn.fish
 
 function __my_yarn_find_workspaces -d "If package.json exists, find all the workspace packages"
     if test -f package.json
-        fd package.json --exec cat | jq --raw-output ".name"
+        fd package.json --exec jq --raw-output ".name" {}
     end
 end
 
@@ -17,10 +17,10 @@ end
 function __my_yarn_workspace_find_scripts -d "Test if a non-switch argument has been given in the current commandline"
     set -l cmd (commandline -poc)
 
-    # We could do this instad of parsing and search through the files:
+    # Instead of parsing and searching through the files, we could use the following command:
     # $cmd run 2>/dev/null | sed '$d' | awk '{ print $3}'
-    # But it's slow. yarn workspace [package-name] run takes around 1.5 s.
-    # This code takes around 50 ms.
+    # But it's. `yarn workspace [package-name] run` takes approximately 1.5 seconds. 
+    # The provided code only takes around 50 milliseconds.
 
     set -l package_name (echo $cmd | awk '{print $3}')
 
