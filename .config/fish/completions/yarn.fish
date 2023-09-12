@@ -25,7 +25,7 @@ function __my_yarn_workspace_find_scripts -d "Test if a non-switch argument has 
     set -l package_name (echo $cmd | awk '{print $3}')
 
     set -l package_file (rg --files-with-matches --glob '**/package.json' "\"name\": \"$package_name\"")
-    and jq --raw-output ".scripts | keys[]" $package_file
+    and jq --raw-output '.scripts | to_entries[] | "\(.key)\t\(.value)"' $package_file
 end
 
 complete -c yarn -n '__fish_seen_subcommand_from workspace; and __my_yarn_workspace_has_suggestion' -xa '(__my_yarn_find_workspaces)'
