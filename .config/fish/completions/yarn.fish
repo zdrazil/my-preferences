@@ -1,3 +1,5 @@
+# Copyright (c) 2023 Vladimír Zdražil under [MIT License](https://choosealicense.com/licenses/mit/)
+
 source $__fish_data_dir/completions/yarn.fish
 
 function __my_yarn_find_workspaces -d "If package.json exists, find all the workspace packages"
