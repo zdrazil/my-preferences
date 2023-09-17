@@ -16,7 +16,7 @@ function __my_yarn_workspace_has_script
     commandline -pc | string match -r 'yarn workspace\s+\S+\s+\S*$'
 end
 
-function __my_yarn_workspace_find_scripts -d "Test if a non-switch argument has been given in the current commandline"
+function __my_yarn_workspace_find_scripts
     set -l cmd (commandline -poc)
 
     # Instead of parsing and searching through the files, we could use the following command:
