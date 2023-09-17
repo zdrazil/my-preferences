@@ -4,7 +4,7 @@ source $__fish_data_dir/completions/yarn.fish
 
 function __my_yarn_find_workspaces -d "If package.json exists, find all the workspace packages"
     if test -f package.json
-        fd package.json --exec jq --raw-output ".name" {}
+        fd 'package.json' | rg -v '^package.json$' | xargs jq --raw-output ".name"
     end
 end
 
