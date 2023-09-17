@@ -21,7 +21,7 @@ function __my_yarn_workspace_find_scripts -d "Test if a non-switch argument has 
 
     # Instead of parsing and searching through the files, we could use the following command:
     # $cmd run 2>/dev/null | sed '$d' | awk '{ print $3}'
-    # But it's. `yarn workspace [package-name] run` takes approximately 1.5 seconds. 
+    # But `yarn workspace [package-name] run` takes approximately 1.5 seconds. 
     # The provided code only takes around 50 milliseconds.
 
     set -l package_name (echo $cmd | awk '{print $3}')
