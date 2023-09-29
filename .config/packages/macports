@@ -54,5 +54,6 @@ packages=(asdf
 )
 
 for package in "${packages[@]}"; do
+    echo sudo port install "$package"
     sudo port install "$package"
 done

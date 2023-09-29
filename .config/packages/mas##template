@@ -39,5 +39,7 @@ apps=(
 )
 
 for app in "${apps[@]}"; do
+    echo mas install "$app"
+
     mas install "$app"
 done
