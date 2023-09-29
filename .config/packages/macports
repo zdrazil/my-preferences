@@ -23,20 +23,13 @@ packages=(asdf
     git
     git-extras
     git-delta
-    gnupg2
     gron
     htop
-    gh
     jq
-    lazygit
     moreutils
     ncdu
-    node
     pandoc
-    perl
-    php
     pwgen
-    python
     ranger
     ripgrep
     shellcheck
@@ -49,12 +42,15 @@ packages=(asdf
     watchman
     wget
     yarn
-    hugo
     yt-dlp
     HandBrakeCLI
     imagemagick
     lftp
-    yadm
+    node
+    perl
+    python
+    php
+    gh
 )
 
 for package in "${packages[@]}"; do
