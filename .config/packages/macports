@@ -1,56 +1,62 @@
-# cat ~/.config/packages/macports | tail -n +2 | xargs -n 1 sudo port install
-asdf
-bash
-bash-completion
-coreutils
-findutils
-fish
-fzf
-git
-grep
-yadm
-zsh
-zsh-completions
-bat
-curl
-direnv
-entr
-fd
-fx
-gawk
-gsed
-git
-git-extras
-git-delta
-gnupg2
-gron
-htop
-gh
-jq
-lazygit
-moreutils
-ncdu
-node
-pandoc
-perl
-php
-pwgen
-python
-ranger
-ripgrep
-shellcheck
-shfmt
-the_silver_searcher
-tig
-tealdeer
-trash
-tree
-watchman
-wget
-yarn
-hugo
-yt-dlp
-HandBrakeCLI
-imagemagick
-lftp
-yadm
+#! /usr/bin/env bash
+
+packages=(asdf
+    bash
+    bash-completion
+    coreutils
+    findutils
+    fish
+    fzf
+    git
+    grep
+    yadm
+    zsh
+    zsh-completions
+    bat
+    curl
+    direnv
+    entr
+    fd
+    fx
+    gawk
+    gsed
+    git
+    git-extras
+    git-delta
+    gnupg2
+    gron
+    htop
+    gh
+    jq
+    lazygit
+    moreutils
+    ncdu
+    node
+    pandoc
+    perl
+    php
+    pwgen
+    python
+    ranger
+    ripgrep
+    shellcheck
+    shfmt
+    the_silver_searcher
+    tig
+    tealdeer
+    trash
+    tree
+    watchman
+    wget
+    yarn
+    hugo
+    yt-dlp
+    HandBrakeCLI
+    imagemagick
+    lftp
+    yadm
+)
+
+for package in "${packages[@]}"; do
+    sudo port install "$package"
+done
