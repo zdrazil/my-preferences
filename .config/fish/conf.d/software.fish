@@ -1,6 +1,8 @@
 # asdf
 
-if test -f "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
+if test -f "/opt/local/share/asdf/asdf.fish"
+    source "/opt/local/share/asdf/asdf.fish"
+else if test -f "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
     source "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
 end
 

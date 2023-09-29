@@ -10,7 +10,7 @@ end
 
 begin
     function add_homebrew_path
-        for i in /usr/local /opt/homebrew "/home/linuxbrew/.linuxbrew" "$HOME/.local/homebrew" 
+        for i in /usr/local /opt/homebrew "/home/linuxbrew/.linuxbrew" "$HOME/.local/homebrew"
             if test -d $i
                 # Set homebrew prefix for later use in scripts. 
                 # It's faster than `brew --prefix` by  around 10-20 ms.
@@ -18,8 +18,6 @@ begin
                 set -U MY_HOMEBREW_PREFIX $i
             end
         end
-        echo $MY_HOMEBREW_PREFIX
-
 
         if set --query MY_HOMEBREW_PREFIX
             fish_add_path "$MY_HOMEBREW_PREFIX/bin" $MY_HOMEBREW_PREFIX/sbin
@@ -30,7 +28,9 @@ begin
         /usr/local/bin \
         "$HOME/.local/bin" \
         /Applications/MacVim.app/Contents/bin \
-        " $HOME/.local/npm-tools/node_modules/.bin"
+        " $HOME/.local/npm-tools/node_modules/.bin" \
+        /opt/local/bin \
+        /opt/local/sbin
 
     add_homebrew_path
 
