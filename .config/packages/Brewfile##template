@@ -108,30 +108,6 @@ cask "vlc"
 cask "zotero"
 cask "graphql-playground"
 
-# Safari extensions
-mas "1Password for Safari", id: 1569813296
-mas "Dark Reader for Safari", id: 1438243180
-mas "Focus for YouTube", id: 1514703160
-mas "Hlídač Shopů", id: 1488295734
-# mas "Keyword Search", id: 1558453954
-mas "PiPifier", id: 1160374471
-mas "SponsorBlock for YouTube", id: 1573461917
-mas "uBlacklist for Safari", id: 1547912640
-mas "Wipr", id:  1320666476
-
-mas "Amphetamine", id: 937984704
-mas "DaisyDisk", id: 411643860
-mas "Display Menu", id: 549083868
-mas "Keynote", id: 409183694
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Microsoft To Do", id: 1274495053
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Pixelmator Pro", id: 1289583905
-mas "Shazam", id: 897118787
-mas "Soulver 2", id: 413965349
-mas "Xcode", id: 497799835
-
 {% if yadm.class == "home" %}
 # brew "yt-dlp"
 # brew "hugo"
@@ -151,10 +127,6 @@ cask "transmission"
 cask "syncthing"
 cask "vmware-fusion-tech-preview"
 cask "yacreader"
-
-mas "hlidac shopu", id: 1488295734
-mas "Reeder", id: 1529448980
-mas "Steam Link", id: 1246969117
 {% endif %}
 
 {% if yadm.class == "work" %}
@@ -171,8 +143,4 @@ cask "zoom"
 cask "docker"
 cask "powershell"
 cask "toggl-track"
-
-mas "Microsoft OneNote", id: 784801555
-mas "OneDrive", id: 823766827
-mas "Slack", id: 803453959
 {% endif %}
