@@ -12,6 +12,8 @@ myPaths=(
     "$HOME/.local/npm-tools/node_modules/.bin"
     "/opt/local/bin"
     "/opt/local/sbin"
+    "/opt/pkg/bin"
+    "/opt/pkg/sbin"
 )
 
 for myPath in "${myPaths[@]}"; do
@@ -26,6 +28,7 @@ manPaths=(
     "/opt/local/share/man"
     "/usr/local/share/man"
     "$HOME/.local/homebrew/share/man"
+    /opt/pkg/man
 )
 
 for myMan in "${manPaths[@]}"; do

@@ -9,29 +9,23 @@ packages=(asdf
     fzf
     git
     grep
-    yadm
     zsh
     zsh-completions
     bat
     curl
     direnv
     entr
-    fd
-    fx
+    fd-find
     gawk
     gsed
     git
-    git-extras
     git-delta
-    gron
     htop
     jq
     moreutils
-    pandoc
     pwgen
     ranger
     ripgrep
-    shellcheck
     shfmt
     the_silver_searcher
     tig
@@ -41,17 +35,17 @@ packages=(asdf
     wget
     yarn
     yt-dlp
-    HandBrakeCLI
-    imagemagick
+    ImageMagick
     lftp
-    node
+    nodejs
     perl
-    python
+    python311
     php
     gh
+    speedtest-cli
 )
 
 for package in "${packages[@]}"; do
-    echo sudo port install "$package"
-    sudo port install "$package"
+    echo sudo pkgin -y install "$package"
+    sudo pkgin -y install "$package"
 done

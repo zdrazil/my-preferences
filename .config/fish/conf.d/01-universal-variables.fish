@@ -34,6 +34,10 @@ begin
 
     add_homebrew_path
 
+    if test -d /opt/pkg
+        fish_add_path /opt/pkg/sbin /opt/pkg/bin
+    end
+
     functions --erase add_homebrew_path
 
     if test -x mvim
