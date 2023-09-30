@@ -43,6 +43,8 @@ packages=(asdf
     php
     gh
     speedtest-cli
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 for package in "${packages[@]}"; do
