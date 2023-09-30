@@ -78,6 +78,9 @@ brew "trash"
 # brew "rga"
 # brew "tesseract"
 
+# alfred
+brew "php"
+brew "fd"
 
 {% if yadm.class == "home" %}
 # brew "yt-dlp"
