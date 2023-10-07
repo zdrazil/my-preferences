@@ -7,7 +7,6 @@ packages=(asdf
     findutils
     fish
     fzf
-    git
     grep
     zsh
     zsh-completions
@@ -18,7 +17,6 @@ packages=(asdf
     fd-find
     gawk
     gsed
-    git
     git-delta
     htop
     jq
