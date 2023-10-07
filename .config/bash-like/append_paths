@@ -8,6 +8,7 @@ myPaths=(
     "$HOME/.emacs.d/bin"
     "$HOME/.local/homebrew/bin"
     "/Applications/MacVim.app/Contents/bin"
+    "$HOME/Applications/MacVim.app/Contents/bin"
     "$HOME/.fzf/bin"
     "$HOME/.local/npm-tools/node_modules/.bin"
     "/opt/local/bin"

@@ -20,6 +20,8 @@ fi
 
 if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
     . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
+    . "/opt/pkg/share/asdf/asdf.sh"
 fi
 
 #-------------------- SETTINGS ---------------------
@@ -49,20 +51,3 @@ bind Space:magic-space
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
 eval "$(direnv hook bash)"
-
-if [ -d "/opt/local/bin" ]; then
-    PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    MANPATH=/opt/local/share/man:$MANPATH
-fi
-
-if [ -d "/opt/homebrew/bin" ]; then
-    PATH="/opt/homebrew/bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/homebrew/bin" ]; then
-    PATH="$HOME/.local/homebrew/bin:$PATH"
-fi
-
-if [ -d "/Applications/MacVim.app/Contents/bin" ]; then
-    PATH="/Applications/MacVim.app/Contents/bin:$PATH"
-fi

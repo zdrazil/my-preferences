@@ -22,6 +22,8 @@ fi
 
 if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
     . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
+    . "/opt/pkg/share/asdf/asdf.sh"
 fi
 
 fpath=(${ASDF_DIR}/completions $fpath)
