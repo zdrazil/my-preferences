@@ -27,16 +27,15 @@ begin
     fish_add_path "$HOME/bin" \
         /usr/local/bin \
         "$HOME/.local/bin" \
+        "$HOME/Applications/MacVim.app/Contents/bin" \
         /Applications/MacVim.app/Contents/bin \
-        " $HOME/.local/npm-tools/node_modules/.bin" \
+        "$HOME/.local/npm-tools/node_modules/.bin" \
         /opt/local/bin \
-        /opt/local/sbin
+        /opt/local/sbin \
+        /opt/pkg/sbin \
+        /opt/pkg/bin
 
     add_homebrew_path
-
-    if test -d /opt/pkg
-        fish_add_path /opt/pkg/sbin /opt/pkg/bin
-    end
 
     functions --erase add_homebrew_path
 
