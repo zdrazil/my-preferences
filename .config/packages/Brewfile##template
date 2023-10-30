@@ -115,7 +115,6 @@ cask "postman"
 cask "zoom"
 cask "docker"
 cask "powershell"
-cask "toggl-track"
 
 cask "alfred"
 cask "appcleaner"
