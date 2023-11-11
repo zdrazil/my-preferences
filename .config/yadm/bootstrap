@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # shellcheck enable=all
 
+set -o errexit -o errtrace -o pipefail -o nounset
+
 show_help() {
     cat <<EOF
 Usage: ${0##*/} [-h|--help] [-r|--reinstall]
