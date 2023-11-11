@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 
 echo "Configuring MacOS…"
 # https://mths.be/macos

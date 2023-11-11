@@ -1,72 +1,111 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
+# shellcheck enable=all
 
-argparse h/help r/reinstall -- $argv || return
+show_help() {
+    cat <<EOF
+Usage: ${0##*/} [-h|--help] [-r|--reinstall]
 
-if set -ql _flag_help
-    echo "bootsrap [-h|--help] [-r|--reinstall]"
-    return 0
-else if set -ql _flag_reinstall
-    set should_reinstall $_flag_reinstall
-end
+    -h              Display this help and exit
+    -r, reinstall   Reinstall everything, even things which
+                    were already installed.
+EOF
+}
 
-function install_asdf
-    if test ! -d "$HOME/.asdf"; or set -q should_reinstall
+die() {
+    printf '%s\n' "$1" >&2
+    exit 1
+}
+
+# Initialize all the option variables.
+# This ensures we are not contaminated by variables from the environment.
+reinstall=0
+
+while :; do
+    case $1 in
+    -h | -\? | --help)
+        show_help # Display a usage synopsis.
+        exit
+        ;;
+    -r | --reinstall)
+        reinstall=$((reinstall + 1))
+        ;;
+    --) # End of all options.
+        shift
+        break
+        ;;
+    -?*)
+        printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+        ;;
+    *) # Default case: No more options, so break out of the loop.
+        break ;;
+    esac
+    shift
+done
+
+function install_asdf() {
+    if [[ ! -d "$HOME/.asdf" ]] || ((reinstall > 0)); then
         echo "Installing asdf…"
 
         rm -rf "$HOME/.asdf" || exit
 
-        begin
+        {
             asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
             asdf plugin-add yarn
             asdf plugin-add python
-        end 2>/dev/null || exit
+        } 2>/dev/null || exit
 
         asdf install || exit
     else
         echo "asdf already installed. Skipping installation…"
-    end
-end
+    fi
+}
 
-function main
+function main() {
     cd $HOME || exit
 
-    begin
-        echo "Installing Homebrew…"
-        if type -q brew
+    {
+        if command -v brew &>/dev/null; then
             echo "Homebrew already installed. Skipping installation…"
+
         else
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || exit
-        end
-    end
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh || true)" || exit
+        fi
+    }
 
-    begin
-        set -l packages_dir "$HOME/.config/packages"
-        switch (uname -s)
-            case Darwin
-                echo "Installing homebrew packages…"
-                brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
-                brew bundle --verbose --file "$packages_dir/Brewfile" || exit
+    {
+        local packages_dir="$HOME/.config/packages"
 
-                echo "Setting configs…"
-                source "$HOME/.config/yadm/macos-configuration"
-            case Linux
-                echo "Installing homebrew packages…"
-                brew bundle --verbose --file "$packages_dir/LinuxBrewfile" || exit
+        case $(uname -s) in
+        Darwin)
+            echo "Installing homebrew packages…"
+            brew install asdf bash coreutils findutils fish fzf gnu-sed yadm zsh || exit
+            brew bundle --verbose --file "$packages_dir/Brewfile" || exit
 
-                echo "Installing apt packages…"
-                sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
-                sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-packages") || exit
+            echo "Setting configs…"
+            source "$HOME/.config/yadm/macos-configuration"
+            ;;
+        Linux)
+            echo "Installing homebrew packages…"
+            brew bundle --verbose --file "$packages_dir/LinuxBrewfile" || exit
 
-                if set -q $XDG_SESSION_TYPE
-                    sudo apt-get install (sed '/^#/d' "$packages_dir/ubuntu-gui-packages") || exit
-                end
-        end
-    end
+            echo "Installing apt packages…"
+            sudo apt install build-essential curl git xclip vim-gtk3 nodejs npm || exit
+            sudo apt-get install $(sed '/^#/d' "$packages_dir/ubuntu-packages") || exit
 
-    install_asdf || exit
+            if [[ -n ${XDG_SESSION_TYPE} ]]; then
+                sudo apt-get install $(sed '/^#/d' "$packages_dir/ubuntu-gui-packages") || exit
+            fi
+            ;;
+
+        *) echo other ;;
+
+        esac
+    }
+
+    install_asdf
 
     echo "Updating the yadm repo origin URL"
     yadm remote set-url origin "git@github.com:zdrazil/my-preferences.git"
-end
+}
 
 main

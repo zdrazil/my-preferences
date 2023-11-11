@@ -1,46 +1,48 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 
-set packages chriskempson/base16-vim \
-    lifepillar/vim-solarized8 \
-    tpope/vim-sensible \
-    jeffkreeftmeijer/vim-dim \
-    junegunn/fzf \
-    'junegunn/fzf.vim' \
-    mhinz/vim-grepper \
-    w0rp/ale \
-    tpope/vim-abolish \
-    tpope/vim-apathy \
-    tpope/vim-commentary \
-    tpope/vim-eunuch \
-    tpope/vim-repeat \
-    tpope/vim-rsi \
-    tpope/vim-sleuth \
-    tpope/vim-surround \
-    tpope/vim-unimpaired \
-    tpope/vim-vinegar \
-    ojroques/vim-oscyank \
-    'iberianpig/tig-explorer.vim' \
-    editorconfig/editorconfig-vim \
-    'markonm/traces.vim' \
-    rstacruz/vim-closer \
-    chiedojohn/vim-case-convert \
-    machakann/vim-highlightedyank \
-    justinmk/vim-gtfo \
-    junegunn/vim-peekaboo \
-    justinmk/vim-sneak \
-    michaeljsmith/vim-indent-object \
-    terryma/vim-expand-region \
-    suy/vim-context-commentstring
+# shellcheck enable=all
+
+packages=(chriskempson/base16-vim
+    lifepillar/vim-solarized8
+    tpope/vim-sensible
+    jeffkreeftmeijer/vim-dim
+    junegunn/fzf
+    'junegunn/fzf.vim'
+    mhinz/vim-grepper
+    w0rp/ale
+    tpope/vim-abolish
+    tpope/vim-apathy
+    tpope/vim-commentary
+    tpope/vim-eunuch
+    tpope/vim-repeat
+    tpope/vim-rsi
+    tpope/vim-sleuth
+    tpope/vim-surround
+    tpope/vim-unimpaired
+    tpope/vim-vinegar
+    ojroques/vim-oscyank
+    'iberianpig/tig-explorer.vim'
+    editorconfig/editorconfig-vim
+    'markonm/traces.vim'
+    rstacruz/vim-closer
+    chiedojohn/vim-case-convert
+    machakann/vim-highlightedyank
+    justinmk/vim-gtfo
+    junegunn/vim-peekaboo
+    justinmk/vim-sneak
+    michaeljsmith/vim-indent-object
+    terryma/vim-expand-region
+    suy/vim-context-commentstring)
 # 'tweekmonster/startuptime.vim'
 
-set package_path "$HOME/.vim/pack/my-packages/start"
+package_path="${HOME}/.vim/pack/my-packages/start"
 
-mkdir -p $package_path || exit
+mkdir -p "${package_path}" || exit
 
-cd $package_path || exit
+cd "${package_path}" || exit
 
-for p in $packages
-    git clone --depth=1 "git@github.com:$p"
-end
+for p in "${packages[@]}"; do
+    git clone --depth=1 "git@github.com:${p}"
+done
 
 vim-packs-update-help-tags
