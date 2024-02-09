@@ -18,7 +18,7 @@ if command -v theme-sh >/dev/null
             theme-sh cupertino &
         case '*'
             switch (hostname)
-                case '*Mews*'
+                case VZDRAZIL-CZ-M
                     theme-sh solarized-dark &
                 case '*'
                     theme-sh oceanic-next &
