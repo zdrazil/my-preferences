@@ -33,7 +33,8 @@ begin
         /opt/local/bin \
         /opt/local/sbin \
         /opt/pkg/sbin \
-        /opt/pkg/bin
+        /opt/pkg/bin \
+        "$HOME/.dotnet/tools"
 
     add_homebrew_path
 

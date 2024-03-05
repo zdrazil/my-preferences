@@ -15,6 +15,7 @@ myPaths=(
     "/opt/local/sbin"
     "/opt/pkg/bin"
     "/opt/pkg/sbin"
+    "$HOME/.dotnet/tools"
 )
 
 for myPath in "${myPaths[@]}"; do

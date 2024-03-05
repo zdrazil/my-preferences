@@ -69,3 +69,5 @@
 	diffFilter = delta-custom --color-only
 [merge]
 	conflictstyle = diff3
+[safe]
+	directory = /opt/homebrew
