@@ -7,8 +7,8 @@
 # 0 8 * * * cd ~/bin && ./calibre-sync
 # crontab -l
 
-rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ ~/Documents/apps/calibre
-touch ~/Documents/apps/calibre/synced
+rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ ~/OneDrive/apps/calibre
+touch ~/OneDrive/apps/calibre/synced
 
 # open 'smb://Alexandria.local/docker'
 # rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ /Volumes/docker/calibre
