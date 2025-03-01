@@ -5,7 +5,6 @@ tags
 .tags.lock
 .idea
 .code
-.vscode/*
 .vim
 .jscpd
 .eslintcache
