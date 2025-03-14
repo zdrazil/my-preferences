@@ -34,8 +34,8 @@ begin
         /opt/local/sbin \
         /opt/pkg/sbin \
         /opt/pkg/bin \
-        "$HOME/.dotnet/tools"
-
+        "$HOME/.dotnet/tools" \
+        "$HOME/.emacs.d/bin"
     add_homebrew_path
 
     functions --erase add_homebrew_path

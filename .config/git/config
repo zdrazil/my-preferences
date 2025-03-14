@@ -6,12 +6,15 @@
 	excludesfile = ~/.config/git/gitignore_global
 	autocrlf = input
 	pager = delta-custom
+	fsmonitor = true
+	untrackedCache = true
 [credential]
 	helper = osxkeychain
 	helper = cache
 [commit]
 	template = ~/.config/git/git_commit_msg.txt
 	gpgsign = true
+	verbose = true
 [merge]
 	tool = vscode
 [diff]
@@ -29,6 +32,7 @@
 	pushf = push --force-with-lease --force-if-includes
 [rerere]
 	enabled = true
+	autoupdate = true
 [pull]
 	rebase = true
 [delta]
@@ -63,11 +67,18 @@
 	required = true
 [rebase]
 	autoSquash = true
+	updateRefs = true
 [diff]
-	colorMoved = default
+	colorMoved = plain
+	algorithm = histogram
+	renames = true
 [interactive]
 	diffFilter = delta-custom --color-only
 [merge]
 	conflictstyle = diff3
 [safe]
 	directory = /opt/homebrew
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
