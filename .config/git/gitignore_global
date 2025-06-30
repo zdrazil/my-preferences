@@ -24,3 +24,4 @@ ehthumbs_vista.db
 
 # Dump file
 *.stackdump
+.aider*
