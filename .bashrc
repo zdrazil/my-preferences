@@ -18,11 +18,11 @@ if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
 fi
 
-if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
-    . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
-elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
-    . "/opt/pkg/share/asdf/asdf.sh"
-fi
+# if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+#     . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+# elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
+#     . "/opt/pkg/share/asdf/asdf.sh"
+# fi
 
 #-------------------- SETTINGS ---------------------
 
@@ -55,4 +55,4 @@ eval "$(direnv hook bash)"
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-
+eval "$(mise activate bash)"

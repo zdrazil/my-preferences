@@ -20,13 +20,13 @@ if type brew &>/dev/null; then
     FPATH="$HOMEBREW_PREFIX"/share/zsh-completions:$FPATH
 fi
 
-if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
-    . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
-elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
-    . "/opt/pkg/share/asdf/asdf.sh"
-fi
+# if [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+#     . "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+# elif [ -f "/opt/pkg/share/asdf/asdf.sh" ]; then
+#     . "/opt/pkg/share/asdf/asdf.sh"
+# fi
 
-fpath=(${ASDF_DIR}/completions $fpath)
+# fpath=(${ASDF_DIR}/completions $fpath)
 
 # ---------------------------------------------------
 
@@ -122,3 +122,5 @@ repos=(
 plugin-load $repos
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(mise activate zsh)"

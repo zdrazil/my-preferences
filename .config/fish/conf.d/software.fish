@@ -1,12 +1,14 @@
 # asdf
 
-if test -f "/opt/local/share/asdf/asdf.fish"
-    source "/opt/local/share/asdf/asdf.fish"
-else if test -f "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
-    source "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
-else if test -f "/opt/pkg/share/asdf/asdf.fish"
-    source "/opt/pkg/share/asdf/asdf.fish"
-end
+# if test -f "/opt/local/share/asdf/asdf.fish"
+#     source "/opt/local/share/asdf/asdf.fish"
+# else if test -f "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
+#     source "$MY_HOMEBREW_PREFIX/opt/asdf/libexec/asdf.fish"
+# else if test -f "/opt/pkg/share/asdf/asdf.fish"
+#     source "/opt/pkg/share/asdf/asdf.fish"
+# end
+
+mise activate fish | source
 
 # direnv
 
