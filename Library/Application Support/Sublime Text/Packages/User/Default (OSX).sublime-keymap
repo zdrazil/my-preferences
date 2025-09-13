@@ -1,0 +1,31 @@
+[
+    {
+        "keys": ["ctrl+w"],
+        "command": "lsp_expand_selection",
+        "args": { "fallback": false },
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operand": "selectionRangeProvider",
+            },
+        ],
+    },
+    {
+        "keys": ["super+."],
+        "command": "lsp_code_actions",
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operand": "codeActionProvider",
+            },
+        ],
+    },
+    {
+        "keys": ["ctrl+`"],
+        "command": "open_terminal",
+    },
+        {
+        "keys": ["ctrl+i"],
+        "command": "copilot_conversation_chat",
+    },
+]

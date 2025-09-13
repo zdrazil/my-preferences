@@ -1,0 +1,23 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"EditorConfig",
+		"GitSavvy",
+		"JsPrettier",
+		"LSP",
+		"LSP-copilot",
+		"LSP-file-watcher-chokidar",
+		"LSP-OmniSharp",
+		"LSP-typescript",
+		"Package Control",
+		"Path Tools",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"Terminal",
+		"Visual Studio Code Plus Scheme",
+	],
+}

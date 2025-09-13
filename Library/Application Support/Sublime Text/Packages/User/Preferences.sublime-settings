@@ -1,0 +1,11 @@
+{
+	"color_scheme": "auto",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"index_files": true,
+	"theme": "auto",
+	"light_color_scheme": "Light+.sublime-color-scheme",
+	"font_size": 13,
+}
