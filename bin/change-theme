@@ -17,14 +17,15 @@ esac
 
 MY_LIGHT_THEME=cupertino
 
-case $(uname) in
-Darwin)
-    color_theme=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-    if [[ "${color_theme}" != 'Dark' ]]; then
-        background_theme="light"
+case "$(uname)" in
+  Darwin)
+    # Use System Events → appearance preferences → dark mode (works in Auto/Manual)
+    dark_mode_status="$(osascript -e 'tell application "System Events" to get dark mode of appearance preferences')"
+    if [[ "${dark_mode_status}" != "true" ]]; then
+      background_theme="light"
     fi
     ;;
-*) ;;
+  *) ;;
 esac
 
 if command -v theme-sh >/dev/null; then

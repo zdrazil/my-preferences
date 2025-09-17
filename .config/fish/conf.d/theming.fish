@@ -1,12 +1,12 @@
 # Don't use change-theme, it takes longer to execute
 switch (uname)
     case Darwin
-        set --local color_theme (defaults read -g AppleInterfaceStyle 2>/dev/null)
+        set --local is_dark (osascript -e 'tell application "System Events" to get dark mode of appearance preferences')
 
-        if test "$color_theme" != Dark
-            set -gx BACKGROUND_THEME light
-        else
+        if test "$is_dark" = true
             set -gx BACKGROUND_THEME dark
+        else
+            set -gx BACKGROUND_THEME light
         end
 end
 

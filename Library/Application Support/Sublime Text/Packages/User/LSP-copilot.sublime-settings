@@ -2,6 +2,7 @@
 
 {
 	"settings": {
-		"completion_style": "phantom"
-	}
+		"completion_style": "phantom",
+		"auto_ask_completions": true,
+	},
 }
