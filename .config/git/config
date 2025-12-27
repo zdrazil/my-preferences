@@ -41,7 +41,7 @@
 	true-color = always
 	navigate = true
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "vscode"]
