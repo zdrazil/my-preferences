@@ -1,0 +1,11 @@
+{
+  "identifier": "@local:a",
+  "name": "A",
+  "changed": false,
+  "operation": {
+    "fields": []
+  },
+  "load": {
+    "fields": []
+  }
+}

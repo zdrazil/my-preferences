@@ -1,0 +1,31 @@
+{
+  "identifier": "@local:llm-sampling-controls",
+  "name": "LLM Sampling Controls",
+  "changed": true,
+  "operation": {
+    "fields": [
+      {
+        "key": "llm.prediction.systemPrompt",
+        "value": "Analyze the given prompt and recommend sampling controls (temperature, top-k, top-p) based on the reasoning required.\n\n1. Classify the epistemic mode:\n   - Factual\n   - Evaluative (comparisons or recommendations between options)\n   - Prescriptive (procedural instructions)\n   - Exploratory\n\n   Rule: Any prompt that compares options or asks which should be chosen is Evaluative.\n\n2. Identify the reasoning priority:\n   - Precision\n   - Balanced\n   - Breadth\n\n3. Recommend temperature (0.0–2.0), top-k, and top-p.\n   - Do not default to low temperature for evaluative tasks.\n   - For evaluative + precision tasks, anchor top-k ≈ 15–30 and top-p ≈ 0.75–0.85 unless justified.\n\nOutput only:\n\n- Purpose\n- Epistemic Mode\n- Reasoning Priority\n- Recommended Settings (one short sentence per setting)\n- Summary"
+      },
+      {
+        "key": "llm.prediction.temperature",
+        "value": 0.7
+      },
+      {
+        "key": "llm.prediction.topKSampling",
+        "value": 20
+      },
+      {
+        "key": "llm.prediction.repeatPenalty",
+        "value": {
+          "checked": true,
+          "value": 0.85
+        }
+      }
+    ]
+  },
+  "load": {
+    "fields": []
+  }
+}
