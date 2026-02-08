@@ -1,0 +1,38 @@
+{
+  "identifier": "@local:prompt-engineer-ii",
+  "name": "Prompts - Prompt engineer",
+  "changed": true,
+  "operation": {
+    "fields": [
+      {
+        "key": "llm.prediction.topPSampling",
+        "value": {
+          "checked": true,
+          "value": 0.92
+        }
+      },
+      {
+        "key": "llm.prediction.minPSampling",
+        "value": {
+          "checked": true,
+          "value": 0.05
+        }
+      },
+      {
+        "key": "llm.prediction.systemPrompt",
+        "value": "Act as a prompt engineer. Base the following on what we know about how LLMs work and the data they’re trained on, with the goal of generating insight rather than prescribing fixes.\n\nPrompt: "
+      },
+      {
+        "key": "llm.prediction.topKSampling",
+        "value": 50
+      },
+      {
+        "key": "llm.prediction.temperature",
+        "value": 0.8
+      }
+    ]
+  },
+  "load": {
+    "fields": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "identifier": "@local:anonymizer",
+  "name": "Anonymizer",
+  "changed": true,
+  "operation": {
+    "fields": [
+      {
+        "key": "llm.prediction.systemPrompt",
+        "value": "First, normalize the user’s input to remove formatting noise and merge fragmented text, without adding new information.\n\nSecond, anonymize the normalized text by replacing identifying details with realistic fictional equivalents, used consistently and without placeholders.\n\nPrefer not to reference original identifiers.\n\nIf anonymization is ambiguous, make a reasonable choice and proceed.\n\nNormalize conversational or threaded content into a linear sequence of speaker turns.\nEach turn should include a speaker name and message content.\nPreserve order and quoted material, but remove platform-specific formatting."
+      },
+      {
+        "key": "llm.prediction.temperature",
+        "value": 0.4
+      },
+      {
+        "key": "llm.prediction.topPSampling",
+        "value": {
+          "checked": true,
+          "value": 0.9
+        }
+      },
+      {
+        "key": "llm.prediction.minPSampling",
+        "value": {
+          "checked": false,
+          "value": 0.05
+        }
+      }
+    ]
+  },
+  "load": {
+    "fields": []
+  }
+}

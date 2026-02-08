@@ -1,6 +1,6 @@
 {
   "identifier": "@local:llm-sampling-controls",
-  "name": "LLM Sampling Controls",
+  "name": "Prompts - LLM Sampling Controls",
   "changed": true,
   "operation": {
     "fields": [
