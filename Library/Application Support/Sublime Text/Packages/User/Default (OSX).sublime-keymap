@@ -20,6 +20,8 @@
             },
         ],
     },
+    { "keys": ["f2"], "command": "lsp_symbol_rename" },
+    { "keys": ["f12"], "command": "lsp_symbol_definition" },
     {
         "keys": ["ctrl+`"],
         "command": "open_terminal",
