@@ -24,19 +24,17 @@
         "keys": ["ctrl+`"],
         "command": "open_terminal",
     },
-        {
+    {
         "keys": ["ctrl+i"],
         "command": "copilot_conversation_chat",
     },
-     { 
-     "keys": [ 
-         "alt+\\" 
-     ], 
-     "command": "copilot_ask_completions", 
-     "context": [ 
-         { 
-             "key": "copilot.is_authorized", 
-         } 
-     ] 
- }, 
+    {
+        "keys": ["alt+\\"],
+        "command": "copilot_ask_completions",
+        "context": [
+            {
+                "key": "copilot.is_authorized",
+            },
+        ],
+    },
 ]
