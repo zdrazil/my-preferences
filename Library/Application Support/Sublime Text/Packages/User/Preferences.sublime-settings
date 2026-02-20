@@ -8,4 +8,5 @@
 	"theme": "auto",
 	"light_color_scheme": "Light+.sublime-color-scheme",
 	"font_size": 13,
+	"index_exclude_gitignore": false
 }

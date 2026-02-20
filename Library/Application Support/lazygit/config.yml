@@ -1,4 +1,4 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta-custom --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta-custom --paging=never
