@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Alabaster Color Scheme",
 		"EditorConfig",
 		"GitSavvy",
 		"JsPrettier",

@@ -1,12 +1,13 @@
 {
-	"color_scheme": "auto",
+	"color_scheme": "Alabaster Dark.sublime-color-scheme",
 	"ignored_packages":
 	[
 		"Vintage",
 	],
 	"index_files": true,
 	"theme": "auto",
-	"light_color_scheme": "Light+.sublime-color-scheme",
+	"light_color_scheme": "Alabaster.sublime-color-scheme",
+	"dark_color_scheme": "Alabaster Dark.sublime-color-scheme",
 	"font_size": 13,
-	"index_exclude_gitignore": false
+	"index_exclude_gitignore": false,
 }
