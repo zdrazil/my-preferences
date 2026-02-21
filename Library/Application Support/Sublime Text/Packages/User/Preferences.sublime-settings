@@ -1,5 +1,4 @@
 {
-	"color_scheme": "Alabaster Dark.sublime-color-scheme",
 	"ignored_packages":
 	[
 		"Vintage",
@@ -10,4 +9,5 @@
 	"dark_color_scheme": "Alabaster Dark.sublime-color-scheme",
 	"font_size": 13,
 	"index_exclude_gitignore": false,
+	"color_scheme": "auto",
 }
