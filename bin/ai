@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mapfile -t files < <(
+  rg -i -l '^\s*(#|//|--)\s*#AI\b' \
+)
+
+if ((${#files[@]} == 0)); then
+  echo "No #AI markers found."
+  exit 0
+fi
+
+args=()
+for f in "${files[@]}"; do
+  args+=(-f "$f")
+done
+
+# Create session quietly
+opencode run "${args[@]}" \
+  --title "ai-context" \
+  "Load attached files into context. Reply only: ready."
+
+# Immediately open interactive TUI
+opencode --continue

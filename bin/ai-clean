@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+pattern='^\s*(//|#|--)\s*#ai\b.*$'
+
+# Find files (case-insensitive)
+mapfile -t files < <(
+  rg -i -l "$pattern"
+)
+
+if ((${#files[@]} == 0)); then
+  echo "No #AI markers found."
+  exit 0
+fi
+
+echo "Cleaning ${#files[@]} file(s)..."
+
+for f in "${files[@]}"; do
+  # Delete matching lines in-place (case-insensitive)
+  sed -i.bak -E "/$pattern/Id" "$f"
+  rm "$f.bak"
+done
+
+echo "Done."
