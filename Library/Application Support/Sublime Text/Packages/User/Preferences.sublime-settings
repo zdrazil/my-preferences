@@ -10,4 +10,5 @@
 	"font_size": 13,
 	"index_exclude_gitignore": false,
 	"color_scheme": "auto",
+	"word_wrap": true,
 }

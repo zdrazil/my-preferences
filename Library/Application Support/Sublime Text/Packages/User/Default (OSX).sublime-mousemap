@@ -4,17 +4,23 @@
 		"count": 1,
 		"modifiers": ["ctrl"],
 		"press_command": "drag_select",
-		"command": "lsp_symbol_definition"
-		// "command": "goto_definition"
+		"command": "lsp_symbol_definition",
 	},
-	    {
-        "button": "button4",
-        "count": 1,
-        "command": "jump_back"
-    },
-    {
-        "button": "button5",
-        "count": 1,
-        "command": "jump_forward"
-    }
+	{
+		"button": "button3",
+		"count": 1,
+		"modifiers": ["ctrl"],
+		"press_command": "drag_select",
+		"command": "goto_definition",
+	},
+	{
+		"button": "button4",
+		"count": 1,
+		"command": "jump_back",
+	},
+	{
+		"button": "button5",
+		"count": 1,
+		"command": "jump_forward",
+	},
 ]
