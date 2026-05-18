@@ -55,8 +55,20 @@ export EDITOR=vim
 if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
+<<<<<<< Updated upstream
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
+||||||| Stash base
+=======
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/vladimir.zdrazil/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/vladimir.zdrazil/.lmstudio/bin"
+# End of LM Studio CLI section
+>>>>>>> Stashed changes

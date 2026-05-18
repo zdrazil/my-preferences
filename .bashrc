@@ -55,5 +55,4 @@ eval "$(mise activate bash)"
 export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
-
 export PATH="$PATH:$HOME/.local/bin"

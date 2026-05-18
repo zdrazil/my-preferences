@@ -63,3 +63,4 @@ set -U HOMEBREW_AUTO_UPDATE_SECS 604800 # 7 days
 # ---- Theming ----
 
 set -U BAT_THEME ansi
+set -U ANTHROPIC_MODEL claude-sonnet-4-6

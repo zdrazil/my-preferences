@@ -123,6 +123,7 @@ plugin-load $repos
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+<<<<<<< Updated upstream
 eval "$(mise activate zsh)"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
@@ -130,3 +131,17 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 
 
 export PATH="$PATH:$HOME/.local/bin"
+||||||| Stash base
+eval "$(mise activate zsh)"
+=======
+eval "$(mise activate zsh)"
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/vladimir.zdrazil/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/vladimir.zdrazil/.lmstudio/bin"
+# End of LM Studio CLI section
+>>>>>>> Stashed changes
