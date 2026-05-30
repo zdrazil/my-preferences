@@ -1,4 +1,6 @@
 # Don't use change-theme, it takes longer to execute
+status is-interactive; or return
+
 switch (uname)
     case Darwin
         set --local is_dark (osascript -e 'tell application "System Events" to get dark mode of appearance preferences')
