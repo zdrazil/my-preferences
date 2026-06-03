@@ -35,6 +35,7 @@ begin
         /opt/pkg/sbin \
         /opt/pkg/bin \
         "$HOME/.dotnet/tools" \
+        "$HOME/.config/emacs/bin" \
         "$HOME/.emacs.d/bin"
     add_homebrew_path
 
