@@ -38,20 +38,30 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
+     claude-code
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-enable-snippets-in-popup t)
+     better-defaults
      emacs-lisp
      ;; git
      helm
-     ;; lsp
+     lsp
      ;; markdown
      multiple-cursors
      ;; org
+     react
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
+     syntax-checking
+     (typescript :variables
+                 typescript-backend 'lsp
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier
+                 typescript-linter 'eslint)
      ;; version-control
      treemacs)
 
@@ -477,7 +487,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
 
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `ack' and `grep'.
@@ -589,6 +599,17 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq projectile-enable-caching t)
 
+  ;; LSP performance
+  (setq lsp-idle-delay 0.5
+        lsp-log-io nil
+        lsp-completion-provider :capf)
+
+  ;; Use local prettier from node_modules when available
+  (setq prettier-js-command "npx")
+  (setq prettier-js-args '("prettier"))
+
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
   (when (display-graphic-p)
     (set-frame-size (selected-frame) 1100 1050 t))
 
@@ -606,3 +627,52 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(package-selected-packages
+     '(ace-link aggressive-indent alabaster-themes all-the-icons auto-compile
+                auto-highlight-symbol auto-yasnippet avy-jump-helm-line
+                centered-cursor-mode clean-aindent-mode column-enforce-mode
+                define-word devdocs diminish dired-quick-sort disable-mouse
+                dotenv-mode drag-stuff dumb-jump elisp-def elisp-demos
+                elisp-slime-nav emr eval-sexp-fu evil-anzu evil-args
+                evil-cleverparens evil-collection evil-easymotion evil-escape
+                evil-evilified-state evil-exchange evil-goggles evil-iedit-state
+                evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc
+                evil-nerd-commenter evil-numbers evil-surround evil-textobj-line
+                evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar
+                expand-region eyebrowse fancy-battery flycheck-elsa
+                flycheck-package flycheck-pos-tip golden-ratio google-translate
+                helm-ag helm-c-yasnippet helm-comint helm-company helm-descbinds
+                helm-lsp helm-make helm-mode-manager helm-org helm-projectile
+                helm-purpose helm-swoop helm-xref hide-comnt highlight-indentation
+                highlight-numbers highlight-parentheses hl-todo holy-mode
+                hungry-delete hybrid-mode indent-guide info+ inspector js-doc
+                js2-refactor json-mode json-navigator json-reformat json-snatcher
+                link-hint livid-mode lorem-ipsum lsp-origami lsp-treemacs lsp-ui
+                macrostep multi-line mwim nameless nodejs-repl npm-mode
+                open-junk-file org-superstar overseer page-break-lines paradox
+                password-generator pcre2el popwin prettier-js quickrun
+                rainbow-delimiters restart-emacs rjsx-mode space-doc spaceline
+                spacemacs-purpose-popwin spacemacs-whitespace-cleanup
+                string-edit-at-point string-inflection symbol-overlay symon
+                term-cursor toc-org transient treemacs-evil treemacs-icons-dired
+                treemacs-persp treemacs-projectile typescript-mode undo-fu-session
+                unfill uuidgen vi-tilde-fringe volatile-highlights vundo
+                web-beautify wgrep winum writeroom-mode ws-butler
+                yasnippet-snippets)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+  )
