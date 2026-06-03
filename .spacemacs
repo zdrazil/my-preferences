@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(alabaster-themes)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -209,8 +209,17 @@ It should only modify the values of Spacemacs settings."
    ;; package can be defined with `:package', or a theme can be defined with
    ;; `:location' to download the theme package, refer the themes section in
    ;; DOCUMENTATION.org for the full theme specifications.
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes (let* ((bg-env (getenv "BACKGROUND_THEME"))
+                              (light-p (if bg-env
+                                           (string= bg-env "light")
+                                         (string-match "false"
+                                                       (shell-command-to-string
+                                                        "osascript -e 'tell application \"System Events\" to get dark mode of appearance preferences'")))))
+                         (if light-p
+                             '((alabaster-themes-light :package alabaster-themes)
+                               (alabaster-themes-dark :package alabaster-themes))
+                           '((alabaster-themes-dark :package alabaster-themes)
+                             (alabaster-themes-light :package alabaster-themes))))
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -457,7 +466,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -578,7 +587,21 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  )
+  (setq projectile-enable-caching t)
+
+  (when (display-graphic-p)
+    (set-frame-size (selected-frame) 1100 1050 t))
+
+  (when (and (string= (system-name) "M-CXR99QW0TP")
+             (not (string-match "false"
+                                (shell-command-to-string
+                                 "osascript -e 'tell application \"System Events\" to get dark mode of appearance preferences'"))))
+    (set-face-attribute 'default nil :background "#002b36")
+    (defun my/terminal-background ()
+      (face-remap-add-relative 'default :background "#141b20"))
+    (add-hook 'vterm-mode-hook #'my/terminal-background)
+    (add-hook 'eshell-mode-hook #'my/terminal-background)
+    (add-hook 'term-mode-hook #'my/terminal-background)))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
