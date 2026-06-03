@@ -1,3 +1,5 @@
+alias emacs='emacsclient -c -a ""'
+
 abbr --add g git
 abbr --add choose "tr -s ' ' | cut -d ' ' -f"
 abbr --add lg lazygit
