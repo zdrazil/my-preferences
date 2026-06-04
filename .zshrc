@@ -130,9 +130,7 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 
 
 export PATH="$PATH:$HOME/.local/bin"
-||||||| Stash base
-eval "$(mise activate zsh)"
-=======
+
 eval "$(mise activate zsh)"
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/vladimir.zdrazil/.rd/bin:$PATH"
@@ -143,4 +141,3 @@ export PATH="$HOME/.local/bin:$PATH"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/vladimir.zdrazil/.lmstudio/bin"
 # End of LM Studio CLI section
->>>>>>> Stashed changes
