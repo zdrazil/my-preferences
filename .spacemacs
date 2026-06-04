@@ -38,7 +38,6 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     claude-code
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
@@ -50,6 +49,7 @@ This function should only modify configuration layer settings."
      lsp
      ;; markdown
      multiple-cursors
+     spacemacs-misc
      ;; org
      react
      ;; (shell :variables
@@ -74,7 +74,9 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(alabaster-themes)
+   dotspacemacs-additional-packages '(alabaster-themes
+                                      add-node-modules-path
+                                      exec-path-from-shell)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -589,7 +591,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  )
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -598,17 +601,28 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq projectile-enable-caching t)
+  (setq insert-directory-program "gls")
 
   ;; LSP performance
   (setq lsp-idle-delay 0.5
         lsp-log-io nil
         lsp-completion-provider :capf)
 
+  (with-eval-after-load 'lsp-mode
+    (setq lsp-disabled-clients '(deno-ls)))
+
+  ;; dumb-jump: use rg and show matches in Helm
+  (setq dumb-jump-force-searcher 'rg)
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
+  ;; Use project-local eslint/prettier from node_modules
+  (add-hook 'typescript-mode-hook #'add-node-modules-path)
+  (add-hook 'typescript-tsx-mode-hook #'add-node-modules-path)
+  (add-hook 'js2-mode-hook #'add-node-modules-path)
+
   ;; Use local prettier from node_modules when available
   (setq prettier-js-command "npx")
   (setq prettier-js-args '("prettier"))
-
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
   (when (display-graphic-p)
     (set-frame-size (selected-frame) 1100 1050 t))
