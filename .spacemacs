@@ -76,7 +76,10 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(alabaster-themes
                                       add-node-modules-path
-                                      exec-path-from-shell)
+                                      exec-path-from-shell
+                                      gptel
+                                      (wingman :location (recipe :fetcher github
+                                                                 :repo "mjrusso/wingman")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -653,7 +656,13 @@ before packages are loaded."
       (face-remap-add-relative 'default :background "#141b20"))
     (add-hook 'vterm-mode-hook #'my/terminal-background)
     (add-hook 'eshell-mode-hook #'my/terminal-background)
-    (add-hook 'term-mode-hook #'my/terminal-background)))
+    (add-hook 'term-mode-hook #'my/terminal-background))
+
+  ;; Wingman: inline FIM completions via local llama-server
+  (use-package wingman
+    :hook (prog-mode . wingman-mode)
+    :config
+    (setq wingman-llama-endpoint "http://127.0.0.1:8012/infill")))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -682,24 +691,24 @@ This function is called at the very end of Spacemacs initialization."
                 evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar
                 expand-region eyebrowse fancy-battery flycheck-elsa
                 flycheck-package flycheck-pos-tip golden-ratio google-translate
-                helm-ag helm-c-yasnippet helm-comint helm-company helm-descbinds
-                helm-lsp helm-make helm-mode-manager helm-org helm-projectile
-                helm-purpose helm-swoop helm-xref hide-comnt highlight-indentation
-                highlight-numbers highlight-parentheses hl-todo holy-mode
-                hungry-delete hybrid-mode indent-guide info+ inspector js-doc
-                js2-refactor json-mode json-navigator json-reformat json-snatcher
-                link-hint livid-mode lorem-ipsum lsp-origami lsp-treemacs lsp-ui
-                macrostep multi-line mwim nameless nodejs-repl npm-mode
-                open-junk-file org-superstar overseer page-break-lines paradox
-                password-generator pcre2el popwin prettier-js quickrun
-                rainbow-delimiters restart-emacs rjsx-mode space-doc spaceline
-                spacemacs-purpose-popwin spacemacs-whitespace-cleanup
-                string-edit-at-point string-inflection symbol-overlay symon
-                term-cursor toc-org transient treemacs-evil treemacs-icons-dired
-                treemacs-persp treemacs-projectile typescript-mode undo-fu-session
-                unfill uuidgen vi-tilde-fringe volatile-highlights vundo
-                web-beautify wgrep winum writeroom-mode ws-butler
-                yasnippet-snippets)))
+                gptel helm-ag helm-c-yasnippet helm-comint helm-company
+                helm-descbinds helm-lsp helm-make helm-mode-manager helm-org
+                helm-projectile helm-purpose helm-swoop helm-xref hide-comnt
+                highlight-indentation highlight-numbers highlight-parentheses
+                hl-todo holy-mode hungry-delete hybrid-mode indent-guide info+
+                inspector js-doc js2-refactor json-mode json-navigator
+                json-reformat json-snatcher link-hint livid-mode lorem-ipsum
+                lsp-origami lsp-treemacs lsp-ui macrostep multi-line mwim nameless
+                nodejs-repl npm-mode open-junk-file org-superstar overseer
+                page-break-lines paradox password-generator pcre2el popwin
+                prettier-js quickrun rainbow-delimiters request restart-emacs
+                rjsx-mode space-doc spaceline spacemacs-purpose-popwin
+                spacemacs-whitespace-cleanup string-edit-at-point
+                string-inflection symbol-overlay symon term-cursor toc-org
+                transient treemacs-evil treemacs-icons-dired treemacs-persp
+                treemacs-projectile typescript-mode undo-fu-session unfill uuidgen
+                vi-tilde-fringe volatile-highlights vundo web-beautify wgrep winum
+                writeroom-mode ws-butler yasnippet-snippets)))
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
