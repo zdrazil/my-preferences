@@ -591,8 +591,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -600,6 +599,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+  ;; mise manages Node tools via shims — ensure Emacs can find them
+  (add-to-list 'exec-path (expand-file-name "~/.local/share/mise/shims"))
+
   (setq projectile-enable-caching t)
   (setq insert-directory-program "gls")
 
