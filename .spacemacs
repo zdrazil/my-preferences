@@ -43,8 +43,9 @@ This function should only modify configuration layer settings."
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
+     claude-code
      emacs-lisp
-     ;; git
+     (git :variables git-enable-magit-delta-plugin t)
      helm
      lsp
      ;; markdown
@@ -52,9 +53,11 @@ This function should only modify configuration layer settings."
      spacemacs-misc
      ;; org
      react
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-shell 'vterm
+            shell-default-term-shell "/opt/homebrew/bin/fish"
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
      (typescript :variables
@@ -658,6 +661,8 @@ before packages are loaded."
     (add-hook 'eshell-mode-hook #'my/terminal-background)
     (add-hook 'term-mode-hook #'my/terminal-background))
 
+  (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
+
   ;; Wingman: inline FIM completions via local llama-server
   (use-package wingman
     :hook (prog-mode . wingman-mode)
@@ -682,13 +687,14 @@ This function is called at the very end of Spacemacs initialization."
                 auto-highlight-symbol auto-yasnippet avy-jump-helm-line
                 centered-cursor-mode clean-aindent-mode column-enforce-mode
                 define-word devdocs diminish dired-quick-sort disable-mouse
-                dotenv-mode drag-stuff dumb-jump elisp-def elisp-demos
-                elisp-slime-nav emr eval-sexp-fu evil-anzu evil-args
-                evil-cleverparens evil-collection evil-easymotion evil-escape
-                evil-evilified-state evil-exchange evil-goggles evil-iedit-state
-                evil-indent-plus evil-lion evil-lisp-state evil-matchit evil-mc
-                evil-nerd-commenter evil-numbers evil-surround evil-textobj-line
-                evil-tutor evil-unimpaired evil-visual-mark-mode evil-visualstar
+                dotenv-mode drag-stuff dumb-jump eat elisp-def elisp-demos
+                elisp-slime-nav emr esh-help eshell-prompt-extras eshell-z
+                eval-sexp-fu evil-anzu evil-args evil-cleverparens evil-collection
+                evil-easymotion evil-escape evil-evilified-state evil-exchange
+                evil-goggles evil-iedit-state evil-indent-plus evil-lion
+                evil-lisp-state evil-matchit evil-mc evil-nerd-commenter
+                evil-numbers evil-surround evil-textobj-line evil-tutor
+                evil-unimpaired evil-visual-mark-mode evil-visualstar
                 expand-region eyebrowse fancy-battery flycheck-elsa
                 flycheck-package flycheck-pos-tip golden-ratio google-translate
                 gptel helm-ag helm-c-yasnippet helm-comint helm-company
@@ -698,16 +704,17 @@ This function is called at the very end of Spacemacs initialization."
                 hl-todo holy-mode hungry-delete hybrid-mode indent-guide info+
                 inspector js-doc js2-refactor json-mode json-navigator
                 json-reformat json-snatcher link-hint livid-mode lorem-ipsum
-                lsp-origami lsp-treemacs lsp-ui macrostep multi-line mwim nameless
-                nodejs-repl npm-mode open-junk-file org-superstar overseer
-                page-break-lines paradox password-generator pcre2el popwin
-                prettier-js quickrun rainbow-delimiters request restart-emacs
-                rjsx-mode space-doc spaceline spacemacs-purpose-popwin
-                spacemacs-whitespace-cleanup string-edit-at-point
-                string-inflection symbol-overlay symon term-cursor toc-org
-                transient treemacs-evil treemacs-icons-dired treemacs-persp
-                treemacs-projectile typescript-mode undo-fu-session unfill uuidgen
-                vi-tilde-fringe volatile-highlights vundo web-beautify wgrep winum
+                lsp-origami lsp-treemacs lsp-ui macrostep multi-line multi-term
+                multi-vterm mwim nameless nodejs-repl npm-mode open-junk-file
+                org-superstar overseer page-break-lines paradox password-generator
+                pcre2el popwin prettier-js quickrun rainbow-delimiters request
+                restart-emacs rjsx-mode shell-pop space-doc spaceline
+                spacemacs-purpose-popwin spacemacs-whitespace-cleanup
+                string-edit-at-point string-inflection symbol-overlay symon
+                term-cursor terminal-here toc-org transient treemacs-evil
+                treemacs-icons-dired treemacs-persp treemacs-projectile
+                typescript-mode undo-fu-session unfill uuidgen vi-tilde-fringe
+                volatile-highlights vterm vundo web-beautify wgrep winum
                 writeroom-mode ws-butler yasnippet-snippets)))
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
