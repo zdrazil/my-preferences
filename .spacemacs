@@ -613,20 +613,33 @@ before packages are loaded."
         lsp-completion-provider :capf)
 
   (with-eval-after-load 'lsp-mode
-    (setq lsp-disabled-clients '(deno-ls)))
+    (setq lsp-disabled-clients '(deno-ls)
+          lsp-eslint-auto-fix-on-save nil))
 
   ;; dumb-jump: use rg and show matches in Helm
   (setq dumb-jump-force-searcher 'rg)
   (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
+  ;; ESLint toggle — discoverable via SPC SPC my/toggle-eslint
+  (defun my/toggle-eslint ()
+    "Toggle ESLint flycheck checker in the current buffer."
+    (interactive)
+    (if (memq 'javascript-eslint flycheck-disabled-checkers)
+        (progn
+          (setq-local flycheck-disabled-checkers
+                      (delq 'javascript-eslint flycheck-disabled-checkers))
+          (message "ESLint enabled"))
+      (add-to-list 'flycheck-disabled-checkers 'javascript-eslint)
+      (message "ESLint disabled"))
+    (flycheck-buffer))
 
   ;; Use project-local eslint/prettier from node_modules
   (add-hook 'typescript-mode-hook #'add-node-modules-path)
   (add-hook 'typescript-tsx-mode-hook #'add-node-modules-path)
   (add-hook 'js2-mode-hook #'add-node-modules-path)
 
-  ;; Use local prettier from node_modules when available
-  (setq prettier-js-command "npx")
-  (setq prettier-js-args '("prettier"))
+  (setq prettier-js-command "prettierd")
+  (setq prettier-js-args '())
 
   (when (display-graphic-p)
     (set-frame-size (selected-frame) 1100 1050 t))
