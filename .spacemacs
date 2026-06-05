@@ -611,6 +611,7 @@ before packages are loaded."
   ;; mise manages Node tools via shims — ensure Emacs can find them
   (add-to-list 'exec-path (expand-file-name "~/.local/share/mise/shims"))
 
+  (setq terminal-here-mac-terminal-command 'iterm2)
   (setq projectile-enable-caching t)
   (setq insert-directory-program "gls")
 
