@@ -44,6 +44,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
      claude-code
+     vinegar
      emacs-lisp
      (git :variables git-enable-magit-delta-plugin t)
      helm
@@ -667,7 +668,24 @@ before packages are loaded."
   (use-package wingman
     :hook (prog-mode . wingman-mode)
     :config
-    (setq wingman-llama-endpoint "http://127.0.0.1:8012/infill")))
+    (setq wingman-llama-endpoint "http://127.0.0.1:8012/infill"))
+
+  ;; Cmd+Click -> go to definition (LSP when active, xref fallback)
+  (global-set-key (kbd "<s-mouse-1>")
+                  (lambda (event)
+                    (interactive "e")
+                    (mouse-set-point event)
+                    (if (bound-and-true-p lsp-mode)
+                        (lsp-find-definition)
+                      (xref-find-definitions (xref-backend-identifier-at-point
+                                              (xref-find-backend))))))
+
+  ;; Logitech side buttons -> navigate back/forward in jump history
+  ;; Suppress down-mouse-3 so it doesn't extend selection before our binding fires
+  (global-set-key (kbd "<down-mouse-3>") #'ignore)
+  (global-set-key (kbd "<mouse-3>") #'evil-jump-backward)
+  (global-set-key (kbd "<down-mouse-4>") #'ignore)
+  (global-set-key (kbd "<mouse-4>") #'evil-jump-forward))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
