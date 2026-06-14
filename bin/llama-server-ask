@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# hf auth login
+
+llama-server -hf unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL \
+    --temp 1.0 \
+    --top-p 0.95 \
+    --top-k 64 \
+    --reasoning off

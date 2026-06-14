@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# hf auth login
+
+llama-server -hf unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q2_K_XL \
+    --temp 0.7 \
+    --top-p 0.8 \
+    --top-k 20 \
+    --presence-penalty 1.5 \
+    --min-p 0.00 \
+    --port 8888
