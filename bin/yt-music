@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# shellcheck enable=all
+
+yt-dlp -o '%(album_artist)s/%(album)s/%(playlist_index)s - %(title)s.%(ext)s' --no-mtime -f 'ba*' -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata --parse-metadata '%(album_artist,channel,creator,artist|Unknown)s:%(album_artist)s' \"$1\"
