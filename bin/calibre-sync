@@ -1,14 +1,7 @@
-#!/usr/bin/env bash
-# shellcheck enable=all
+#!/bin/bash
 
-# https://crontab.guru/#0_8_*_*_0-6
-# https://betterprogramming.pub/https-medium-com-ratik96-scheduling-jobs-with-crontab-on-macos-add5a8b26c30
-# crontab -e
-# 0 8 * * * cd ~/bin && ./calibre-sync
-# crontab -l
-
-rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ ~/OneDrive/apps/calibre
-touch ~/OneDrive/apps/calibre/synced
-
-# open 'smb://Alexandria.local/docker'
-# rsync -avhP --delete --exclude 'full-text-search.db' -u ~/calibre/ /Volumes/docker/calibre
+rsync -av \
+  --exclude='metadata_db_prefs_backup.json' \
+  --exclude='full-text-search.db' \
+  --exclude='metadata.db' \
+  --delete ~/calibre ~/GoogleDrive/apps/
