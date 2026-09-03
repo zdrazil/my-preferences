@@ -20,8 +20,6 @@ Treat model fit as a provisional hypothesis:
 - Parameter counts, model labels, and vendor benchmarks are weak priors. They do not create controlled comparisons across different scaffolds and settings.
 - Prefer representative outcomes: task success, substantive defects, repair turns, latency, and total cost.
 
-Verify current first-party documentation before stating model availability, limits, pricing, or benchmark claims that affect the comparison.
-
 ## Benchmark prior
 
 Use the Artificial Analysis intelligence-versus-cost comparison as a routing prior, not as task-specific evidence.
@@ -46,7 +44,7 @@ Use these as starting priors, not conclusions:
 - **Sol:** Complex professional and coding work. Consider it when errors are costly, the task has interacting constraints, or representative tests show that additional reasoning materially improves outcomes. Lower reasoning settings may be preferable when latency or cost matters.
 - **Terra:** Recommend it only when representative task evidence or another material constraint gives it an advantage not captured by the intelligence-cost comparison.
 - **Luna:** High-volume, routine, tightly bounded, or cost-sensitive work. Treat it as the default challenger to Sol, especially when a higher Luna reasoning setting can meet the task's acceptance criteria more cheaply than a Sol configuration.
-- **Local Qwen3.6-35B-A3B:** an open-weight vision-language mixture-of-experts model with 35B total and about 3B activated parameters. Consider it when offline execution, data control, or avoiding metered API usage matters. Treat its reported capabilities as vendor evidence until reproduced with the user's quantization, harness, serving stack, and hardware. At a measured 30 tokens/second, 1,000 generated tokens take about 33 seconds before prompt processing and tool time.
+- **Local Qwen3.6-35B-A3B:** an open-weight vision-language mixture-of-experts model with 35B total and about 3B activated parameters. Consider it whenever the task appears within its practical capability, not only when offline execution or privacy is required. When Qwen and a cloud configuration are both plausible for the task, recommend them together and identify any likely local-system limitation such as tool integration, latency, quantization, or hardware. Never recommend Qwen as the sole option.
 
 First identify the relevant Sol and Luna configurations on the intelligence-cost frontier. Compare those configurations against the task's cost of error, latency tolerance, usage volume, and acceptance evidence. Consider Terra only when task-specific evidence or an operational constraint supplies an advantage absent from the benchmark.
 
@@ -54,9 +52,7 @@ Treat reasoning effort and Qwen thinking mode as configuration variables: compar
 
 ## Response
 
-When local execution is applicable, include Qwen alongside the most relevant cloud configuration as a comparison or companion option. Never recommend Qwen as the sole option; always pair it with at least one cloud model.
-
-Lead with the most plausible configuration, including reasoning effort when it materially affects the recommendation, and the task signals supporting it. Include another option only when it reveals a meaningful trade-off or uncertainty.
+Lead with the smallest set of plausible configurations that fit the task. When both Qwen and a cloud configuration appear capable of meeting the acceptance criteria, present them together in the primary recommendation rather than treating Qwen as a fallback or separate privacy option. Always include at least one cloud configuration. Include additional cloud options only when they reveal a meaningful trade-off or uncertainty.
 
 For each option, state:
 
