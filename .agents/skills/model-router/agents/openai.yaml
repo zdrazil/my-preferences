@@ -1,0 +1,6 @@
+interface:
+  display_name: "Model Router"
+  short_description: "Compare Codex models with local Qwen"
+  default_prompt: "Use $model-router to compare models for this task: [describe the task]."
+policy:
+  allow_implicit_invocation: false
