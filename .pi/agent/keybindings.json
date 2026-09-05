@@ -1,0 +1,7 @@
+{
+  "tui.editor.cursorUp": ["up", "k"],
+  "tui.editor.cursorDown": ["down", "j"],
+  "tui.editor.cursorWordLeft": ["alt+left", "alt+b"],
+  "tui.editor.cursorWordRight": ["alt+right", "alt+f"],
+  "tui.select.confirm": ["enter", "ctrl+m"]
+}
