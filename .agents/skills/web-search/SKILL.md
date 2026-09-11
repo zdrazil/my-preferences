@@ -13,9 +13,7 @@ ketch search "<query>"
 
 Use search results to find relevant sources.
 
-Before answering, scrape the most relevant result(s) with --scrape.
-
-You may answer from snippets alone only for a simple factual lookup where the snippet directly contains the complete answer. Done when you have enough source content to answer reliably.
+If the task requires information from a page beyond the result snippet, use --scrape to fetch the page content.
 
 ## Query discipline
 
