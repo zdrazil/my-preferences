@@ -1,6 +1,6 @@
 {
-  "backend": "ddg",
-  "searxng_url": "http://localhost:8081",
+  "backend": "searxng",
+  "searxng_url": "http://192.168.1.219:8080",
   "firecrawl_url": "https://api.firecrawl.dev",
   "limit": 5,
   "cache_ttl": "72h",

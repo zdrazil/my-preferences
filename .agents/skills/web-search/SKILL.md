@@ -11,9 +11,11 @@ When this skill is selected, execute the following command in the shell:
 ketch search "<query>"
 ```
 
-`ketch search` queries the configured search backend and prints results as `url`, `title`, `snippet` blocks.
+Use search results to find relevant sources.
 
-Done when the output contains result blocks with real URLs and relevant snippets — if the snippet alone answers the question, stop; if the user needs full page content, add `--scrape`.
+Before answering, scrape the most relevant result(s) with --scrape.
+
+You may answer from snippets alone only for a simple factual lookup where the snippet directly contains the complete answer. Done when you have enough source content to answer reliably.
 
 ## Query discipline
 
