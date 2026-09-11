@@ -1,0 +1,6 @@
+interface:
+  display_name: "Web Scraping"
+  short_description: "Scrape URLs to clean markdown via the ketch CLI"
+  default_prompt: "Use $web-scraping to fetch content from [URL or topic]."
+policy:
+  allow_implicit_invocation: true

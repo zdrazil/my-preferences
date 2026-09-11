@@ -1,6 +1,6 @@
 ---
 name: write-tests
-description: : Write, revise, or review automated tests for application and library runtime behavior. Use for regression coverage, test-scope decisions, and weak, flaky, redundant, or over-mocked tests. Exclude guarantees enforced by static type checking.
+description: Write, revise, or review automated tests for application and library runtime behavior. Use for regression coverage, test-scope decisions, and weak, flaky, redundant, or over-mocked tests. Exclude guarantees enforced by static type checking.
 ---
 
 # Testing

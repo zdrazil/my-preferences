@@ -1,0 +1,6 @@
+interface:
+  display_name: "Web Search"
+  short_description: "Search the web via the ketch CLI"
+  default_prompt: "Use $web-search to find information about [topic]."
+policy:
+  allow_implicit_invocation: true
