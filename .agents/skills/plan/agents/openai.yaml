@@ -1,0 +1,6 @@
+interface:
+  display_name: "Plan"
+  short_description: "Explore, clarify, and write an implementation plan"
+  default_prompt: "Use $plan to plan this task: [describe the task]."
+policy:
+  allow_implicit_invocation: false
