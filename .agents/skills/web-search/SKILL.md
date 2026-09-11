@@ -1,6 +1,6 @@
 ---
 name: web-search
-description: Search the web via the ketch CLI. Use when the user wants to search the web or find pages on a topic, with or without full page content.
+description: Search the web via the ketch CLI. Use when the user wants to search or find pages on a topic.
 ---
 
 # Web search

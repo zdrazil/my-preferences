@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Conduct a challenging, interactive questioning session about a user's idea, plan, decision, presentation, or technical proposal. Use only when explicitly invoked.
+description: Challenging, interactive questioning of a user's idea or plan. Use only when explicitly invoked.
 ---
 
 # Grill Me

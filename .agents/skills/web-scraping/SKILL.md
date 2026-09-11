@@ -1,6 +1,6 @@
 ---
 name: web-scraping
-description: Scrape one or more URLs to clean markdown via the ketch CLI. Use when the user wants a web page fetched, scraped, or converted to markdown.
+description: Scrape URLs to clean markdown via the ketch CLI. Use when the user wants a page fetched.
 ---
 
 # Web scraping

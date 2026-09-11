@@ -1,6 +1,6 @@
 ---
 name: model-router
-description: Compare GPT-5.6 Sol, Terra, Luna, and a local Qwen3.6-35B-A3B deployment for a coding task, explaining the evidence, trade-offs, and uncertainty behind likely model fit. Use only when explicitly invoked.
+description: Compare GPT-5.6 models and local Qwen3.6-35B-A3B for a coding task. Use when explicitly invoked.
 ---
 
 # Model Router

@@ -1,6 +1,6 @@
 ---
 name: writing-for-agents
-description: Write or revise instructions that agents consume, including skills, AGENTS.md, CLAUDE.md, and linked agent documentation.
+description: "Write or revise instructions agents consume: skills, AGENTS.md, CLAUDE.md, and agent documentation."
 ---
 
 Write for reliable execution.
