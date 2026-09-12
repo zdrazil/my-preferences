@@ -1,0 +1,6 @@
+interface:
+  display_name: "Model Router (Local)"
+  short_description: "Compare local models: Gemma 4 26B, Qwen3.6 35B, Qwen3.8 27B"
+  default_prompt: "Use $model-router-local to compare local models for this task: [describe the task]."
+policy:
+  allow_implicit_invocation: false
