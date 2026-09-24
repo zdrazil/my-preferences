@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prompt Engineer"
+  short_description: "Improve a prompt"
+  default_prompt: "Act as a prompt engineer. Base the following on what we know about how LLMs work and the data they’re trained on: <p> $QUESTION </p>"
+policy:
+  allow_implicit_invocation: false
