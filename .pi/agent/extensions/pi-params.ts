@@ -8,7 +8,7 @@
  *   /params                        — show current overrides
  *   /params set <key> <value>      — set a parameter
  *   /params reset                  — clear all overrides
- *   /params preset <name>          — apply a preset (creative, precise, balanced)
+ *   /params preset <name>          — apply a preset (general, coding, creative, precise, balanced, brainstorm, long)
  *
  * Examples:
  *   /params set temperature 0.9    — more creative
@@ -17,6 +17,10 @@
  *   /params set max_tokens 8192    — longer responses
  *   /params preset creative        — temp 1.0, top_p 0.95
  *   /params preset precise         — temp 0.1, top_p 0.1
+ *   /params preset general         — general purpose (temp 1.0, top_k 20)
+ *   /params preset coding          — coding focused (temp 0.6, top_k 20)
+ *   /params preset creative        — high creativity (temp 1.0, top_p 0.95)
+ *   /params preset precise         — maximum precision (temp 0.1, top_p 0.1)
  */
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent'
@@ -41,7 +45,7 @@ const PRESETS: Record<string, { params: ParamOverrides; description: string }> =
     },
     coding: {
         params: { temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0, presence_penalty:0.0, repetition_penalty: 1.0 },
-        description: 'Coding — temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0',
+        description: 'Coding — temperature: 0.6, top_p: 0.95, top_k: 20, min_p: 0',
     },
     creative: {
         params: { temperature: 1.0, top_p: 0.95 },
@@ -226,9 +230,9 @@ export default function init(pi: ExtensionAPI) {
     pi.registerTool({
         name: 'params_preset',
         label: 'Params Preset',
-        description: 'Apply a generation preset: creative (temp 1.0), precise (temp 0.1), balanced (temp 0.5), brainstorm (temp 1.2), long (max_tokens 16384).',
+        description: 'Apply a generation preset: general (temp 1.0), coding (temp 0.6), creative (temp 1.0), precise (temp 0.1), balanced (temp 0.5), brainstorm (temp 1.2), long (max_tokens 16384).',
         parameters: Type.Object({
-                    name: Type.String({ enum: ['creative', 'precise', 'balanced', 'brainstorm', 'long'], description: 'Preset name' }),
+            name: Type.String({ enum: ['general', 'coding', 'creative', 'precise', 'balanced', 'brainstorm', 'long'], description: 'Preset name' }),
         }),
         async execute(_toolCallId, params) {
             return {
