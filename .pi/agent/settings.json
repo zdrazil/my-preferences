@@ -15,6 +15,6 @@
   "compaction": {
     "enabled": true
   },
-  "theme": "light",
+  "theme": "light/dark",
   "defaultTools": ["+codemode"]
 }
