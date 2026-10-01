@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+msg="$(
+  git diff --cached |
+    pi --print \
+      --model qwen3.5-4b-mtplx-optimized-speed \
+      --thinking off \
+      "Give me a concise conventional commit message for this diff. Output only the commit message."
+)"
+
+echo "$msg"
+
+git commit -m "$msg"
