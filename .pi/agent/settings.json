@@ -1,0 +1,20 @@
+{
+  "quietStartup": true,
+  "lastChangelogVersion": "0.99.1",
+  "defaultProvider": "macos-net-omlx",
+  "externalEditor": "vim",
+  "packages": [
+    "npm:pi-context-view",
+    "npm:@aliou/pi-guardrails",
+    "npm:pi-turn-metrics",
+    "npm:@specode/pi-last-model-effort"
+  ],
+  "defaultThinkingLevel": "medium",
+  "hideThinkingBlock": true,
+  "enableInstallTelemetry": false,
+  "compaction": {
+    "enabled": true
+  },
+  "theme": "light",
+  "defaultTools": ["+codemode"]
+}
