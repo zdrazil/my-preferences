@@ -2,13 +2,30 @@
 
 set -e
 
-msg="$(
-  git diff --cached |
-    pi --print \
-      --model qwen3.5-4b-mtplx-optimized-speed \
-      --thinking off \
-      "Give me a concise conventional commit message for this diff. Output only the commit message."
-)"
+msg=$(
+    {
+        echo '--- git diff --staged ---'
+        git diff --staged
+
+        echo
+        echo '--- git log -10 --oneline ---'
+        git log -10 --oneline
+    } |
+        pi --print \
+            --model Qwen3.6-35B \
+            --provider windows \
+            --thinking off \
+            'Match the existing commit message style in this repository.
+
+Structure:
+- **Subject**: imperative mood, under 72 characters, describing the effect of
+  the change rather than the mechanics. "Prevent duplicate signups", not
+  "Add unique constraint".
+- **Footer**: issue references in the format this repo already uses.
+
+Output only the commit message.
+'
+)
 
 echo "$msg"
 
