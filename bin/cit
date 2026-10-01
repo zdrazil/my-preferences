@@ -2,6 +2,19 @@
 
 set -e
 
+API="http://192.168.1.81:8080/v1"
+FALLBACK_MODEL="Qwen3.6-35B"
+
+model=$(
+    curl -sf "$API/models" |
+        jq -r '.data[] | select(.status.value == "loaded") | .id' |
+        head -n1
+) || true
+
+model="${model:-$FALLBACK_MODEL}"
+
+echo "Using model: $model" >&2
+
 msg=$(
     {
         echo '--- git diff --staged ---'
@@ -12,7 +25,7 @@ msg=$(
         git log -10 --oneline
     } |
         pi --print \
-            --model Qwen3.6-35B \
+            --model "$model" \
             --provider windows \
             --thinking off \
             'Match the existing commit message style in this repository.
