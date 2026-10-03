@@ -10,11 +10,13 @@
     "npm:@specode/pi-last-model-effort"
   ],
   "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
   "compaction": {
     "enabled": true
   },
   "theme": "light/dark",
-  "defaultTools": ["+codemode"]
+  "defaultTools": [
+    "+codemode"
+  ]
 }
