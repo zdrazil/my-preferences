@@ -12,7 +12,7 @@
     "npm:pi-print-stream"
   ],
   "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "enableInstallTelemetry": false,
   "compaction": {
     "enabled": true

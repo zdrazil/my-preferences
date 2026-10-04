@@ -20,6 +20,12 @@ pi has no built-in sub-agent tool. To spawn one, run pi itself in non-interactiv
 - Work that needs interactive steering. The user cannot steer a sub-agent, so long work (implementing a feature, designing an API) belongs in a dedicated interactive session, not a sub-agent.
 - Do not reach for a sub-agent as a mid-session context-saving trick. If a task needs more context, gather it into an artifact first.
 
+## When to route the task to Gemma E4B
+
+For bounded, single-shot tasks, do not match the current session's model: pick the provider's Gemma E4B model (--model gemma-e4b) and set `--thinking` to `none` or `medium`. It fits narrow, well-specified jobs: classification, routing, tagging, intent detection, triage, pulling fields into JSON, reformatting. It also fits first-pass summarizing or filtering of long documents (128K, expect it to miss subtle details), single-tool or short-schema tool calls, and multimodal preprocessing such as transcription, captioning, or text from screenshots.
+
+Escalate to a larger model for multi-step planning, long agentic loops, hard reasoning or large-codebase edits, high-stakes factual claims, and instruction-following over many constraints. Keep each E4B task short and self-contained.
+
 ## How to spawn a sub-agent
 
 1. Write a self-contained prompt. The sub-agent cannot see this session: include file paths, git references, review or analysis criteria, and the expected output format.
