@@ -30,7 +30,7 @@ Escalate to a larger model for multi-step planning, long agentic loops, hard rea
 
 1. Write a self-contained prompt. The sub-agent cannot see this session: include file paths, git references, review or analysis criteria, and the expected output format.
 2. Choose flags:
-   - Match the current session by default: read `PI_PROVIDER`, `PI_MODEL` from the environment and pass `--provider "$PI_PROVIDER" --model "$PI_MODEL"`. The model pattern supports a `thinking` param (off, minimal, low, medium, high, xhigh, max). Choose reasoning based on the task.
+   - Match the current session by default: read `PI_PROVIDER`, `PI_MODEL` from the environment and pass `--provider "$PI_PROVIDER" --model "$PI_MODEL"`. The model pattern supports a `thinking` param (off, minimal, low, medium, high, xhigh, max). Choose reasoning based on the task. Use Gemma E4B instead of the default if it's a better fit for the task.
 3. Pick a random numeric suffix and name the files .pi/pi-prompt-<task>-<n>.md and .pi/pi-sub-agent-<task>-<n>.md, so two runs of the same task do not clobber each other's files. Write the prompt to the prompt file first (with the write tool or a single-quoted heredoc) so embedded quotes and newlines in the prompt cannot break the shell call.
 4. Before launching, display the attach command to the user, on its own, with no additional text or explanation:
 
