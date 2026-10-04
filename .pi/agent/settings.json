@@ -7,7 +7,8 @@
     "npm:pi-context-view",
     "npm:@aliou/pi-guardrails",
     "npm:pi-turn-metrics",
-    "npm:@specode/pi-last-model-effort"
+    "npm:@specode/pi-last-model-effort",
+    "npm:pi-notify"
   ],
   "defaultThinkingLevel": "medium",
   "hideThinkingBlock": false,
