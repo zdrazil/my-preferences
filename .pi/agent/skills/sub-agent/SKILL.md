@@ -58,3 +58,4 @@ Run several sub-agents at once only for read-only tasks — fire the bash calls 
 - The sub-agent sees the same working directory and files as this session, and nothing else.
 - If a run comes back wrong or short on context, do not attempt to debug from inside the sub-agent: the fix is prompt-side.
 - Prefer fixing the subagent instead of doing the work yourself.
+- Do not parallelize sub-agents. Only one should be running at a time. Sequentialize them.
