@@ -22,7 +22,7 @@ pi has no built-in sub-agent tool. To spawn one, run pi itself in non-interactiv
 
 ## When to route the task to Gemma E4B
 
-For bounded, single-shot tasks, do not match the current session's model: pick the provider's Gemma E4B model (--model gemma-e4b) and set `--thinking` to `none` or `medium`. It fits narrow, well-specified jobs: classification, routing, tagging, intent detection, triage, pulling fields into JSON, reformatting. It also fits first-pass summarizing or filtering of long documents (128K, expect it to miss subtle details), single-tool or short-schema tool calls, and multimodal preprocessing such as transcription, captioning, or text from screenshots.
+For bounded, single-shot tasks, do not match the current session's model: pick the provider's Gemma E4B model (--model gemma-e4b) and set `--thinking` to `off` or `medium`. It fits narrow, well-specified jobs: classification, routing, tagging, intent detection, triage, pulling fields into JSON, reformatting. It also fits first-pass summarizing or filtering of long documents (128K, expect it to miss subtle details), single-tool or short-schema tool calls, and multimodal preprocessing such as transcription, captioning, or text from screenshots.
 
 Escalate to a larger model for multi-step planning, long agentic loops, hard reasoning or large-codebase edits, high-stakes factual claims, and instruction-following over many constraints. Keep each E4B task short and self-contained.
 
@@ -30,7 +30,11 @@ Escalate to a larger model for multi-step planning, long agentic loops, hard rea
 
 1. Write a self-contained prompt. The sub-agent cannot see this session: include file paths, git references, review or analysis criteria, and the expected output format.
 2. Choose flags:
-   - Match the current session by default: read `PI_PROVIDER`, `PI_MODEL` from the environment and pass `--provider "$PI_PROVIDER" --model "$PI_MODEL"`. The model pattern supports a `thinking` param (off, minimal, low, medium, high, xhigh, max). Choose reasoning based on the task. Use Gemma E4B instead of the default if it's a better fit for the task.
+   - Read `PI_PROVIDER`, `PI_MODEL` from the environment
+   - Pass `--provider "$PI_PROVIDER"`
+   - The model pattern supports a `thinking` param (off, minimal, low, medium, high, xhigh, max). Choose reasoning based on the task. 
+   - Choose model --model "model"`. 
+      - Use gemma-e4b (provider always supports it) if it's a better fit for the task. Otherwise use PI_MODEL.
 3. Pick a random numeric suffix and name the files .pi/pi-prompt-<task>-<n>.md and .pi/pi-sub-agent-<task>-<n>.md, so two runs of the same task do not clobber each other's files. Write the prompt to the prompt file first (with the write tool or a single-quoted heredoc) so embedded quotes and newlines in the prompt cannot break the shell call.
 4. Before launching, display the attach command to the user, on its own, with no additional text or explanation:
 
@@ -53,3 +57,4 @@ Run several sub-agents at once only for read-only tasks — fire the bash calls 
 
 - The sub-agent sees the same working directory and files as this session, and nothing else.
 - If a run comes back wrong or short on context, do not attempt to debug from inside the sub-agent: the fix is prompt-side.
+- Prefer fixing the subagent instead of doing the work yourself.
