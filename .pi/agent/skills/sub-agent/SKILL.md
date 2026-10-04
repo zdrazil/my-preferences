@@ -30,9 +30,9 @@ pi has no built-in sub-agent tool. To spawn one, run pi itself in non-interactiv
 
    tmux attach -t pi-sub-agent-<task>-<n>
 
-5. Launch from the project root inside a detached tmux session. The single quotes are for the outer shell only: tmux runs the command string in its own shell, so `$(cat ...)` expands there, at launch time:
+5. Launch from the project root inside a detached tmux session. The single quotes are for the outer shell only: tmux runs the command string in its own shell, so `$(cat ...)` expands there, at launch time. Pipe through `tee` so the streaming output is visible in the pane while attached, and saved to the output file at the same time — a bare `> file` redirect would leave the pane empty:
 
-   tmux new-session -d -s pi-sub-agent-<task>-<n> 'pi --print --provider "$PI_PROVIDER" --model "$PI_MODEL" --thinking "<level>" --no-session "$(cat .pi/pi-prompt-<task>-<n>.md)" > .pi/pi-sub-agent-<task>-<n>.md 2>&1'
+   tmux new-session -d -s pi-sub-agent-<task>-<n> 'pi --print --stream --provider "$PI_PROVIDER" --model "$PI_MODEL" --thinking "<level>" --no-session "$(cat .pi/pi-prompt-<task>-<n>.md)" 2>&1 | tee .pi/pi-sub-agent-<task>-<n>.md'
 
 6. Wait for the run to finish. Poll in a single bash call with a timeout (~10 minutes for a review-sized task):
 

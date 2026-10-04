@@ -8,7 +8,8 @@
     "npm:@aliou/pi-guardrails",
     "npm:pi-turn-metrics",
     "npm:@specode/pi-last-model-effort",
-    "npm:pi-notify"
+    "npm:pi-notify",
+    "npm:pi-print-stream"
   ],
   "defaultThinkingLevel": "medium",
   "hideThinkingBlock": false,
