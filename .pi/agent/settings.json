@@ -1,6 +1,6 @@
 {
   "quietStartup": true,
-  "lastChangelogVersion": "0.99.1",
+  "lastChangelogVersion": "1.0.1",
   "defaultProvider": "macos-net-omlx",
   "externalEditor": "vim",
   "packages": [
@@ -9,10 +9,12 @@
     "npm:pi-turn-metrics",
     "npm:@specode/pi-last-model-effort",
     "npm:pi-notify",
-    "npm:pi-print-stream"
+    "npm:pi-print-stream",
+    "npm:pi-context-shake",
+    "git:github.com/k0valik/pi-edit-guard"
   ],
   "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "enableInstallTelemetry": false,
   "compaction": {
     "enabled": true
