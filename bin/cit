@@ -58,16 +58,20 @@ msg=$(
             --model "$model" \
             --provider windows \
             --thinking off \
-            'Match the existing commit message style in this repository.
+            'Write the commit message for the following diff.
 
-Structure:
-- **Subject**: imperative mood, under 72 characters, describing the effect of
-  the change rather than the mechanics. "Prevent duplicate signups", not
-  "Add unique constraint".
-- **Footer**: issue references in the format this repo already uses.
+Rules:
+1. Match the subject line style of existing commits shown above.
+2. **Subject**: imperative mood, under 72 characters. Describe the effect
+   of the change, not the mechanics. "Add subtraction support" not
+   "Remove the add function".
+3. **Footer**: add issue references if the diff touches code related to
+   an issue number already used in this repo.
+4. Print exactly one line for the subject. Print the footer on the next
+   line if present. Nothing else.
 
-Output only the commit message.
-'
+Prohibited: no explanation, no code blocks, no preamble, no reasoning.
+Only the commit message. Nothing before or after it.'
 )
 
 echo "$msg"
