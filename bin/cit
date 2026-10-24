@@ -52,7 +52,7 @@ msg=$(
 
         echo
         echo '--- git log -3 --oneline ---'
-        git log -3 --oneline
+        git log -3 --oneline 2>/dev/null || echo "(no prior commits)"
     } |
         pi --print \
             --model "$model" \
