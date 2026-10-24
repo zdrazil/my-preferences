@@ -15,14 +15,44 @@ model="${model:-$FALLBACK_MODEL}"
 
 echo "Using model: $model" >&2
 
+# Algorithm rationale: -U1 global cap
+# A commit message only needs to know which files changed and what was modified.
+#
+# Chose:  git diff --staged -U1 | head -c 20000
+#
+# Alternatives considered and rejected:
+#   Per-file cap (head -c 5000 per file)
+#     - Diff headers (@@ -x,y +x,y @@) eat the context budget on each file.
+#       The first N bytes of every file's section are mostly metadata, not code.
+#     - Spawns 2*N subprocesses (one git diff + one head -c per file). Slow
+#       for commits touching many small files.
+#     - Large files dominate the payload even when they only need a short
+#       description, while small files still get full capping overhead.
+#
+#   Full diff, no cap:
+#     - Single-file changes can be megabytes. Blows context budget.
+#
+#   git diff --stat only:
+#     - Shows changed lines per file (src/main.rs | 15 ++++++---) but no
+#       actual code. LLM cannot distinguish a refactor from a logic change.
+#
+#   git log -10 --oneline:
+#     - 3 commits is enough to infer style. Older commits rarely influence the
+#       message of a new one.
+#
+# Why -U1 + 20KB:
+#   -U1 gives one line of context per hunk — enough to identify the function or
+#   variable scope the change touches. Cutting from 3 to 1 context line removes
+#   two-thirds of the diff without losing signal the LLM needs.
+#   20KB global cap prevents a single enormous file from dominating.
 msg=$(
     {
         echo '--- git diff --staged ---'
-        git diff --staged
+        git diff --staged -U1 | head -c 20000
 
         echo
-        echo '--- git log -10 --oneline ---'
-        git log -10 --oneline
+        echo '--- git log -3 --oneline ---'
+        git log -3 --oneline
     } |
         pi --print \
             --model "$model" \
