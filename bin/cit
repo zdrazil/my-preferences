@@ -15,10 +15,19 @@ model="${model:-$FALLBACK_MODEL}"
 
 echo "Using model: $model" >&2
 
-# Algorithm rationale: -U1 global cap
+# Algorithm rationale: -U1, 20KB cap, and --stat scope list
 # A commit message only needs to know which files changed and what was modified.
 #
-# Chose:  git diff --staged -U1 | head -c 20000
+# Pipeline:
+#   1. git diff --staged --stat — always complete and cheap, so the model sees
+#      every changed file and per-file scale even when the diff body is cut.
+#   2. git diff --staged -U1 — truncated to 20000 bytes, with an explicit
+#      marker appended when it is cut, so the model knows its body is partial.
+#
+# The silent head -c 20000 was the old bug: a commit touching many files got
+# a message describing only the first ~20KB of files, and the model had no
+# way to know the rest existed. The stat section plus the marker make the
+# full scope visible.
 #
 # Alternatives considered and rejected:
 #   Per-file cap (head -c 5000 per file)
@@ -32,6 +41,12 @@ echo "Using model: $model" >&2
 #   Full diff, no cap:
 #     - Single-file changes can be megabytes. Blows context budget.
 #
+#   Relying on the diff body alone for the file list:
+#     - Under the cap, files after the cut are invisible. The model then
+#       writes a subject that misses them. Rejected for the same reason as
+#       above, but with a fix: --stat is a few hundred bytes for 100 files
+#       while the body is 20KB, so full visibility costs almost nothing.
+#
 #   git diff --stat only:
 #     - Shows changed lines per file (src/main.rs | 15 ++++++---) but no
 #       actual code. LLM cannot distinguish a refactor from a logic change.
@@ -40,15 +55,34 @@ echo "Using model: $model" >&2
 #     - 3 commits is enough to infer style. Older commits rarely influence the
 #       message of a new one.
 #
-# Why -U1 + 20KB:
+# Why -U1 + 20KB + stat:
 #   -U1 gives one line of context per hunk — enough to identify the function or
 #   variable scope the change touches. Cutting from 3 to 1 context line removes
 #   two-thirds of the diff without losing signal the LLM needs.
 #   20KB global cap prevents a single enormous file from dominating.
+#   --stat keeps the complete file list in play, and the truncation marker
+#   tells the model its body is partial, so the subject can still describe the
+#   whole change instead of silently narrowing to what fit in the budget.
+diff_body=$(git diff --staged -U1)
+diff_bytes=$(printf '%s' "$diff_body" | wc -c | tr -d ' ')
+if (( diff_bytes > 20000 )); then
+  diff_body=$(
+    {
+        printf '%s' "$diff_body" | head -c 20000
+        echo
+        echo "[diff truncated at 20000 bytes of ${diff_bytes}; the full list of changed files is in the --stat section]"
+    }
+  )
+fi
+
 msg=$(
     {
-        echo '--- git diff --staged ---'
-        git diff --staged -U1 | head -c 20000
+        echo '--- git diff --staged --stat ---'
+        git diff --staged --stat
+
+        echo
+        echo '--- git diff --staged -U1 ---'
+        printf '%s\n' "$diff_body"
 
         echo
         echo '--- git log -3 --oneline ---'
@@ -61,6 +95,9 @@ msg=$(
             'Write the commit message for the following diff.
 
 Rules:
+0. The --stat section is authoritative for which files changed. If the diff
+   body carries a truncation marker, still write the subject for the whole
+   change, and do not claim specifics about files that are not shown.
 1. Match the subject line style of existing commits shown above.
 2. **Subject**: imperative mood, under 72 characters. Describe the effect
    of the change, not the mechanics. "Add subtraction support" not
