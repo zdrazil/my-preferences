@@ -11,10 +11,12 @@
     "npm:pi-notify",
     "npm:pi-print-stream",
     "npm:pi-context-shake",
-    "git:github.com/k0valik/pi-edit-guard"
+    "git:github.com/k0valik/pi-edit-guard",
+    "npm:pi-tool-repair",
+    "npm:guardrails-notify"
   ],
   "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
   "compaction": {
     "enabled": true
